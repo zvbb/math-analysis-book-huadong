@@ -1,0 +1,335 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 2.2}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+\begin{itemize}
+  \item (3)
+
+        它的偶数项组成的子列为
+        \begin{align*}
+          \frac{2^n + 3^n}{3^{n + 1} - 2^{n + 1}}
+           & = \frac{\frac{1}{3}\left(\frac{2}{3}\right)^n + \frac{1}{3}}{1 - \left(\frac{2}{3}\right)^{n + 1}}
+        \end{align*}
+        我们有
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{1}{3}\left(\frac{2}{3}\right)^n + \frac{1}{3} = \frac{1}{3} \\
+          \lim\limits_{n \to \infty} 1 - \left(\frac{2}{3}\right)^{n + 1} = 1
+        \end{align*}
+        利用定理2.7（四则运算）可知
+        \begin{align*}
+          \lim\limits_{n \to \infty}  \frac{\frac{1}{3}\left(\frac{2}{3}\right)^n + \frac{1}{3}}{1 - \left(\frac{2}{3}\right)^{n + 1}}
+           & = \frac{1}{3}
+        \end{align*}
+
+        它的奇数项组成的子列为
+        \begin{align*}
+          \frac{3^n - 2^n}{2^{n + 1} + 3^{n + 1}}
+           & = \frac{\frac{1}{3} - \frac{1}{3}\left(\frac{2}{3}\right)^{n}}{(\frac{2}{3})^{n + 1} + 1}
+        \end{align*}
+
+        我们有
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{1}{3} - \frac{1}{3}\left(\frac{2}{3}\right)^{n} = \frac{1}{3} \\
+          \lim\limits_{n \to \infty} (\frac{2}{3})^{n + 1} + 1 = 1
+        \end{align*}
+        利用定理2.7（四则运算）可知
+        \begin{align*}
+          \frac{\frac{1}{3} - \frac{1}{3}\left(\frac{2}{3}\right)^{n}}{(\frac{2}{3})^{n + 1} + 1}
+           & = \frac{1}{3}
+        \end{align*}
+
+        综上，数列满足偶数项极限与奇数项极限相等，利用第一节例8可得，极限为$\frac{1}{3}$。
+\end{itemize}
+
+\section*{4}
+
+\begin{itemize}
+  \item (1)
+
+        关键点
+        \begin{align*}
+          \frac{1}{n(n + 1)} = \frac{1}{n} - \frac{1}{n + 1}
+        \end{align*}
+
+  \item (2)
+
+        我们有
+        \begin{align*}
+          \sqrt{2} \sqrt[4]{2} \sqrt[8]{2}\cdots \sqrt[2^n]{2}
+           & = 2^{\frac{1}{2}} 2^{\frac{1}{4}} 2^{\frac{1}{8}} \cdots 2^{\frac{1}{2^n}} \\
+           & = 2^{1 - \frac{1}{2^n}}                                                    \\
+           & = \frac{2}{\sqrt[2^n]{2}}
+        \end{align*}
+        又因为
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sqrt[2^n]{2} = 1
+        \end{align*}
+        （证明与第一节例5相同）
+        利用极限的四则运算（定理2.7），我们有
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sqrt{2} \sqrt[4]{2} \sqrt[8]{2}\cdots \sqrt[2^n]{2}
+          = 2
+        \end{align*}
+
+  \item (3)
+
+        这道题要找到求和公式。
+        可以观察出分子是等差数列，分母是等比数列，
+        这种大部分都是采用错位相减的方式。
+        \begin{align*}
+          S_n = \frac{1}{2} + \frac{3}{2^2} + \cdots + \frac{2n - 1}{2^n} \\
+          \frac{1}{2}S_n = \frac{1}{2^2} + \frac{3}{2^3} + \cdots + \frac{2n - 1}{2^{n+1}}
+        \end{align*}
+        于是，两式相减
+        \begin{align*}
+          \frac{1}{2}S_n
+           & = \frac{1}{2} + \frac{2}{2^2} + \frac{2}{2^3} + \cdots + \frac{2}{2^n} - \frac{2n - 1}{2^{n+1}}    \\
+           & = \frac{1}{2} + \frac{1}{2}+ \frac{1}{2^2} + \cdots + \frac{1}{2^{n - 1}} - \frac{2n - 1}{2^{n+1}}
+        \end{align*}
+        其中，
+        \begin{align*}
+          \frac{1}{2}+ \frac{1}{2^2} + \cdots + \frac{1}{2^{n - 1}}
+        \end{align*}
+        是等比数列，其和为$1 - \frac{1}{2^{n - 1}}$。
+        于是，我们有
+        \begin{align*}
+          \frac{1}{2}S_n & = \frac{1}{2} + 1 - \frac{1}{2^{n - 1}} - \frac{2n - 1}{2^{n+1}} \\
+          S_n            & = 3 - \frac{1}{2^{n - 2}} - \frac{2n - 1}{2^{n}}
+        \end{align*}
+        所以
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{1}{2} + \frac{3}{2^2} + \cdots + \frac{2n - 1}{2^n}
+           & = \lim\limits_{n \to \infty} 3 - \frac{1}{2^{n - 2}} - \frac{2n - 1}{2^{n}} \\
+           & = 3
+        \end{align*}
+
+  \item (4)
+
+        我们有
+        \begin{align*}
+          \sqrt[n]{1 - \frac{1}{n}}
+           & = \sqrt[n]{\frac{n - 1}{n}}           \\
+           & = \frac{\sqrt[n]{n - 1}}{\sqrt[n]{n}}
+        \end{align*}
+
+        当$n \geq 2$时，我们有
+        \begin{align*}
+          1 \leq \sqrt[n]{n - 1} \leq \sqrt[n]{n}
+        \end{align*}
+        利用迫敛性和例2可得
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sqrt[n]{n - 1} = 1
+        \end{align*}
+        利用极限的四则运算，我们有
+        \begin{align*}
+          \lim\limits_{n \to infty} \sqrt[n]{1 - \frac{1}{n}}
+           & = \frac{\lim\limits_{n \to \infty} \sqrt[n]{n - 1}}{\lim\limits_{n \to \infty} \sqrt[n]{n}} \\
+           & = 1
+        \end{align*}
+
+  \item (5)
+
+        我们有
+        \begin{align*}
+          \frac{1}{n^2} + \frac{1}{(n + 1)^2} + \cdots + \frac{1}{(2n)^2}
+           & < \frac{1}{n^2} + \frac{1}{n^2} + \cdots + \frac{1}{n^2} \\
+           & = \frac{n + 1}{n^2}
+        \end{align*}
+        又因为
+        \begin{align*}
+          0 < \frac{1}{n^2} + \frac{1}{(n + 1)^2} + \cdots + \frac{1}{(2n)^2} \\
+          \lim\limits_{n \to \infty} \frac{n + 1}{n^2} = 0
+        \end{align*}
+        由迫敛性可得
+        \begin{align*}
+          \lim\limits_{n \to \infty} \left(\frac{1}{n^2} + \frac{1}{(n + 1)^2} + \cdots + \frac{1}{(2n)^2}\right)
+           & = 0
+        \end{align*}
+
+  \item (6)
+
+        我们有
+        \begin{align*}
+          \frac{n}{\sqrt{n^2 + n}} \leq \frac{1}{\sqrt{n^2 + 1}} + \frac{1}{\sqrt{n^2 + 2}} + \cdots + \frac{1}{\sqrt{n^2 + n}} \\
+          \frac{1}{\sqrt{n^2 + 1}} + \frac{1}{\sqrt{n^2 + 2}} + \cdots + \frac{1}{\sqrt{n^2 + n}} \leq \frac{n}{\sqrt{n^2 + 1}}
+        \end{align*}
+        又因为
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{n}{\sqrt{n^2 + n}}
+           & = \lim\limits_{n \to \infty} \sqrt{\frac{n^2}{n^2 + n}}       \\
+           & = \lim\limits_{n \to \infty} \sqrt{\frac{1}{1 + \frac{1}{n}}} \\
+           & = 1
+        \end{align*}
+        同理
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{n}{\sqrt{n^2 + 1}} = 1
+        \end{align*}
+        由夹逼定理可得
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{1}{\sqrt{n^2 + 1}} + \frac{1}{\sqrt{n^2 + 2}} + \cdots + \frac{1}{\sqrt{n^2 + n}} = 1
+        \end{align*}
+
+\end{itemize}
+
+\section*{8}
+
+\begin{itemize}
+  \item (1) $\lim\limits_{n \to \infty} \frac{1}{2} \cdot \frac{3}{4} \cdot \cdots \cdot \frac{2n - 1}{2n}$
+
+        因为$n^2 \geq n^2 - 1 = (n - 1)(n + 1)$，于是
+        我们有
+        \begin{align*}
+           & \frac{1}{2} \cdot \frac{3}{4} \cdot \cdots \cdot \frac{2n -1}{2n}                                              \\
+           & \leq \frac{1}{\sqrt{3}} \cdot \frac{3}{\sqrt{3}\sqrt{5}} \cdot \cdots \cdot \frac{2n - 1}{\sqrt{2n - 1}{2n+1}} \\
+           & = \frac{1}{\sqrt{2n + 1}}
+        \end{align*}
+
+        又因为
+        \begin{align*}
+          0 \leq \frac{1}{2} \cdot \frac{3}{4} \cdot \cdots \cdot \frac{2n - 1}{2n} \\
+          \lim\limits_{n \to \infty} \frac{1}{\sqrt{2n + 1}} = 0
+        \end{align*}
+        由夹逼定理可得
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{1}{2} \cdot \frac{3}{4} \cdot \cdots \cdot \frac{2n - 1}{2n} = 0
+        \end{align*}
+
+  \item (2)
+
+        先考虑$\sum\limits_{p=1}^n p!$，增大部分项的值（前$n - 2$项），我们有
+        \begin{align*}
+          n ! \leq \sum\limits_{p=1}^n p! & \leq (n-2)(n-2)! + (n-1)! + n!         \\
+                                          & = (n - 1)(n-2)! - (n-2)! + (n-1)! + n! \\
+                                          & = (n-1)! - (n - 2)! + (n-1)! + n!      \\
+                                          & \leq 2(n-1)! + n!
+        \end{align*}
+        因为
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{n!}{n!} = 1 \\
+          \lim\limits_{n \to \infty} \frac{2(n-1)! + n!}{n!} = 1
+        \end{align*}
+        由迫敛性可得
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{\sum\limits_{p=1}^n p!}{n!} = 1
+        \end{align*}
+
+  \item (3)
+
+        我们有
+        \begin{align*}
+          (n+1)^\alpha - n^\alpha & = n^\alpha [(1 + \frac{1}{n})^\alpha - 1]
+        \end{align*}
+        因为$1 + \frac{1}{n} > 1$，且$0 \leq \alpha < 1$，所以
+        \begin{align*}
+          (1 + \frac{1}{n})^\alpha < 1 + \frac{1}{n}
+        \end{align*}
+        所以
+        \begin{align*}
+          (n+1)^\alpha - n^\alpha & = n^\alpha [(1 + \frac{1}{n})^\alpha - 1] \\
+                                  & \leq n^\alpha [1 + \frac{1}{n} - 1]       \\
+                                  & = n^\alpha \frac{1}{n}                    \\
+                                  & = n^{\alpha - 1}                          \\
+                                  & = \frac{1}{n^{1 - \alpha}}
+        \end{align*}
+        又因为
+        \begin{align*}
+          0 < (n+1)^\alpha - n^\alpha \\
+          \lim\limits_{n \to \infty} \frac{1}{n^{1 - \alpha}} = 0
+        \end{align*}
+        由迫敛性可知
+        \begin{align*}
+          \lim\limits_{n \to \infty} (n+1)^\alpha - n^\alpha = 0
+        \end{align*}
+  \item (4)
+
+        我们有
+        \begin{align*}
+           & (1+\alpha)(1+\alpha^2)\cdots(1+\alpha^{2^n})                              \\
+           & = \frac{(1-\alpha)(1+\alpha)(1+\alpha^2)\cdots(1+\alpha^{2^n})}{1-\alpha} \\
+           & = \frac{1 - \alpha^{2^{n+1}}}{1 - \alpha}                                 \\
+           & = \frac{1}{1 - \alpha} - \frac{\alpha^{2^{n+1}}}{1 - \alpha}
+        \end{align*}
+        因为$|\alpha| < 1$，于是
+        \begin{align*}
+          0 \leq \alpha^{2^{n + 1}} < \alpha^n
+        \end{align*}
+        又因为
+        \begin{align*}
+          \lim\limits_{n \to \infty} \alpha^n = 0
+        \end{align*}
+        由迫敛性可知
+        \begin{align*}
+          \lim\limits_{n \to \infty} \alpha^{2^{n + 1}} = 0
+        \end{align*}
+        利用极限的四则运算可得
+        \begin{align*}
+          \lim\limits_{n \to \infty} (1+\alpha)(1+\alpha^2)\cdots(1+\alpha^{2^n})
+           & = \frac{1}{1 - \alpha} - 0 \\
+           & = \frac{1}{1 - \alpha}
+        \end{align*}
+\end{itemize}
+
+\section*{9}
+
+设
+\begin{align*}
+  a = max\{a_1, a_2, \cdots, a_m\}
+\end{align*}
+
+我们有
+\begin{align*}
+  \sqrt[n]{a^n} = a
+  \leq
+  \sqrt[n]{a_1^n + a_2^n + \cdots + a_m^n}
+  \leq
+  \sqrt[n]{a^n + a^n + \cdots + a^n}
+  = \sqrt[n]{m a^n} = \sqrt[n]{m}a
+\end{align*}
+又因为
+\begin{align*}
+  \lim\limits_{n \to \infty} \sqrt[n]{m}a
+   & = \lim\limits_{n \to \infty} \sqrt[n]{m} \lim\limits_{n \to \infty} a \\
+   & = 1 \cdot a = a
+\end{align*}
+由迫敛性可得
+\begin{align*}
+  \lim\limits_{n \to \infty} \sqrt[n]{a_1^n + a_2^n + \cdots + a_m^n} = a
+\end{align*}
+
+\end{document}

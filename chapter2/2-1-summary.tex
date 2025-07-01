@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{总结 2.1}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+\begin{zremark}
+  核心：
+
+  1.已知极限，按$\epsilon-N$定义证明。
+\end{zremark}
+
+题型(1)，
+最终的目标是通过只包含$\epsilon$变量的方式，表示出$n$的取值范围（即：$N$）。
+但往往数列的每项的表达式复杂，无法直接用$\epsilon$表示出$n$的值。
+所以，问题主要围绕着化简数列的技巧展开：
+\begin{itemize}
+  \item 分式，分母缩小。（例3）（\S2 例1）。
+  \item $n$次幂（例4），运用$(1+h)^n \geq 1 + nh$
+        或使用二项展开$(1+h)^n \geq 1 + nh + \frac{n(n-1)}{2}h^2$（\S2 例2），进行降幂。
+  \item $\frac{1}{n}$次幂（例5）。
+
+        先升到1次幂：
+
+        令
+        \begin{align*}
+          \alpha_n = a^\frac{1}{n} - a
+        \end{align*}
+
+        然后
+        \begin{align*}
+          \alpha_n + a = a^\frac{1}{n} \\
+          (\alpha_n + a)^n = a
+        \end{align*}
+
+        左侧降幂，运用(1-2)
+
+  \item 累积形式（例6），以累积中的合适项，代替其他项或部分项，进行放大。
+  \item 利用已有的极限。$\S2 例3$。
+  % \item 数列的项，表示成等差数列或等比数列（或复合形式）的和，先确定$a_n$的表达式，在进行计算。
+  %       $\S2 习题4-(1)(3)$。
+\end{itemize}
+
+
+\end{document}
