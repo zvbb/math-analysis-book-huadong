@@ -1,0 +1,509 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[most]{tcolorbox}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+\newtcolorbox{zthk}{
+  colback=blue!5,
+  colframe=blue!40!black,
+  fonttitle=\bfseries,
+  title=思维过程,
+  fontupper=\itshape,
+  separator sign={.},
+  before skip=10pt,
+  after skip=10pt,
+  breakable
+}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 2.3}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+\begin{itemize}
+  \item (1) $\lim\limits_{n \to \infty} \left(1 - \frac{1}{n}\right)^{n}$；
+
+        我们有
+        \begin{align*}
+          \left(1 - \frac{1}{n}\right)^{n}
+           & = \left(\frac{n - 1}{n}\right)^{n}                                                 \\
+           & = \frac{1}{\left(\frac{n}{n - 1}\right)^{n}}                                       \\
+           & = \frac{1}{\left(\frac{n-1+1}{n - 1}\right)^{n}}                                   \\
+           & = \frac{1}{\left(1 + \frac{1}{n - 1}\right)^{n}}                                   \\
+           & = \frac{1}{\left(1 + \frac{1}{n - 1}\right)^{n-1}\left(1 + \frac{1}{n - 1}\right)}
+        \end{align*}
+        设
+        \begin{align*}
+          a_n = \left(1 + \frac{1}{n}\right)^{n} \\
+          b_n = \left(1 + \frac{1}{n - 1}\right)^{n-1} \ (n \geq 2)
+        \end{align*}
+        于是可得，
+        \begin{align*}
+          b_2 = a_1 \\
+          b_3 = a_2 \\
+          \vdots    \\
+          b_n = a_{n-1}
+          \vdots
+        \end{align*}
+        由数列改变有限项，极限不变可得
+        \begin{align*}
+          \lim\limits_{n \to \infty} \left(1 + \frac{1}{n - 1}\right)^{n-1}
+           & = \lim\limits_{n \to \infty} \left(1 + \frac{1}{n}\right)^{n} \\
+           & = e
+        \end{align*}
+
+        由极限的四则运算可得
+        \begin{align*}
+          \lim\limits_{n \to \infty} \left(1 - \frac{1}{n}\right)^{n}
+           & = \lim\limits_{n \to \infty} \frac{1}{\left(1 + \frac{1}{n - 1}\right)^{n-1}\left(1 + \frac{1}{n - 1}\right)} \\
+           & = \frac{1}{e \cdot 1} = \frac{1}{e}
+        \end{align*}
+  \item (3) $\lim\limits_{n \to \infty} \left(1 + \frac{1}{n + 1}\right)^n$;
+
+        我们有
+        \begin{align*}
+          \left(1 + \frac{1}{n + 1}\right)^n
+           & = \frac{\left(1 + \frac{1}{n + 1}\right)^{n + 1}}{\left(1 + \frac{1}{n + 1}\right)}
+        \end{align*}
+        设
+        \begin{align*}
+          a_n = \left(1 + \frac{1}{n}\right)^n \\
+          b_n = \left(1 + \frac{1}{n + 1}\right)^{n + 1}
+        \end{align*}
+        可得数列$(b_n)_{n = 1}^{\infty}$是$(a_n)_{n = 1}^{\infty}$的子列，于是极限相同，
+        所以
+        \begin{align*}
+          \lim_{n \to \infty} \left(1 + \frac{1}{n + 1}\right)^{n + 1}
+           & = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n \\
+           & = e
+        \end{align*}
+
+        由极限的四则运算可得
+        \begin{align*}
+          \lim\limits_{n \to \infty} \left(1 + \frac{1}{n + 1}\right)^n
+           & = \lim\limits_{n \to \infty} \frac{\left(1 + \frac{1}{n + 1}\right)^{n + 1}}{\left(1 + \frac{1}{n + 1}\right)} \\
+           & = \frac{e}{1}                                                                                                  \\
+           & = e
+        \end{align*}
+
+  \item (5) $\lim\limits_{n \to \infty} \left(1 + \frac{1}{n^2}\right)^n$ .
+
+        我们有
+        \begin{align*}
+          \left(1 + \frac{1}{n^2}\right)^n
+           & = \left[\left(1 + \frac{1}{n^2}\right)^{n^2}\right]^\frac{1}{n}
+        \end{align*}
+        由$\left(1 + \frac{1}{n^2}\right)^{n^2}$是
+        $\left(1 + \frac{1}{n}\right)^{n}$的子列可得
+        \begin{align*}
+          \lim\limits_{n \to \infty} \left(1 + \frac{1}{n^2}\right)^{n^2} = e
+        \end{align*}
+
+        利用$\S 2$习题10可得
+        \begin{align*}
+          \lim\limits_{n \to \infty} \left(1 + \frac{1}{n^2}\right)^n
+           & = \lim\limits_{n \to \infty} \left[\left(1 + \frac{1}{n^2}\right)^{n^2}\right]^\frac{1}{n} \\
+           & = 1
+        \end{align*}
+
+\end{itemize}
+
+\section*{3}
+
+\begin{itemize}
+  \item (1)
+
+        易得$2$是数列的上界（对$n$进行归纳即可）。
+
+        证明数列是单增的。对任意$n$，我们有
+        \begin{align*}
+          a_{n + 1} = \sqrt{2 a_n} \\
+          a_{n + 1}^2 = 2 a_n
+        \end{align*}
+        假设$a_n > a_{n + 1}$，即$a_{n + 1} < a_n < 2$可得
+        \begin{align*}
+          a_{n + 1}^2 < 2 a_n
+        \end{align*}
+        存在矛盾，假设不成立，于是$a_n \leq a_{n + 1}$。
+
+        由单调有界定理，数列有极限，记为$a$。由于
+        \begin{align*}
+          a_{n + 1}^2 = 2 a_n
+        \end{align*}
+        对上式两边取极限得
+        \begin{align*}
+          a^2 = 2 a
+        \end{align*}
+        解得$a = 0$或$a = 2$.
+
+        由数列极限的保不等式性，$a = 0$是不可能的，故极限是$2$。
+
+  \item (2)
+
+        先证明是单调递增的。
+
+        设
+        \begin{align*}
+          b_1       & = 0              \\
+          b_{n + 1} & = \sqrt{c + b_n}
+        \end{align*}
+        于是
+        \begin{align*}
+          b_{n} & < a_n
+        \end{align*}
+        （对$n$进行归纳即可）
+
+        且我们有
+        \begin{align*}
+          a_n & = \sqrt{c + b_n}
+        \end{align*}
+
+        所以
+        \begin{align*}
+          a_{n + 1} & = \sqrt{c + a_n} \\
+                    & > \sqrt{c + b_n} \\
+                    & = a_n
+        \end{align*}
+        综上，数列$(a_n)_{n = 1}^\infty$是单调递增的。
+
+        证明数列的上界为$\frac{1 + \sqrt{1 + 4c}}{2}$。
+        \begin{zthk}
+          题目说求极限，记为$a$，通过递归公式
+          \begin{align*}
+            a_{n + 1} & = \sqrt{c + a_n}
+          \end{align*}
+          对等式两边求极限
+          \begin{align*}
+            a^2 = c + a \\
+            a^2 -a - c = 0
+          \end{align*}
+          解为$\frac{1 \pm \sqrt{1 + 4c}}{2}$，由于$a_1 = \sqrt{c}>0$且由数列递增可知，$a_n > \sqrt{c}$，
+          由极限保不等式性可知，
+          解不会是$\frac{1 - \sqrt{1 + 4c}}{2}$。
+
+          由于单调有界定理可知，极限与数列的上确界是相等的，我们可以把上界设为$\frac{1 + \sqrt{1 + 4c}}{2}$。
+        \end{zthk}
+        （以上是思考过程，不用写到证明过程中）
+
+        证明，数列$(a_n)_{n = 1}^\infty$的上界是$\frac{1 + \sqrt{1 + 4c}}{2}$。
+
+        对$n$进行归纳。
+
+        $n = 1$时，$a_1 = \sqrt{c} < \frac{1 + \sqrt{1 + 4c}}{2}$。
+
+        归纳假设$n = k$时，$a_n \leq \frac{1 + \sqrt{1 + 4c}}{2}$。
+
+        $n = k + 1$时，
+        \begin{align*}
+          a_{k + 1} & = \sqrt{c + a_n}                            \\
+                    & \leq \sqrt{c + \frac{1 + \sqrt{1 + 4c}}{2}}
+        \end{align*}
+        因为$\frac{1 + \sqrt{1 + 4c}}{2}$是
+        \begin{align*}
+          \sqrt{c + x} = x
+        \end{align*}
+        的解，所以
+        \begin{align*}
+          a_{k + 1} & \leq \sqrt{c + \frac{1 + \sqrt{1 + 4c}}{2}} \\
+                    & = \frac{1 + \sqrt{1 + 4c}}{2}
+        \end{align*}
+
+        归纳完成。
+
+        由单调有界定理可得，数列$(a_n)_{n = 1}^\infty$收敛，
+        然后可得$\lim\limits_{n \to \infty} a_n = \frac{1 + \sqrt{1 + 4c}}{2}$（运算方式与思考过程一样，不做赘述）。
+
+
+  \item (3)
+
+        我们有
+        \begin{align*}
+          \frac{a_{n + 1}}{a_n}
+           & = \frac{\frac{c^{n + 1}}{(n + 1)!}}{\frac{c^n}{n!}} \\
+           & = \frac{c}{n + 1}
+        \end{align*}
+        于是，取$N > c, N \in \mathbb{N}^+$，对任意$n \geq N$都有
+        \begin{align*}
+          \frac{a_{n + 1}}{a_n} < 1
+        \end{align*}
+        即$a_n$从第$N$项开始，单调递减。
+
+        又因为，任意$n$都有
+        \begin{align*}
+          a_n > 0
+        \end{align*}
+
+        由单调有界定理可知，${a_n}$收敛
+
+        设$\lim\limits_{n \to \infty} a_n = a$，由于
+        \begin{align*}
+          a_{n+1} = \frac{n + 1}{c} a_n
+        \end{align*}
+        对上式两边取极限得$a = a \cdot 0 = 0$。
+        故有
+        \begin{align*}
+          \lim\limits_{n \to \infty} a_n = 0
+        \end{align*}
+\end{itemize}
+
+\section*{5}
+
+我们有
+\begin{align*}
+  |a_n - a_m|
+   & = \frac{1}{(m + 1)^2} + \frac{1}{(m + 2)^2} + \cdots + \frac{1}{n^2}                                               \\
+   & < \frac{1}{m(m + 1)} + \frac{1}{(m + 1)(m + 2)} + \cdots + \frac{1}{(n - 1)n}                                      \\
+   & = (\frac{1}{m} - \frac{1}{m + 1}) + (\frac{1}{m + 1} - \frac{1}{m + 2}) + \cdots + (\frac{1}{n - 1} - \frac{1}{n}) \\
+   & = \frac{1}{m} - \frac{1}{n}                                                                                        \\
+   & < \frac{1}{m}
+\end{align*}
+对任意的$\epsilon > 0$，取$N = \frac{1}{\epsilon}$，则对一切$n > m > N$，有
+\begin{align*}
+  |a_n - a_m| < \epsilon
+\end{align*}
+所以，数列满足柯西条件。
+
+\section*{6}
+提示：
+子列收敛，则说明子列有界，利用$\{a_n\}$的单调性可得，$\{a_n\}$也是有界的。
+
+\section*{7}
+
+易得$\{a_n\}$单调递减且$0$是$\{a_n\}$下界，所以$\{a_n\}$收敛，记为$a$。
+
+\begin{itemize}
+  \item (1) 方法一
+
+        因为$a_n \geq 0$，由保不等式性可知
+        \begin{align*}
+          a \geq 0
+        \end{align*}
+
+        取$1 < l^\prime < l$，由保号性可知，存在$N$，使得只要$n \geq N$都有
+        \begin{align*}
+          \frac{a_n}{a_{n + 1}} > l^\prime \\
+          a_n > l^\prime a_{n + 1}
+        \end{align*}
+
+        对上式两边取极限，并由保不等式性得
+        \begin{align*}
+          a \geq a l^\prime      \\
+          0 \geq a(l^\prime - 1) \\
+          0 \geq a
+        \end{align*}
+
+        综上，$a = 0$，即：
+        \begin{align*}
+          \lim_{n \to \infty} a_n = 0
+        \end{align*}
+
+  \item 方法二
+
+        我们有
+        \begin{align*}
+          a_n = \frac{a_n}{a_{n + 1}} a_{n + 1}
+        \end{align*}
+        两边取极限
+        \begin{align*}
+          a         & = l \cdot a \\
+          (l - 1) a & = 0
+        \end{align*}
+        因为$(l - 1) \neq 0$，于是$a = 0$。
+
+  \item 方法三
+
+        设$1 < t < l$，由保号性可知，存在$N$，使得只要$n \geq N$有
+        \begin{align*}
+          \frac{a_n}{a_{n + 1}} > t
+        \end{align*}
+        即
+        \begin{align*}
+          0 < \frac{a_{n + 1}}{a_n} < \frac{1}{t}
+        \end{align*}
+        我们有
+        \begin{align*}
+          0 < a_n = a_N \cdot \frac{a_{N + 1}}{a_N} \cdot \frac{a_{N + 2}}{a_{N + 1}} \cdots \frac{a_n}{a_{n - 1}}
+          < a_N (\frac{1}{t})^{n - N}
+        \end{align*}
+
+        由迫敛性可知，
+        \begin{align*}
+          \lim\limits_{n \to \infty} a_n = 0
+        \end{align*}
+
+\end{itemize}
+
+\section*{9}
+
+ (1)
+
+先证明题目中的不等式是如何推导出来的。
+\begin{align*}
+  b^{n + 1} & = (a + (b - a))^{n + 1}                                                                                        \\
+            & = a^{n + 1} + C_{n+1}^1 a^{n} (b - a) + C_{n+1}^2 a^{n - 1} (b - a)^2 + \cdots + C_{n+1}^{n + 1} (b-a)^{n + 1} \\
+            & > a^{n + 1} + C_{n+1}^1 a^{n} (b - a)                                                                          \\
+            & = a^{n + 1} + (n + 1) a^{n} (b - a)
+\end{align*}
+移项得
+\begin{align*}
+  b^{n + 1} - a^{n + 1} > (n + 1) a^{n} (b - a)
+\end{align*}
+
+(2)
+
+我们有
+\begin{align*}
+  a_{n}     & = \left(1 + \frac{1}{n}\right)^{n + 1}    \\
+  a_{n + 1} & = \left(1 + \frac{1}{n +1}\right)^{n + 2}
+\end{align*}
+我们需要证明
+\begin{align*}
+  a_n \geq a_{n + 1}
+\end{align*}
+令
+\begin{align*}
+  a & = 1 + \frac{1}{n +1} \\
+  b & = 1 + \frac{1}{n}
+\end{align*}
+利用不等式，我们有
+\begin{align*}
+  \left(1 + \frac{1}{n}\right)^{n + 1}
+   & > (n+1)\left(1 + \frac{1}{n +1}\right)^n \left(1 + \frac{1}{n} - 1 + \frac{1}{n +1}\right)                                     \\
+   & = (n+1)\left(1 + \frac{1}{n +1}\right)^n \left(\frac{2n + 1}{n(n +1)}\right)                                                   \\
+   & = \left(1 + \frac{1}{n +1}\right)^{n + 2} \frac{(n + 1)\left(\frac{2n + 1}{n(n +1)}\right)}{\left(1 + \frac{1}{n +1}\right)^2} \\
+   & = \left(1 + \frac{1}{n +1}\right)^{n + 2}  \frac{2n^3 + 5n^2 + 4n + 1}{n^3 + 4n^2 + 4n}                                        \\
+   & > \left(1 + \frac{1}{n +1}\right)^{n + 2}
+\end{align*}
+于是$a_n > a_{n + 1}$，数列$\{a_n\}$单调递减。
+
+\section*{10}
+
+由习题9可知
+\begin{align*}
+  (1 + \frac{1}{n})^{n + 1}
+\end{align*}
+单调递减且有界。
+又因为
+\begin{align*}
+  \lim\limits_{n \to \infty} (1 + \frac{1}{n})^{n + 1} = e
+\end{align*}
+于是可得
+\begin{align*}
+  \lim\limits_{n \to \infty} (1 + \frac{1}{n})^{n + 1} = \inf{(1 + \frac{1}{n})^{n + 1}} = e
+\end{align*}
+由下确界的定义可知，任意$n \in \mathbb{N}^+$，都有
+\begin{align*}
+  e < (1 + \frac{1}{n})^{n + 1}
+\end{align*}
+
+我们有
+\begin{align*}
+  (1 + \frac{1}{n})^{n + 1} & = (1 + \frac{1}{n})^{n} (1 + \frac{1}{n})                        \\
+                            & = (1 + \frac{1}{n})^{n} + (1 + \frac{1}{n})^{n}\cdot \frac{1}{n}
+\end{align*}
+因为$\lim\limits_{n \to \infty} (1 + \frac{1}{n})^{n} = e = \sup\{(1 + \frac{1}{n})^{n}\}$，
+于是可得，对任意$n \in \mathbb{N}^+$都有
+\begin{align*}
+  (1 + \frac{1}{n})^n < e
+\end{align*}
+所以
+\begin{align*}
+  (1 + \frac{1}{n})^{n + 1} & = (1 + \frac{1}{n})^{n} (1 + \frac{1}{n})                        \\
+                            & = (1 + \frac{1}{n})^{n} + (1 + \frac{1}{n})^{n}\cdot \frac{1}{n} \\
+                            & < (1 + \frac{1}{n})^{n} + \frac{e}{n}                            \\
+                            & < (1 + \frac{1}{n})^{n} + \frac{3}{n}
+\end{align*}
+综上可得
+\begin{align*}
+  e \leq (1 + \frac{1}{n})^{n + 1} <  (1 + \frac{1}{n})^{n} + \frac{3}{n}
+\end{align*}
+可得
+\begin{align*}
+  0 < e - (1 + \frac{1}{n})^n < \frac{3}{n}
+\end{align*}
+即
+\begin{align*}
+  \left|e - (1 + \frac{1}{n})^n\right| < \frac{3}{n}
+\end{align*}
+
+\section*{11}
+
+（1）先证明$\forall n$有$a_n > b_n$。
+
+对$n$进行归纳。
+
+$n = 1$时，由题设可知$a_1 > b_1 > 0$。\\
+归纳假设，$n = k$时，$a_k > b_k > 0$成立。\\
+$n = k + 1$时，
+我们有
+\begin{align*}
+  a_{k + 1} = \frac{a_k + b_k}{2} > \sqrt{a_k b_k} = b_{k + 1}
+\end{align*}
+归纳完成，命题成立。
+
+（2）证明极限存在。
+
+我们有
+\begin{align*}
+  a_{n + 1} = \frac{a_n + b_n}{2} < \frac{a_n + a_n}{2} = a_n
+\end{align*}
+于是可得$\{a_n\}$单减。
+
+我们有
+\begin{align*}
+  b_{n + 1} = \sqrt{a_n b_n} > \sqrt{b_n b_n} = b_n
+\end{align*}
+于是可得$\{b_n\}$单增。
+
+又$\forall n \in \mathbb{N}^+$有
+\begin{align*}
+  b_1 \leq b_n < a_n \leq a_1
+\end{align*}
+可得$\{a_n\}$单调递减且有界，$\{b_n\}$单调递增且有界，
+由单调有界定理可知，两个数列极限存在。
+
+（3）极限相等。
+
+设$\lim\limits_{n \to \infty} a_n = a, \lim\limits_{n \to \infty} b_n = b$。
+我们有
+\begin{align*}
+  a_{n + 1} = \frac{a_n + b_n}{2}
+\end{align*}
+对上式两边取极限得
+\begin{align*}
+  a & = \frac{a + b}{2} \\
+  a & = b
+\end{align*}
+
+\end{document}
