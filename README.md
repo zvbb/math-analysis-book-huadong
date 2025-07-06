@@ -1,0 +1,15 @@
+# advanced-algebra-concise-tutorials
+
+高等代数简明教程-蓝以中（习题解答）
+
+latex 项目, 使用 XeLaTeX 编译。
+
+# 目录结构
+
+- chapter\* 具体章节
+  - \*.tex latex 源码
+  - \*.pdf 编译后的 pdf 文件，可以直接查看
+  - \*-summary.tex 个人总结
+
+# 备注
+只做个人觉得困难的且不保证完全正确。
