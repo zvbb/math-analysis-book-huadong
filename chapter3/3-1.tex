@@ -36,5 +36,423 @@
 \author{张志聪}
 \maketitle
 
+\section*{1}
+
+\begin{itemize}
+  \item (1) $\lim\limits_{x \to +\infty} \frac{6x + 5}{x} = 6$；
+
+        不放限制$x > 0$，对任意$\epsilon > 0$，取$M = \frac{5}{\epsilon}$，
+        则当$x > M$时，有
+        \begin{align*}
+          |\frac{6x + 5}{x} - 6| & = \frac{5}{x} < \epsilon
+        \end{align*}
+        所以$\lim\limits_{x \to +\infty} \frac{6x + 5}{x} = 6$。
+
+  \item (2) $\lim\limits_{x \to 2} (x^2 - 6x + 10) = 2$；
+
+        我们有
+        \begin{align*}
+          |(x^2 - 6x + 10) - 2|
+           & = |x^2 - 6x + 8|   \\
+           & = |(x - 2)(x - 4)|
+        \end{align*}
+
+        若限制$x$于$|x - 2| < 1$，则
+        \begin{align*}
+          |x - 4| \leq |x - 2| + 2 < 1 + 2 = 3
+        \end{align*}
+        $\therefore$
+        \begin{align*}
+          |(x^2 - 6x + 10) - 2| & = |(x - 2)(x - 4)| \\
+                                & < 3 |x - 2|
+        \end{align*}
+        对任意的$\epsilon$，令
+        \begin{align*}
+          3 |x - 2| < \epsilon \\
+          |x - 2| < \frac{\epsilon}{3}
+        \end{align*}
+        于是，只要取$\delta = min(1, \frac{\epsilon}{3})$，则当$0 < |x - 2| < \delta$时，
+        就有
+        \begin{align*}
+          |(x^2 - 6x + 10) - 2| < \epsilon
+        \end{align*}
+        所以$\lim\limits_{x \to 2} (x^2 - 6x + 10) = 2$。
+
+  \item $\lim\limits_{x \to \infty} \frac{x^2 - 5}{x^2 - 1} = 1$；
+
+        不妨限制$|x| > 1$。
+
+        我们有
+        \begin{align*}
+          |\frac{x^2 - 5}{x^2 -1} - 1|
+           & = |\frac{-4}{x^2 - 1}| \\
+           & = \frac{4}{x^2 - 1}
+        \end{align*}
+
+        对任意的$\epsilon > 0$，令
+        \begin{align*}
+          \frac{4}{x^2 - 1} < \epsilon \\
+          4 < (x^2 - 1) \epsilon       \\
+          \frac{4}{\epsilon} + 1< x^2  \\
+          \sqrt{\frac{4}{\epsilon} + 1} < |x|
+        \end{align*}
+        于是，只要取$M = max(1, \sqrt{\frac{4}{\epsilon} + 1})$，
+        则当$|x| > M$时，有
+        \begin{align*}
+          |\frac{x^2 - 5}{x^2 -1} - 1| & = \frac{4}{x^2 - 1} < \epsilon
+        \end{align*}
+        所以$\lim\limits_{x \to \infty} \frac{x^2 - 5}{x^2 - 1} = 1$。
+
+  \item $\lim\limits_{x \to 2^{-}} \sqrt{4 - x^2} = 0$；
+
+        不妨限制$0 < x < 2$。
+
+        我们有
+        \begin{align*}
+          |\sqrt{4 - x^2} - 0|
+           & = \sqrt{4 - x^2}                  \\
+           & = \sqrt{2 + x} \cdot \sqrt{2 - x} \\
+           & < 2 \sqrt{2 - x}
+        \end{align*}
+        对任意$\epsilon > 0$，令
+        \begin{align*}
+          2 \sqrt{2 - x} < \epsilon \\
+          4 (2 - x) < \epsilon^2    \\
+          (2 - x) < \frac{\epsilon^2}{4}
+        \end{align*}
+        于是取$\delta = \frac{\epsilon^2}{4}$，
+        则当$0 < 2 - x < \delta$即$2 - \delta < x < 2$时，
+        \begin{align*}
+          |\sqrt{4 - x^2} - 0| < \epsilon
+        \end{align*}
+        所以$\lim\limits_{x \to 2^{-}} \sqrt{4 - x^2} = 0$。
+
+  \item (5) $\lim\limits_{x \to x_0} cos(x) = cos(x_0)$.
+
+        我们有
+        \begin{align*}
+          |cos(x) - cos(x_0)|
+           & = |-2sin(\frac{x + x_0}{2})sin(\frac{x - x_0}{2})|   \\
+           & = |2sin(\frac{x + x_0}{2})sin(\frac{x - x_0}{2})|    \\
+           & = 2 |sin(\frac{x + x_0}{2})||sin(\frac{x - x_0}{2})| \\
+           & \leq 2|sin(\frac{x - x_0}{2})|                       \\
+           & \leq 2|\frac{x - x_0}{2}|                            \\
+           & = |x - x_0|
+        \end{align*}
+
+        于是，对任意的$\epsilon > 0$，取$\delta = \epsilon$，
+        则当$|x - x_0| < \delta$时，
+        \begin{align*}
+          |cos(x) - cos(x_0)| \leq |x - x_0| < \delta = \epsilon
+        \end{align*}
+        所以$\lim\limits_{x \to x_0} cos(x) = cos(x_0)$。
+
+\end{itemize}
+
+\section*{2}
+
+设函数$f$在点$x_0$的某个空心领域$U^{\circ}(x_0,; \delta^\prime)$
+内有定义，$A$为定数。若存在$\epsilon_0 > 0$，对任意的$\delta > 0$，
+存在$x \in U^{\circ}(x_0; \delta)$，使得
+\begin{align*}
+  |f(x) - A| \geq \epsilon_0,
+\end{align*}
+则称函数$f$当$x$趋于$x_0$时不以$A$为极限，记做
+\begin{align*}
+  \lim_{x \to x_0} f(x) \neq A
+\end{align*}
+
+\section*{3}
+
+$\lim\limits_{x \to x_0} f(x) = A$，
+由定义可知，对$\forall \epsilon > 0$，存在$\delta > 0$，
+当$0 < |x - x_0| < \delta$时，有
+\begin{align*}
+  |f(x) - A| < \epsilon
+\end{align*}
+
+令
+\begin{align*}
+  h = x - x_0 \\
+  x = x_0 + h
+\end{align*}
+
+于是对$\forall \epsilon > 0$，存在$\delta > 0$，
+当$0 < |x - x_0| < \delta$时，即$0 < |h| < \delta$，有
+\begin{align*}
+  |f(x_0 + h) - A| < \epsilon
+\end{align*}
+由定义可知
+\begin{align*}
+  \lim\limits_{h \to 0} f(x_0 + h) = A
+\end{align*}
+
+\section*{4}
+
+ (1)
+
+利用三角不等式
+\begin{align*}
+  |a + b| \leq |a| + |b|
+\end{align*}
+
+先证明
+\begin{align*}
+  ||a| - |b|| \leq |a - b|
+\end{align*}
+
+因为$a = a - b + b, b = b - a + a$，利用
+三角不等式，我们有
+\begin{align*}
+  |a| \leq |a - b| + |b| \\
+  |b| \leq |b - a| + |a|
+\end{align*}
+移项得
+\begin{align*}
+  |a| - |b| \leq |a - b| \\
+  |b| - |a| \leq |b - a| = |a - b|
+\end{align*}
+综上
+\begin{align*}
+  ||a| - |b|| \leq |a - b|
+\end{align*}
+
+(2)
+
+已知$\lim\limits_{x \to x_0} f(x) = A$，由定理可知
+$\forall \epsilon > 0, \exists \delta > 0$，使得只要$|x - x_0| < \delta$，就有
+\begin{align*}
+  |f(x) - A| < \epsilon
+\end{align*}
+由(1)可知，
+\begin{align*}
+  ||f(x)| - |A|| \leq |f(x) - A| < \epsilon
+\end{align*}
+所以$\lim\limits_{x \to x_0} |f(x)| = |A|$。
+
+(3) 反过来的情况，个人觉得书中的表述有问题，应该是：\\
+$\lim\limits_{x \to x_0} |f(x)| = |A|$，如果$A = 0$，
+必能推出$\lim\limits_{x \to x_0} f(x) = A$。
+（等于其他值，可以举出反例）
+
+若$A = 0$，由$\lim\limits_{x \to x_0} |f(x)| = 0$可知，
+对$\forall \epsilon > 0, \exists \delta > 0$，使得只要
+$|x - x_0| < \delta$，有
+\begin{align*}
+  ||f(x)| - 0| < \epsilon \\
+  ||f(x)|| < \epsilon     \\
+  |f(x)| < \epsilon
+\end{align*}
+所以$\lim\limits_{x \to x_0} f(x) = 0$。
+
+\section*{5}
+
+略
+
+\section*{6}
+
+\begin{itemize}
+  \item (1)
+
+        \begin{itemize}
+          \item $\lim\limits_{x \to 0^{-}} f(x) = -1$；
+
+                $x < 0$，我们有
+                \begin{align*}
+                  |f(x) - (-1)| & = |\frac{|x|}{x} + 1| \\
+                                & = |\frac{-x}{x} + 1|  \\
+                                & = |-1 + 1|            \\
+                                & = 0
+                \end{align*}
+
+                于是对任意$\epsilon > 0$，取$\delta > 0$，只要
+                $0 < 0 - x < \delta$，有
+                \begin{align*}
+                  |f(x) - (-1)| = 0 < \epsilon
+                \end{align*}
+                所以$\lim\limits_{x \to 0^{-}} f(x) = -1$。
+
+          \item $\lim\limits_{x \to 0^{+}} f(x) = 1$；
+
+                $x > 0$，我们有
+                \begin{align*}
+                  |f(x) - 1| & = |\frac{|x|}{x} - 1| \\
+                             & = |\frac{x}{x} - 1|   \\
+                             & = |1 - 1|             \\
+                             & = 0
+                \end{align*}
+                于是对任意$\epsilon > 0$，取$\delta > 0$，只要
+                $0 < x - 0 < \delta$，有
+                \begin{align*}
+                  |f(x) - 1| = 0 < \epsilon
+                \end{align*}
+                所以$\lim\limits_{x \to 0^{+}} f(x) = 1$。
+        \end{itemize}
+
+  \item (2)
+
+        \begin{itemize}
+          \item $\lim\limits_{x \to 0^{-}} f(x) = -1$；
+
+                不妨设$-1 < x < 0$，我们有
+                \begin{align*}
+                  |f(x) - (-1)|
+                   & = |[x] + 1| \\
+                   & = |-1 + 1|  \\
+                   & = 0
+                \end{align*}
+                于是对任意$\epsilon > 0$，取$1 > \delta > 0$，只要
+                $0 < 0 - x < \delta$，有
+                \begin{align*}
+                  |f(x) - (-1)| = 0 < \epsilon
+                \end{align*}
+                所以$\lim\limits_{x \to 0^{+}} f(x) = -1$。
+
+          \item $\lim\limits_{x \to 0^{+}} f(x) = 0$；
+
+                不妨设$0 < x < 1$， 我们有
+                \begin{align*}
+                  |f(x) - 0|
+                   & = |[x] - 0| \\
+                   & = |[x]|     \\
+                   & = 0
+                \end{align*}
+                于是对任意$\epsilon > 0$，取$1 > \delta > 0$，只要
+                $0 < x - 0 < \delta$，有
+                \begin{align*}
+                  |f(x) - 0| = 0 < \epsilon
+                \end{align*}
+                所以$\lim\limits_{x \to 0^{+}} f(x) = 0$。
+        \end{itemize}
+
+  \item (3)
+
+        \begin{itemize}
+          \item  $\lim\limits_{x \to 0^{-}} f(x) = 1$；
+
+                不妨设$x < 0$，我们有
+                \begin{align*}
+                  |f(x) - 1|
+                   & = |1 + x^2 - 1| \\
+                   & = x^2
+                \end{align*}
+                对任意$\epsilon > 0$，
+                \begin{align*}
+                  x^2 < \epsilon        \\
+                  |x| < \sqrt{\epsilon} \\
+                  x > - \sqrt{\epsilon}
+                \end{align*}
+                于是，对任意的$\epsilon$，取$\delta = \sqrt{\epsilon}$，则
+                $0 < 0 - x < \sqrt{\epsilon}$，有
+                \begin{align*}
+                  |f(x) - 1| = x^2 < \epsilon
+                \end{align*}
+                所以$\lim\limits_{x \to 0^{-}} f(x) = 1$。
+
+          \item $\lim\limits_{x \to 0^{+}} f(x) = 1$；
+
+                不妨设$x > 0$，我们有
+                \begin{align*}
+                  |f(x) - 1|
+                   & = |2^x - 1| \\
+                   & = 2^x - 1
+                \end{align*}
+                对$\epsilon > 0$，
+                \begin{align*}
+                  2^x - 1 & < \epsilon             \\
+                  2^x     & < 1 + \epsilon         \\
+                  x       & < \log_2(1 + \epsilon)
+                \end{align*}
+                于是，$\forall \epsilon > 0, \exists \delta = \log_2(1 + \epsilon)$，则
+                $0 < x - 0 < \delta$，有
+                \begin{align*}
+                  |f(x) - 1| =  2^x - 1 < \epsilon
+                \end{align*}
+                所以$\lim\limits_{x \to 0^{+}} f(x) = 1$。
+        \end{itemize}
+
+\end{itemize}
+
+\section*{7}
+
+已知$\lim\limits_{x \to +\infty} f(x) = A$，
+由定义可知，
+$\forall \epsilon > 0, \exists M > 0$，使得当$x > M$时，有
+\begin{align*}
+  |f(x) - A| < \epsilon
+\end{align*}
+由于当$0 < x < \frac{1}{M}$，有
+\begin{align*}
+  \frac{1}{x} > M
+\end{align*}
+于是取
+\begin{align*}
+  \delta = \frac{1}{M}
+\end{align*}
+则当$0 < x < \delta$时，有
+\begin{align*}
+  |f(\frac{1}{x}) - A| < \epsilon
+\end{align*}
+所以$\lim\limits_{x \to 0^+} f(\frac{1}{x}) = A$。
+
+\section*{8}
+
+\begin{itemize}
+  \item $x_0 \in (0, 1)$;
+
+        设任意$\epsilon > 0$。
+
+        如果$x \in (0, 1)$是无理数，我们有
+        \begin{align*}
+          |R(x) - 0|
+           & = |0 - 0| \\
+           & = 0
+        \end{align*}
+
+        如果$x \in (0, 1)$是有理数，那么可以表示成$\frac{p}{q}$，我们有
+        \begin{align*}
+          |R(x) - 0|
+           & = |R(x)|        \\
+           & = |\frac{1}{q}| \\
+           & = \frac{1}{q}
+        \end{align*}
+        所以只需要避开有限个分母$q \leq \frac{1}{\epsilon}$的有理数，就能保证$R(x) = \frac{1}{q} < \epsilon$。
+
+        定义集合
+        \begin{align*}
+          A := \{q: q \in \mathbb{N}^+, q \leq \frac{1}{\epsilon}\}
+        \end{align*}
+        是有限集合，取$M = max(A)$。
+        因为$x \in (0, 1)$，那么集合
+        \begin{align*}
+          B : = \{\frac{p}{q}: q, p \in \mathbb{N}^+, p < q \leq M\}
+        \end{align*}
+        这些是落在$(0,1)$且分母不超过$M$的所有有理数。
+        $B$也是有限集合，取$\delta^\prime = min\{|x - x_0|: x \in B, x \neq x_0\}$。
+        为了防止出界，取$\delta = min\{\delta^\prime, x_0 - 0, 1 - x_0\}$，
+        于是，当$|x - x_0| < \delta$时，
+        若$x$是无理数，$R(x) = 0$；
+        若$x$是有理数，那么因为$x \notin B$，所以$R(x) < \epsilon$\\
+        这两种情况和起来满足：
+        \begin{align*}
+          |R(x) - 0| < \epsilon
+        \end{align*}
+        所以$\lim\limits_{x \to x_0} R(x) = 0$。
+  \item $x_0 = 0$;
+
+        只需修改$x$的取值范围：
+        \begin{align*}
+          0 < x - 0 < \delta
+        \end{align*}
+
+  \item $x_0 = 1$.
+
+        只需修改$x$的取值范围：
+        \begin{align*}
+          0 < 1 - x < \delta
+        \end{align*}
+\end{itemize}
+
+
 
 \end{document}
