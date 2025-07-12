@@ -1,0 +1,156 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{命题}
+
+\begin{document}
+
+\begin{align*}
+    \sum\limits_{i = 1}^n i & = \frac{n(n+1)}{2}
+\end{align*}
+
+\begin{align*}
+    \sum\limits_{i = 1}^n i^2 & = \frac{n(n+1)(2n+1)}{6}
+\end{align*}
+
+\begin{align*}
+    \sum\limits_{i = 1}^n i^3 & = \left(\frac{n(n+1)}{2}\right)^2
+\end{align*}
+
+\begin{align*}
+    (x^n - 1) = (x - 1)(1 + x + \cdots + x^{n-1})
+\end{align*}
+
+\begin{zremark}
+    $x > 0$，$n \in \mathbb{N}$，那么
+    \begin{align*}
+        (1 + x)^n \geq 1 + nx
+    \end{align*}
+\end{zremark}
+
+\textbf{证明：}
+
+对$n$进行归纳即可。
+
+\begin{zremark}
+    $x \geq 1$，$n \in \mathbb{N}^+$，那么
+    \begin{align*}
+        x^{\frac{1}{n}} - 1 \leq \frac{x - 1}{n}
+    \end{align*}
+\end{zremark}
+
+\textbf{证明：}
+
+$x = 1$，命题易证。
+
+$x > 1$，对$n$进行归纳，
+$n = 1$时，命题成立。\\
+归纳假设$n = k - 1$时，命题成立，即
+\begin{align*}
+    x^{\frac{1}{k - 1}} - 1 \leq \frac{x - 1}{k - 1}
+\end{align*}
+成立。\\
+现在证明$n = k$时，需证明
+\begin{align*}
+    x^{\frac{1}{k}} - 1 \leq \frac{x - 1}{k}
+\end{align*}
+不等式换个形式
+\begin{align*}
+    x \leq (1 + \frac{x - 1}{k})^k
+\end{align*}
+利用命题1，我们有
+\begin{align*}
+    (1 + \frac{x - 1}{k})^k \geq 1 + k \frac{x - 1}{k} = x
+\end{align*}
+归纳完成，命题成立。
+
+\begin{zremark}
+    等差求和公式推导： 首项为$a_1$，公差为$q$，项数为$n$，
+    求等差序列的求和公式，即$S_n$的表达式。
+\end{zremark}
+
+\textbf{证明：}
+
+倒序相加法：
+\begin{align*}
+    S_n & = a_1 + a_2 + \cdots + a_n                    \\
+        & = a_1 + (a_1 + q) + \cdots + (a_1 + (n - 1)q)
+\end{align*}
+倒序写一遍
+\begin{align*}
+    S_n & = (a_1 + (n - 1)q) + (a_1 + (n - 2)q) + cdots + a_1
+\end{align*}
+将两式相加：
+\begin{align*}
+    2S_n & = (2a_1 + (n - 1)q) + (2a_1 + (n - 2)q) + cdots + (2a_1 + q) \\
+    2S_n & = n(2a_1 + (n - 1)q)                                         \\
+    2S_n & = n(a_1 + a_1 + (n - 1)q)                                    \\
+    2S_n & = n(a_1 + a_n)                                               \\
+    S_n  & = \frac{n(a_1 + a_n)}{2}
+\end{align*}
+
+
+\begin{zremark}
+    等比求和公式推导： 首项为$a_1$，公比为$q$，项数为$n$，
+    求等比序列的求和公式，即$S_n$的表达式。
+\end{zremark}
+
+\textbf{证明：}
+\begin{align*}
+    a_1 & = a_1       \\
+    a_2 & = a_1 q     \\
+    a_3 & = a_2 q     \\
+        & \vdots      \\
+    a_n & = a_{n-1} q
+\end{align*}
+于是，我们有
+\begin{align*}
+    S_n   & = a_1 + a_2 + \cdots + a_n                                    \\
+    q S_n & = a_1 q + a_2 q + \cdots + a_n q = a_2 + a_3 + \cdots + a_n q \\
+\end{align*}
+两式子相减
+\begin{align*}
+    (1 - q) S_n & = a_1 - a_n q = a_1 - a_1 q^n \\
+    S_n         & = \frac{a_1 - a_1 q^n}{1 - q} \\
+                & = a_1 \frac{1 - q^n}{1 - q}
+\end{align*}
+
+\begin{zremark}
+    二项式展开公式: \\
+    对正整数n，有
+    \begin{align*}
+        (x + y)^n = \sum\limits_{k = 0}^n \binom{n}{k} x^{n - k} y^k
+    \end{align*}
+    其中
+    \begin{align*}
+        \binom{n}{k} = \frac{n!}{k!(n - k)!}
+    \end{align*}
+\end{zremark}
+
+\begin{zremark}
+    \begin{align*}
+        \frac{1}{2} \cdot \frac{3}{4} \cdot \cdots \cdot \frac{2n - 1}{2n} \leq \frac{1}{\sqrt{2n + 1}}
+    \end{align*}
+\end{zremark}
+
+\begin{zremark}
+    \begin{align*}
+        n ! < \sum \limits_{p = 1}^n p !
+        < (n - 2)(n-2)! + (n - 1)! + n!
+        < 2(n - 1)! + n !
+    \end{align*}
+\end{zremark}
+
+\end{document}
