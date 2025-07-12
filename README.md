@@ -1,6 +1,6 @@
 # advanced-algebra-concise-tutorials
 
-高等代数简明教程-蓝以中（习题解答）
+数学分析-第五版-华东师范（习题解答）
 
 latex 项目, 使用 XeLaTeX 编译。
 
