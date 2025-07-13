@@ -32,17 +32,37 @@
 \newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
 
 \begin{document}
-\title{分母为零求极限}
+\title{有理化}
 \author{张志聪}
 \maketitle
+
+\begin{zremark}
+  分类
+\end{zremark}
+\begin{itemize}
+  \item 分母有理化
+  \item 分子有理化
+\end{itemize}
+
 
 \begin{zremark}
   常用办法。
 \end{zremark}
 
 \begin{itemize}
-  \item (1) 可以直接（或整理后）约分掉，常用整理方法有：分子有理化，分母有理化。
-  \item (2) 
+  \item (1) 平方差公式推广；
+
+  \begin{align*}
+    a - b = (\sqrt{a} - \sqrt{b})(\sqrt{a} + \sqrt{b})
+  \end{align*}
+  
+  \item (2) n次方公式推广；
+
+  \begin{align*}
+    a - b
+    & = (\sqrt[n]{a} - \sqrt[n]{b})
+    [(\sqrt[n]{a})^{n - 1} + (\sqrt[n]{a})^{n - 2}(\sqrt[n]{b})+ \cdots + (\sqrt[n]{b})^{n - 1}]
+  \end{align*}
 \end{itemize}
 
 

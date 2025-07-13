@@ -32,18 +32,28 @@
 \newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
 
 \begin{document}
-\title{分母为零求极限}
+\title{3.2 注释}
 \author{张志聪}
 \maketitle
 
 \begin{zremark}
-  常用办法。
+  对定理3.4直观版本：
+
+  定理 3.4$^\prime$： 若$\lim\limits_{x \to x_0} f(x) = A$，那么对任意实数
+  $B < A < C$，存在$\delta > 0$，当$0 < |x - x_0| < \delta$时，有
+  \begin{align*}
+    B < f(x) < C
+  \end{align*}
 \end{zremark}
 
-\begin{itemize}
-  \item (1) 可以直接（或整理后）约分掉，常用整理方法有：分子有理化，分母有理化。
-  \item (2) 
-\end{itemize}
+\textbf{证明：}
 
+$\lim\limits_{x \to x_0} f(x) = A$，由定义
+对$\epsilon = min\{A - B, C - A\}$，$\exists \delta > 0$，
+当$0 < |x - x_0| < \delta$时，有
+\begin{align*}
+  |f(x) - A| < \epsilon \\
+  B \leq A - \epsilon < f(x) < A + \epsilon \leq C
+\end{align*}
 
 \end{document}

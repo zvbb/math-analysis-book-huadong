@@ -1,0 +1,278 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 3.2}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+\begin{itemize}
+  \item (6) $\lim\limits_{x \to 4} \frac{\sqrt{1 + 2x} - 3}{\sqrt{x} - 2}$;
+
+        分子有理化
+
+        关键步骤：
+        \begin{align*}
+          \frac{\sqrt{1 + 2x} - 3}{\sqrt{x} - 2}
+           & = \frac{(\sqrt{1 + 2x} - 3)(\sqrt{1 + 2x} + 3)}{(\sqrt{x} - 2)(\sqrt{1 + 2x} + 3)} \\
+           & = \frac{2x - 8}{(\sqrt{x} - 2)(\sqrt{1 + 2x} + 3)}                                 \\
+           & = \frac{2(\sqrt{x} - 2)(\sqrt{x} + 2)}{(\sqrt{x} - 2)(\sqrt{1 + 2x} + 3)}          \\
+           & = \frac{2(\sqrt{x} + 2)}{(\sqrt{1 + 2x} + 3)}                                      \\
+        \end{align*}
+
+  \item (8)
+
+        分子分母同时除以$x^{90}$。
+
+        关键步骤：
+        \begin{align*}
+          \frac{(3x + 6)^{70}(8x - 5)^{20}}{(5x - 1)^{90}}
+           & = \frac{(3 + \frac{6}{x})^{70}(8 - \frac{5}{x})^{20}}{(5 - \frac{1}{x})^{90}}
+        \end{align*}
+        利用四则运算
+        \begin{align*}
+          \lim\limits_{x \to \infty} (3 + \frac{6}{x})^{70} = 3^{70}
+        \end{align*}
+\end{itemize}
+
+\section*{3}
+
+\begin{itemize}
+  \item (2) $\lim\limits_{x \to x_0} f(x) g(x) = AB$。
+
+        \begin{itemize}
+          \item 方法一（直接证）；
+
+                $\lim\limits_{x \to x_0} f(x) = A$，由定义可知
+                $\forall \epsilon > 0, \exists \delta_1 > 0$，
+                当$0 < |x - x_0| < \delta_1$时，有
+                \begin{align*}
+                  |f(x) - A| < \epsilon
+                \end{align*}
+
+                类似地，$\lim\limits_{x \to x_0} g(x) = B$，由定义可知
+                $\forall \epsilon > 0, \exists \delta_2 > 0$，
+                当$0 < |x - x_0| < \delta_2$时，有
+                \begin{align*}
+                  |g(x) - B| < \epsilon
+                \end{align*}
+
+                综上，取$\delta = \min\{\delta_1, \delta_2\}$，
+                当$0 < |x - x_0| < \delta$时，有
+                \begin{align*}
+                  |f(x)g(x) - AB| < \epsilon|A| + \epsilon|B| + \epsilon^2
+                \end{align*}
+                因为$|A|, |B|$是定值，$\epsilon$是任意的，
+                所以$\lim \limits_{x \to x_0} f(x) g(x) = AB$。
+
+                \begin{zremark}
+                  以上证明用到了一个命题：\\
+                  设$\epsilon, \delta > 0$，如果$|x - y| < \epsilon, |z - w| < \delta$，
+                  那么
+                  \begin{align*}
+                    |xz - yw| < \epsilon|y| + \delta|w| + \epsilon \delta \\
+                    \textbf{或}                                            \\
+                    |xz - yw| < \epsilon|z| + \delta|x| + \epsilon \delta
+                  \end{align*}
+
+                  证明：
+
+                  记
+                  \begin{align*}
+                    a : = x - y \\
+                    b : = z - w
+                  \end{align*}
+                  那么
+                  \begin{align*}
+                    x = y + a \\
+                    z = w + b
+                  \end{align*}
+                  于是
+                  \begin{align*}
+                    |xz - yw|
+                     & = |(y + a)(w + b) - yw|       \\
+                     & = |yw + by + aw + ab - yw|    \\
+                     & = |by + aw + ab|              \\
+                     & \leq |by| + |aw| + |ab|       \\
+                     & \leq |b||y| + |a||w| + |a||b| \\
+                  \end{align*}
+                  又因为
+                  \begin{align*}
+                    |a| \leq \epsilon \\
+                    |b| \leq \delta
+                  \end{align*}
+                  所以，
+                  \begin{align*}
+                    |xz - yw| < \epsilon|y| + \delta|w| + \epsilon \delta
+                  \end{align*}
+                \end{zremark}
+
+
+          \item 方法二（加减相同项）；
+
+                $\lim\limits_{x \to x_0} f(x) = A$，由定义可知
+                $\forall \epsilon > 0, \exists \delta_1 > 0$，
+                当$0 < |x - x_0| < \delta_1$时，有
+                \begin{align*}
+                  |f(x) - A| < \epsilon \\
+                  A - \epsilon < f(x) < A + \epsilon
+                \end{align*}
+
+                类似地，$\lim\limits_{x \to x_0} g(x) = B$，由定义可知
+                $\forall \epsilon > 0, \exists \delta_2 > 0$，
+                当$0 < |x - x_0| < \delta_2$时，有
+                \begin{align*}
+                  |g(x) - B| < \epsilon \\
+                  B - \epsilon < g(x) < B + \epsilon
+                \end{align*}
+
+                我们有
+                \begin{align*}
+                  |f(x) g(x) - AB|
+                   & = |f(x) g(x) - Ag(x) + Ag(x) - AB|    \\
+                   & = |g(x)(f(x) - A) + A(g(x) - B)|      \\
+                   & \leq |g(x)(f(x) - A)| + |A(g(x) - B)| \\
+                   & \leq |g(x)||f(x) - A| + |A||g(x) - B|
+                \end{align*}
+
+                由局部有界性可知，$\exists M>0, \delta_3 > 0$，
+                当$0 < |x - x_0| < \delta_3$时，有
+                \begin{align*}
+                  |g(x)| < M
+                \end{align*}
+
+                取$\delta = \min\{\delta_1, \delta_2, \delta_3\}$，
+                当$0 < |x - x_0| < \delta$时，有
+                \begin{align*}
+                  |f(x) g(x) - AB|
+                   & \leq |g(x)||f(x) - A| + |A||g(x) - B| \\
+                   & \leq M\epsilon + |A|\epsilon          \\
+                   & = (M + |A|)\epsilon
+                \end{align*}
+                由于$M + |A|$是定值，$\epsilon$是任意的，
+                所以$\lim \limits_{x \to x_0} f(x) g(x) = AB$。
+
+        \end{itemize}
+\end{itemize}
+
+\section*{5}
+
+因为$f(x) \geq 0$，由保不等性可得
+\begin{align*}
+  \lim\limits_{x \to x_0} f(x) = A \geq 0
+\end{align*}
+
+关键步骤：
+\begin{align*}
+  |\sqrt[n]{f(x)} - \sqrt[n]{A}|
+   & = |\frac{(\sqrt[n]{f(x)} - \sqrt[n]{A})[(\sqrt[n]{f(x)})^{n - 1} + (\sqrt[n]{f(x)})^{n - 2}(\sqrt[n]{A}) + \cdots + (\sqrt[n]{A})^{n - 1}]}{(\sqrt[n]{f(x)})^{n - 1} + (\sqrt[n]{f(x)})^{n - 2}(\sqrt[n]{A}) + \cdots + (\sqrt[n]{A})^{n - 1}}| \\
+   & = \frac{f(x) - A}{(\sqrt[n]{f(x)})^{n - 1} + (\sqrt[n]{f(x)})^{n - 2}(\sqrt[n]{A}) + \cdots + (\sqrt[n]{A})^{n - 1}}                                                                                                                            \\
+   & \leq \frac{f(x) - A}{(\sqrt[n]{A})^{n - 1}}
+\end{align*}
+
+\section*{6}
+
+提示：与例4证明方式相同，只是$0 < a < 1$时，$a^x$是单减的。
+
+\section*{7}
+
+\begin{itemize}
+  \item (1)
+
+        否；举一个反例
+        \begin{align*}
+          \lim\limits_{x \to 0} x^2 = 0 \\
+          \lim\limits_{x \to 0} x = 0
+        \end{align*}
+        此时$A = B$。
+
+  \item (2)
+
+        是；
+        证明：
+
+        取$c = \frac{A + B}{2}$，于是
+        \begin{align*}
+          B < c < A
+        \end{align*}
+
+        $\lim\limits_{x \to x_0} f(x) = A$，
+        由保号性可知，存在$\delta_1 > 0$，当$ 0 < |x - x_0| < \delta_1$时，有
+        \begin{align*}
+          f(x) > c
+        \end{align*}
+
+        $\lim\limits_{x \to x_0} g(x) = B$，
+        由保号性可知，存在$\delta_2 > 0$，当 $ 0 < |x - x_0| < \delta_2$时，有
+        \begin{align*}
+          c > g(x)
+        \end{align*}
+
+        取$\delta = min\{\delta_1, \delta_2\}$，当 $ 0< |x - x_0| < \delta$时，有
+        \begin{align*}
+          f(x) > g(x)
+        \end{align*}
+\end{itemize}
+
+\section*{8}
+
+\begin{itemize}
+  \item (3)
+
+        利用$a^n - b^n = (a - b)(a^{n-1} + a^{n-2}b + \cdots + b^{n-1})$。
+        设$a = x, b = (-1)$，于是，我们有
+        \begin{align*}
+          x^3 + 1 = x^3 - (-1)
+           & = [x - (-1)](x^2 + x(-1) + (-1)^2) \\
+           & = (x + 1)(x^2 - x + 1)
+        \end{align*}
+
+        我们有
+        \begin{align*}
+          \frac{1}{x} - \frac{3}{x^3 + 1}
+           & = \frac{(x^2 - x + 1) - 3}{(x+1)(x^2 - x + 1)} \\
+           & = \frac{x^2 - x - 2}{(x+1)(x^2 - x + 1)}       \\
+           & = \frac{(x+1)(x - 2)}{(x+1)(x^2 - x + 1)}      \\
+           & = \frac{x - 2}{x^2 - x + 1}
+        \end{align*}
+        所以
+        \begin{align*}
+          \lim\limits_{x \to -1} \frac{1}{x} - \frac{3}{x^3 + 1}
+           & = \lim\limits_{x \to -1} \frac{x - 2}{x^2 - x + 1} \\
+           & = -1
+        \end{align*}
+\end{itemize}
+
+\end{document}
