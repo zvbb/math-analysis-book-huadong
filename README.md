@@ -16,4 +16,5 @@ latex 项目, 使用 XeLaTeX 编译。
 b站up：https://space.bilibili.com/2079350650?spm_id_from=333.788.upinfo.detail.click
 
 # 备注
-只做个人觉得困难的且不保证完全正确。
+
+为我自己服务的，所以习题做了个人觉得复杂的，或有趣的。
