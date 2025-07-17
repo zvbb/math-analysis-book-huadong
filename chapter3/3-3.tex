@@ -1,0 +1,165 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 3.3}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+设$f$在$U(+\infty)$上有定义。$\lim\limits_{x \to +\infty}f(x)$
+存在的充要条件是：对任何含于$U(+\infty)$且以$+\infty$为极限的数列
+$\{x_n\}$，极限$\lim\limits_{n \to +\infty}f(x_n)$都存在且相等。
+
+\section*{2}
+
+只证明增函数的情况，减函数的情况同理。
+
+\begin{itemize}
+  \item 必要性
+
+        不妨设$\lim\limits_{x \to +\infty}f(x) = A$，
+        于是$\epsilon = 1, \exists M$当$x > M$时，有
+        \begin{align*}
+          |f(x) - A| < \epsilon \\
+          A - \epsilon < f(x) < A + \epsilon
+        \end{align*}
+        由$f$在$[a, +\infty)$上单调递增，所以
+        $\forall x \in [a, M]$，我们有
+        \begin{align*}
+          f(a) \leq f(x) \leq f(M)
+        \end{align*}
+        综上，对$\forall x \in [a, +\infty)$，我们有
+        \begin{align*}
+          f(a) \leq f(x) \leq A + \epsilon
+        \end{align*}
+        即$f$在$[a, +\infty)$上有上界。
+
+  \item 充分性
+
+        因为$f$在$[a, +\infty)$中有上界，
+        由确界定理可知，$f$在$[a, +\infty)$有上确界。
+
+        设$A = \sup\limits_{x \in [a, +\infty)} f(x)$，
+        我们证明$\lim\limits_{x \to +\infty} f(x) = A$。
+
+        由上确界的定义可知，$\forall \epsilon > 0$，存在$x^\prime \in [a, +\infty)$，
+        使得
+        \begin{align*}
+          A - \epsilon < f(x^\prime) < A
+        \end{align*}
+        取$M = x^\prime$，则由$f$的递增性，对$x \geq M$，有
+        \begin{align*}
+          A - \epsilon < f(x^\prime) \leq f(x) \leq A < A + \epsilon
+        \end{align*}
+        所以$\lim\limits_{x \to +\infty} f(x) = A$。
+\end{itemize}
+
+\section*{4}
+
+反证法，假设存在数列
+\begin{align*}
+  \lim\limits_{n \to +\infty} a_n = x_0 \\
+  \lim\limits_{n \to +\infty} b_n = x_0
+\end{align*}
+且
+\begin{align*}
+  \lim\limits_{n \to +\infty} f(a_n) \neq \lim\limits_{n \to +\infty} f(b_n)
+\end{align*}
+
+构造数列
+\begin{align*}
+  \{c_n\} = \{a_1, b_1, a_2, b_2, \cdots, a_n, b_n, \cdots\}
+\end{align*}
+易得
+\begin{align*}
+  \lim\limits_{n \to +\infty} c_n = x_0
+\end{align*}
+有题设可知
+\begin{align*}
+  \lim\limits_{n \to +\infty} f(c_n)
+\end{align*}
+是存在的，但数列$\{f(c_n)\}$的子列$\{f(a_n)\}, \{f(a_n)\}$
+的极限不相等，可得$\lim\limits_{n \to +\infty} f(c_n)$不存在，
+于是产生矛盾，假设不成立，命题得证。
+
+\section*{6}
+
+利用归结原理证明。
+
+取一个有理数数列$\{x_n\}$，收敛于$x_0$，即
+\begin{align*}
+  \lim\limits_{n \to +\infty} x_n = x_0
+\end{align*}
+
+取一个无理数数列$\{y_n\}$，收敛于$y_0$，即
+\begin{align*}
+  \lim\limits_{n \to +\infty} y_n = x_0
+\end{align*}
+
+于是，我们有
+\begin{align*}
+  \lim\limits_{n \to +\infty} f(x_n) = 1 \\
+  \lim\limits_{n \to +\infty} f(y_n) = 0
+\end{align*}
+
+所以$\lim\limits_{x \to x_0} D(x)$不存在。
+
+这里需要补充一下数列$\{x_n\}, \{y_n\}$的存在性。\\  
+在$U^{\circ}(x_0; 1)$上，根据实数的稠密性，可取有理数$x_1$和无理数$y_1$，
+此时
+\begin{align*}
+  x_0 - 1 < x_1 < x_0 + 1 \\
+  x_0 - 1 < y_1 < x_0 + 1
+\end{align*}
+在$U^{\circ}(x_0; \frac{1}{2})$上，根据实数的稠密性，可取有理数$x_2$和无理数$y_2$，
+此时
+\begin{align*}
+  x_0 - \frac{1}{2} < x_2 < x_0 + \frac{1}{2} \\
+  x_0 - \frac{1}{2} < y_2 < x_0 + \frac{1}{2} 
+\end{align*}
+$\vdots$\\
+在$U^{\circ}(x_0; \frac{1}{n})$上，根据实数的稠密性，可取有理数$x_n$和无理数$y_n$，
+此时
+\begin{align*}
+  x_0 - \frac{1}{n} < x_n < x_0 + \frac{1}{n} \\
+  x_0 - \frac{1}{n} < y_n < x_0 + \frac{1}{n} 
+\end{align*}
+$\vdots$\\
+由迫敛性可知
+\begin{align*}
+  \lim_{n\to\infty} x_n = x_0 \quad \lim_{n\to\infty} y_n = x_0
+\end{align*}
+
+\end{document}
