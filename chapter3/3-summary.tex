@@ -45,5 +45,24 @@
   \item 利用数列极限和函数的单调性。如： \S2 例4
 \end{itemize}
 
+\begin{zremark}
+  利用已经存在的极限，计算遇到的新函数的极限。
+  变量替换的原理，运用了一下命题：
+
+  \begin{align*}
+    \lim\limits_{x \to x_0} f(x) = A
+  \end{align*}
+  如果
+  \begin{align*}
+    \lim\limits_{t \to t_0} \phi(t) = x_0
+  \end{align*}
+  于是我们有
+  \begin{align*}
+    \lim\limits_{t \to t_0} (f \circ \phi)(t) = A
+  \end{align*}
+\end{zremark}
+
+\textbf{证明：}
+可以直接使用极限$\epsilon - \delta$定义证明。
 
 \end{document}
