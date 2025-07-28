@@ -52,4 +52,84 @@
   \item 单调有界定理；
   \item 柯西收敛准则；
 \end{itemize}
+
+\begin{zremark}
+  几个重要数列极限
+\end{zremark}
+
+\begin{itemize}
+  \item $\lim\limits_{n \to \infty} \frac{1}{n^\alpha} = 0$，其中$\alpha > 0$（$\S 1$例2）；
+  \item $\lim\limits_{n \to \infty} q^n = 0$，其中$|q| < 1$（$\S 1$例4）；
+  \item $\lim\limits_{n \to \infty} \sqrt[n]{a} = 1$，其中$a > 0$（$\S 1$例5）；
+  \item $\lim\limits_{n \to \infty} \frac{a^n}{n!} = 0$（$\S 1$例6）；
+  \item $\lim\limits_{n \to \infty} \frac{n!}{n^n} = 0$（$\S 1$习题2-3）；
+  \item $\lim\limits_{n \to \infty} \frac{n}{a^n} = 0$（$\S 1$习题2-5）；
+  \item $\lim\limits_{n \to \infty} \sqrt[n]{n} = 1$（$\S 2$例2）；
+  \item $\lim\limits_{n \to \infty} \frac{1}{\sqrt[n]{n!}} = 0$（$\S 2$例3）；
+\end{itemize}
+
+\begin{zremark}
+  对数列的项进行处理的常用方式。
+\end{zremark}
+
+\begin{itemize}
+  \item 分式，分母缩小。（$\S 1$例3）（\S2 例1）。
+  \item $n$次幂降幂（$\S 1$例4），运用$(1+h)^n \geq 1 + nh$
+        或使用二项展开$(1+h)^n \geq 1 + nh + \frac{n(n-1)}{2}h^2$（\S2 例2），进行降幂。
+  \item $\frac{1}{n}$次幂，升幂（$\S 1$例5）。
+
+        先升到1次幂：
+
+        令
+        \begin{align*}
+          \alpha_n = a^\frac{1}{n} - a
+        \end{align*}
+
+        然后
+        \begin{align*}
+          \alpha_n + a = a^\frac{1}{n} \\
+          (\alpha_n + a)^n = a
+        \end{align*}
+
+        左侧降幂
+
+  \item 累积形式（$\S 1$ 例6），以累积中的合适项，代替其他项或部分项，进行放大。
+  \item 累积形式（$\S 2$ 习题8-1），插入项，进行放大或缩小。
+  \item 累加（或累乘）形式表示$a_n$，用特定项（最小项或最大项或某一项）代替所有项（或部分项），进行缩放。
+        如：$\S 2$习题4-(5)，$\S 2$习题8-(2)
+  \item 累加形式，按奇数偶数拆开。
+  \item 累加形式，分母裂项。如：$\S 3$习题5-(2)
+  \item 累乘利用$n^2 \geq n^2 - 1 = (n - 1)(n + 1)$不等式，对分母进行拆分，达到与分子约分的目的。
+        如：$\S 2$习题8-(1)
+  \item 加项，使得$a_n$可以化简。如：$\S 2$习题8-(4)
+  \item 利用已有的极限（$\S2$例3）。
+\end{itemize}
+
+\begin{zremark}
+  利用“单调有界定理”时，如何证明数列$\{a_n\}$单调性和有界性。
+\end{zremark}
+
+单调性
+\begin{itemize}
+  \item 相减
+  \item 相除
+  \item 原始的$a_n, a_{n + 1}$比较起来相对困难，修改$a_n, a_{n + 1}$的表示方式，便于比较（$\S 3$例4）。
+\end{itemize}
+
+有界性
+\begin{itemize}
+  \item 由单调性（以单增为例）可知，$a_n \leq a_{2n}$，然后用$a_n$表示出$a_{2n} < a + k a_{n} \ (k < 1)$，于是可得
+        $a_n < a + k a_n$得出$a_n$的范围。（$\S 3$例1）
+\end{itemize}
+
+\begin{zremark}
+  利用已知的数列极限的方式：
+  $\left(1 + \frac{1}{n^2}\right)^{n^2}$是
+  $\left(1 + \frac{1}{n}\right)^{n} = e $的子列
+  可得
+  \begin{align*}
+    \left(1 + \frac{1}{n^2}\right)^{n^2} = e
+  \end{align*}
+\end{zremark}
+
 \end{document}
