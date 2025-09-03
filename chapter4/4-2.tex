@@ -1,0 +1,150 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 4.2}
+\author{张志聪}
+\maketitle
+
+\section*{6}
+
+ (1) $f$在$[a, +\infty)$上有界。
+
+因为$\lim\limits_{x \to +\infty} f(x)$存在，
+由局部有界性可知，$\exists G > 0, M > 0$，当$x > M$时，有
+\begin{align*}
+  |f(x)| \leq G
+\end{align*}
+$\because f$在$[a, +\infty)$上连续 \\
+$\therefore f$在$[a, M]$上连续，由有界性定理可知，\\
+$\exists P > 0$，对$\forall x \in [a, M]$，有
+\begin{align*}
+  |f(x)| \leq P
+\end{align*}
+取$Q = max(P, G)$，对$\forall x \in [a, +\infty)$有
+\begin{align*}
+  |f(x)| \leq Q
+\end{align*}
+综上， $f$在$[a, +\infty)$上有界。
+
+(2) $f$在$[a, +\infty)$上必有最大值或最小值。
+
+设$\lim\limits_{x \to +\infty} f(x) = L$。
+
+(2.1)如果$\exists x_0 \in [a, +\infty)$，有$f(x_0) > L $，
+由保号性可知，$\exists M > x_0$，当$x > M$时，有
+\begin{align*}
+  f(x) < f(x_0)
+\end{align*}
+$\because f$在$[a, +\infty)$上连续 \\
+$\therefore f$在$[a, M]$上连续，由最大、最小值定理，
+$f$在$[a, M]$上有最大值，不妨设为$P$。\\
+$\because x > M$时，有
+\begin{align*}
+  f(x) < f(x_0) < P
+\end{align*}
+所以，$P$就是$f$在$[a, +\infty)$上的最大值。
+
+(2.2)如果$\exists x_0 \in [a, +\infty)$，有$f(x_0) < L $，
+由保号性可知，$\exists M > x_0$，当$x > M$时，有
+\begin{align*}
+  f(x_0) < f(x)
+\end{align*}
+$\because f$在$[a, +\infty)$上连续 \\
+$\therefore f$在$[a, M]$上连续，由最大、最小值定理，
+$f$在$[a, M]$上有最小值，不妨设为$p$。\\
+$\because x > M$时，有
+\begin{align*}
+  p < f(x_0) < f(x)
+\end{align*}
+所以，$p$就是$f$在$[a, +\infty)$上的最小值。
+
+(2.3)如果$!\exists x_0 \in [a, +\infty)$，有$f(x_0) < L$或$f(x_0) > L$，
+那么，$f(x) = L$，即$f(x)$是常值函数，
+此时，$L$既是$f$在$[a, +\infty)$上的最大值，也是$f$在$[a, +\infty)$上的最小值。
+
+综上，$f$在$[a, +\infty)$上必有最大值或最小值。
+
+\section*{13}
+
+\begin{itemize}
+  \item (1) 在$[a, b]$上一致连续。
+
+        $\because f$在$[a, b]$上连续，\\
+        $\therefore$由一致连续性定理，$f$在$[a, b]$上一致连续。
+
+  \item (2) 在$(-\infty, +\infty)$上不一致连续。
+
+        可取$\epsilon = 1$，对无论多么小的正数$\delta$，取$x' = n + \frac{\delta}{2}, x'' = n$，
+        总有
+        \begin{align*}
+          \lim\limits_{n \to +\infty} |f(x') - f(x'')|
+           & = \lim\limits_{n \to +\infty} |(n + \frac{\delta}{2})^2 - n^2| \\
+           & = \lim\limits_{n \to +\infty} |n\delta + \frac{\delta^2}{4}|   \\
+           & = + \infty
+        \end{align*}
+        于是，由$\lim\limits_{n \to +\infty} |f(x') - f(x'')| = +\infty$，
+        $\exists N > 0 $，当$x > N$时，有
+        \begin{align*}
+          |f(x') - f(x'')| > 1
+        \end{align*}
+        所以，$f$在$(-\infty, +\infty)$上不一致连续。
+\end{itemize}
+
+\section*{16}
+
+$\because \lim\limits_{x \to +\infty} f(x)$存在，由柯西准则可知，
+$\forall \epsilon > 0, \exists M > a$，当$x', x'' > M$时，有
+\begin{align*}
+  |f(x') - f(x'')| < \epsilon
+\end{align*}
+$\therefore$对任意$\delta > 0$，存在$x', x'' \in [M + 1, +\infty)$且$|x' - x''| < \delta$，有
+\begin{align*}
+  |f(x') - f(x'')| < \epsilon
+\end{align*}
+$\therefore$ $f$在$[M + 1, +\infty)$上一致连续。
+
+$\because f$在$[a, +\infty)$上连续，
+$\therefore$由一致连续性定理，$f$在$[a, M + 1]$上一致连续。
+
+综上，$f$在$[a, +\infty)$上一致连续。
+
+\section*{17}
+
+提示
+\begin{align*}
+  g(x) = f(x + a) - f(x)
+\end{align*}
+考虑$g(x) = 0$的解。
+
+\end{document}

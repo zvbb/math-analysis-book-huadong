@@ -1,0 +1,142 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 4.2}
+\author{张志聪}
+\maketitle
+\begin{zremark}
+  在区间上连续函数的值域也是一个区间。即值域也是连续的。
+\end{zremark}
+
+\textbf{证明：}
+
+函数是常值函数，则值域是单点，也是区间。
+
+设$f$在区间$I$上连续（不是常值函数），令
+\begin{align*}
+  V = f(I)
+\end{align*}
+
+任取$u, v \in V$且$u < v$，由函数定义可知，存在$a, b \in I$使得
+\begin{align*}
+  f(a) = u, f(b) = v
+\end{align*}
+接下来，我们要证明$[u, v] \subseteq V$。
+
+因为$[a, b] \subseteq I$，所以$f$在$[a, b]$（或$[b, a]$）上连续，由介值定理可知
+任意$u < y_0 < v$都有$x_0 \in (a, b)$（或$[b, a]$）使得
+\begin{align*}
+  y_0 = f(x_0)
+\end{align*}
+所以，任意$y \in [u, v]$都属于$V$，所以$[u, v] \subseteq V$。
+由$u, v$的任意性可知，$V$是一个区间。
+
+\begin{zremark}
+  函数$f(x)$在区间$I$上连续，那么$|f(x)|$也在$I$上连续。
+\end{zremark}
+
+\textbf{证明：}
+
+对任意$x_0 \in I$，由$f(x)$在$I$上连续可知，
+对任意$\epsilon > 0$，存在$\delta > 0$，当$|x - x_0| < \delta$时，有
+\begin{align*}
+  |f(x) - f(x_0)| < \epsilon
+\end{align*}
+因为，我们有
+\begin{align*}
+  | |f(x)| - |f(x_0)| | \leq |f(x) - f(x_0)| < \epsilon
+\end{align*}
+所以$\lim\limits_{x \to x_0} |f(x)| = |f(x_0)|$，
+由$x_0$的任意性可知，$|f(x)|$也在$I$上连续。
+
+\begin{zremark}
+  $f, g$在区间$I$上一致连续，则$f + g, f - g$也在$I$上一致连续，
+  $f g, f / g$（$g(x) \neq 0$）不一定一致连续。
+\end{zremark}
+
+\textbf{证明：}
+
+\begin{itemize}
+  \item $f + g$
+
+        由$f, g$在$I$上一致连续可知，
+        对任意$\epsilon > 0$，存在$\delta_1 > 0$，使得任意$x^\prime, x^{\prime\prime} \in I$，
+        只要$|x^\prime - x''| < \delta_1$，就有
+        \begin{align*}
+          |f(x^\prime) - f(x^{\prime\prime})| < \epsilon
+        \end{align*}
+
+        同理，存在$\delta_2 > 0$，使得任意$x^\prime, x^{\prime\prime} \in I$，
+        只要$|x^\prime - x''| < \delta_2$，就有
+        \begin{align*}
+          |g(x^\prime) - g(x^{\prime\prime})| < \epsilon
+        \end{align*}
+
+        取$\delta = \min(\delta_1, \delta_2)$，对任意$x^\prime, x^{\prime\prime} \in I$，
+        只要$|x' - x''| < \delta$，就有
+        \begin{align*}
+          |f(x') + g(x') - [f(x'') + g(x'')]|
+           & = |f(x') - f(x'') + g(x') - g(x'')|      \\
+           & \leq |f(x') - f(x'')| + |g(x') - g(x'')| \\
+           & \leq \epsilon + \epsilon = 2\epsilon
+        \end{align*}
+        所以，$f + g$在区间$I$上一致连续。
+
+  \item $f - g$
+
+        易得$-g$在$I$上是一致连续的，然后可得$f + (-g)$在区间$I$上一致连续。
+
+  \item $fg$
+
+        举个反例，$f(x), g(x) = x$在$\mathbb{R}$上一致连续，但$(fg)(x) = x^2$在区间$\mathbb{R}$上不是一致连续的。
+        $\S 2$习题13
+
+  \item $f/g$
+
+        举个反例，$f(x) = 1, g(x) = x$在$(0, +\infty)$上一致连续，但$(f/g)(x) = \frac{1}{x}$在区间$(0, +\infty)$上不是一致连续的。
+        $\S 2$例9
+
+\end{itemize}
+
+\begin{zremark}
+  设$f$在$[a, +\infty)$上连续，且$\lim\limits_{x \to +\infty} f(x)$存在，
+  则$f$在$[a, +\infty)$上一致连续。
+\end{zremark}
+
+\textbf{证明：}
+
+习题16
+
+
+\end{document}
