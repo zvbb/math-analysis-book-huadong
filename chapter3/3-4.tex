@@ -39,6 +39,17 @@
 \section*{1}
 
 \begin{itemize}
+  \item (1)
+
+        令$y = x - \frac{\pi}{2}$，$x \to \pi/2$时，$y \to 0$且$t \neq 0$，
+        于是，我们有
+        \begin{align*}
+          \lim\limits_{x \to \frac{\pi}{2}} \frac{cosx}{x - \frac{\pi}{2}}
+          & = \lim\limits_{y \to 0} \frac{cos(y + \frac{\pi}{2})}{y} \\
+          & = \lim\limits_{y \to 0} \frac{-sin(y)}{y} \\
+          & = -1
+        \end{align*}
+
   \item (8)
 
         \begin{align*}
@@ -89,7 +100,7 @@
   \lim_{n\to\infty} cosx cos\frac{x}{2} + \cdots + cos\frac{x}{2^n}
    & = \lim_{n\to\infty} \frac{cosx sinx}{2^n sin\frac{x}{2^n}}                    \\
    & = \lim_{n\to\infty} \frac{cosx sinx}{x}\frac{\frac{x}{2^n}}{sin\frac{x}{2^n}} \\
-   & = \frac{cosx sinx}{x} \cdot 1 \\
+   & = \frac{cosx sinx}{x} \cdot 1                                                 \\
    & = \frac{cosx sinx}{x}
 \end{align*}
 
