@@ -40,5 +40,54 @@
   例2 另一种解法。
 \end{zremark}
 
+参考《陶哲轩实分析》
+
+命题前面的处理是相同的，证明$c^2 = a$的方式不同：
+
+利用反证法，我们来证明$c^2 < a$和$c^2 > a$都会产生矛盾。
+
+(i) 假设$c^2 < a$。设$0 < \epsilon < 1$是一个较小的正数，
+由于$a \leq c \leq 1$且$\epsilon^2 \leq \epsilon$，所以
+\begin{align*}
+  (c + \epsilon)^2 & = c^2 + 2c\epsilon + \epsilon^2 \\
+                   & = c^2 + 2c\epsilon + \epsilon   \\
+                   & \leq c^2 + (2c + 1) \epsilon
+\end{align*}
+因为$c^2 < a$，所以通过适当的选取$\epsilon$
+（利用实数的阿基米德性质），可得得到
+\begin{align*}
+  c^2 + (2c + 1) \epsilon < a
+\end{align*}
+即
+\begin{align*}
+  (c + \epsilon)^2 < a
+\end{align*}
+于是可得
+\begin{align*}
+  c + \epsilon \in E
+\end{align*}
+存在矛盾。
+
+(ii) 假设$c^2 > a$，思路一致，
+\begin{align*}
+  (c - \epsilon)^2 & = c^2 - 2c\epsilon + \epsilon^2  \\
+                   & \geq c^2 - 2c\epsilon 
+\end{align*}
+因为$c^2 > a$，所以通过适当的选取$\epsilon$，可得得到
+\begin{align*}
+  c^2 - 2c\epsilon > a
+\end{align*}
+即
+\begin{align*}
+  (c - \epsilon)^2 > a 
+\end{align*}
+所以，$\forall x \in E$，有
+\begin{align*}
+  c - \epsilon \geq x
+\end{align*}
+（因为，如果$c - \epsilon < x$，那么$(c - \epsilon)^2 < x^2 <a$，这是一个矛盾）。
+
+所以，$c - \epsilon$是$E$的一个上界，存在矛盾。
+
 
 \end{document}
