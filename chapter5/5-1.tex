@@ -1,0 +1,107 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 5.1}
+\author{张志聪}
+\maketitle
+
+\section*{4}
+
+易得
+\begin{align*}
+  f'_+(3) = 6
+\end{align*}
+左导数为
+\begin{align*}
+  \lim\limits_{x \to 3^-} \frac{ax + b - f(3)}{x - 3}
+   & = \lim\limits_{x \to 3^-} \frac{ax + b - 9}{x - 3}            \\
+   & = \lim\limits_{x \to 3^-} \frac{a(x - 3) + 3a + b - 9}{x - 3} \\
+   & = \lim\limits_{x \to 3^-} a + \frac{3a + b - 9}{x - 3}        \\
+\end{align*}
+因为$f$在$x=3$处可导，所以左导数是存在的，所以
+\begin{equation*}
+  \begin{cases}
+    a = 6 \\
+    3a + b - 9 = 0
+  \end{cases}
+\end{equation*}
+所以
+\begin{equation*}
+  \begin{cases*}
+    a = 6 \\
+    b = -9
+  \end{cases*}
+\end{equation*}
+
+\section*{9}
+
+\begin{itemize}
+  \item (1)
+
+        \begin{align*}
+          f'(x) & = cos x + sin x                                                  \\
+                & = \sqrt{2} (\frac{\sqrt{2}}{2} cos x + \frac{\sqrt{2}}{2} sin x) \\
+                & = \sqrt{2} sin (\frac{\pi}{4} + x)
+        \end{align*}
+        所以，$x \in \{\frac{3\pi}{4} + k\pi | k \in \mathbb{N} \}, f'(x) = 0$。
+\end{itemize}
+
+\section*{12}
+
+由题设，我们有
+\begin{align*}
+  f(0) = f(0 + 0) = f(0) f(0)
+\end{align*}
+于是可得$f(x) = 0$或$f(x) = 1$。
+
+如果$f(0) = 0$，那么，$\forall x \in \mathbb{R}$，我们有
+\begin{align*}
+  f(x + 0) = f(x) f(0) = 0
+\end{align*}
+即$f$是常值函数，任意位置的导数都是0，与题设$f'(0) = 1$矛盾，
+因此，$f(0) = 1$。
+
+$\forall x_0 \in \mathbb{R}$，导数为
+\begin{align*}
+  \lim\limits_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}
+  & = \lim\limits_{x \to x_0} \frac{f(x - x_0 + x_0) - f(x_0)}{x - x_0}                              \\
+  & = \lim\limits_{x \to x_0} \frac{f(x - x_0)f(x_0) - f(x_0)}{x - x_0}                              \\
+  & = \lim\limits_{x \to x_0} f(x_0) \frac{f(x - x_0) - 1}{x - x_0}                                  \\
+  & = \lim\limits_{x \to x_0} f(x_0) \frac{f(x - x_0) - f(0)}{(x - x_0) - 0}                         \\
+  & = \lim\limits_{x \to x_0} f(x_0) \lim\limits_{x \to x_0} \frac{f(x - x_0) - f(0)}{(x - x_0) - 0} \\
+  & = f(x_0) \cdot 1 \\
+  & = f(x_0)
+\end{align*}
+由$x_0$的任意性可知，$f'(x) = f(x)$
+\end{document}

@@ -37,10 +37,8 @@
 \maketitle
 
 \begin{zremark}
-  例2 另一种解法。
+  例2 另一种解法。参考《陶哲轩实分析》
 \end{zremark}
-
-参考《陶哲轩实分析》
 
 命题前面的处理是相同的，证明$c^2 = a$的方式不同：
 
@@ -70,8 +68,8 @@
 
 (ii) 假设$c^2 > a$，思路一致，
 \begin{align*}
-  (c - \epsilon)^2 & = c^2 - 2c\epsilon + \epsilon^2  \\
-                   & \geq c^2 - 2c\epsilon 
+  (c - \epsilon)^2 & = c^2 - 2c\epsilon + \epsilon^2 \\
+                   & \geq c^2 - 2c\epsilon
 \end{align*}
 因为$c^2 > a$，所以通过适当的选取$\epsilon$，可得得到
 \begin{align*}
@@ -79,7 +77,7 @@
 \end{align*}
 即
 \begin{align*}
-  (c - \epsilon)^2 > a 
+  (c - \epsilon)^2 > a
 \end{align*}
 所以，$\forall x \in E$，有
 \begin{align*}
@@ -88,6 +86,83 @@
 （因为，如果$c - \epsilon < x$，那么$(c - \epsilon)^2 < x^2 <a$，这是一个矛盾）。
 
 所以，$c - \epsilon$是$E$的一个上界，存在矛盾。
+
+综上，$c^2 = a$。
+
+\begin{zremark}
+  图像对称：
+  \begin{itemize}
+    \item (1) $f(x)$与$f(-x)$关于$y$轴对称
+    \item (2) $f(x)$与$-f(x)$关于$x$轴对称
+    \item (3) $f(x)$与$f^{-1}(x)$关于$y = x$轴对称
+  \end{itemize}
+\end{zremark}
+
+\begin{zremark}
+  指数函数，通用公式：
+  \begin{itemize}
+    \item (1) 化积为和
+          \begin{align*}
+            log_a bc = log_a b + log_a c
+          \end{align*}
+
+    \item (2) 对数的幂法则
+          \begin{align*}
+            log_a b^c = c log_a b
+          \end{align*}
+
+    \item (3) 换底公式
+          \begin{align*}
+            \log_a b = \frac{\log_c b}{\log_c a}
+          \end{align*}
+
+    \item (3.1) 换底公式推广
+          \begin{align*}
+            log_{a^c} b = \frac{1}{c} log_a b
+          \end{align*}
+  \end{itemize}
+\end{zremark}
+\textbf{证明：}
+\begin{itemize}
+  \item (1)
+
+        设$a^{x_1} = b, a^{x_2} = c$，所以
+        \begin{align*}
+          b c = a^{x_1 + x_2}
+        \end{align*}
+        于是
+        \begin{align*}
+          \log_a b c = \log_a (a^{x_1 + x_2}) = x_1 + x_2 = \log_a b + \log_a c
+        \end{align*}
+
+  \item (2)
+
+        设$a^x = b$，于是
+        \begin{align*}
+          log_a b^c = log_a a^{cx} = cx = c log_a b
+        \end{align*}
+
+  \item (3)
+
+        设$a^x = b$，于是利用(2)
+        \begin{align*}
+          log_c a^x = log_c b \\
+          x log_c a = log_c b \\
+          x = \frac{log_c b}{log_c a}
+        \end{align*}
+        即
+        \begin{align*}
+          log_a b = x = \frac{log_c b}{log_c a}
+        \end{align*}
+
+  \item (3.1)
+
+        \begin{align*}
+          log_{a^c} b & = \frac{log_a b}{log_a a^c} \\
+                      & = \frac{1}{c} log_a b
+        \end{align*}
+
+\end{itemize}
 
 
 \end{document}

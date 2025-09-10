@@ -63,6 +63,38 @@
 由$u, v$的任意性可知，$V$是一个区间。
 
 \begin{zremark}
+  函数$f$在区间$I$上连续且可逆，那么$f$在$I$上严格单调。
+\end{zremark}
+
+\textbf{证明：}
+
+对任意$x_1 < x_2$，由$f$是可逆函数可知，$f$是单射函数，
+于是可得
+\begin{align*}
+  f(x_1) \neq f(x_2)
+\end{align*}
+
+假设$f$不是严格单调的，那么存在
+$x_1 < x_2 < x_3 \in I$，有
+\begin{align*}
+  f(x_1) < f(x_2), f(x_2) > f(x_3)
+\end{align*}
+或
+\begin{align*}
+  f(x_1) > f(x_2), f(x_2) < f(x_3)
+\end{align*}
+（图像出现局部“转折”）。以下的证明按第一种情况处理，另一种情况证明类似。
+
+由介值定理可知，取$f(x_1) < y_0 < f(x_2), f(x_3) < y_0 < f(x_2)$，
+存在$x_0 in (x_1, x_2), x_0' \in (x_2, x_3)$使得
+\begin{align*}
+  f(x_0) = y_0 \\
+  f(x_0') = y_0
+\end{align*}
+这与函数单射矛盾，假设不成立，命题得证。
+
+
+\begin{zremark}
   函数$f(x)$在区间$I$上连续，那么$|f(x)|$也在$I$上连续。
 \end{zremark}
 
