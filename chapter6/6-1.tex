@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 6.1}
+\author{张志聪}
+\maketitle
+
+\section*{2}
+
+ (2)
+
+令$f(x) = x^n + px + q$
+\begin{itemize}
+  \item $n$是偶数。
+
+        \begin{align*}
+          f'(x) = n x^{n-1} + p \\
+        \end{align*}
+        于是
+        \begin{align*}
+          f'(x) = 0         \\
+          n x^{n-1} + p = 0 \\
+          x = \sqrt[n - 1]{-\frac{p}{n}}
+        \end{align*}
+        只有一个实数根。
+        反证法，假设$f(x)$又两个不同的实数根，通过罗尔定理得知，
+        存在两个$x_1, x_2$使得
+        \begin{align*}
+          f'(x_1) = f'(x_2) = 0
+        \end{align*}
+        出现矛盾。
+
+  \item $n$是奇数。
+
+        \begin{align*}
+          f'(x) = n x^{n-1} + p \\
+        \end{align*}
+        于是，如果$p > 0$，那么$f'(x) = 0$没有根。
+
+        如果$p = 0$，那么$f'(x) = 0$，只有一个实数根$x = 0$。
+
+        如果$p < 0$，那么$f'(x) = 0$，只有两个实数根$x = \pm \sqrt[n - 1]{-\frac{p}{n}}$。
+
+        所以，类似的推论，$f(x)$至多有三个不同的实数根。
+
+
+\end{itemize}
+
+
+\section*{10}
+
+提示：推论3（导数极限定理）和定理3.10。
+
+
+$f'(x)$在区间上单调，则$f'(x)$只有第一类间断点（第四章$\S 1$习题6）。
+
+$f$在$(a, b)$上可导，则$f'(x)$没有第一类间断点（详细证明查看6-1-comnent.tex）。
+
+综上，$f'(x)$在$(a, b)$上连续。
+
+\section*{12}
+
+提示：多次使用罗尔定理。
+
+\section*{14}
+
+因为$x \in (0, \frac{\pi}{2}), x sinx > 0$，
+使用交叉相乘，令
+\begin{align*}
+  f(x) = tanx sinx - x^2
+\end{align*}
+
+我们只需证明$f(x) > 0$即可。
+
+
+
+
+\end{document}

@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 6.2}
+\author{张志聪}
+\maketitle
+\begin{zremark}
+  例14 为什么可以使用洛必达法则。
+\end{zremark}
+
+\textbf{证明：}
+
+有
+\begin{align*}
+  f'(0) = \lim\limits_{x \to 0} \frac{g(x)}{x^2}
+\end{align*}
+
+因为
+\begin{align*}
+  g'(0) & = \lim\limits_{x \to 0} \frac{g(x) - g(0)}{x - 0} \\
+        & = \lim\limits_{x \to 0} \frac{g(x)}{x}
+\end{align*}
+
+于是我们有
+\begin{align*}
+  \lim \limits_{x \to 0} g(x) & = \lim\limits_{x \to 0} \frac{g(x)}{x} x                       \\
+                              & = \lim\limits_{x \to 0} \frac{g(x)}{x} \lim\limits_{x \to 0} x \\
+                              & = g'(0) \lim\limits_{x \to 0} x                                \\
+                              & = 0 \cdot 0                                                    \\
+                              & = 0
+\end{align*}
+于是，定理6.7的条件(i)满足。
+
+因为$g''(0)$存在，按照导数的定义，在点$0$的某个邻域$U(0)$内$g'(x)$有定义，
+于是，定理6.7条件(ii)满足。
+
+\textcolor{red}{注：$g''(x)$在$0$处不一定连续，也就是说，在邻域$U^o(0)$上，$g$的二阶导数不一定存在，
+也就不能再次使用洛必达法则了。}
+
+\end{document}
