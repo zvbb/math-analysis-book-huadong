@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 6.2}
+\author{张志聪}
+\maketitle
+
+\section*{7}
+
+由$f, g$均为区间$I$上凸函数，于是由定义可知，
+对任意两点$x_1, x_2 \in I$和实数$\lambda \in (0, 1)$，总有
+\begin{align*}
+  f(\lambda x_1 + (1 - \lambda) x_2) \leq \lambda f(x_1) + (1 - \lambda) f(x_2) \\
+  g(\lambda x_1 + (1 - \lambda) x_2) \leq \lambda g(x_1) + (1 - \lambda) g(x_2)
+\end{align*}
+所以
+\begin{align*}
+   & max\{f(\lambda x_1 + (1 - \lambda) x_2), g(\lambda x_1 + (1 - \lambda) x_2)\}                                            \\
+   & \leq max\{\lambda f(x_1) + (1 - \lambda) f(x_2), \lambda g(x_1) + (1 - \lambda) g(x_2)\}                                 \\
+   & \leq max\{\lambda \max\{f(x_1), g(x_1)\} + (1 - \lambda) \max\{f(x_2), g(x_2)\}, \lambda g(x_1) + (1 - \lambda) g(x_2)\} \\
+   & = \lambda \max\{f(x_1), g(x_1)\} + (1 - \lambda) \max\{f(x_2), g(x_2)\}
+\end{align*}
+即
+\begin{align*}
+  F(\lambda x_1 + (1 - \lambda) x_2) \leq \lambda F(x_1) + (1 - \lambda) F(x_2)
+\end{align*}
+所以，$F(x)$也是$I$上凸函数。
+
+\section*{9}
+
+考虑函数$f(x) = \ln x$。
+
+\begin{align*}
+  f'(x) = \frac{1}{x} \\
+  f''(x) = -\frac{1}{x^2}
+\end{align*}
+由定理6.15可知，$f$是$(0, +\infty)$上的凹函数。
+
+由延森(Jensen)不定式可知，对任意$x_i \in (0, +\infty), \lambda_i > 0 (i = 1, 2, \cdots, n)$，
+$\sum\limits_{i = 1}^n \lambda_i = 1$，有
+\begin{align*}
+  ln (\lambda_1 x_1 + \lambda_2 x_2 + \cdots + \lambda_n x_n) \geq \lambda_1 ln x_1 + \lambda_2 ln x_2 + \cdots + \lambda_n ln x_n
+\end{align*}
+(i)令$\lambda_i = \frac{1}{n}$，$x_i = a_i$，于是
+\begin{align*}
+  \ln (\frac{1}{n} a_1 + \frac{1}{n} a_2 + \cdots + \frac{1}{n} a_n)
+   & \geq \frac{1}{n} \ln a_1 + \frac{1}{n} \ln a_2 + \cdots + \frac{1}{n} \ln a_n \\
+   & = \ln a_1^{\frac{1}{n}} a_2^{\frac{1}{n}} \cdots a_n^{\frac{1}{n}}            \\
+   & = \ln \sqrt[n]{a_1a_2 \cdots a_n}
+\end{align*}
+由$\ln$在定义域上单增可知，
+\begin{align*}
+  \frac{1}{n} a_1 + \frac{1}{n} a_2 + \cdots + \frac{1}{n} a_n \geq \sqrt[n]{a_1a_2 \cdots a_n}
+\end{align*}
+即
+\begin{align*}
+  \frac{a_1 + a_2 + \cdots + a_n}{n} \geq \sqrt[n]{a_1a_2 \cdots a_n}
+\end{align*}
+
+(ii) 令$\lambda_i = \frac{1}{n}, x_i = \frac{1}{a_i}$，于是
+\begin{align*}
+  ln (\frac{1}{n} \frac{1}{a_1} + \frac{1}{n} \frac{1}{a_2} + \cdots + \frac{1}{n} \frac{1}{a_n})
+   & \geq \frac{1}{n} \ln \frac{1}{a_1} + \frac{1}{n} \ln \frac{1}{a_2} + \cdots + \frac{1}{n} \ln \frac{1}{a_n} \\
+   & = \ln \sqrt[n]{\frac{1}{a_1}\frac{1}{a_2} \cdots \frac{1}{a_n}}
+\end{align*}
+由$\ln$在定义域上单增可知，
+\begin{align*}
+  \frac{1}{n} \frac{1}{a_1} + \frac{1}{n} \frac{1}{a_2} + \cdots + \frac{1}{n} \frac{1}{a_n}
+                                                                      & \geq \sqrt[n]{\frac{1}{a_1}\frac{1}{a_2} \cdots \frac{1}{a_n}} \\
+  \frac{1}{n}(\frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n}) & \geq \frac{1}{\sqrt[n]{a_1a_2 \cdots a_n}}                     \\
+  \frac{n}{\frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n}}    & \leq \sqrt[n]{a_1a_2 \cdots a_n}
+\end{align*}
+
+
+\end{document}

@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 6.3}
+\author{张志聪}
+\maketitle
+% \begin{zremark}
+%   注2
+
+%   查了下资料，这里指的应该是: 泰勒展开的系数是唯一的。
+% \end{zremark}
+
+% \textbf{证明：}
+
+% 反证法，假设不唯一，存在两个$p_n(x)$形式的多项式：
+% \begin{align*}
+%   f(x) & = a_0 + a_1(x - x_0) + a_2(x - x_0)^2 + \cdots + a_n(x - x_0)^n + o((x - x_0)^n) \\
+%   f(x) & = b_0 + b_1(x - x_0) + b_2(x - x_0)^2 + \cdots + b_n(x - x_0)^n + o((x - x_0)^n)
+% \end{align*}
+% 两式相减
+% \begin{align*}
+%   0 = (a_0 - b_0) + (a_1 - b_1)(x - x_0) + (a_2 - b_2)(x - x_0)^2 + \cdots + (a_n - b_n)(x - x_0)^n
+%   + o((x - x_0)^n)
+% \end{align*}
+
+\begin{zremark}
+  无穷小量间的关系
+\end{zremark}
+
+\begin{itemize}
+  \item $o(x^n) + o(x^n) = o(x^n) \ (x \to 0)$;
+  \item $o(x^n) \cdot o(x^n) = o(x^n) \ (x \to 0)$;
+  \item $x^k \cdot o(x^n) = o(x^{k + n}), k \in \mathbb{N^+} \ (x \to 0)$;
+  \item $x^k \cdot o(x^n) = o(x^{n}), k \in \mathbb{N^+} \ (x \to 0)$;
+  \item $x^{n + k} = o(x^n), k \in \mathbb{N^+} \ (x \to 0)$;
+  \item $-1 \cdot o(x^n) = o(x^n) \ (x \to 0)$.
+\end{itemize}
+
+
+\end{document}
