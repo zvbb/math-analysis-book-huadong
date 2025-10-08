@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{命题}
+
+\begin{document}
+
+\begin{itemize}
+    \item 删除项
+          \begin{itemize}
+              \item 第一章$\S 1$习题5-(2)
+          \end{itemize}
+\end{itemize}
+
+\end{document}
