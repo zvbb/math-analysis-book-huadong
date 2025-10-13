@@ -36,5 +36,231 @@
 \author{张志聪}
 \maketitle
 
+\section*{3}
+
+仿照定理7.1的证明。
+
+(i) 存在性；
+
+$\{a_n\}$为递增数列，且$a_n < b_1, n = 1, 2, \cdots$，
+依单调有界定理，$\{a_n\}$有极限$\xi$，且有
+\begin{align*}
+  a_n \leq \xi, n = 1, 2, \cdots
+\end{align*}
+同理，递减有界数列$\{b_n\}$也有界限，并按照$\lim\limits_{n \to \infty} b_n - a_n = 0$，有
+\begin{align*}
+  \lim\limits_{n \to \infty} b_n = \lim\limits_{n \to \infty} a_n = \xi
+\end{align*}
+且
+\begin{align*}
+  \xi \leq b_n, n = 1, 2, \cdots
+\end{align*}
+综上，
+\begin{align*}
+  a_n \leq \xi \leq b_n, n = 1, 2, \cdots
+\end{align*}
+$\because a_n < a_{n + 1} \leq \xi \leq b_{n + 1} < b_n, n = 1, 2, \cdots$。 \\
+$\therefore a_n < \xi < b_n, n = 1, 2, \cdots$。
+
+(ii) 唯一性。
+
+设数$\xi'$也满足
+\begin{align*}
+  a_n < \xi' < b_n, n = 1, 2, \cdots
+\end{align*}
+于是有
+\begin{align*}
+  a_n - b_n < \xi - \xi' < b_n - a_n, n = 1, 2, \cdots
+\end{align*}
+即
+\begin{align*}
+  |\xi - \xi'| < b_n - a_n, n = 1, 2, \cdots
+\end{align*}
+由题设$\lim\limits_{n \to \infty} b_n - a_n = 0$和保不等式性，有
+\begin{align*}
+  |\xi - \xi'| \leq 0
+\end{align*}
+故有$\xi = \xi'$。
+
+\section*{5}
+
+\begin{itemize}
+  \item (1)
+
+        对任意$x_0 \in (0, 1)$，
+        需证明存在正整数$n_0$使得
+        \begin{align*}
+          \frac{1}{n_0 + 2} < x_0 < \frac{1}{n_0}
+        \end{align*}
+        即
+        \begin{align*}
+          n_0 < \frac{1}{x_0} < n_0 + 2 \ \ \ (I)
+        \end{align*}
+        取$n_0 = \left[\frac{1}{x_0}\right] - 1$，$(I)$式可成立。
+
+  \item (2)
+
+        (i)$\left(0, \frac{1}{2}\right)$不可以被有限覆盖；
+
+        反证法，$\left(0, \frac{1}{2}\right)$可以被有限开覆盖，
+        设这有限个开区间为
+        \begin{align*}
+          H' = \{\left(\frac{1}{n_i + 2}, \frac{1}{n_i}\right)| i = 1, 2, \cdots, k\}
+        \end{align*}
+        因为$H'$中的元素个数是有限的，于是可取
+        \begin{align*}
+          L = max\{n_1, n_2, \cdots, n_k\} \\
+          R = min\{n_1, n_2, \cdots, n_k\}
+        \end{align*}
+        我们有
+        \begin{align*}
+          0 < \frac{1}{L + 2} < \frac{1}{R} < 1
+        \end{align*}
+        于是，可取$0 < \epsilon < \frac{1}{L + 2}$（稠密性保证这个$\epsilon$一定存在），
+        显然，有$\epsilon \notin H'$，出现矛盾。
+
+        (ii)$\left(\frac{1}{100}, 1\right)$可以被有限覆盖，具体被
+        开集合
+        \begin{align*}
+          H = \{\left(\frac{1}{n + 2}, \frac{1}{n}\right)| n = 1, 2, \cdots, 98\}
+        \end{align*}
+        覆盖。
+
+        任意$x_0 \in \left(\frac{1}{100}, 1\right)$， 即
+        \begin{align*}
+          \frac{1}{100} < x_0 < 1 \\
+          1 < \frac{1}{x_0} < 100
+        \end{align*}
+        于是
+        \begin{align*}
+          1 \leq [\frac{1}{x_0}] \leq 99 \ \ \ (1)
+        \end{align*}
+
+        欲证明存在$n_0$使得
+        \begin{align*}
+          \frac{1}{n_0 + 2} < x_0 < \frac{1}{n_0}
+        \end{align*}
+        即
+        \begin{align*}
+          n_0 < \frac{1}{x_0} < n_0 + 2 \ \ \ (2)
+        \end{align*}
+        由(1)、(2)可知，这样的$n_0$一定存在。
+
+\end{itemize}
+
+\section*{7}
+
+提示：反证法。
+
+\section*{8}
+
+因为$S$是有界无限点集，故存在$M > 0$，使得$S \subseteq [-M, M]$。
+反证法，假设$[-M, M]$中没有$S$的聚点，由聚点定义可知，对任意$x \in [-M, M]$，
+都存在一个邻域$U(x; \delta_x)$只含有
+$S$中有限多个点。开区间
+\begin{align*}
+  H = \{(x; \delta_x)| x \in [-M, M]\}
+\end{align*}
+是闭区间$[-M, M]$的一个无限开覆盖，
+由开覆盖定理可知，$H$中存在一个有限开区间覆盖$[-M, M]$，
+又因为这有限个区间中每个都只有$S$中有限多个点，
+于是可得$S$中的点是有限的，出现矛盾。
+
+\section*{9}
+
+只证明充分性，必要性通过极限定义即可证明。
+
+设数列$\{a_n\}$满足柯西条件，易得$\{a_n\}$是有界数列，
+于是由聚点定理可知，集合$\{a_n\}$至少有一个聚点。假设
+聚点不唯一，即存在$\xi_1, \xi_2$都是聚点，不妨设$\xi_1 < \xi_2$，
+令$\delta = \xi_2 - \xi_1$，由聚点的定义可知，$U(\xi_1; \frac{1}{3}\delta)$，
+$U(\xi_1; \frac{1}{3}\delta)$都有$S$中无穷多个点。
+由柯西条件可知，存在$N > 0$，使得只要$m, n > N$，有
+\begin{align*}
+  |a_m - a_n| < \frac{1}{3}\delta
+\end{align*}
+因为$U(\xi_1; \frac{1}{3}\delta)$，
+$U(\xi_1; \frac{1}{3}\delta)$都有$S$中无穷多个点，
+所以存在$a_{n_1} \in U(\xi_1; \frac{1}{3}\delta), a_{n_2} \in U(\xi_2; \frac{1}{3}\delta)$，
+其中$n_1, n_2 > N$，于是我们有
+\begin{align*}
+  |a_{n_1} - a_{n_2}| > \frac{1}{3}\delta
+\end{align*}
+出现矛盾，所以$\{a_n\}$中的聚点是唯一的。
+
+接下来，证明$\{a_n\}$的极限就是这个唯一聚点$\xi$。
+对任意$\epsilon > 0$，因为$\xi$是聚点，所以存在$U(\xi; \epsilon)$中有$\{a_n\}$中无数个点，
+且$(\xi; \epsilon)$外只有有限个点，
+否则按照聚点定理会存在另一个聚点（显然，这个聚点不等于$\xi$），与聚点的唯一性产生矛盾。
+取有限个点下标的最大值为$N$，于是$n > N$时，有
+\begin{align*}
+  |a_n - \xi| < \epsilon
+\end{align*}
+故，数列$\{a_n\}$收敛于$\xi$。
+
+\section*{10}
+
+\textbf{根的存在性定理：}
+
+设$f$在区间$[a, b]$上连续，$f(a)f(b) < 0$，证明$f(x) = 0$在区间$[a, b]$有实数根。
+
+\textbf{证明：}
+
+反证法，假设$f$在区间$[a, b]$上无实数根，
+由局部保号性可知，对任意$x \in [a, b]$，存在$U_x = U(x; \delta_x) \cap [a, b]$，使得
+$x \in U_x$与$f(x)$保持同号，因此所有的$U(x; \delta_x)$构成$[a,b]$一个无限开覆盖，
+由覆盖定理可知，存在一个有限开区间覆盖$[a, b]$，记为$H$。
+
+$a \in H$，所以$a$属于某个开区间，设为$a \in (x_0 - \delta_0, x_0 + \delta_0)$，
+右端点$x_0 + \delta_0$属于$H$中另一个开区间，否则这个开区间$(x_0 - \delta_0, x_0 + \delta_0)$将
+包含$b$点，和保号性矛盾。设$x_0 + \delta_0 \in (x_1 - \delta_1, x_1 + \delta_1)$，
+由保号性可知，任意$x \in (x_1 - \delta_1, x_1 + \delta_1)$，$f(x) < 0$，
+依此类推，一直向后移动$n$次，直到开区间包含$b$点，记为$b \in (x_n - \delta_n, x_n + \delta_n)$，
+由上述操作可知，任意$x \in (x_n - \delta_n, x_n + \delta_n)$，$f(x) < 0$，
+这与题设$f(b) > 0$矛盾，假设不成立，命题得证。
+
+\section*{11}
+
+\textbf{一致连续性定理：}
+
+若函数$f$在闭区间$[a, b]$上连续，则$f$在$[a, b]$上一致连续。
+
+\textbf{证明：}
+
+对任意$\epsilon > 0$，由$f$在闭区间$[a, b]$上连续可知，
+任意$x \in [a, b]$，存在$U(x; \delta_x)$，只要$x_0 \in U(x; \delta_x)$，有
+\begin{align*}
+  |f(x) - f(x_0)| < \frac{\epsilon}{2}
+\end{align*}
+取
+\begin{align*}
+  H = \{(x; \frac{\delta_{x}}{2})| x \in [a, b]\}
+\end{align*}
+因此，$H$是闭区间$[a, b]$的一个无限开覆盖，
+由有限覆盖定理可知，存在一个有限开区间覆盖$[a, b]$，记为
+\begin{align*}
+  S = \{(x_i; \frac{\delta_{x_i}}{2})| i = 1, 2, \cdots, n\}
+\end{align*}
+取$\delta = min\{\frac{\delta_{x_1}}{2}, \frac{\delta_{x_2}}{2}, \cdots, \frac{\delta_{x_n}}{2}\}$，
+对任意$x', x'' \in [a, b], |x' - x''| < \delta$，
+设$x' \in (x_i; \delta_{i})$，我们有
+\begin{align*}
+  x' - x_i < \frac{\delta_{x_i}}{2}
+\end{align*}
+又因为
+\begin{align*}
+  |x'' - x_i| & = |x'' - x' + x' - x_i|           \\
+              & \leq |x'' - x'| + |x' - x_i|      \\
+              & < \delta + \frac{\delta_{x_i}}{2} \\
+              & \leq \delta_{x_i}
+\end{align*}
+所以
+\begin{align*}
+  |f(x') - f(x'')|
+   & = |f(x') - f(x_i) + f(x_i) - f(x'')|      \\
+   & \leq |f(x') - f(x_i)| + |f(x_i) - f(x'')| \\
+   & < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon
+\end{align*}
+命题得证。
 
 \end{document}
