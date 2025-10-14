@@ -35,6 +35,48 @@
 \title{注释 6.1}
 \author{张志聪}
 \maketitle
+
+\begin{zremark}
+  推论3（导数极限定理）的单侧情况：
+
+  设函数$f$在点$x_0$的某右领域$U_+(x_0)$上连续，在$U_+^{\circ}(x_0)$上可导，
+  且极限$\lim\limits_{x \to x_0^+} f'(x)$存在，则$f$在点$x_0$处右导数存在，且
+  \begin{align*}
+    f'_+(x_0) = \lim\limits_{x \to x_0^+} f'(x)
+  \end{align*}
+\end{zremark}
+
+\textbf{证明：}
+
+由书中推论3的证明过程可知，命题的条件要保证拉格朗日定理的条件成立。
+因为书中的证明就是按照单侧的情况来证明的，这里无需赘述了。
+
+\begin{zremark}
+  导函数没有第一类间断点：\\
+  设$f(x)$在区间$I$上可导， 证：$f'(x)$在$I$上没有第一类间断点。
+\end{zremark}
+
+\textbf{证明：}
+
+反证法，假设$f'(x)$在$I$上有第一类间断点，即存在$x_0 \in I$，有
+\begin{align*}
+  f'(x_0 - 0) \neq f'(x_0 + 0)
+\end{align*}
+由推论3（导数极限定理）（准确的说，是以单侧的角度来看）可知
+\begin{align*}
+  f'_+(x_0) = f'(x_0 + 0) \\
+  f'_-(x_0) = f'(x_0 - 0) 
+\end{align*}
+已知$f$在$I$上可导，则$f$在$x_0$处可导，所以
+\begin{align*}
+  f'(x_0) = f'_+(x_0) = f'_-(x_0)
+\end{align*}
+于是，我们有
+\begin{align*}
+  f'(x_0 + 0) = f'(x_0 - 0) 
+\end{align*}
+即$f'(x)$在$x_0$处连续，存在矛盾。
+
 \begin{zremark}
   定理6.4 的证明
 \end{zremark}
@@ -84,49 +126,6 @@
         综上，$f$在$[a, b)$上严格单增。
 
 \end{itemize}
-
-\begin{zremark}
-  推论3（导数极限定理）的单侧情况：
-
-  设函数$f$在点$x_0$的某右领域$U_+(x_0)$上连续，在$U_+^{\circ}(x_0)$上可导，
-  且极限$\lim\limits_{x \to x_0^+} f'(x)$存在，则$f$在点$x_0$处右导数存在，且
-  \begin{align*}
-    f'_+(x_0) = \lim\limits_{x \to x_0^+} f'(x)
-  \end{align*}
-\end{zremark}
-
-\textbf{证明：}
-
-由书中推论3的证明过程可知，命题的条件要保证拉格朗日定理的条件成立。
-因为书中的证明就是按照单侧的情况来证明的，这里无需赘述了。
-
-\begin{zremark}
-  导函数没有第一类间断点：\\
-
-  设$f(x)$在区间$I$上可导， 证：$f'(x)$在$I$上没有第一类间断点。
-\end{zremark}
-
-\textbf{证明：}
-
-反证法，假设$f'(x)$在$I$上有第一类间断点，即存在$x_0 \in I$，有
-\begin{align*}
-  f(x_0 - 0) \neq f(x_0 + 0)
-\end{align*}
-
-由推论3（导数极限定理）（准确的说，是以单侧的角度来看）可知
-\begin{align*}
-  f'_+(x_0) = f'(x_0 + 0) \\
-  f'_-(x_0) = f'(x_0 - 0) 
-\end{align*}
-已知$f$在$x_0$处可导，所以
-\begin{align*}
-  f'(x_0) = f'_+(x_0) = f'_-(x_0)
-\end{align*}
-于是，我们有
-\begin{align*}
-  f'(x_0 + 0) = f'(x_0 - 0) 
-\end{align*}
-即$f'(x)$在$x_0$处连续，存在矛盾。
 
 
 \end{document}
