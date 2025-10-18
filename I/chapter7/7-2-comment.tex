@@ -32,15 +32,27 @@
 \newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
 
 \begin{document}
-\title{注释 12.1}
+\title{注释 7.2}
 \author{张志聪}
 \maketitle
 
 \begin{zremark}
-  调和级数的推广：\\
-  设$q > 0$是一个有理数，那么当$q > 1$时，级数$\sum\limits_{n=1}^\infty 1/n^q$收敛的；
-  当$q \leq 1$时，该级数是发散的。
+  7.7' (1)的证明
 \end{zremark}
 
+\textbf{证明：}
+
+只证明充分性。
+
+由题设和定理7.4可知，最大聚点是存在的。
+
+设最大聚点为$A$，由对任意$\alpha > \overline{A}$，$\{x_n\}$
+中大于$\alpha$的项至多有限个可知，$A \leq \overline{A}$。
+
+假设$A < \overline{A}$，设$\epsilon = \frac{\overline{A} - A}{2}$，
+于是可得$A + \epsilon < \overline{A}$，
+由定理7.7(i)可知，$A + \epsilon$的右侧只有有限个项，
+这与题设对任意$\beta < \overline{A}$，$\{x_n\}$中
+大于$\beta$的项有无限多个相矛盾。
 
 \end{document}

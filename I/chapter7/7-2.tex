@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 7.2}
+\author{张志聪}
+\maketitle
+
+\section*{5}
+
+以上极限为例。
+
+由定理7.4可知，有界数列$\{a_n\}, \{b_n\}$都有上极限（即最大聚点），
+分别设为$\overline{A}, \overline{B}$。
+
+反证法，假设$\overline{A} > \overline{B}$。
+令$\epsilon = \frac{\overline{A} - \overline{B}}{3}$，
+于是的
+\begin{align*}
+  \overline{B} + \epsilon < \overline{A} - \epsilon
+\end{align*}
+由定理7.7可知，存在$\{a_n\}$的子列$\{a_{n_k}\}$，$\overline{A} + \epsilon > a_{n_k} > \overline{A} - \epsilon$。
+同理，存在$\{b_n\}$的子列$\{b_{n_k}\}$，$\overline{B} + \epsilon > b_{n_k} > \overline{B} - \epsilon$。
+
+于是，对任意$N$，都有存在$n > N$有$a_n$是子列$\{a_{n_k}\}$中的项，
+同理，存在$n > N$有$b_n$是子列$\{b_{n_k}\}$中的项。
+这与存在$N_0 > 0$，当$n > N_0$时，有$a_n \leq b_n$矛盾。
+
+\section*{6}
+
+只证明上极限。
+
+\begin{itemize}
+  \item 必要性；
+
+        对任意$\epsilon > 0$，
+        由于$\overline{A}$是上极限，由定理7.7(i)可知，
+        可知，存在$N_0$，使得$n > N_0$，我们有
+        \begin{align*}
+          \sup\limits_{k \geq n} \{a_k\} < \overline{A} + \epsilon
+        \end{align*}
+
+        由定理7.7(ii)可知，存在$n > n_1$，我们有
+        \begin{align*}
+          \overline{A} - \epsilon < a_n
+        \end{align*}
+        所以，
+        \begin{align*}
+          \sup\limits_{k \geq n_1} \{a_k\} \geq \overline{A} - \epsilon
+        \end{align*}
+
+        综上，取$N = max(N_0, n_1)$，对$n > N$，我们有
+        \begin{align*}
+          \overline{A} - \epsilon \leq \sup\limits_{k \geq n} \{a_k\} < \overline{A} + \epsilon
+        \end{align*}
+        所以
+        \begin{align*}
+          \lim \limits_{n \to \infty} \sup\limits_{k \geq n} \{a_k\} = \overline{A}
+        \end{align*}
+
+  \item 充分性
+
+        (i)
+
+        由极限定义可知，对任意$\epsilon>0$，存在$N > 0$，使得对任意$n > N$，有
+        \begin{align*}
+          |\sup\limits_{k \geq n} \{a_k\} - \overline{A}| < \epsilon \\
+          \overline{A} - \epsilon < \sup\limits_{k \geq n} \{a_k\} < \overline{A} + \epsilon
+        \end{align*}
+        由上确界的定义可知，对$n > N$，都有
+        \begin{align*}
+          a_n < \sup\limits_{k \geq n} \{a_k\}
+        \end{align*}
+        即
+        \begin{align*}
+          a_n < \overline{A} + \epsilon
+        \end{align*}
+
+        在再次利用上确界定义可知，存在$n_0 > N$，有
+        \begin{align*}
+          \overline{A} - \epsilon < a_{n_0} < \sup\limits_{k \geq n} \{a_k\}
+        \end{align*}
+        又因为，对任意$n > n_0 (> N)$，我们也有
+        \begin{align*}
+          |\sup\limits_{k \geq n} \{a_k\} - \overline{A}| < \epsilon
+        \end{align*}
+        类似的操作，存在$n_1 > n_0$，有
+        \begin{align*}
+          \overline{A} - \epsilon < a_{n_1} < \sup\limits_{k \geq n} \{a_k\}
+        \end{align*}
+        重复操作，可得子列$\{a_{n_k}\}, a_{n_k} > \overline{A} - \epsilon$。
+
+        综上，利用定理7.7可知，$\overline{A}$是上极限。
+
+\end{itemize}
+
+
+\end{document}
