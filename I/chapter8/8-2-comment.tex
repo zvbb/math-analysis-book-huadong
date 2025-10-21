@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 8.2}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  % （第二换元积分法）设函数$f(x)$在区间$I$上有定义，$\varphi(t)$在区间$J$上可导，
+  % $\varphi(J) = I$，且$x = \varphi(t)$在区间$J$上存在反函数$t = \varphi^{-1}(x), x \in I$。
+  % 如果不定积分$\int f(x) dx$在$I$上存在，则当不定积分$\int f(\varphi(t)) \varphi'(t) dt = G(t) + C$
+  % 在$J$上存在时，在$I$上有
+  % \begin{align*}
+  %   \int f(x) dx = G(\varphi^{-1}(x)) + C
+  % \end{align*}
+  为什么说“$\varphi'(t) \neq 0, x \in J$”是比“$x = \varphi(t)$在区间$J$上存在反函数$t = \varphi^{-1}(x), x \in I$”
+  更强的条件。
+
+  书中有些步骤省略了，这里做些补充。
+\end{zremark}
+
+先纠正书中的错误点：
+“$\varphi'(t) \neq 0, x \in J$”，应该是“$\varphi'(t) \neq 0, x \in I$”。
+
+\textbf{证明：}
+
+因为“$\varphi'(t) \neq 0, x \in I$”，
+$\varphi'(t)$在$J$上是同号的。反证法，假设存在$t_1, t_2 \in J$，使得
+\begin{align*}
+  \varphi'(t_1) > 0 \\
+  \varphi'(t_2) < 0
+\end{align*}
+由定理6.5（达布（Darboux）定理）可知，存在$\xi \in (t_1, t_2)$，使得
+\begin{align*}
+  \varphi'(\xi) = 0
+\end{align*}
+这与题设矛盾。
+
+所以$\varphi(t)$在$J$上是严格单调的（定理6.4 推论），于是可得$\varphi(t)$在$J$上是可逆的，
+且由于$\varphi(t) \neq 0$，所以反函数$t = \varphi^{-1}(x)$在$I$上可导，且
+\begin{align*}
+  (\varphi^{-1}(x))' = \frac{1}{\varphi'(t)}
+\end{align*}
+
+\end{document}

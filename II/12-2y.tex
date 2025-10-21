@@ -1,0 +1,246 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 12.2}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+\begin{itemize}
+  \item (5)
+        提示
+        \begin{align*}
+          \int \left(\frac{1}{\sqrt{3 - x^2}} + \frac{1}{\sqrt{1-3x^2}} \right) dx
+           & = \int \frac{1}{\sqrt{3 - x^2}} dx + \int \frac{1}{\sqrt{1-3x^2}} dx
+        \end{align*}
+        分别令
+        \begin{align*}
+          x = \sqrt{3} sin t \\
+          x = \frac{1}{\sqrt{3}} sin t
+        \end{align*}
+
+  \item (12)
+        \begin{align*}
+          \int \frac{1}{1 + sin x} dx
+           & = \int \frac{1 - sinx}{1 - sin^2 x} dx                      \\
+           & = \int \frac{1 - sin x}{cos^2 x} dx                         \\
+           & = \int \frac{1}{cos^2x} dx - \int \frac{sin x}{cos^2 x} dx  \\
+           & = \int \frac{1}{cos^2x} dx + \int \frac{1}{cos^2 x} d(cosx) \\
+           & = tan x - cos^{-1} x + C                                    \\
+           & = tan x - sec x + C
+        \end{align*}
+
+  \item (13)
+        \begin{align*}
+          \int csc x dx
+           & = \int \frac{cscx (cot x - csc x)}{cot x - csc x} dx \\
+           & = \int \frac{d(cot x - csc x)}{cot x - csc x}        \\
+           & = \ln |cot x - csc x| + C
+        \end{align*}
+
+  \item (15)
+        \begin{align*}
+          \int \frac{x}{4 + x^4} dx
+           & = \frac{1}{4} \int \frac{x}{1 + (\frac{x^2}{2})^2}                 \\
+           & = \frac{1}{4} \int \frac{1}{1 + (\frac{x^2}{2})^2}d(\frac{x^2}{2}) \\
+           & = \frac{1}{4} tan \frac{x^2}{2} + C
+        \end{align*}
+
+  \item (19)
+        \begin{align*}
+          \int \frac{dx}{x(1 + x)}
+           & = \int \frac{dx}{x} - \int \frac{dx}{1 + x} \\
+           & = \ln |x| - \ln |1 + x| + C                 \\
+           & = \ln \left|\frac{x}{1 + x}\right| + C
+        \end{align*}
+  \item (21)
+
+        提示：
+        \begin{align*}
+          \int cos^5x dx
+           & = \int (1 - sin^2x)^2 d(sinx)
+        \end{align*}
+
+  \item (22)
+        \begin{align*}
+          \int \frac{dx}{sinx cos x}
+           & = \int \frac{dx}{tanx cos^2x} \\
+           & = \int \frac{d(tanx)}{tanx}   \\
+           & = \ln |tanx| + C
+        \end{align*}
+
+  \item (23)
+        \begin{align*}
+          \int \frac{dx}{e^x + e^{-x}}
+           & = \int \frac{dx}{\frac{(e^x)^2 + 1}{e^x}} \\
+           & = \int \frac{e^x}{(e^x)^2 + 1} dx         \\
+           & = \int \frac{1}{(e^x)^2 + 1} d(e^x)       \\
+           & = arc tan \ e^x + C
+        \end{align*}
+  \item (25)
+        \begin{align*}
+          \int \frac{x^2 + 2}{(x+1)^3} dx
+           & = \int \frac{(x + 1)^2 - 2(x + 1) + 3}{(x+1)^3} dx                                                    \\
+           & = \int \frac{(x + 1)^2 - 2(x + 1) + 3}{(x+1)^3} d(x + 1)                                              \\
+           & = \int \frac{1}{x+1} d(x + 1) - 2 \int \frac{1}{(x+1)^2} d(x + 1) + 3 \int \frac{1}{(x+1)^3} d(x + 1) \\
+           & = \ln |x + 1| + 2 (x + 1)^{-1} - \frac{3}{2} (x + 1)^{-2} + C
+        \end{align*}
+
+  \item (26)
+
+        提示： 令$x = a tan t$
+
+  \item (29)
+
+        令$x = t^6 (t \geq 0, t \neq 1), dx = 6t^5 dt$。
+        \begin{align*}
+          \int \frac{\sqrt{x}}{1 - \sqrt[3]{x}} dx
+           & = \int \frac{t^3}{1 - t^2} 6 t^5 dt     \\
+           & = 6 \int \frac{t^8}{1 - t^2} dt         \\
+           & = 6 \int \frac{t^8 - 1 + 1}{1 - t^2} dt
+        \end{align*}
+        我们有
+        \begin{align*}
+          t^8 - 1 & = (t^2)^4 - (1^2)^4                       \\
+                  & = (t^2 - 1) [(t^2)^3 + (t^2)^2 + t^2 + 1]
+        \end{align*}
+        所以
+        \begin{align*}
+          6 \int \frac{t^8 - 1 + 1}{1 - t^2} dt
+           & = 6 \int -t^6 - t^4 - t^2 - 1 + \frac{1}{1 - t^2} dt                                                                                                                       \\
+           & = 6 \left(-\frac{1}{7} t^7 - \frac{1}{5} t^5 - \frac{1}{3} t^3 - t + \frac{1}{2}\ln \left|\frac{t + 1}{t - 1}\right|\right) + C                                            \\
+           & = - \frac{6}{7} t^7 - \frac{6}{5} t^5 - 2 t^3 - 6t + 3\ln \left|\frac{t + 1}{t - 1}\right| + C                                                                             \\
+           & = - \frac{6}{7} x^{\frac{7}{6}} - \frac{6}{5} x^{\frac{5}{6}} - 2 x^{\frac{1}{2}} - 6 x^{\frac{1}{6}} + 3 \left|\frac{x^{\frac{1}{6}} + 1}{x^{\frac{1}{6}} - 1}\right| + C
+        \end{align*}
+
+  \item (30)
+
+        令$t = \sqrt{x + 1}, x = t^2 - 1, dx = 2t dt$。
+        \begin{align*}
+          \int \frac{\sqrt{x + 1} - 1}{\sqrt{x + 1} + 1} dx
+           & = \int \frac{t - 1}{t + 1} 2t dt   \\
+           & = 2 \int \frac{(t - 1)t}{t + 1} dt
+        \end{align*}
+        \begin{zremark}
+          我们有$t + a$，使得
+          \begin{align*}
+            (t + 1)(t + a) + b     & = (t - 1)t \\
+            t^2 + at + t + a + b   & = t^2 - t  \\
+            t^2 + (a + 1)t + a + b & = t^2 - t
+          \end{align*}
+          于是
+          \begin{equation*}
+            \begin{cases}
+              a + 1 = -1 \\
+              a + b = 0
+            \end{cases}
+          \end{equation*}
+          可得
+          \begin{align*}
+            a = -2, b = 2
+          \end{align*}
+
+          于是
+          \begin{align*}
+            (t + 1)(t - 2) + 2 & = (t - 1)t
+          \end{align*}
+        \end{zremark}
+        所以
+        \begin{align*}
+          2 \int \frac{(t - 1)t}{t + 1} dt
+           & = 2 \int \frac{(t + 1)(t - 2) + 2}{t + 1} dt  \\
+           & = 2 \int t - 2 + \frac{2}{t + 1} dt           \\
+           & = 2 (\frac{1}{2}t^2 - 2t + 2 \ln |t + 1|) + C \\
+           & = t^2 - 4t + 4 \ln |t + 1| + C
+        \end{align*}
+        剩下的部分，略
+
+  \item (31)
+
+        令$t = 1 - 2x, x = \frac{1 - t}{2}, dx = -\frac{1}{2} dt$。
+        \begin{align*}
+          \int x(1 - 2x)^{99} dx
+           & = -\frac{1}{2} \int \frac{1 - t}{2} t^{99} dt                    \\
+           & = -\frac{1}{4} \int (1 - t) t^{99} dt                            \\
+           & = -\frac{1}{4} \int t^{99} - t^{100} dt                          \\
+           & = -\frac{1}{4}(\frac{1}{100}t^{100} - \frac{1}{101}t^{101}) + C  \\
+           & = -\frac{1}{400}(1 - 2x)^{100} + \frac{1}{404}(1 - 2x)^{101} + C
+        \end{align*}
+
+  \item (32)
+
+        提示：
+        \begin{align*}
+          \frac{1}{x(1 + x^n)} = \frac{1}{x} - \frac{x^{n - 1}}{1 + x^n}
+        \end{align*}
+
+  \item (33)
+        \begin{align*}
+          \int \frac{x^{2n - 1}}{x^n + 1} dx
+           & = \frac{1}{n} \int \frac{x^{n}}{x^n + 1} d(x^n) \\
+           & = \frac{1}{n} \int 1 - \frac{1}{x^n + 1} d(x^n) \\
+           & = \frac{1}{n} (x^n - \ln |x^n + 1|) + C
+        \end{align*}
+
+  \item (35)
+        \begin{align*}
+          \int \frac{\ln 2x}{x \ln 4x} dx
+           & = \int \frac{\ln 4x - \ln 2}{x \ln 4x} dx                     \\
+           & = \int \frac{1}{x} - \frac{\ln 2}{x \ln 4x} dx                \\
+           & = \int \frac{1}{x} dx - \ln 2 \int \frac{1}{x \ln 4x} dx      \\
+           & = \int \frac{1}{x} dx - \ln 2 \int \frac{1}{\ln 4x} d(\ln 4x) \\
+           & = \ln x - \ln 2 \cdot \ln |\ln 4x| + C
+        \end{align*}
+
+  \item (36)
+
+        令$x = sec t, dx = sect \cdot tan t dt$。
+        【这里的$t \in (0, \frac{\pi}{2}) \cup (\pi, \frac{3\pi}{2})$，保证$\sqrt{tan^2 t}$的绝对值可以去掉。
+        考试时可以不写这部分】
+
+        \begin{align*}
+          \int \frac{dx}{x^4 \sqrt{x^2 - 1}}
+           & = \int \frac{sec t \cdot tan t }{sec^4 x \cdot tan t} dt \\
+           & = \int \frac{1}{sec^3 x} dt                              \\
+           & = \int cos^3 t dt                                        \\
+           & = int (1 - sin^2 t) d(sin t)                             \\
+           & = sin t - \frac{1}{3} sin^3 t + C
+        \end{align*}
+        然后通过三角图形，把$t$换成$x$即可。
+\end{itemize}
+
+
+
+\end{document}

@@ -1,0 +1,155 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[most]{tcolorbox}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+\newtcolorbox{zthk}{
+  colback=blue!5,
+  colframe=blue!40!black,
+  fonttitle=\bfseries,
+  title=思维过程,
+  fontupper=\itshape,
+  separator sign={.},
+  before skip=10pt,
+  after skip=10pt,
+  breakable
+}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{总练习题 2}
+\author{张志聪}
+\maketitle
+
+\section*{3}
+
+\begin{itemize}
+  \item (1)
+
+        (i)
+
+        $\lim\limits_{n \to \infty} a_n = a$，由极限定义可知，
+        对任意$\epsilon > 0$，存在$N_1 > 0$，当$n > N_1$时，有
+        \begin{align*}
+          |a_n - a| < \epsilon
+        \end{align*}
+        于是
+        \begin{align*}
+          |\frac{a_1 + a_2 + \cdots + a_n}{n} - a|
+           & = |\frac{a_1}{n} + \frac{a_2}{n} + \cdots + \frac{a_n}{n} - a|                      \\
+           & = \frac{1}{n}|(a_1 - a) + (a_2 - a) + \cdots + (a_n - a)|                           \\
+           & \leq \frac{1}{n} |a_1 - a| + \frac{1}{n} |a_2 - a| + \cdots + \frac{1}{n} |a_n - a|
+        \end{align*}
+        取$M = \max\{|a_1 - a|, |a_2 - a|, \cdots, |a_{n-1} - a|\}$，于是
+        \begin{align*}
+          \frac{1}{n} |a_1 - a| + \frac{1}{n} |a_2 - a| + \cdots + \frac{1}{n} |a_n - a|
+           & \leq \frac{N_1M}{n} + \frac{n - N_1}{n}\epsilon \\
+           & \leq \frac{N_1M}{n} + \epsilon
+        \end{align*}
+        由于
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{N_1M}{n} = 0
+        \end{align*}
+        所以，存在$N_2 > 0$，当$n > N_2$时，有
+        \begin{align*}
+          |\frac{N_1M}{n}| < \epsilon
+        \end{align*}
+        综上，取$N = max\{N_1, N_2\}$，当$n > N$时，有
+        \begin{align*}
+          |\frac{a_1 + a_2 + \cdots + a_n}{n} - a|
+           & \leq \frac{N_1M}{n} + \frac{n - N_1}{n}\epsilon \\
+           & \leq \epsilon + \epsilon                        \\
+           & = 2\epsilon
+        \end{align*}
+        所以，$\lim\limits_{n \to \infty} \frac{a_1 + a_2 + \cdots + a_n}{n} = a$。
+
+        (ii)
+
+        逆向不成立，比如
+        \begin{align*}
+          a_n = (-1)^n
+        \end{align*}
+        此时
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{a_1 + a_2 + \cdots + a_n}{n} = 0
+        \end{align*}
+        而
+        \begin{align*}
+          \lim\limits_{n \to \infty} a_n
+        \end{align*}
+        不存在。
+
+  \item (2)
+
+        因为$a_n > 0, n = 1, 2, \cdots, n$，我们有
+        \begin{align*}
+          \frac{a_1 + a_2 + \cdots + a_n}{n} \geq \sqrt[n]{a_1 a_2 \cdots a_n} \geq \frac{n}{\frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n}}
+        \end{align*}
+
+        由(1)，我们有
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{a_1 + a_2 + \cdots + a_n}{n} = a
+        \end{align*}
+
+        又因为
+        \begin{align*}
+          \lim \limits_{n \to \infty} \frac{1}{a_n} = \frac{1}{a}
+        \end{align*}
+        利用(1)，我们有
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{\frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n}}{n}
+          = \frac{1}{a}
+        \end{align*}
+        所以
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{n}{\frac{1}{a_1} + \frac{1}{a_2} + \cdots + \frac{1}{a_n}} = a
+        \end{align*}
+
+        由保不等式性可知
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sqrt[n]{a_1 a_2 \cdots a_n} = a
+        \end{align*}
+\end{itemize}
+
+\section*{4}
+
+\begin{itemize}
+  \item (7)
+
+        提示：
+        补充：$ b_0 = 1$，且我们有
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{b_{n + 1}}{b_n} = \lim\limits_{n \to \infty} \frac{b_n}{b_{n - 1}} = a
+        \end{align*}
+
+\end{itemize}
+
+\end{document}

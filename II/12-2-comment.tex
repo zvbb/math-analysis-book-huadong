@@ -1,0 +1,107 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 12.2}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  证明：命题12.7 推论2
+\end{zremark}
+
+(i)
+
+对取定的正数$\epsilon = \frac{1}{2}|1 - q|$，由定理7.7可知，存在
+$N > 0$，使得当$n > N$时，有
+\begin{align*}
+  \frac{u_{n + 1}}{u_n} < q + \epsilon
+\end{align*}
+当$q < 1$时，$q + \epsilon = \frac{1}{2} (1 + q) > 1$，于是
+由定理12.7的(i)，推得级数$\sum u_n$是收敛的。
+
+(ii)
+
+同理可证。
+
+\begin{zremark}
+  证明：
+  \begin{align*}
+    \lim\limits_{n \to \infty} \sqrt[n]{1 + x^{2n}} = max\{1, x^2\}
+  \end{align*}
+  其中$x > 0$。
+\end{zremark}
+
+(i) $0 < x < 1$；
+
+我们有
+\begin{align*}
+  x^{2n} < 1
+\end{align*}
+由对任意$a > 0$， $\lim\limits_{n \to \infty} \sqrt[n]{a} = 1$可知
+\begin{align*}
+  1 \leq \lim\limits_{n \to \infty} \sqrt[n]{1 + x^{2n}} \leq \lim\limits_{n \to \infty} \sqrt[n]{2} = 1
+\end{align*}
+由迫敛性可知
+\begin{align*}
+  \lim\limits_{n \to \infty} \sqrt[n]{1 + x^{2n}} = 1
+\end{align*}
+
+(ii) $x \geq 1$.
+
+我们有
+\begin{align*}
+  x^{2n} \leq 1 + x^{2n} \leq 2x^{2n}
+\end{align*}
+所以
+\begin{align*}
+  \lim\limits_{n \to \infty} \sqrt[n]{x^{2n}} \leq \lim\limits_{n \to \infty} \sqrt[n]{1 + x^{2n}} \leq \lim\limits_{n \to \infty} \sqrt[n]{2x^{2n}} \\
+  x^2 \leq \lim\limits_{n \to \infty} \sqrt[n]{1 + x^{2n}} \leq \lim\limits_{n \to \infty} \sqrt[n]{2} \cdot \lim\limits_{n \to \infty} \sqrt[n]{x^{2n}} = 1 \cdot x^2
+\end{align*}
+
+由迫敛性可知
+\begin{align*}
+  \lim\limits_{n \to \infty} \sqrt[n]{1 + x^{2n}} = x^2
+\end{align*}
+
+综上
+\begin{equation*}
+  \lim\limits_{n \to \infty} \sqrt[n]{1 + x^{2n}} =
+  \begin{cases}
+    1   & 0 < x < 1 \\
+    x^2 & x \geq 1
+  \end{cases}
+\end{equation*}
+
+
+\end{document}
