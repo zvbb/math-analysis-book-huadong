@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 8.3}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+\begin{itemize}
+  \item (1)
+
+        使用带余除法可得
+        \begin{align*}
+          \int \frac{x^3}{x - 1} dx
+           & = \int \frac{(x-1)(x^2 + x + 1) + 1}{x - 1} dx          \\
+           & = \int \frac{(x-1)(x^2 + x + 1) + 1}{x - 1} dx          \\
+           & = \int (x^2 + x + 1) + \frac{1}{x - 1} dx               \\
+           & = \frac{1}{3}x^3 + \frac{1}{2}x^2 + x + \ln |x - 1| + C
+        \end{align*}
+
+  \item (2)
+        \begin{align*}
+          \int \frac{x - 2}{x^2 - 7x + 12} dx
+           & = \int \frac{x - 2}{(x - 3)(x - 4)} dx       \\
+           & = \int \frac{2}{x - 4} - \frac{1}{x - 3} dx  \\
+           & = 2 \ln |x - 4| - \ln |x - 3| + C            \\
+           & = 2 \ln \left|\frac{x - 4}{x - 3}\right| + C
+        \end{align*}
+
+  \item (3)
+        \begin{align*}
+          \int \frac{dx}{1 + x^3}
+           & = \int \frac{dx}{(x + 1)(x^2 - x + 1)}                                             \\
+           & = \frac{1}{3} \int \frac{dx}{x + 1} - \frac{1}{3}\int \frac{x - 2}{x^2 - x + 1} dx
+        \end{align*}
+        第一个不定积分为
+        \begin{align*}
+          \frac{1}{3} \int \frac{dx}{x + 1} = \frac{1}{3} \ln |x + 1|
+        \end{align*}
+        第二个不定积分，按照书中P178中类似的处理即可。
+
+  \item (4)
+
+        提示: $x^4 = (x^2)^2, 1 = (1^2)^2$，可得
+        \begin{align*}
+          x^4 + 1 & = (x^2 + 1)^2 - 2 x^2                        \\
+                  & = (x^2 + 1 + \sqrt{2}x)(x^2 + 1 - \sqrt{2}x)
+        \end{align*}
+
+\end{itemize}
+
+
+
+
+
+\end{document}
