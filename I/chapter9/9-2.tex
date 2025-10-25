@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 9.2}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+\begin{itemize}
+  \item (7)
+        \begin{align*}
+          \int_{0}^{4} \frac{dx}{1 + \sqrt{x}}
+        \end{align*}
+        令$t = \sqrt{x}, dx = 2t dt$，于是
+        \begin{align*}
+          \int \frac{dx}{1 + \sqrt{x}}
+           & = \int \frac{2t}{1 + t} dt                               \\
+           & = \int \frac{2t + 2 - 2}{1 + t} dt                       \\
+           & = \int \frac{2t + 2}{1 + t} dt - \int \frac{2}{1 + t} dt \\
+           & = 2t - 2 \ln |1 + t| + C                                 \\
+           & = 2\sqrt{x} - 2 \ln |1 + \sqrt{x}| + C
+        \end{align*}
+        所以
+        \begin{align*}
+          \int_{0}^{4} \frac{dx}{1 + \sqrt{x}}
+           & = (2\sqrt{x} - 2 \ln |1 + \sqrt{x}| + C) \bigg|_0^4 \\
+           & = 4 - 2 \ln 3
+        \end{align*}
+
+\end{itemize}
+
+\section*{2}
+
+\begin{itemize}
+  \item (1)
+
+        我们有
+        \begin{align*}
+          \lim \limits_{n \to \infty} \frac{1}{n^4}(1 + 2^3 + \cdots + n^3)
+           & = \lim \limits_{n \to \infty} \frac{1}{n} \left[(\frac{1}{n})^3 + (\frac{2}{n})^3 + \cdots + (\frac{n}{n})^3 \right] \\
+           & = \lim \limits_{n \to \infty} \sum \limits_{i = 1}^n \frac{1}{n} \cdot \left(\frac{i}{n}\right)^3
+        \end{align*}
+        这个和式是函数$f(x) = x^3$在区间$[0, 1]$上的一个积分和。所以
+        \begin{align*}
+          \lim \limits_{n \to \infty} \frac{1}{n^4}(1 + 2^3 + \cdots + n^3)
+           & = \int_{0}^{1} x^3 dx       \\
+           & = \frac{1}{4}x^4 \bigg|_0^1 \\
+           & = \frac{1}{4}
+        \end{align*}
+
+  \item (2)
+        \begin{align*}
+           & \lim \limits_{n \to \infty} n \left[ \frac{1}{(n + 1)^2} + \frac{1}{(n+2)^2} + \cdots + \frac{1}{(n+n)^2} \right]                  \\
+           & = \lim \limits_{n \to \infty} \frac{1}{n}\left[ \frac{n^2}{(n + 1)^2} + \frac{n^2}{(n+2)^2} + \cdots + \frac{n^2}{(n+n)^2} \right] \\
+           & = \lim \limits_{n \to \infty} \frac{1}{n}\left[ \left(\frac{n}{n + 1}\right)^2 + \left(\frac{n}{n+2}\right)^2
+          + \cdots + \left(\frac{n}{n+n}\right)^2 \right]                                                                                       \\
+           & = \lim \limits_{n \to \infty} \frac{1}{n}\left[ \left(\frac{1}{1 + \frac{1}{n}}\right)^2 + \left(\frac{1}{1+\frac{2}{n}}\right)^2
+          + \cdots + \left(\frac{1}{1+\frac{n}{n}}\right)^2 \right]                                                                             \\
+           & =\lim \limits_{n \to \infty} \sum \limits_{i=1}^n \frac{1}{n} \left(\frac{1}{1+\frac{i}{n}}\right)^2
+        \end{align*}
+        这个和式是函数$f(x) = \left(\frac{1}{1 + x}\right)^2$在区间$[0, 1]$上的一个积分和。所以
+        \begin{align*}
+           & \lim \limits_{n \to \infty} n \left[ \frac{1}{(n + 1)^2} + \frac{1}{(n+2)^2} + \cdots + \frac{1}{(n+n)^2} \right] \\
+           & = \int_{0}^{1} \left(\frac{1}{1 + x}\right)^2 dx                                                                  \\
+           & = - (x+1)^{-1} \bigg|_0^1                                                                                         \\
+           & = - \frac{1}{2} - (-1)                                                                                            \\
+           & = \frac{1}{2}
+        \end{align*}
+
+  \item (3)
+
+        与(2)类似,是函数$f(x) = \left(\frac{1}{1 + x^2}\right)^2$在区间$[0, 1]$上的一个积分和。所以
+        \begin{align*}
+          \int_{0}^{1} \frac{1}{1 + x^2} dx
+           & = arc tan x \bigg|_0^1 \\
+           & = \frac{\pi}{4}
+        \end{align*}
+
+  \item (4)
+        \begin{align*}
+            & \lim \limits_{n \to \infty} \frac{1}{n} (sin \frac{\pi}{n} + sin \frac{2\pi}{n} + \cdots + sin \frac{n-1}{n}\pi)                       \\
+          = & \lim \limits_{n \to \infty} \frac{1}{n} (sin \frac{0 \pi}{n} + sin \frac{\pi}{n} + sin \frac{2\pi}{n} + \cdots + sin \frac{n-1}{n}\pi) \\
+          = & \lim \limits_{n \to \infty} \sum \limits_{i = 1}^{n} \frac{1}{n} \cdot sin \left(\frac{(i - 1)\pi}{n}\right)
+        \end{align*}
+        这个和式是函数$f(x) = sin x \pi$在区间$[0, 1]$上的一个积分和。所以
+        \begin{align*}
+           & \lim \limits_{n \to \infty} \frac{1}{n} (sin \frac{\pi}{n} + sin \frac{2\pi}{n} + \cdots + sin \frac{n-1}{n}\pi) \\
+           & = \int_{0}^{1} sin x \pi dx                                                                                      \\
+           & = - \frac{1}{\pi} cos \pi x \bigg|_0^1                                                                           \\
+           & = \frac{1}{\pi} - (- \frac{1}{\pi})                                                                              \\
+           & = \frac{2}{\pi}
+        \end{align*}
+\end{itemize}
+
+\section*{3}
+
+$f$在$[a,b]$上可积，那么对任意$\epsilon > 0$，存在$\delta > 0$，使得对任意分割$T$，
+以及在其上任意选取的点集$\{\xi_i\}$，只需满足$||T|| < \delta$时，就有
+\begin{align*}
+  \left| \sum\limits_{i=1}^n f(\xi_i) \Delta x_i - J \right| < \epsilon
+\end{align*}
+其中$J = \int_a^b f(x) dx$。
+
+于是，把$F'(x) \neq f(x)$的有限个点作为分割点，并在此基础上找一个分割$T$，并满足$||T|| < \delta$。
+此时在每一个小区间上，$F(x)$的拉格朗日中值定理任然成立。
+
+参考定理9.1的证明，容易得到
+\begin{align*}
+  F(b) - F(a) = \int_a^b f(x) dx
+\end{align*}
+
+\end{document}
