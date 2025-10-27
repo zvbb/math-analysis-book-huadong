@@ -1,0 +1,201 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 9.3}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+思路：设$T'$在$T$上增加了$t$个分点，我们可以看做一个点一个点逐个添加的，
+于是只需讨论增加一个点的情况，然后由$\leq$的传递性可以推导出一般情况，即添加$t$的点的情况。
+
+增加一个分点，把$T$的某个小区间$\Delta_i$分成$\Delta_i', \Delta_i''$，其他小区间不变，
+因为$w_i' \leq w_i, w_i'' \leq w_i$，所以
+\begin{align*}
+  w_i \Delta_i \geq w_i' \Delta_i' + w_i'' \Delta_i''
+\end{align*}
+命题得证。
+
+\section*{2}
+
+$f$在$[a, b]$上可积，由定理$9.3'$可知，对任意$\epsilon > 0$，总存在相应的分割T，使得
+\begin{align*}
+  \sum\limits_{T} w_i \Delta x_i < \epsilon
+\end{align*}
+在T上增加分点$\alpha, \beta$得到分割$T'$，于是由习题1可知，
+\begin{align*}
+  \sum\limits_{T'} w_i' \Delta x_i' < \sum\limits_{T} w_i \Delta x_i
+\end{align*}
+$T'$只保留$[\alpha, \beta]$上的分点，得到分割$T''$，我们有
+\begin{align*}
+  \sum\limits_{T''} w_i'' \Delta x_i'' \leq \sum\limits_{T'} w_i' \Delta x_i' < \epsilon
+\end{align*}
+由定理$9.3'$可知，$f$在$[\alpha, \beta]$上可积。
+
+\section*{3}
+
+设$J = \int_a^b f(x)dx$，于是对任意$\epsilon > 0$，存在$\delta_1 > 0$，
+对任意分割$T$，以及其上任意选取的点集$\{\xi_i\}$，只要$||T|| < \delta_1$，就有
+\begin{align*}
+  \left| \sum\limits_{i = 1}^n f(\xi_i) \Delta x_i - J \right| < \frac{1}{2} \epsilon
+\end{align*}
+设在$r_1, r_2, \cdots, r_k$点处$f(x) \neq g(x)$，令
+\begin{align*}
+  M = \max\{|f(r_i) - g(r_i)|\}, i = 1, 2, \cdots, k
+\end{align*}
+这个写点最多包含在$2k$个小区间上（都在分点上），
+令$\delta = \min\{\delta_1, \frac{\epsilon}{2kM} \}$
+我们有
+\begin{align*}
+  \left| \sum\limits_{i = 1}^n g(\xi_i) \Delta x_i - J \right|
+   & = \left| \sum\limits_{i = 1}^n g(\xi_i) \Delta x_i - \sum\limits_{i = 1}^n f(\xi_i) \Delta x_i + \sum\limits_{i = 1}^n f(\xi_i) \Delta x_i - J \right|                  \\
+   & \leq \left| \sum\limits_{i = 1}^n g(\xi_i) \Delta x_i - \sum\limits_{i = 1}^n f(\xi_i) \Delta x_i\right| + \left| \sum\limits_{i = 1}^n f(\xi_i) \Delta x_i - J \right| \\
+   & \leq 2k \cdot M \cdot \delta + \frac{1}{2}\epsilon                                                                                                                      \\
+   & = 2k \cdot M \cdot \frac{\epsilon}{2k M} + \frac{1}{2}\epsilon                                                                                                          \\
+   & = \epsilon
+\end{align*}
+由$\epsilon$的任意性可知，$g(x)$可积，且$\int_{a}^{b} f(x) dx = \int_{a}^{b} g(x) dx$.
+
+\section*{4}
+
+因为$\lim\limits_{n \to \infty} a_n = c$，由定义可知，对任意$\epsilon > 0$（不妨设$\epsilon < 1$），
+存在$N > 0$，当$n > N$时，有
+\begin{align*}
+  |a_n - c| < \epsilon
+\end{align*}
+这说明$f$在$U(c; \epsilon)$外只有有限个间断点，利用定理9.5可知$f$在$U(c; \epsilon)$外是可积的，
+且对$U(c; \epsilon)$的任意分割$T'$，因为$f(x)$是有界函数，设$|f(x)| < M$，于是我们有
+\begin{align*}
+  \sum\limits_{T'} w_i' \Delta x_i' < 2 M \cdot \epsilon
+\end{align*}
+综上，对任意$\epsilon > 0$，由$f$在$U(c; \epsilon)$外是可积的，于是存在相应的分割$T''$，使得
+\begin{align*}
+  \sum\limits_{T''} w_i'' \Delta x_i'' < \epsilon
+\end{align*}
+与$T'$合并，成为$[a,b]$上的分割$T$，可得
+\begin{align*}
+  \sum\limits_{T} w_i \Delta x_i < \epsilon + 2 M \cdot \epsilon = (1 + 2M) \epsilon
+\end{align*}
+由定理9.3（可积准则）可知，$f$在$[a,b]$上可积。
+
+\section*{5}
+
+设$M = \sup\limits_{x \in \Delta} f(x), m = \inf\limits_{x \in \Delta} f(x)$。
+
+当$M = m$时，$f(x)$是一个常数函数，结论成立。
+
+$M \neq m$时，对任意$x \in \Delta$，有
+\begin{align*}
+  m \leq f(x) \leq M
+\end{align*}
+于是，对任意$x', x'' \in \Delta$，有
+\begin{align*}
+  m - M \leq f(x') - f(x'') \leq M - m
+\end{align*}
+所以
+\begin{align*}
+  |f(x') - f(x'')| \leq M - m
+\end{align*}
+（注：$M - a$是上界。）
+
+由上、下确界的定义可知，对任意$\epsilon > 0$，对任意$x \in \Delta$，有
+\begin{align*}
+  f(x) < M + \frac{1}{2}\epsilon \\
+  m - \frac{1}{2}\epsilon < f(x)
+\end{align*}
+所以，对任意$x', x'' \in \Delta$，有
+\begin{align*}
+  |f(x') - f(x'')| > M + \frac{1}{2}\epsilon - (m - \frac{1}{2}\epsilon) = M - m + \epsilon
+\end{align*}
+由$\epsilon > 0$的任意性可知
+\begin{align*}
+  |f(x') - f(x'')| > M - m
+\end{align*}
+由上确界的定义可知
+\begin{align*}
+  \sup \limits_{x', x'' \in \Delta} |f(x') - f(x'')| = M - m
+\end{align*}
+
+\section*{6}
+
+$x \in (0, 1]$，$0 \leq f(x) < 1$，$f(x) = 0$当且仅当
+$\frac{1}{x} = [\frac{1}{x}]$，因为$[\frac{1}{x}]$是取整函数，
+所以只有当$\frac{1}{x}$也是整数时，$f(x) = 0$。
+综上，$\frac{1}{x} = n, x = \frac{1}{n}$时，$f(x) = 0$，其中$n \in \mathbb{N}^+$。
+因为$\lim \limits_{n \to \infty} \frac{1}{n} = 0$，于是对任意$\epsilon > 0$，
+存在$N > 0$，我们有
+\begin{align*}
+  |\frac{1}{N}| < \frac{1}{2}\epsilon
+\end{align*}
+注意：以上对极限定义的变形使用。
+
+于是，在$[\frac{1}{N}, 1]$上，$f(x)$只有有限个间断点，由定理9.5可知，
+$f$在$[\frac{1}{N}, 1]$上可积，且存在对$[\frac{1}{N}, 1]$的某一分割$T'$，使得
+\begin{align*}
+  \sum\limits_{T'} w_i \Delta x_i < \frac{1}{2} \epsilon
+\end{align*}
+再把小区间$[0, \frac{1}{N}]$与$T'$合并，成为对$[0, 1]$的一个分割$T$。由于
+$f$在$[0, \frac{1}{N}]$上的振幅$w_0 < 1$，因此得到
+\begin{align*}
+  \sum\limits_{T} w_i \Delta x_i 
+  = w_0 \cdot \frac{\epsilon}{2} + \sum\limits_{T'} w_i \Delta x_i
+  < \frac{\epsilon}{2} + \frac{\epsilon}{2} 
+  = \epsilon
+\end{align*}
+
+
+\section*{7}
+
+$g(x)$在$[a, b]$上可积，由可积准则可知，对任意$\epsilon > 0$，
+存在相应的分割T，使得
+\begin{align*}
+  \sum \limits_{T} w_i^g \Delta x_i < \epsilon
+\end{align*}
+有题设可知
+\begin{align*}
+  |\sum \limits_{T} w_i^f \Delta x_i - \sum \limits_{T} w_i^g \Delta x_i|
+   & = |\sum \limits_{T} w_i^f \Delta x_i - w_i^g \Delta x_i| \\
+   & = |\sum \limits_{T} (w_i^f - w_i^g) \Delta x_i|          \\
+   & \leq |\sum \limits_{T} 2\epsilon \Delta x_i|             \\
+   & = 2\epsilon (b - a)
+\end{align*}
+由于$(b - a)$是定值，$\epsilon$是任意的，于是可得
+\begin{align*}
+  \sum \limits_{T} w_i^f \Delta x_i = \sum \limits_{T} w_i^g \Delta x_i < \epsilon
+\end{align*}
+所以，$f$在$[a, b]$上可积。
+
+
+\end{document}
