@@ -37,6 +37,55 @@
 \maketitle
 
 \begin{zremark}
+  任意两点$x_1 < x_2$，对任意$\lambda \in (0, 1)$，
+  $y = \lambda x_1 + (1 - \lambda)x_2$，
+  则有，$y \in (x_1, x_2)$。
+\end{zremark}
+\textbf{证明：}
+\begin{align*}
+  y - x_1
+   & = \lambda x_1 + (1 - \lambda)x_2 - x_1  \\
+   & = (\lambda - 1) x_1 + (1 - \lambda) x_2 \\
+   & = (1 - \lambda) (x_2 - x_1)             \\
+   & > 0
+\end{align*}
+又
+\begin{align*}
+  y - x_2
+   & = \lambda x_1 + (1 - \lambda)x_2 - x_2 \\
+   & = \lambda x_1 - \lambda x_2            \\
+   & = \lambda (x_1 - x_2)                  \\
+   & < 0
+\end{align*}
+$\therefore y \in (x_1, x_2)$.
+
+\begin{zremark}
+  定义1 中不等式两边的几何含义。
+\end{zremark}
+\textbf{证明：}
+
+以凸函数为例，任取$(x_1, x_2)$（设$x_1 < x_2$）中的一点$x' = \lambda x_1 + (1 - \lambda)x_2$，
+对应的函数值$f(x') = f(\lambda x_1 + (1 - \lambda)x_2)$。
+
+点$(x_1, f(x_1)), (x_2, f(x_2))$确定直线：
+\begin{align*}
+  \frac{y - y_1}{y_2 - y_1}          & = \frac{x - x_1}{x_2 - x_1}                            \\
+  \frac{y - f(x_1)}{f(x_2) - f(x_1)} & = \frac{x - x_1}{x_2 - x_1}                            \\
+  y                                  & = [f(x_2) - f(x_1)] \frac{x - x_1}{x_2 - x_1} + f(x_1)
+\end{align*}
+于是，$x = x'$时，我们有
+\begin{align*}
+   & [f(x_2) - f(x_1)] \frac{\lambda x_1 + (1 - \lambda)x_2 - x_1}{x_2 - x_1} + f(x_1) \\
+   & = [f(x_2) - f(x_1)] \frac{(1 - \lambda)(x_2 - x_1)}{x_2 - x_1} + f(x_1)           \\
+   & = [f(x_2) - f(x_1)](1 - \lambda) + f(x_1)                                         \\
+   & = (\lambda - 1)f(x_1) + (1 - \lambda)f(x_2) + f(x_1)                              \\
+   & = \lambda f(x_1) + (1 - \lambda)f(x_2)
+\end{align*}
+
+综上，函数在$f(x_1), f(x_2)$两点处的形成的割线在$x \in (x_1, x_2)$上与函数值$f(x)$的比较，
+定义出凸函数和凹函数。
+
+\begin{zremark}
   $f$为$I$上的凸函数的充分条件是：对于$I$上任意三个点$x_1 < x_2 < x_3$，有
   \begin{align*}
     \frac{f(x_2) - f(x_1)}{x_2 - x_1} \leq \frac{f(x_3) - f(x_1)}{x_3 - x_1} \leq \frac{f(x_3) - f(x_2)}{x_3 - x_2}

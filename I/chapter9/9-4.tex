@@ -1,0 +1,423 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 9.4}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+由性质3可知，$f(x) g(x)$在$[a,b]$上可积，即
+\begin{align*}
+  \lim\limits_{||T|| \to 0} \sum\limits_{i=1}^n f(\xi_i) g(\xi_i) \Delta x_i = \int_{a}^{b} f(x) g(x) dx
+\end{align*}
+由可积的定义可知，对任意$\epsilon > 0$，存在$\delta_1 > 0$，任意$||T|| < \delta_1$时，有
+\begin{align*}
+  |\sum\limits_{i=1}^n f(\xi_i) g(\xi_i) \Delta x_i - J| < \epsilon
+\end{align*}
+其中$J = \int_{a}^{b} f(x) g(x) dx$.
+
+同理，$\int_{a}^{b}g(x)dx$存在，所以存在$\delta_2 > 0$，任意$||T|| < \delta_2$时，有
+\begin{align*}
+  |\sum\limits_{i=1}^n g(\xi_i) \Delta x_i - \int_{a}^{b} g(x) dx| < \epsilon \\
+  |\sum\limits_{i=1}^n g(\eta_i) \Delta x_i - \int_{a}^{b} g(x) dx| < \epsilon
+\end{align*}
+于是
+\begin{align*}
+   & |\sum\limits_{i=1}^n g(\xi_i) \Delta x_i - \sum\limits_{i=1}^n g(\eta_i) \Delta x_i|                                                \\
+   & = |\sum\limits_{i=1}^n g(\xi_i) \Delta x_i - \int_{a}^{b} g(x) + \int_{a}^{b} g(x) - \sum\limits_{i=1}^n g(\eta_i) \Delta x_i|      \\
+   & \leq |\sum\limits_{i=1}^n g(\xi_i) \Delta x_i - \int_{a}^{b} g(x)| + |\int_{a}^{b} g(x) - \sum\limits_{i=1}^n g(\eta_i) \Delta x_i| \\
+   & < 2\epsilon
+\end{align*}
+因为$f(x)$在$[a,b]$上可积，所以在$[a,b]$上有界，设$x \in [a,b]$，有$|f(x)|< M$。
+
+综上，取$\delta = \min\{\delta_1, \delta_2\}$，任意$||T|| < \delta$时，有
+\begin{align*}
+   & |\sum\limits_{i=1}^n f(\xi_i) g(\eta_i) \Delta x_i - J|                                                                                                          \\
+   & = |\sum\limits_{i=1}^n f(\xi_i) g(\eta_i) \Delta x_i - \sum\limits_{i=1}^n f(\xi_i) g(\xi_i) \Delta x_i + \sum\limits_{i=1}^n f(\xi_i) g(\xi_i) \Delta x_i  - J| \\
+   & = |\sum\limits_{i=1}^n f(\xi_i) [g(\eta_i) - g(\xi_i)] \Delta x_i + \sum\limits_{i=1}^n f(\xi_i) g(\xi_i) \Delta x_i  - J|                                       \\
+   & \leq |\sum\limits_{i=1}^n f(\xi_i) [g(\eta_i) - g(\xi_i)] \Delta x_i| + |\sum\limits_{i=1}^n f(\xi_i) g(\xi_i) \Delta x_i  - J|                                  \\
+   & \leq M|\sum\limits_{i=1}^n [g(\eta_i) - g(\xi_i)] \Delta x_i| + |\sum\limits_{i=1}^n f(\xi_i) g(\xi_i) \Delta x_i  - J|                                          \\
+   & \leq M \cdot 2\epsilon + \epsilon                                                                                                                                \\
+   & = (2 M + 1) \epsilon
+\end{align*}
+由$(2M + 1)$是定值，而$\epsilon$的任意性可知，结论成立。
+
+\section*{2}
+
+\begin{itemize}
+  \item (1)
+
+        因为$x \in [0, 1]$，所以
+        \begin{align*}
+          x - x^2 = x(1 - x) \geq 0
+        \end{align*}
+        由积分不等式性可知
+        \begin{align*}
+          \int_{0}^{1} x dx \geq \int_{0}^{1} x^2 dx
+        \end{align*}
+
+        另外，因为任意$x \in (0, 1)$上，都有
+        \begin{align*}
+          x^2 < x
+        \end{align*}
+        且$x - x^2$连续，于是由例2下方的“注”可知，
+        \begin{align*}
+          \int_{0}^{1} x dx > \int_{0}^{1} x^2 dx
+        \end{align*}
+\end{itemize}
+
+\section*{3}
+
+\begin{itemize}
+  \item (3)
+
+        我们有
+        \begin{align*}
+          1 = \int_{0}^{\frac{\pi}{2}} \frac{2}{\pi}
+          < \int_{0}^{\frac{\pi}{2}} \frac{sin x}{x}
+          < \int_{0}^{\frac{\pi}{2}} 1 dx
+          = \frac{\pi}{2}
+        \end{align*}
+\end{itemize}
+
+\section*{5}
+
+提示：
+利用第一章总练习题，习题1的结论
+\begin{align*}
+  \max\{a, b\} = \frac{1}{2}(a + b + |a - b|) \\
+  \min\{a, b\} = \frac{1}{2}(a + b - |a - b|)
+\end{align*}
+由性质6的证明过程可知
+\begin{align*}
+  \int_{a}^{b} |f(x) - g(x)| dx
+\end{align*}
+存在。
+
+\section*{7}
+
+由题意可知$f(x) \neq 0$。由于$f$在$[a, b]$上可积，故任给$\epsilon > 0$，
+存在某个分割$T$，使得$\sum \limits_{T} w_i^f \Delta x_i < \epsilon$。由于
+\begin{align*}
+  \left|\frac{1}{f(x')} - \frac{1}{f(x'')}\right|
+   & = \left|\frac{f(x'') - f(x')}{f(x')f(x'')}\right|    \\
+   & \leq \frac{1}{m^2} \cdot \left|f(x'') - f(x')\right|
+\end{align*}
+可得$w_i^{\frac{1}{f}} \leq \frac{1}{m^2}w_i^f$，于是有
+\begin{align*}
+  \sum \limits_{T} w_i^{\frac{1}{f}} \Delta x_i
+  \leq \sum \limits_{T} \frac{1}{m^2} w_i^f \Delta x_i
+  = \frac{1}{m^2} \sum \limits_{T} w_i^f \Delta x_i
+  < \frac{1}{m^2} \epsilon
+\end{align*}
+所以，$\frac{1}{f}$在$[a, b]$上可积。
+
+\section*{8}
+
+以定义9.7为例。
+
+设$M, m$的定义与定理9.7证明中的一致。
+
+(i)如果$M = m$，则$f(x)$是常值函数，显然结论成立。
+
+(ii)如果$m \neq M$，于是存在$x_0, x_1 \in [a, b]$使得
+$f(x_0) \neq m, f(x_1) \neq M$，且$f$是连续函数，于是可得
+\begin{align*}
+  m(b - a) < \int_{a}^{b} f(x) dx < M(b - a)
+\end{align*}
+（注意：用到了积分不等式的推广，9-4-comment.tex中有证明）\\
+即
+\begin{align*}
+  m < \frac{1}{(b - a)} \int_{a}^{b} f(x) dx < M
+\end{align*}
+设$f(x') = m, f(x'') = M$（不妨设$x' < x''$），
+于是由介质性定理知，存在$\xi \in (x', x'') \subset (a, b)$，使得
+\begin{align*}
+  f(\xi) = \frac{1}{(b - a)} \int_{a}^{b} f(x) dx
+\end{align*}
+
+\section*{9}
+
+$g$在$[a, b]$上不变号，以$g(x) > 0$为例进行证明。
+
+我们有
+\begin{align*}
+  m g(x) \leq f(x) g(x) \leq M g(x)
+\end{align*}
+由积分的不等式性质，
+\begin{align*}
+  m \int_{a}^{b} g(x) dx \leq \int_{a}^{b} f(x) g(x) dx \leq M \int_{a}^{b} g(x) dx
+\end{align*}
+如果$\int_{a}^{b} g(x) dx = 0$，则
+\begin{align*}
+  \int_{a}^{b} f(x) g(x) dx = 0 = \mu \int_{a}^{b} g(x) dx
+\end{align*}
+其中$\mu$可以是$[m, M]$中的任意值。
+
+如果$\int_{a}^{b} g(x) dx \neq 0$，即$\int_{a}^{b} g(x) dx > 0 $，
+由于
+\begin{align*}
+  m \int_{a}^{b} g(x) dx \leq \int_{a}^{b} f(x) g(x) dx \leq M \int_{a}^{b} g(x) dx
+\end{align*}
+于是
+\begin{align*}
+  m \leq \frac{\int_{a}^{b} f(x) g(x) dx}{\int_{a}^{b} g(x) dx } \leq M
+\end{align*}
+令$\mu = \frac{\int_{a}^{b} f(x) g(x) dx}{\int_{a}^{b} g(x) dx }$，
+于是$m \leq \mu \leq M$，且
+\begin{align*}
+  u \int_{a}^{b} g(x) dx = \int_{a}^{b} f(x) g(x) dx
+\end{align*}
+结论成立。
+
+\section*{10}
+
+ (i)
+由\begin{align*}
+  \int_{a}^{b} f(x) dx = 0
+\end{align*}
+可知，至少存在一个$x_1 \in (a, b)$使得$f(x_1) = 0$。
+反证法，假设不存在$x \in (a, b)$使得$f(x) = 0$。
+因为$f(x)$在$[a,b]$上是连续的，所以$f(x) > 0$（或$f(x)$ < 0），
+于是由例2（积分不等式的推广）可知，
+\begin{align*}
+  \int_{a}^{b} f(x) dx > 0
+\end{align*}
+出现矛盾。
+
+(ii)
+由
+\begin{align*}
+  \int_{a}^{b} f(x) dx = \int_{a}^{b} xf(x) dx = 0
+\end{align*}
+$xf(x)$看做一个整体，由(i)可知，至少存在一个$x_1 \in (a, b)$使得$f(x_1) = 0$。
+反证法，假设只存在一个$x_1 \in (a, b)$使得$f(x_1) = 0$。
+因为$\int_{a}^{b} xf(x) dx = 0$，所以$f(x)$在$[a, x_1], [x_1, b]$这两个区间上异号，
+否则，由$xf(x)$的连续性和$f(x) > 0$（或$f(x) < 0$）可得，$\int_{a}^{b} xf(x) dx > 0$
+（或$\int_{a}^{b} xf(x) dx < 0$），出现矛盾。
+
+设$h(x) = (x - x_1)f(x)$，因为$x - x_1$在$[a, x_1], [x_1, b]$两个区间上异号（排除0），
+又$f(x)$在两个区间上异号，所以$(x - x_1)f(x)$在$[a, b]$上同号，即
+$h(x)$在$[a, b]$上同号。不妨设$h(x) > 0$，于是
+\begin{align*}
+  \int_{a}^{b} h(x) dx > 0
+\end{align*}
+又
+\begin{align*}
+  \int_{a}^{b} h(x) dx
+   & = \int_{a}^{x_1} h(x) dx + \int_{x_1}^{b} h(x) dx                   \\
+   & = \int_{a}^{x_1} (x - x_1)f(x) dx + \int_{x_1}^{b} (x - x_1)f(x) dx \\
+   & = \int_{a}^{x_1} xf(x) dx - \int_{a}^{x_1} x_1f(x) dx
+  + \int_{x_1}^{b} xf(x) dx - \int_{a}^{x_1} x_1f(x) dx                  \\
+   & = \int_{a}^{b} xf(x) dx - \int_{a}^{b} x_1f(x) dx                   \\
+   & = \int_{a}^{b} xf(x) dx - x_1 \int_{a}^{b} f(x) dx                  \\
+   & = 0 + 0                                                             \\
+   & = 0
+\end{align*}
+出现矛盾，所以至少存在两个点$x_1, x_2 \in (a, b)$使得$f(x_1) = f(x_2) = 0$。
+
+(iii)由
+\begin{align*}
+  \int_{a}^{b} f(x) dx = \int_{a}^{b} xf(x) dx = \int_{a}^{b} x^2 f(x) dx = 0
+\end{align*}
+利用(ii)可知，至少存在两个点$x_1, x_2 \in (a, b)$使得$f(x_1) = f(x_2) = 0$。
+反证法，假设只有2个点$x_1, x_2 \in (a, b)$使得$f(x_1) = f(x_2) = 0$。
+于是区间$[a,b]$被分成$[a, x_1], [x_1, x_2], [x_2, b]$三个区间，
+由函数的连续性，$f(x)$在没有区间上都是同号的，否则会出现新的零点。
+显然三个区间不可能是同号的，比如都有$f(x) \geq 0$，于是可得
+\begin{align*}
+  \int_{a}^{b} f(x) dx > 0
+\end{align*}
+
+不妨设$f(x)$在$(x_1, x_2), (x_1, x_2), (x_2, b)$上的符号为正、负、负。
+令$h(x) = (x - x_1)f(x)$，于是
+\begin{align*}
+  \int_{a}^{b} h(x) dx & = \int_{a}^{b} (x - x_1)f(x) dx                    \\
+                       & = \int_{a}^{b} xf(x) dx - \int_{a}^{b} x_1f(x) dx  \\
+                       & = \int_{a}^{b} xf(x) dx - x_1 \int_{a}^{b} f(x) dx \\
+                       & = 0 - 0                                            \\
+                       & = 0
+\end{align*}
+因为$x \in [a, x_1]$上$(x - x_0) f(x) \leq 0$，$x \in [x_1, b]$上$(x - x_0) f(x) \leq 0$，
+且由连续性可知，存在$x' \in (a, x_1), x'' \in (x_1, b)$使得$(x' - x_0) f(x') < 0, (x'' - x_0) f(x'') < 0$，
+由积分不等式的推论，我们有
+\begin{align*}
+  \int_{a}^{b} h(x) dx & = \int_{a}^{b} (x - x_1)f(x) dx                                     \\
+                       & = \int_{a}^{x_1} (x - x_1)f(x) dx + \int_{x_1}^{b} (x - x_1)f(x) dx \\
+                       & < 0 + 0                                                             \\
+                       & < 0
+\end{align*}
+存在矛盾，所以$f(x)$不能只在$x_1$处两边异号，同理可知$f(x)$不能只在$x_2$处两边异号。
+
+不妨设$f(x)$在$(x_1, x_2), (x_1, x_2), (x_2, b)$上的符号为正、负、正。
+令$h(x) = (x - x_1)(x - x_2)f(x)$，于是
+\begin{align*}
+  \int_{a}^{b} h(x) dx
+   & = \int_{a}^{b} (x - x_1)(x - x_2)f(x) dx                                                      \\
+   & = \int_{a}^{b} [x^2 - (x_1 + x_2)x + x_1x_2] f(x) dx                                          \\
+   & = \int_{a}^{b} x^2 f(x) dx - (x_1 + x_2) \int_{a}^{b} x f(x) dx + x_1x_2 \int_{a}^{b} f(x) dx \\
+   & = 0 + 0 + 0                                                                                   \\
+   & = 0
+\end{align*}
+又$h(x)$在$(x_1, x_2), (x_1, x_2), (x_2, b)$上的符号为正、正、正，所以
+\begin{align*}
+  \int_{a}^{b} h(x) dx
+   & = \int_{a}^{x_1} h(x) dx + \int_{x_1}^{x_2} h(x) dx + \int_{x_2}^{b} h(x) dx \\
+   & > 0
+\end{align*}
+出现矛盾，类似地，可证$f(x)$在$x_1, x_2$处两边异号的其他情况。
+
+综上，在$f(x)$只有两个零点的情况下，总是矛盾的，
+假设不成立，所以至少有三个零点。
+
+\section*{11}
+
+$f''(x) > 0$，由定理6.15可知，$f(x)$是凸函数。
+
+\begin{itemize}
+  \item (1)
+
+        由凸函数的性质（定理6.14）可知，对任意$x_1, x_2 \in [a, b]$，我们有
+        \begin{align*}
+          f(x_2) \geq f(x_1) + f'(x_1)(x_2 - x_1)
+        \end{align*}
+
+        令$x_1 = \frac{a + b}{2}$是定值，于是对任意$x \in [a, b]$，都有
+        \begin{align*}
+          f(x) \geq f(x_1) + f'(x_1)(x - x_1)
+        \end{align*}
+        于是可得
+        \begin{align*}
+          \int_{a}^{b} f(x) dx
+           & \geq \int_{a}^{b} f(x_1) + f'(x_1)(x - x_1) dx                                     \\
+           & = \int_{a}^{b} f(x_1) dx + f'(x_1) \int_{a}^{b} x dx - f'(x_1) \int_{a}^{b} x_1 dx \\
+           & = f(x_1)(b - a) + f'(x_1) (\frac{b^2 - a^2}{2}) - f'(x_1) x_1 (b - a)              \\
+           & = f(x_1)(b - a)
+        \end{align*}
+        所以
+        \begin{align*}
+          \frac{1}{b - a} \int_{a}^{b} f(x) dx \geq f(\frac{a + b}{2})
+        \end{align*}
+
+  \item (2)
+
+        由凸函数的性质（定理6.14）可知，对任意$x, t \in [a, b]$，我们有
+        \begin{align*}
+          f(x) \geq f(t) + f'(t)(x - t)
+        \end{align*}
+        由积分不等式性可知
+        \begin{align*}
+          \int_{a}^{b} f(x) dt   & \geq \int_{a}^{b} f(t) + f'(t)(x - t) dt                                                \\
+          f(x) \int_{a}^{b} 1 dt & \geq \int_{a}^{b} f(t) dt + x \int_{a}^{b} f'(t) dt - \int_{a}^{b} t f'(t) dt           \\
+          f(x) (b - a)           & \geq \int_{a}^{b} f(t) dt + x \int_{a}^{b} f'(t) dt - \int_{a}^{b} t f'(t) dt           \\
+                                 & \geq \int_{a}^{b} f(t) dt + x f(t) \bigg|_a^b - \int_{a}^{b} t d(f(t))                  \\
+                                 & \geq \int_{a}^{b} f(t) dt + x f(t) \bigg|_a^b - t f(t)\bigg|_a^b + \int_{a}^{b} f(t) dt \\
+                                 & \geq 2 \int_{a}^{b} f(t) dt + xf(b) - xf(b) - (bf(b) - af(a))
+        \end{align*}
+        （注意：考虑上面的问题时，$x$取$[a, b]$上的任意值的，都是成立的）
+
+        因为$f(x) \leq 0$，于是
+        \begin{align*}
+          xf(b) - xf(a) - (bf(b) - af(a))
+           & = f(b)(x - b) + f(a) (a - x) \\
+           & \geq 0 + 0
+        \end{align*}
+        综上
+        \begin{align*}
+          f(x) (b - a) & \geq 2 \int_{a}^{b} f(t) dt = 2 \int_{a}^{b} f(x) dx \\
+          f(x)         & \geq \frac{2}{b - a} \int_{a}^{b} f(x) dx
+        \end{align*}
+\end{itemize}
+
+\section*{12}
+
+\begin{itemize}
+  \item (1)
+
+        考虑函数$\frac{1}{x}$，在$(0, +\infty)$上严格单调递减。对任意正整数$k$，$x \in [\frac{1}{k + 1}, \frac{1}{k}]$，有
+        \begin{align*}
+          \frac{1}{k + 1} \leq \frac{1}{x} \leq \frac{1}{k}
+        \end{align*}
+        因为任意$x \in [\frac{1}{k + 1}, \frac{1}{k}]$，有$\frac{1}{k + 1} < \frac{1}{x} < \frac{1}{k}$，
+        由积分不等式的推广（9-4-comment.tex中有说明）可知
+        \begin{align*}
+          \int_{k}^{k + 1} \frac{1}{k + 1} dx < \int_{k}^{k + 1} \frac{1}{x} dx < \int_{k}^{k + 1} \frac{1}{k} dx \\
+          \frac{1}{k + 1} \int_{k}^{k + 1} dx < \ln x \bigg|_{k}^{k + 1} < \frac{1}{k} \int_{k}^{k + 1}  dx       \\
+          \frac{1}{k + 1} < \ln (k + 1) - \ln k < \frac{1}{k}                                                     \\
+        \end{align*}
+        于是，我们有
+        \begin{align*}
+          \frac{1}{2} < \ln 2 - \ln 1 < 1                   \\
+          \frac{1}{3} < \ln 3 - \ln 2 < \frac{1}{2}         \\
+          \vdots                                            \\
+          \frac{1}{n+1} < \ln (n + 1) - \ln n < \frac{1}{n} \\
+        \end{align*}
+        于是可得
+        \begin{align*}
+          \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n+1} < \ln (n + 1) - \ln 1 < 1 + \frac{1}{2} + \cdots + \frac{1}{n} \\
+          \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n+1} < \ln (n + 1) < 1 + \frac{1}{2} + \cdots + \frac{1}{n}
+        \end{align*}
+        考察第一个不等式（第二个不等式已经满足要求），
+        \begin{align*}
+          \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n+1} < \ln (n + 1)
+        \end{align*}
+        $n + 1$替换为$n$，可得
+        \begin{align*}
+          \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n} < \ln n \\
+          1 + \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n} < 1 + \ln n
+        \end{align*}
+        综上，
+        \begin{align*}
+          \ln (n + 1) < 1 + \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n} < 1 + \ln n
+        \end{align*}
+
+  \item (2)
+
+        由(1)可知
+        \begin{align*}
+          1 = \frac{\ln n}{\ln n} < \frac{\ln (n + 1)}{\ln n} < \frac{1 + \frac{1}{2} + \cdots + \frac{1}{n}}{\ln n} < \frac{1 + \ln n}{\ln n}
+        \end{align*}
+        因为
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{1 + \ln n}{\ln n} = 1
+        \end{align*}
+        由迫敛性可知
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{1 + \frac{1}{2} + \cdots + \frac{1}{n}}{\ln n} = 1
+        \end{align*}
+
+\end{itemize}
+
+\end{document}
