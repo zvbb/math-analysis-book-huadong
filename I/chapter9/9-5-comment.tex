@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 9.4}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  证明： 推广的分部积分公式.
+\end{zremark}
+
+\textbf{证明：}
+
+对$n$进行归纳。
+
+$n = 0$时，就是定理9.13（定积分分部积分法）；
+
+归纳假设$< n$时，命题成立，即
+\begin{align*}
+  \int_a^b u(x) v^{(n)}(x) dx
+  = & \left[u(x)v^{(n - 1)}(x) - u'(x)v^{(n - 2)}(x) + \cdots + (-1)^{n-1}u^{(n-1)}(x)v(x)\right]_a^b \\
+    & + (-1)^{(n)} \int_a^b u^{(n)}(x)v(x) dx
+\end{align*}
+于是，由定积分分部积分法和归纳假设，我们有
+\begin{align*}
+  \int_a^b u(x) v^{(n + 1)}(x) dx
+  = & u(x) v^{(n)}(x) \bigg|_a^b - \int_{a}^{b} u'(x) v^{(n)}(x) dx                                              \\
+  = & u(x) v^{(n)}(x) \bigg|_a^b                                                                                 \\
+    & -(\left[[u'(x)]v^{(n - 1)}(x) - [u'(x)]'v^{(n - 2)}(x) + \cdots + (-1)^{n-1}[u'(x)]^{(n-1)}v(x)\right]_a^b \\
+    & +(-1)^{(n)} \int_a^b [u'(x)]^{(n)}v(x) dx)                                                                 \\
+  = & u(x) v^{(n)}(x) \bigg|_a^b                                                                                 \\
+    & -(\left[u'(x)v^{(n - 1)}(x) - u^{(2)}(x)v^{(n - 2)}(x) + \cdots + (-1)^{n-1}u^{(n)}(x)v(x)\right]_a^b      \\
+    & +(-1)^{(n)} \int_a^b u^{(n+1)}(x)v(x) dx)                                                                  \\
+  = & \left[ u(x) v^{(n)}(x) - u'(x)v^{(n - 1)}(x) + \cdots + (-1)^{n}u^{(n)}(x)v(x)\right]_a^b                  \\
+    & +(-1)^{(n+1)} \int_a^b u^{(n+1)}(x)v(x) dx
+\end{align*}
+归纳完成。
+
+\end{document}

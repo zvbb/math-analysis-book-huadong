@@ -56,4 +56,17 @@ $\lim\limits_{x \to x_0} f(x) = A$，由定义
   B \leq A - \epsilon < f(x) < A + \epsilon \leq C
 \end{align*}
 
+\begin{zremark}[复合函数极限定理]
+  设函数 $f$ 与 $g$ 满足：
+  \[
+    \lim_{x \to u_0} f(x) = a, \quad \lim_{t \to t_0} g(t) = u_0,
+  \]
+  并且当 $t$ 在 $t_0$ 的某去心邻域内时，$g(t)$ 的值都属于 $f$ 的定义域。
+  则复合函数 $f(g(t))$ 在 $t_0$ 处的极限存在，且有
+  \[
+    \lim_{t \to t_0} f(g(t)) = a.
+  \]
+\end{zremark}
+
+以上，也是“变量替换法（换元法）”在极限应用的理论依据。
 \end{document}
