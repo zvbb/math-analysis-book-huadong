@@ -1,0 +1,388 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 9.5}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+f为连续函数，由微积分学基本定理可知，对任意一点$a$，我们有
+\begin{align*}
+  F(x) = \int_a^x f(t) dt
+\end{align*}
+于是
+\begin{align*}
+  \frac{d}{dx} \int_{u(x)}^{v(x)} f(t) dt
+   & = \frac{d}{dx} \left(\int_{u(x)}^{a} f(t) dt + \frac{d}{dx} \int_{a}^{v(x)} f(t) dt\right)   \\
+   & = \frac{d}{dx} \left(- \int_{a}^{u(x)} f(t) dt + \frac{d}{dx} \int_{a}^{v(x)} f(t) dt\right) \\
+   & = \frac{d}{dx} \left( - F(u(x)) + F(v(x)) \right)                                            \\
+   & = - F'(u(x))u'(x) + F'(v(x))v'(x)
+\end{align*}
+严格的来说$\int_{a}^{u(x)} f(t) dt = F(u(x))$可能需要证明，
+可以利用定理9.9，定理9.10的证明过程，来证明把积分上限改为$u(x)$也是成立的，
+过程比较多，这里省略。
+
+\section*{2}
+\begin{align*}
+  F(x) & = \int_a^x f(t) (x - t) dt               \\
+       & = \int_a^x f(t)x - f(t)t dt              \\
+       & = \int_a^x f(t)x dt - \int_a^x f(t)t dt  \\
+       & = x \int_a^x f(t) dt - \int_a^x f(t)t dt
+\end{align*}
+利用微积分学基本定理
+\begin{align*}
+  F'(x) & = \int_a^x f(t) dt + x f(x) - f(x) x \\
+        & = \int_a^x f(t) dt
+\end{align*}
+于是
+\begin{align*}
+  F''(x) = f(x)
+\end{align*}
+
+\section*{3}
+
+\begin{itemize}
+  \item (1)
+
+        \begin{itemize}
+          \item 方法一：利用微积分学基本定理
+
+                因为$cos t^2$函数在$\mathbb{R}$上连续，
+                利用积分第一中值定理，存在$\xi \in (0, x)$，使得
+                \begin{align*}
+                  \int_0^x cos t^2 dt = cos \xi^2 (x - 0) = x cos \xi^2
+                \end{align*}
+                所以
+                \begin{align*}
+                  \lim \limits_{x \to 0} \frac{1}{x} \int_0^x cos t^2 dt
+                   & = \lim \limits_{x \to 0} \frac{1}{x} x cos \xi^2 \\
+                   & = \lim \limits_{x \to 0} cos \xi^2
+                \end{align*}
+                因为$x \to 0$，$\xi \to 0$，所以
+                \begin{align*}
+                  \lim \limits_{x \to 0} cos \xi^2
+                   & = cos 0 \\
+                   & = 1
+                \end{align*}
+
+          \item 方法二：利用微积分学基本定理
+
+                因为$cos t^2$函数在$\mathbb{R}$上连续，
+                由微积分学基本定理，$cos t^2$有原函数，设为$F(t)$，
+                又由定理9.9可知，$F(x)$是连续的，$\lim\limits_{x \to 0} F(x) = F(0)$，
+                于是利用洛必达定义
+                \begin{align*}
+                  \lim \limits_{x \to 0} \frac{1}{x} \int_0^x cos t^2 dt
+                   & = \lim \limits_{x \to 0} \frac{F(x) - F(0)}{x} \\
+                   & = \lim \limits_{x \to 0} \frac{cos x^2}{1}     \\
+                   & = 1
+                \end{align*}
+        \end{itemize}
+
+  \item (2)
+
+        因为$e^x \geq 1, x \in [0, + \infty)$，由积分不等式可知，
+        分式是未定式$\frac{\infty}{\infty}$，使用洛必达法则
+        \begin{align*}
+          \lim \limits_{x \to 0} \frac{\left(\int_0^x e^{t^2} dt\right)^2}{\int_0^x e^{2t^2} dt}
+           & = \lim \limits_{x \to 0} \frac{2 e^{x^2}\int_0^x e^{t^2} dt}{e^{2x^2}} \\
+           & = \lim \limits_{x \to 0} \frac{2 \int_0^x e^{t^2} dt}{e^{x^2}}         \\
+           & = \lim \limits_{x \to 0} \frac{2 e^{x^2}}{2x e^{x^2}}                  \\
+           & = \lim \limits_{x \to 0} \frac{1}{x}                                   \\
+           & = 0
+        \end{align*}
+
+\end{itemize}
+
+\section*{4}
+
+\begin{itemize}
+  \item (2)
+
+        提示：$x = 2sinx$.
+\end{itemize}
+
+\section*{5}
+
+\begin{itemize}
+  \item (1)
+        \begin{align*}
+          \int_{-a}^{a} f(x) dx
+           & = \int_{-a}^{0} f(x) dx + \int_{0}^{a} f(x) dx
+        \end{align*}
+        对第一个定积分使用换元积分法，令$x = -t, dx = -dt$，
+        当$t$由$a$变为$0$时，$x$由$-a$增到$0$，于是
+        \begin{align*}
+          \int_{-a}^{0} f(x) dx & = - \int_{a}^{0} f(-t) dt \\
+                                & = \int_{0}^{a} f(-t) dt   \\
+                                & = \int_{0}^{a} f(-x) dx
+        \end{align*}
+        由奇函数可知$f(x) + f(-x) = 0$，所以
+        \begin{align*}
+          \int_{-a}^{a} f(x) dx
+           & = \int_{-a}^{0} f(x) dx + \int_{0}^{a} f(x) dx \\
+           & = \int_{0}^{a} f(-x) dx + \int_{0}^{a} f(x) dx \\
+           & = \int_{0}^{a} f(-x) + f(x) dx                 \\
+           & = \int_{0}^{a} 0 dx                            \\
+           & = 0
+        \end{align*}
+
+  \item (2)
+
+        证明与(1)类似。
+\end{itemize}
+
+\section*{6}
+\begin{align*}
+  \int_{a}^{a+p} f(x) dx
+   & = \int_{a}^{0} f(x) dx + \int_{0}^{p} f(x) dx + \int_{p}^{a+p} f(x) dx   \\
+   & = - \int_{0}^{a} f(x) dx + \int_{0}^{p} f(x) dx + \int_{p}^{a+p} f(x) dx
+\end{align*}
+
+令$x = t + p, dx = dt$，当$t$由$0$变为$a$时，$x$由$p$增到$a + p$，于是
+\begin{align*}
+  \int_{p}^{a+p} f(x) dx
+   & = \int_{0}^{a} f(t + p) dt \\
+   & = \int_{0}^{a} f(t) dt     \\
+   & = \int_{0}^{a} f(x) dx
+\end{align*}
+所以
+\begin{align*}
+  \int_{a}^{a+p} f(x) dx
+   & = - \int_{0}^{a} f(x) dx + \int_{0}^{p} f(x) dx + \int_{p}^{a+p} f(x) dx \\
+   & = - \int_{0}^{a} f(x) dx + \int_{0}^{p} f(x) dx + \int_{0}^{a} f(x) dx   \\
+   & = \int_{0}^{p} f(x) dx
+\end{align*}
+
+\section*{7}
+
+\begin{itemize}
+  \item (1)
+
+        令$x = \frac{\pi}{2} - t, dx = -dt$，当$t$由$\frac{\pi}{2}$变为$0$时，$x$由$0$增到$\frac{\pi}{2}$，于是
+        \begin{align*}
+          \int_{0}^{\frac{\pi}{2}} f(sinx) dx
+           & = - \int_{\frac{\pi}{2}}^{0} f(sin (\frac{\pi}{2} - t)) dt \\
+           & = \int_{0}^{\frac{\pi}{2}} f(cos t) dt                     \\
+           & = \int_{0}^{\frac{\pi}{2}} f(cos x) dx
+        \end{align*}
+
+  \item (2)
+
+        令$x = \pi - t, dx = -dt$，当$t$由$\pi$变为$0$时，$x$由$0$增到$pi$，于是
+        \begin{align*}
+          \int_{0}^{\pi} x f(sinx) dx
+           & = - \int_{\pi}^{0} (\pi - t) f(sin(\pi - t)) dt                \\
+           & = \int_{0}^{\pi}  (\pi - t) f(sin t) dt                        \\
+           & = \pi \int_{0}^{\pi} f(sin t) dt - \int_{0}^{\pi} tf(sin t) dt \\
+           & = \pi \int_{0}^{\pi} f(sin x) dx - \int_{0}^{\pi} xf(sin x) dx
+        \end{align*}
+        所以
+        \begin{align*}
+          2 \int_{0}^{\pi} x f(sinx) dx & = \int_{0}^{\pi} f(sin x) dx               \\
+          \int_{0}^{\pi} x f(sinx) dx   & = \frac{\pi}{2} \int_{0}^{\pi} f(sin x) dx
+        \end{align*}
+
+\end{itemize}
+
+\section*{8}
+
+todo
+
+\section*{9}
+
+由习题1可知
+\begin{align*}
+  g'(x) = af(ax) - f(x) = 0
+\end{align*}
+即
+\begin{align*}
+  f(x) = a f(ax)
+\end{align*}
+对任意$x > 0$，取$a = \frac{1}{x}$，有
+\begin{align*}
+  f(x) & = \frac{1}{x} f(\frac{1}{x} x) \\
+       & = \frac{1}{x} f(1)
+\end{align*}
+令$c = f(1)$，$f(x) = \frac{c}{x}$，命题成立。
+
+\section*{10}
+
+注意：题中的“连续可微函数”，指的是：导函数是连续的。
+
+\section*{11}
+
+设两个阴影从左到右分别为$S_1, S_2$，于是可得
+\begin{align*}
+  S_1 & = \int_{a}^{\xi} f(x) dx - \int_{a}^{\xi} f(a) dx = \int_{a}^{\xi} f(x) - f(a) dx \\
+  S_2 & = \int_{\xi}^{b} f(b) dx - \int_{\xi}^{b} f(x) dx = \int_{\xi}^{b} f(b)- f(x) dx
+\end{align*}
+于是
+\begin{align*}
+  S_1 - S_2
+   & =  \int_{a}^{\xi} f(x) - f(a) dx - \int_{\xi}^{b} f(b)- f(x) dx
+\end{align*}
+定义辅助函数
+\begin{align*}
+  F(x) = \int_{a}^{x} f(t) - f(a) dt - \int_{x}^{b} f(b)- f(t) dt
+\end{align*}
+由题设和微积分基本定理可知，$F(x)$是连续可导函数，且
+\begin{align*}
+  F(a) & = \int_{a}^{a} f(t) - f(a) dt - \int_{a}^{b} f(b)- f(t) dt \\
+       & = - \int_{a}^{b} f(b)- f(t) dt
+\end{align*}
+由与$f(x)$是$[a, b]$上的严格增的连续函数，所以$f(b) - f(t) > 0, t \in [a, b)$， 可得
+\begin{align*}
+  F(a) & = - \int_{a}^{b} f(b)- f(t) dt < 0
+\end{align*}
+同理
+\begin{align*}
+  F(b) & = \int_{a}^{x} f(t) - f(a) dt - \int_{x}^{b} f(b)- f(t) dt  \\
+       & = \int_{a}^{b} f(t) - f(a) dt - \int_{b}^{b} f(b) - f(t) dt \\
+       & = \int_{a}^{b} f(t) - f(a) dt                               \\
+       & > 0
+\end{align*}
+由连续函数的介质性定理可知，存在$\xi \in (a, b)$，使得
+\begin{align*}
+  \int_{a}^{\xi} f(x) - f(a) dx - \int_{\xi}^{b} f(b)- f(x) dx = 0
+\end{align*}
+即
+\begin{align*}
+  S_1 - S_2 = 0
+\end{align*}
+命题得证。
+
+\section*{12}
+
+\begin{itemize}
+  \item 方法一：
+
+        利用第二积分中值定理的推论，存在$\xi \in [0, 2\pi]$，使得
+        \begin{align*}
+          \int_{0}^{2\pi} f(x) sin nx dx
+           & = f(0)\int_{0}^{\xi} sin nx dx + f(2\pi)\int_{\xi}^{2\pi} sin nx dx                               \\
+           & = f(0) (- \frac{1}{n} cos nx\bigg|_{0}^{\xi}) + f(2\pi) (- \frac{1}{n} cos nx\bigg|_{\xi}^{2\pi}) \\
+           & = f(0) [- \frac{1}{n} (cos n\xi - 1)] + f(2\pi) [-\frac{1}{n}(1 - cos n\xi)]                      \\
+           & = (1 - cos n\xi) \frac{f(0)- f(2\pi)}{n}                                                          \\
+           & \geq 0
+        \end{align*}
+
+  \item 方法二：
+
+        令$h(x) = f(x) - f(2\pi)$，因为$f(x)$为单调递减函数，则$h$为非负、递减函数。由定理
+        9.11(i)，存在$\xi \in [0, 2\pi]$，使得
+        \begin{align*}
+          \int_{0}^{2\pi} h(x) sin nx dx
+           & = \int_{0}^{2\pi} (f(x) - f(2\pi)) sin nx dx \\
+           & = h(0) \int_{0}^{\xi} sin nx dx
+        \end{align*}
+        因为
+        \begin{align*}
+          \int_{0}^{2\pi} f(x) sin nx dx
+           & = \int_{0}^{2\pi} (f(x) - f(2\pi)) sin nx + f(2\pi)sin nx dx         \\
+           & = \int_{0}^{2\pi} h(x) sin nx dx + f(2\pi) \int_{0}^{2\pi} sin nx dx \\
+           & = h(0)\int_{0}^{\xi} sin nx dx + 0                                   \\
+           & = h(0)(- \frac{1}{n} cos nx\bigg|_{0}^{\xi})                         \\
+           & = h(0)(- \frac{1}{n} (cos n\xi - 1))                                 \\
+           & = h(0)\frac{1 - cos n\xi}{n}                                         \\
+           & \geq 0
+        \end{align*}
+
+\end{itemize}
+
+\section*{13}
+
+令$t^2 = u, t = \sqrt{u}, dt = \frac{1}{2\sqrt{u}}du$，于是
+\begin{align*}
+  \int_{x}^{x + c} sin t^2 dt
+   & = \int_{x^2}^{(x + c)^2} \frac{sin u}{2\sqrt{u}}du
+\end{align*}
+由于$\frac{1}{2\sqrt{u}}$在$[x^2, (x + c)^2]$是单调递减的，且$\frac{1}{2\sqrt{u}} > 0$，
+由积分第二中值定理可知，存在$\xi \in [x^2, (x + c)^2]$，使得
+\begin{align*}
+  \int_{x^2}^{(x + c)^2} \frac{sin u}{2\sqrt{u}}du
+   & = \frac{1}{2\sqrt{x^2}} \int_{x^2}^{\xi} sin u du \\
+   & = \frac{1}{2x} (- cos u)\bigg|_{x^2}^{\xi}        \\
+   & = \frac{1}{2x} (cos x^2 - cos \xi)
+\end{align*}
+因为
+\begin{align*}
+  -2 \leq |cos x^2 - cos \xi| \leq 2
+\end{align*}
+所以
+\begin{align*}
+  - \frac{1}{x} \leq \left|\frac{1}{2x} (cos x^2 - cos \xi)\right| \leq \frac{1}{x}
+\end{align*}
+即
+\begin{align*}
+  \left| \int_{x}^{x + c} sin t^2 dt \right| \leq \frac{1}{x}
+\end{align*}
+
+\section*{14}
+todo
+
+首先要确定$f(\varphi(t))\varphi'(t)$是可积的。
+
+\section*{15}
+
+令
+\begin{equation*}
+  g'(x) =
+  \begin{cases}
+    f'(x), & f'(x) \geq 0 \\
+    0,     & f'(x) < 0
+  \end{cases},
+  h'(x) =
+  \begin{cases}
+    f'(x), & f'(x) \leq 0 \\
+    0,     & f'(x) > 0
+  \end{cases},
+\end{equation*}
+因为$f$在$[a, b]$上是连续可微的，所以$g'(x), h'(x)$都是连续，
+令$g(x), h(x)$分别是$\int_{a}^{x} g'(t) dt, \int_{a}^{x} h'(t) dt$一个原函数，
+于是
+\begin{align*}
+  \int_{a}^{x} f'(t) dt & = \int_{a}^{x} g'(t) + h'(t) dt \\
+  f(x) - f(a)           & = (g(t) + h(t))\bigg|_{a}^{x}   \\
+                        & = g(x) + h(x) - g(a) - h(a)
+\end{align*}
+可得
+\begin{align*}
+  f(x) = g(x) + h(x) + f(a) - g(a) - h(a) 
+\end{align*}
+取$C = f(a) - g(a) - h(a)$。
+综上，$g(x)$是增函数，$h(x) = h(x) + C$任然是减函数。
+
+\end{document}

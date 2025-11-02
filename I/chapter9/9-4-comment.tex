@@ -49,4 +49,37 @@
 
 提示：令$h(x) = g(x) - f(x)$，考虑函数$h(x)$的积分。
 
+\begin{zremark}
+  $f$在$[a, b]$上可积，若$f(x) \geq 0, x \in [a, b]$，则
+  \begin{align*}
+    F(x) = \int_a^x f(t) dt
+  \end{align*}
+  在$[a, b]$上单增。
+\end{zremark}
+以几何的角度来看，这个结论是显然的。
+
+\textbf{证明：}
+
+任意$x_1, x_2 \in [a, b]$（设$x_1 < x_2$），于是
+\begin{align*}
+  F(x_2) - F(x_1)
+   & = \int_a^{x_2} f(t) dt - \int_a^{x_1} f(t) dt                            \\
+   & = \int_a^{x_1} f(t) dt + \int_{x_1}^{x_2} f(t) dt - \int_a^{x_1} f(t) dt \\
+   & = \int_{x_1}^{x_2} f(t) dt                                               
+\end{align*}
+由积分不等式可知，$\int_{x_1}^{x_2} f(t) dt \geq 0$，即
+\begin{align*}
+  F(x_2) - F(x_1) \geq 0
+\end{align*}
+
+
+
+\begin{zremark}
+  复合函数的积分
+\end{zremark}
+
+\textbf{证明：}
+
+todo
+
 \end{document}
