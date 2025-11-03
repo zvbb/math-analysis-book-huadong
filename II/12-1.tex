@@ -372,7 +372,43 @@
 
 \section*{10}
 
+设加括号的级数$\sum\limits_{k=1}^{\infty} (u_{n_k + 1} + u_{n_k + 2} + \cdots + u_{n_{k + 1}}) = \sum\limits_{k=1}^{\infty} v_k$收敛于$t$，
+且部分和表示为$T_n = \sum\limits_{k=1}^{n} v_k$。
 
+考虑不带括号的级数$\sum\limits_{k=1}^{\infty} u_n$。
 
+(i) $n = n_k$（第$n$项落在第$k$个括号的最后一项上），此时部分和为
+\begin{align*}
+  S_n = T_{k}
+\end{align*}
+因为$n \to \infty$，则$k \to \infty$，所以
+\begin{align*}
+  \lim\limits_{n \to \infty} S_n
+   & = \lim\limits_{k \to \infty} T_{k} = t
+\end{align*}
+
+(ii) $n_{k-1} \leq n \leq n_k$（第$n$项落在第$k - 1$个括号里），
+由题设可知，括号中的项符号相同，不妨设都是正号，此时部分和为
+\begin{align*}
+  T_{k - 1} \leq S_n \leq T_k
+\end{align*}
+因为$n \to \infty$，则$k - 1 \to \infty, k \to \infty$，又
+\begin{align*}
+  \lim\limits_{k \to \infty} T_{k-1} = t \\
+  \lim\limits_{k \to \infty} T_{k} = t
+\end{align*}
+由迫敛性可知
+\begin{align*}
+  \lim\limits_{n \to \infty} S_n = t
+\end{align*}
+
+类似地，可证括号中的项都是负号的情况。
+
+综上，$\lim\limits_{n \to \infty} S_n = t$，即
+\begin{align*}
+  \sum u_n = t
+\end{align*}
+
+注：奇偶子列极限相同 ⇒ 整体收敛；是这个思想的推广，只要所找的子列满足“能覆盖整个序列”即可。
 
 \end{document}
