@@ -241,6 +241,95 @@
         然后通过三角图形，把$t$换成$x$即可。
 \end{itemize}
 
+\section*{4}
+
+\begin{itemize}
+  \item (1)
+        \begin{align*}
+          I_n & = \int tan^n x dx                                   \\
+              & = \int tan^{n-2} x tan^2 x dx                       \\
+              & = \int tan^{n-2} x (sec^2 x - 1) dx                 \\
+              & = \int tan^{n-2} x sec^2 x dx - \int tan^{n-2} x dx \\
+              & = \int tan^{n-2} x d(tanx) - I_{n - 2}              \\
+              & = \frac{1}{n - 1} tan^{n - 1} x - I_{n - 2}
+        \end{align*}
+        注：
+        \begin{align*}
+          I_0 & = \int tan^0 x dx = \int 1 dx = x + C \\
+          I_1 & = \int tan x dx = - \ln |cos x| + C
+        \end{align*}
+  \item (2)
+        \begin{align*}
+          I(m, n) & = \int cos^m x sin^n x dx                                                               \\
+                  & = \int cos^{m - 2} x cos^2 x sin^n x dx                                                 \\
+                  & = \int cos^{m - 2} x (1 - sin^2 x) sin^n x dx                                           \\
+                  & = \int cos^{m - 2} x sin^n x dx - \int cos^{m - 2} x sin^{n + 2} x dx                   \\
+                  & = I(m - 2, n) + \frac{1}{m - 1} \int sin^{n + 1} x d(cos^{m - 1} x)                     \\
+                  & = I(m - 2, n) + \frac{1}{m - 1} (cos^{m - 1} x sin^{n + 1} - \int cos^{m} x sin^n x dx) \\
+                  & = I(m - 2, n) + \frac{1}{m - 1} (cos^{m - 1} x sin^{n + 1} - I(m, n))                   \\
+                  & = I(m - 2, n) + \frac{1}{m - 1} cos^{m - 1} x sin^{n + 1} - \frac{1}{m - 1} I(m, n)
+        \end{align*}
+        所以
+        \begin{align*}
+          I(m, n) + \frac{1}{m - 1} I(m, n) & = I(m - 2, n) + \frac{1}{m - 1} cos^{m - 1} x sin^{n + 1}                     \\
+          \frac{m + n}{m - 1} I(m, n)       & = I(m - 2, n) + \frac{1}{m - 1} cos^{m - 1} x sin^{n + 1}                     \\
+          I(m, n)                           & = \frac{1}{m + n} cos^{m - 1} x sin^{n + 1} + \frac{m - 1}{m + n} I(m - 2, n)
+        \end{align*}
+        类似地，可证另一个等式。
+\end{itemize}
+
+\section*{6}
+
+\begin{itemize}
+  \item (1)
+        \begin{align*}
+          I_n & = \int x^n e^{kx} dx                                  \\
+              & = \frac{1}{k} \int x^n  d(e^{kx})                     \\
+              & = \frac{1}{k} (x^n e^{kx} - n \int x^{n-1} e^{kx} dx) \\
+              & = \frac{1}{k} x^n e^{kx} - \frac{n}{k} I_{n-1}
+        \end{align*}
+
+  \item (2)
+        \begin{align*}
+          I_n & = \int (\ln x)^n dx                                       \\
+              & = \int (\ln x)^n d(x)                                     \\
+              & = x (\ln x)^n - \int x \cdot \frac{n}{x} (\ln x)^{n-1} dx \\
+              & = x (\ln x)^n - n \int (\ln x)^{n-1} dx                   \\
+              & = x (\ln x)^n - n I_{n - 1}
+        \end{align*}
+  \item (3)
+        \begin{align*}
+          I_n & = \int (arcsinx)^n dx                                                                                                                          \\
+              & = x (arcsinx)^n - \int x \cdot n (arcsinx)^{n - 1} \frac{1}{\sqrt{1 + x^2}} dx                                                                 \\
+              & = x (arcsinx)^n + n \int (arcsinx)^{n - 1} d(\sqrt{1 + x^2})                                                                                   \\
+              & = x (arcsinx)^n + n \left[ \sqrt{1 + x^2}(arcsinx)^{n - 1} - \int \sqrt{1 + x^2} (n - 1) (arcsinx)^{n - 2} \frac{1}{\sqrt{1 + x^2}} dx \right] \\
+              & = x (arcsinx)^n + n \left[ \sqrt{1 + x^2}(arcsinx)^{n - 1} - (n - 1) \int (arcsinx)^{n - 2} dx \right]                                         \\
+              & = x (arcsinx)^n + n \left[ \sqrt{1 + x^2}(arcsinx)^{n - 1} - (n - 1) I_{n - 2} \right]                                                         \\
+              & = x (arcsinx)^n + n \sqrt{1 + x^2} (arcsinx)^{n - 1} - n(n - 1) I_{n - 2}                                                                      \\
+        \end{align*}
+  \item (4)
+        \begin{align*}
+          I_n & = \int e^{ax} sin^n x dx                                                                                                                              \\
+              & = \frac{1}{a} \int sin^n x d(e^{ax})                                                                                                                  \\
+              & = \frac{1}{a} \left[e^{ax} sin^n x - n \int e^{ax} sin^{n - 1}xcosx dx \right]                                                                        \\
+              & = \frac{1}{a} \left[e^{ax} sin^n x - \frac{n}{a} \int sin^{n - 1}xcosx d(e^{ax}) \right]                                                              \\
+              & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} \left[e^{ax} sin^{n - 1}xcosx - \int e^{ax} ((n-1)sin^{n-2}xcos^2x + sin^{n - 1}x(-sinx)) dx \right]     \\
+              & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} \left[e^{ax} sin^{n - 1}xcosx - \int e^{ax} ((n-1)sin^{n-2}xcos^2x - sin^{n}x) dx\right]                 \\
+              & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} \left[e^{ax} sin^{n - 1}xcosx - (n-1) \int e^{ax} sin^{n-2}xcos^2x dx + \int e^{ax} sin^{n}x dx\right]   \\
+              & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} \left[e^{ax} sin^{n - 1}xcosx - (n-1) \int e^{ax} sin^{n-2}x(1 - sin^2 x) dx + I_n\right]                \\
+              & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} \left[e^{ax} sin^{n - 1}xcosx - (n-1) (\int e^{ax} sin^{n-2}x dx - \int e^{ax} sin^{n}x dx) + I_n\right] \\
+              & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} \left[e^{ax} sin^{n - 1}xcosx - (n-1) (I_{n-2} - I_n) + I_n\right]                                       \\
+              & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} \left[e^{ax} sin^{n - 1}xcosx - (n-1) I_{n-2} + n I_n \right]                                            \\
+              & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} e^{ax} sin^{n - 1}xcosx + \frac{n(n-1)}{a^2} I_{n-2} - \frac{n^2}{a^2} I_n                               
+        \end{align*}
+        所以
+        \begin{align*}
+          (1 + \frac{n^2}{a^2})I_n  & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} e^{ax} sin^{n - 1}xcosx + \frac{n(n-1)}{a^2} I_{n-2} \\
+          \frac{n^2 + a^2}{a^2} I_n & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} e^{ax} sin^{n - 1}xcosx + \frac{n(n-1)}{a^2} I_{n-2} \\
+          I_n                       & = \frac{1}{n^2 + a^2}(a e^{ax} sin^n x - n e^{ax} sin^{n - 1}xcosx + n(n-1)I_{n-2})               \\
+          I_n                       & = \frac{1}{n^2 + a^2}[ e^{ax} sin^{n-1} x(a sin x - ncos)  + n(n-1)I_{n-2}]                       \\
+        \end{align*}
+\end{itemize}
 
 
 \end{document}

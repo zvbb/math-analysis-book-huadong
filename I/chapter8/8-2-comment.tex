@@ -73,4 +73,21 @@ $\varphi'(t)$在$J$上是同号的。反证法，假设存在$t_1, t_2 \in J$，
   (\varphi^{-1}(x))' = \frac{1}{\varphi'(t)}
 \end{align*}
 
+\begin{zremark}
+  分部积分“绕回原式”现象。
+\end{zremark}
+
+若对 $\int u \, dv$ 使用一次分部积分，再对所得的 $\int v \, du$ 反向再分部（交换 $u$ 与 $v$），则：
+\[
+  \begin{aligned}
+    I          & = \int u \, dv = uv - \int v \, du, \\
+    \int v \, du & = uv - \int u \, dv = uv - I.
+  \end{aligned}
+\]
+代回第一式：
+\[
+  I = uv - (uv - I) = I.
+\]
+
+
 \end{document}

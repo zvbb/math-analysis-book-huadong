@@ -218,8 +218,67 @@ f为连续函数，由微积分学基本定理可知，对任意一点$a$，我�
 \end{itemize}
 
 \section*{8}
+ (i)
+\begin{align*}
+  J(m,n) & = \int_{0}^{\frac{\pi}{2}} sin^m x cos^n x dx                                                                                                 \\
+         & = \frac{1}{m + 1}\int_{0}^{\frac{\pi}{2}} cos^{n-1} x d(sin^{m + 1}x)                                                                         \\
+         & = \frac{1}{m + 1}\left( cos^{n-1} x sin^{m + 1}x \bigg|_0^{\frac{\pi}{2}} + (n-1)\int_{0}^{\frac{\pi}{2}} sin^{m + 2}x cos^{n-2} x dx \right) \\
+         & = \frac{n - 1}{m + 1} \int_{0}^{\frac{\pi}{2}} sin^{m + 2}x cos^{n-2} x dx                                                                    \\
+         & = \frac{n - 1}{m + 1} \int_{0}^{\frac{\pi}{2}} sin^{m}x (1 - cos^2 x) cos^{n-2} x dx                                                          \\
+         & = \frac{n - 1}{m + 1} \left(\int_{0}^{\frac{\pi}{2}} sin^{m}x cos^{n-2} x dx - \int_{0}^{\frac{\pi}{2}} sin^{m}x cos^{n} x dx\right)          \\
+         & = \frac{n - 1}{m + 1} \left(J(m, n - 2) - J(m, n)\right)
+\end{align*}
+于是可得
+\begin{align*}
+  J(m,n) + \frac{n - 1}{m + 1} J(m, n) & = \frac{n - 1}{m + 1} J(m, n - 2) \\
+  \frac{m + n}{m + 1} J(m, n)          & = \frac{n - 1}{m + 1} J(m, n - 2) \\
+  J(m, n)                              & = \frac{n - 1}{m + n} J(m, n - 2)
+\end{align*}
+令$t = \frac{\pi}{2} - x, dx = -dt$，于是
+\begin{align*}
+  J(m, n) & = \int_{0}^{\frac{\pi}{2}} sin^m x cos^n x dx                                       \\
+          & = - \int_{\frac{\pi}{2}}^{0} sin^m (\frac{\pi}{2} - t) cos^n (\frac{\pi}{2} - t) dt \\
+          & = \int_{0}^{\frac{\pi}{2}} sin^m (\frac{\pi}{2} - t) cos^n (\frac{\pi}{2} - t) dt   \\
+          & = \int_{0}^{\frac{\pi}{2}} cos^m t sin^n t dt                                       \\
+          & = J(n, m)
+\end{align*}
+利用以上结论，我们有
+\begin{align*}
+  J(m, n) & = J(n, m)                         \\
+          & = \frac{m - 1}{n + m} J(n, m - 2) \\
+          & = \frac{m - 1}{m + n} J(m - 2, n)
+\end{align*}
 
-todo
+(ii)
+\begin{align*}
+  J(2m, 2n) & = \frac{2m - 1}{2m + 2n} J(2m - 2, 2n)                                                     \\
+            & = \frac{2m - 1}{2m + 2n} \cdot \frac{2m - 3}{2m + 2n - 2} J(2m - 4, 2n)                    \\
+            & = \frac{2m - 1}{2m + 2n} \cdot \frac{2m - 3}{2m + 2n - 2} \cdots \frac{1}{2n + 2} J(0, 2n) \\
+            & = \frac{(2m - 1)!!}{(2m + 2n)(2m + 2n - 2)\cdot(2n + 2)} J(0, 2n)
+\end{align*}
+另外
+\begin{align*}
+  J(0, 2n) & = \frac{2n - 1}{2n} J(0, 2n - 2)                                           \\
+           & = \frac{2n - 1}{2n} \cdot \frac{2n - 3}{2n - 2} J(0, 2n - 4)               \\
+           & = \frac{2n - 1}{2n} \cdot \frac{2n - 3}{2n - 2} \cdots \frac{1}{2} J(0, 0) \\
+\end{align*}
+于是可得
+\begin{align*}
+  J(2m, 2n) & = \frac{(2m - 1)!!}{(2m + 2n)(2m + 2n - 2)\cdot(2n + 2)} J(0, 2n)                                                                 \\
+            & = \frac{(2m - 1)!!}{(2m + 2n)(2m + 2n - 2)\cdot(2n + 2)} \frac{2n - 1}{2n} \cdot \frac{2n - 3}{2n - 2} \cdots \frac{1}{2} J(0, 0) \\
+            & = \frac{(2m - 1)!!(2n - 1)!!}{(2m + 2n)!!}J(0, 0)                                                                                 \\
+            & = \frac{(2m - 1)!!(2n - 1)!!}{(2m + 2n)!!} \cdot \frac{\pi}{2}
+\end{align*}
+
+\textbf{注: } 为了计算方便列出一下定积分的值
+\begin{align*}
+  J(0, 0) & = \int_{0}^{\frac{\pi}{2}} 1 dx = \frac{\pi}{2}        \\
+  J(1, 0) & = \int_{0}^{\frac{\pi}{2}} sin x dx = 1                \\
+  J(0, 1) & = \int_{0}^{\frac{\pi}{2}} cos x dx = 1                \\
+  J(1, 1) & = \int_{0}^{\frac{\pi}{2}} sinx cos x dx = \frac{1}{2}
+\end{align*}
+
+
 
 \section*{9}
 
@@ -380,7 +439,7 @@ todo
 \end{align*}
 可得
 \begin{align*}
-  f(x) = g(x) + h(x) + f(a) - g(a) - h(a) 
+  f(x) = g(x) + h(x) + f(a) - g(a) - h(a)
 \end{align*}
 取$C = f(a) - g(a) - h(a)$。
 综上，$g(x)$是增函数，$h(x) = h(x) + C$任然是减函数。
