@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+\usetikzlibrary{3d} % 允许3D坐标
+% \pgfplotsset{compat=1.18}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 10.2}
+\author{张志聪}
+\maketitle
+
+\section*{2}
+
+\begin{itemize}
+  \item (2)
+
+        曲线为：
+        \begin{tikzpicture}
+          \begin{axis}[
+              axis lines=middle,
+              xlabel={$x$},
+              ylabel={$y$},
+              domain=0:6.283,      % 绘制 t 从 0 到 2π
+              samples=200,
+              xmin=0, xmax=7,
+              ymin=0, ymax=2.5,
+              grid=major,
+              width=10cm, height=6cm,
+              title={摆线 $x = a(t - \sin t),\ y = a(1 - \cos t), a = 1$}
+            ]
+            \addplot [blue, thick] ({x - sin(deg(x))}, {1 - cos(deg(x))});
+          \end{axis}
+        \end{tikzpicture}
+
+        由曲线可知，它在区间$[0, 2\pi]$上没有多个重叠的环（否则积分上限错误的写成$[0, 2\pi]$会导致体积计算多次），
+        也不是存在上下对称结构（否则积分上限错误的写成$[0, 2\pi]$计算的体积会是2倍）。
+
+        $x'(t) = a(1 - cost) \geq 0$是单增的，
+        $x : 0 \to 2a \pi$.
+
+        旋转体的体积公式
+        \begin{align*}
+          V = \pi \int_{0}^{2a\pi} y^2(x) dx
+        \end{align*}
+        令$x = a(t - \sin t), dx = a(1 - \cos t)dt$，
+        $t: 0 \to 2\pi, x : 0 \to 2a \pi$，于是可得
+        \begin{align*}
+          V & = \pi \int_{0}^{2a\pi} y^2(x) dx                                                                            \\
+            & = \pi \int_{0}^{2\pi} [a(1 - cost)]^2 a(1 - \cos t) dt                                                      \\
+            & = \pi \int_{0}^{2\pi} a^2(1 + cos^2t - 2cost) a(1 - \cos t) dt                                              \\
+            & = a^3\pi \int_{0}^{2\pi} 1 + cos^2t - 2cost - cost - cos^3t + 2cos^2t dt                                    \\
+            & = a^3\pi \int_{0}^{2\pi} 1 - cos^3t + 3cos^2t dt - 3cost dt                                                 \\
+            & = a^3\pi [t + (- sint + \frac{1}{3}sin^3 t) + (\frac{3}{2} t + \frac{3}{4}sin2t) - 3 sint]\bigg|_{0}^{2\pi} \\
+            & = 5a^3 \pi^2
+        \end{align*}
+        注：上面定积分的换元积分与第一节中提到的参数方程的面积计算公式类似。
+
+  \item (3)
+
+        \begin{tikzpicture}
+          \begin{polaraxis}[
+              grid=both,
+              minor tick num=1,
+              title={$r = 1(1 + cos(x))$，以$a=1$为例},
+            ]
+            \addplot[domain=0:360, samples=400, thick, blue] {1(1 + cos(x))};
+          \end{polaraxis}
+        \end{tikzpicture}
+
+        按照极坐标与直角坐标的转换公式，
+        \begin{align*}
+          x = r cos \theta = a (1 + cos \theta) cos \theta \\
+          y = r sin \theta = a (1 + cos \theta) sin \theta
+        \end{align*}
+        得到关于角度$\theta$的参数方程。
+
+        上下图形是对称的，于是在计算旋转体体积时，只要计算上半部分平面图形旋转一周的体积。
+
+        从图中可以看出，在$x$的正半轴上，一个$x$对应一个$y$，负半轴上一个$x$对应两个$y$。
+        于是负半轴上两个$y$对应旋转体的差值，才是要求的旋转体的体积（和例4是相同的处理方式）。
+
+        需要先计算$x$的最小值，以确定确定积分上下限。
+        令$cos \theta = t$，于是
+        \begin{align*}
+          x = a (1 + t) t
+        \end{align*}
+        对于$(1 + t)t$这个二次函数，它的零点为$-1, 0$，最小值为$- \frac{1}{2}$，
+        即$cos \theta = - \frac{1}{2}$时，$x$取最小值，
+        因为
+        \begin{align*}
+          cos^2 \theta + sin^2 \theta = 1     \\
+          sin^2 \theta & = 1 - cos^2 \theta   \\
+          sin^2 \theta & = 1 - \frac{1}{4}    \\
+          sin^2 \theta & = \frac{3}{4}        \\
+          sin \theta   & = \frac{\sqrt{3}}{2}
+        \end{align*}
+        考虑到$\pi > \theta > \frac{\pi}{2}$，所以
+        $\theta = \frac{2\pi}{3}$.
+
+        综上，
+        \begin{align*}
+          V  = & \pi \int_{0}^{\frac{\pi}{2}} |y^2(\theta) x'(\theta)| d\theta
+          + \pi \int_{\frac{\pi}{2}}^{\frac{2\pi}{3}} |y^2(\theta) x'(\theta)| d\theta
+          - \pi \int_{\frac{2\pi}{3}}^{\pi} |y^2(\theta) x'(\theta)| d\theta                                                          \\
+          =    & \pi \int_{0}^{\frac{2\pi}{3}} y^2(\theta) |x'(\theta)| d\theta
+          - \pi \int_{\frac{2\pi}{3}}^{\pi} y^2(\theta) |x'(\theta)| d\theta                                                          \\
+          =    & \pi \int_{0}^{\frac{2\pi}{3}} a^2 (1 + cos \theta)^2 sin^2 \theta |a(-sin\theta - 2cos\theta sin\theta)| d\theta     \\
+               & - \pi \int_{\frac{2\pi}{3}}^{\pi} a^2 (1 + cos \theta)^2 sin^2 \theta |a(-sin\theta - 2cos\theta sin\theta)| d\theta \\
+          =    & \pi \int_{0}^{\frac{2\pi}{3}} a^2 (1 + cos \theta)^2 sin^2 \theta [a(sin\theta + 2cos\theta sin\theta)] d\theta      \\
+               & - \pi \int_{\frac{2\pi}{3}}^{\pi} a^2 (1 + cos \theta)^2 sin^2 \theta [a(-sin\theta - 2cos\theta sin\theta)] d\theta \\
+          =    & \frac{8}{3} a^3 \pi
+        \end{align*}
+        两个绝对值是如何去掉的：
+        \begin{itemize}
+          \item 在$\theta : 0 \to \frac{2\pi}{3}$时，由图像可知$x$是递减的，所以$x'(\theta) \leq 0$；
+          \item 在$\theta : \frac{2\pi}{3} \to \pi$时，由图像可知$x$是递增的，所以$x'(\theta) \geq 0$.
+        \end{itemize}
+
+        定积分的具体计算步骤，我省略了，最终结果是通过计算软件求出的。
+
+  \item (4)
+
+        这是椭球，左右对称，上下对称。计算体积时，只需要计算上半部分的体积，然后乘以2即可。
+
+        考虑椭圆在第一象限的图形，绕$y$一周的体积。
+        \begin{align*}
+          \frac{x^2}{a^2} + \frac{y^2}{b^2} & = 1                               \\
+          x                                 & = \sqrt{a^2 - \frac{a^2}{b^2}y^2}
+        \end{align*}
+        于是
+        \begin{align*}
+          V_1 & = \pi \int_{0}^{b} x^2 dy                           \\
+              & = \pi \int_{0}^{b} a^2 - \frac{a^2}{b^2}y^2 dy      \\
+              & = \pi (a^2 y - \frac{a^2}{3b^2} y^3) \bigg|_{0}^{b} \\
+              & = \frac{2}{3}\pi a^2 b
+        \end{align*}
+        所以
+        \begin{align*}
+          V & = 2 V_1                \\
+            & = \frac{4}{3}\pi a^2 b
+        \end{align*}
+\end{itemize}
+
+\section*{5}
+
+https://www.bilibili.com/video/BV1jW4y1S7z5?t=978.9\&p=161
+
+\end{document}
