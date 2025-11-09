@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+% \pgfplotsset{compat=1.18}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 10.3}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  定理10.1中，如何利用三角不等式得到
+  \begin{align*}
+    |\sigma_i| \leq |y'(\eta_i) - y'(\xi_i)|, i = 1, 2, \cdots, n
+  \end{align*}
+\end{zremark}
+
+% 我们有
+% \begin{align*}
+%   \sigma_i = \sqrt{[x'(\xi_i)]^2 + [y'(\eta_i)]^2} - \sqrt{[x'(\xi_i)]^2 + [y'(\xi_i)]^2}
+% \end{align*}
+% 于是
+% \begin{align*}
+%   |\sigma_i| & = \left| \sqrt{[x'(\xi_i)]^2 + [y'(\eta_i)]^2} - \sqrt{[x'(\xi_i)]^2 + [y'(\xi_i)]^2} \right| \\
+%              & \leq \left| \sqrt{[x'(\xi_i)]^2 + [y'(\eta_i)]^2 - [x'(\xi_i)]^2 - [y'(\xi_i)]^2} \right|
+% \end{align*}
+todo
+
+\begin{zremark}
+  关于$y = f(x)$的曲率公式的推导。（对书中$dx$类的表示方式不喜欢。）
+\end{zremark}
+
+任意$x_0$点处的导数为$f'(x_0)$,
+在$x_0$处的角度设为$\alpha$，
+由导数和斜率的关系，我们有
+\begin{align*}
+  \alpha = arc tan f'(x_0)
+\end{align*}
+$\Delta s \to 0, \Delta x \to 0$
+于是曲率定义可知
+\begin{align*}
+  K & = \left|\lim\limits_{x \to x_0} \frac{\Delta \alpha}{\Delta s}\right|                                   \\
+    & = \left|\lim\limits_{x \to x_0} \frac{\frac{\Delta \alpha}{\Delta x}}{\frac{\Delta s}{\Delta x}}\right| \\
+\end{align*}
+因为
+\begin{align*}
+  \lim\limits_{x \to x_0} \frac{\Delta \alpha}{\Delta x}
+   & = \frac{1}{1 + f'^2(x_0)} f''(x_0)
+\end{align*}
+注：这里是对$arc tan f'(x)$在$x_0$处的导数。
+
+由弧长公式可知
+\begin{align*}
+  \Delta s & = \int_{x_0}^{x} \sqrt{1 + f'^2(t)} dt
+\end{align*}
+于是由微积分基本定理可知
+\begin{align*}
+  \lim\limits_{x \to x_0} \frac{\Delta s}{\Delta x}
+   & = \sqrt{1 + f'^2(x_0)}
+\end{align*}
+
+综上
+\begin{align*}
+  K & = \left|\frac{\frac{1}{1 + f'^2(x_0)} f''(x_0)}{\sqrt{1 + f'^2(x_0)}}\right| \\
+    & = \frac{|f''(x_0)|}{(1 + f'^2(x_0))^{3/2}}
+\end{align*}
+由$x_0$的任意性可知，命题得证。
+
+类似地，可以得到参数方程的式子。
+
+\end{document}

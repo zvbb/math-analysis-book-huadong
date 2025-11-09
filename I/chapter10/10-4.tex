@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+\usetikzlibrary{3d} % 允许3D坐标
+% \pgfplotsset{compat=1.18}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 10.4}
+\author{张志聪}
+\maketitle
+
+\section*{2}
+
+提示：极坐标改为直角坐标，利用参数方程求旋转曲面的面积。
+
+\begin{equation*}
+  \begin{cases}
+    x & = r(\theta) cos \theta \\
+    y & = r(\theta) sin \theta
+  \end{cases}
+\end{equation*}
+于是
+\begin{align*}
+  x' & = r'cos \theta - r sin \theta \\
+  y' & = r'sin \theta + r cos \theta
+\end{align*}
+由旋转曲面的参数方程可知
+\begin{align*}
+  S & = 2\pi \int_{0}^{\pi} y(\theta) \sqrt{x'^2(\theta) + y'^2(\theta)} d\theta                                                                                                      \\
+    & = 2\pi \int_{0}^{\pi} r sin \theta \sqrt{[r' cos \theta - r sin \theta]^2 + [r' sin \theta + r cos \theta]} d\theta                                                             \\
+    & = 2\pi \int_{0}^{\pi} r sin \theta \sqrt{r'^2 cos^2 \theta + r^2 sin^2 \theta - 2 r'r sin\theta cos \theta + r'^2 sin^2 \theta + r^2 cos^2 \theta + 2 r'r sin\theta cos \theta} \\
+    & = 2\pi \int_{0}^{\pi} r sin \theta \sqrt{r^2 + r'^2} d \theta
+\end{align*}
+
+\section*{3}
+
+\begin{itemize}
+  \item (2)
+
+        \begin{tikzpicture}[scale=3]
+          \def\a{1}
+          \draw[->] (-1.5,0)--(1.5,0);
+          \draw[->] (0,-1.5)--(0,1.5);
+          \draw[domain=-45:45,smooth,variable=\t,blue,thick]
+          plot({sqrt(2)*\a*sqrt(cos(2*\t))*cos(\t)},
+          {sqrt(2)*\a*sqrt(cos(2*\t))*sin(\t)});
+          \draw[domain=-45:45,smooth,variable=\t,blue,thick]
+          plot({-sqrt(2)*\a*sqrt(cos(2*\t))*cos(\t)},
+          {-sqrt(2)*\a*sqrt(cos(2*\t))*sin(\t)});
+          \def\theta{30}
+          \def\r{sqrt(2)*\a*sqrt(cos(2*\theta))}
+          \fill[red] ({\r*cos(\theta)},{\r*sin(\theta)}) circle(0.8pt);
+          \fill[red] ({-\r*cos(\theta)},{-\r*sin(\theta)}) circle(0.8pt);
+          \draw[dashed,gray] (0,0)--({1.5*cos(\theta)},{1.5*sin(\theta)});
+          \draw[dashed,gray] (0,0)--({-1.5*cos(\theta)},{-1.5*sin(\theta)});
+        \end{tikzpicture}
+
+        通过画图流程可知，由对称性，我们有
+        \begin{align*}
+          S = 2 \cdot 2 \pi \int_{0}^{\frac{\pi}{4}} r sin \theta \sqrt{r^2 + r'^2} d \theta
+        \end{align*}
+        计算略。
+
+\end{itemize}
+
+\end{document}

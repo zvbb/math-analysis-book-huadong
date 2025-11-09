@@ -241,6 +241,125 @@
         然后通过三角图形，把$t$换成$x$即可。
 \end{itemize}
 
+\section*{2}
+
+\begin{itemize}
+  \item (1)
+        \begin{align*}
+          \int arcsin x dx
+           & = x \cdot arcsin x - \int x \cdot \frac{1}{\sqrt{1 - x^2}} dx             \\
+           & = x \cdot arcsin x + \frac{1}{2} \int \frac{1}{\sqrt{1 - x^2}} d(1 - x^2) \\
+           & = x \cdot arcsin x + \frac{1}{2} (2 \sqrt{1 - x^2}) + C                   \\
+           & = x \cdot arcsin x + \sqrt{1 - x^2} + C
+        \end{align*}
+
+  \item (2)
+        \begin{align*}
+          \int \ln x dx
+           & = x \ln x - \int x \cdot \frac{1}{x} dx \\
+           & = x \ln x - \int 1 dx                   \\
+           & = x \ln x - x + C
+        \end{align*}
+
+  \item (4)
+        提示: $d(x^{-3})$
+
+  \item (5)
+        \begin{align*}
+          \int (\ln x)^2 dx
+           & = x (\ln x)^2 - \int x \cdot \frac{1}{x} 2 \ln x dx \\
+           & = x (\ln x)^2 - 2 \int \ln x dx                     \\
+           & = x (\ln x)^2 - 2 (x \ln x - x ) + C                \\
+           & = x (\ln x)^2 - 2 x \ln x + 2 x + C
+        \end{align*}
+
+  \item (6)
+        \begin{align*}
+          \int x arctan \, x dx
+           & = \frac{1}{2} \int arctan \, x d(x^2)                                                   \\
+           & = \frac{1}{2} \left(x^2 \cdot arctan \, x - \int \frac{x^2}{1 + x^2} dx \right)         \\
+           & = \frac{1}{2} \left(x^2 \cdot arctan \, x - \int \frac{x^2 + 1 - 1}{1 + x^2} dx \right) \\
+           & = \frac{1}{2} \left(x^2 \cdot arctan \, x - \int 1 - \frac{1}{1 + x^2} dx \right)       \\
+           & = \frac{1}{2} \left(x^2 \cdot arctan \, x - x + arctan x \right) + C
+        \end{align*}
+
+  \item (7)
+        \begin{align*}
+          \int \left[ \ln(\ln x) + \frac{1}{\ln x} \right] dx
+           & = \int \ln(\ln x) dx + \int \frac{1}{\ln x} dx           \\
+           & = \int \ln(\ln x) dx + \int \frac{x}{x \ln x} dx         \\
+           & = \int \ln(\ln x) dx + \int x d(\ln(\ln x))              \\
+           & = \int \ln(\ln x) dx + x \ln(\ln x) - \int \ln(\ln x) dx \\
+           & = x \ln(\ln x) + C
+        \end{align*}
+
+  \item (8)
+        \begin{align*}
+          \int (arcsin x)^2 dx
+           & = x (arcsin x)^2 - \int x \cdot 2 \frac{1}{\sqrt{1 - x^2}} arcsin x dx                           \\
+           & = x (arcsin x)^2 + 2 \int arcsin x \, d(\sqrt{1 - x^2})                                          \\
+           & = x (arcsin x)^2 + 2 \sqrt{1 - x^2} arcsin x - 2 \int \sqrt{1 - x^2} \frac{1}{\sqrt{1 - x^2}} dx \\
+           & = x (arcsin x)^2 + 2 \sqrt{1 - x^2} arcsin x - 2x + C
+        \end{align*}
+
+  \item (9)
+        \begin{align*}
+          \int sec^3  dx
+           & = \int (1 + tan^2 x) sec x dx                    \\
+           & = \int  sec x dx + \int tan^2 x sec x dx         \\
+           & = \int  sec x dx + \int tanx d(sec x)            \\
+           & = \int  sec x dx + tan x sec x - \int sec^3 x dx
+        \end{align*}
+        于是可得
+        \begin{align*}
+          \int sec^3  dx = \frac{1}{2} \left( \int  sec x dx + tan x sec x \right)
+        \end{align*}
+        由例5可知
+        \begin{align*}
+          \int sec^3  dx = \frac{1}{2} \left( \ln |sec x + tan x| + tan x sec x \right) + C
+        \end{align*}
+
+  \item (10)
+        \begin{align*}
+          \int \sqrt{x^2 \pm a^2} dx
+           & = x \sqrt{x^2 \pm a^2} - \int x \cdot \frac{x}{\sqrt{x^2 \pm a^2}} dx                          \\
+           & = x \sqrt{x^2 \pm a^2} - \int \frac{x^2 \pm a^2 \mp a^2}{\sqrt{x^2 \pm a^2}} dx                \\
+           & = x \sqrt{x^2 \pm a^2} - \int \sqrt{x^2 \pm a^2} \mp \frac{a^2}{\sqrt{x^2 \pm a^2}} dx         \\
+           & = x \sqrt{x^2 \pm a^2} - \int \sqrt{x^2 \pm a^2} dx \pm \int \frac{a^2}{\sqrt{x^2 \pm a^2}} dx
+        \end{align*}
+        于是可得
+        \begin{align*}
+          \int \sqrt{x^2 \pm a^2} dx = \frac{1}{2} \left(x \sqrt{x^2 \pm a^2} \pm \int \frac{a^2}{\sqrt{x^2 \pm a^2}} dx \right)
+        \end{align*}
+        由例8和习题1-(26)可知
+        \begin{align*}
+          \int \frac{1}{\sqrt{x^2 \pm a^2}} dx
+           & = \ln |x + \sqrt{x^2 \pm a^2}| + C
+        \end{align*}
+        所以
+        \begin{align*}
+          \int \sqrt{x^2 \pm a^2} dx = \frac{1}{2} \left(x \sqrt{x^2 \pm a^2} \pm a^2\ln |x + \sqrt{x^2 \pm a^2}| \right) + C
+        \end{align*}
+\end{itemize}
+
+\section*{3}
+
+\begin{itemize}
+  \item (1)
+        \begin{align*}
+          \int [f(x)]^{\alpha} f'(x)dx
+           & = \int [f(x)]^{\alpha} d(f(x))                 \\
+           & = \frac{1}{\alpha + 1} [f(x)]^{\alpha + 1} + C
+        \end{align*}
+  \item (2)
+        \begin{align*}
+          \int \frac{f'(x)}{1 + [f(x)]^2}dx
+           & = \int \frac{1}{1 + [f(x)]^2}d(f(x)) \\
+           & = arctan \, f(x) + C
+        \end{align*}
+
+\end{itemize}
+
 \section*{4}
 
 \begin{itemize}
@@ -320,7 +439,7 @@
               & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} \left[e^{ax} sin^{n - 1}xcosx - (n-1) (\int e^{ax} sin^{n-2}x dx - \int e^{ax} sin^{n}x dx) + I_n\right] \\
               & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} \left[e^{ax} sin^{n - 1}xcosx - (n-1) (I_{n-2} - I_n) + I_n\right]                                       \\
               & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} \left[e^{ax} sin^{n - 1}xcosx - (n-1) I_{n-2} + n I_n \right]                                            \\
-              & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} e^{ax} sin^{n - 1}xcosx + \frac{n(n-1)}{a^2} I_{n-2} - \frac{n^2}{a^2} I_n                               
+              & = \frac{1}{a} e^{ax} sin^n x - \frac{n}{a^2} e^{ax} sin^{n - 1}xcosx + \frac{n(n-1)}{a^2} I_{n-2} - \frac{n^2}{a^2} I_n
         \end{align*}
         所以
         \begin{align*}
