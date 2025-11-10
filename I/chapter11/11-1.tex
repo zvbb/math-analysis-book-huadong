@@ -1,0 +1,205 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+\usetikzlibrary{3d} % 允许3D坐标
+% \pgfplotsset{compat=1.18}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 11.1}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+\begin{itemize}
+  \item (1)
+        \begin{align*}
+          \int_{0}^{+\infty} x e^{-x^2} dx
+           & = \lim\limits_{u \to +\infty} \int_{0}^{u} x e^{-x^2} dx            \\
+           & = \lim\limits_{u \to +\infty} - \frac{1}{2}\int_{0}^{u} d(e^{-x^2}) \\
+           & = \lim\limits_{u \to +\infty} - \frac{1}{2} (e^{-u^2} - 1)          \\
+           & = \frac{1}{2}
+        \end{align*}
+        所以，收敛。
+  \item (8)
+
+        利用第八章$\S 2$例8
+        \begin{align*}
+          \int_{0}^{+\infty} \frac{dx}{\sqrt{1 + x^2}}
+           & = \lim\limits_{u \to +\infty} \int_{0}^{u} \frac{dx}{\sqrt{1 + x^2}}   \\
+           & = \lim\limits_{u \to +\infty} (\ln |x + \sqrt{1 + x^2}|)\bigg|_{0}^{u} \\
+           & = \lim\limits_{u \to +\infty} \ln |u + \sqrt{1 + u^2}|                 \\
+           & = + \infty
+        \end{align*}
+        所以，发散。
+\end{itemize}
+
+\section*{2}
+
+\begin{itemize}
+  \item (1)
+
+        令$t = x - a, dx = dt, x: a \to b, t: 0 \to b - a$，
+        我们有
+        \begin{align*}
+          \int_{a}^{b} \frac{dx}{(x - a)^p}
+           & = \int_{0}^{b - a} \frac{dt}{t^p}
+        \end{align*}
+        点$0$是被积函数$\frac{1}{t^p}$的瑕点，且在$(0, b-a]$上连续，从而在任何$[0, u] \subset (0, b-a]$上可积，
+        依定义
+        \begin{align*}
+          \int_{0}^{b - a} \frac{dt}{t^p}
+           & = \lim\limits_{u \to 0^{+}} \frac{dt}{t^p}
+        \end{align*}
+        由例6可知，$0 < q < 1$时，瑕积分收敛，且
+        \begin{align*}
+          \lim\limits_{u \to 0^{+}} \frac{dt}{t^p} = \frac{(b - a)^{1 - q}}{1-q}
+        \end{align*}
+        而当$q \geq 1$时，瑕积分收敛于$+\infty$。
+
+        另外，$p \leq 0$时，$-p \geq 0$，则$\frac{1}{(x - a)^p} = (x - a)^{-p}$没有瑕点，
+        题目变为一般定积分，不做讨论。
+
+  \item (8)
+
+        \begin{itemize}
+          \item $p = 1$；
+
+                $x = 0, 1$都是函数$f(x) = \frac{1}{x(\ln x)^p}$的瑕点。
+                由定义可知
+                \begin{align*}
+                  \int_{0}^{1} \frac{dx}{x\ln x}
+                   & = \int_{0}^{\frac{1}{2}} \frac{dx}{x\ln x} + \int_{\frac{1}{2}}^{1} \frac{dx}{x\ln x}                                                               \\
+                   & = \lim\limits_{u \to 0^{+}} \int_{u}^{\frac{1}{2}} \frac{dx}{x\ln x} + \lim\limits_{v \to 1^{-}} \int_{\frac{1}{2}}^{v} \frac{dx}{x\ln x}           \\
+                   & = \lim\limits_{u \to 0^{+}} \int_{u}^{\frac{1}{2}} \frac{d(\ln x)}{\ln x} + \lim\limits_{v \to 1^{-}} \int_{\frac{1}{2}}^{v} \frac{d(\ln x)}{\ln x} \\
+                   & = \lim\limits_{u \to 0^{+}} \ln |\ln x| \bigg|_u^{\frac{1}{2}} + \lim\limits_{v \to 1^{-}} \ln |\ln x| \bigg|_v^{\frac{1}{2}}                       \\
+                   & = \lim\limits_{u \to 0^{+}} \ln |\ln \frac{1}{2}| - \ln |\ln u| + \lim\limits_{v \to 1^{-}} \ln |\ln v| - \ln |\ln \frac{1}{2}|
+                \end{align*}
+                第一个极限$-\infty$，所以发散。
+
+          \item $p \neq 1$；
+
+                $x = 0, 1$都是函数$f(x) = \frac{1}{x(\ln x)^p}$的瑕点。
+                由定义可知
+                \begin{align*}
+                  \int_{0}^{1} \frac{dx}{x(\ln x)^p}
+                   & = \int_{0}^{\frac{1}{2}} \frac{dx}{x(\ln x)^p} + \int_{\frac{1}{2}}^{1} \frac{dx}{x(\ln x)^p}       \\
+                   & = \lim\limits_{u \to 0^{+}} \frac{dx}{x(\ln x)^p} + \lim\limits_{v \to 1^{-}} \frac{dx}{x(\ln x)^p} \\
+                   & = \lim\limits_{u \to 0^{+}} \frac{1}{1 - p}(\ln x)^{1-p}\bigg|_{u}^{\frac{1}{2}}
+                  + \lim\limits_{v \to 1^{-}} \frac{1}{1 - p}(\ln x)^{1-p}\bigg|_{\frac{1}{2}}^{v}                       \\
+                   & = \lim\limits_{u \to 0^{+}} \frac{1}{1 - p}[(\ln \frac{1}{2})^{1-p} - (\ln u)^{1-p}]
+                  + \lim\limits_{v \to 1^{-}} \frac{1}{1 - p}[(\ln v)^{1-p} - (\ln \frac{1}{2})^{1-p}]
+                \end{align*}
+
+                当$0 < p < 1$时，$1 - p > 0$，第一个极限为发散。
+
+                当$1 < p$时，第二个极限发散，故发散。
+        \end{itemize}
+
+        综上，发散。
+
+        \textbf{注：} 题目本身已经确保$(ln x)^p$是有意义的，这使得$(\ln x)^{1-p}$也是有意义的，
+        否则$\ln x$可能是负数，而$1 - p = \frac{1}{2}$时，出现矛盾。
+
+\end{itemize}
+
+\section*{3}
+
+利用例6，令
+\begin{align*}
+  f(x)   & = \frac{1}{x^{\frac{1}{2}}} = \frac{1}{\sqrt{x}} \\
+  f^2(x) & = \frac{1}{x}
+\end{align*}
+于是
+\begin{align*}
+  \int_{0}^{1} f(x)
+\end{align*}
+收敛
+\begin{align*}
+  \int_{0}^{1} f^2(x)
+\end{align*}
+发散。
+
+\section*{4}
+
+出现这种现象的原因：
+
+设$\int_{a}^{+\infty} f(x) dx$收敛，于是我们有
+\begin{align*}
+  \int_{a}^{+\infty} f(x) dx & = \lim\limits_{u \to +\infty} \int_{a}^{u} f(x) dx                        \\
+                             & = \lim\limits_{u \to +\infty} \int_{a}^{k} f(x) dx + \int_{k}^{u} f(x) dx \\
+                             & = \int_{a}^{k} f(x) dx + \lim\limits_{u \to +\infty} \int_{k}^{u} f(x) dx
+\end{align*}
+考虑上式右侧，令$k \to +\infty$，按照无穷积分的定义
+\begin{align*}
+  \lim \limits_{k \to +\infty} \int_{a}^{k} f(x) dx = \int_{a}^{+\infty} f(x) dx
+\end{align*}
+于是
+\begin{align*}
+  \lim\limits_{k \to +\infty} \lim\limits_{u \to +\infty} \int_{k}^{u} f(x) dx = 0
+\end{align*}
+按照极限定义，对任意$\epsilon > 0$，存在$M > 0$，当$k > M$时，我们有
+\begin{align*}
+  \left|\lim\limits_{u \to +\infty} \int_{k}^{u} f(x) dx \right| < \epsilon
+\end{align*}
+这只能得到$f(x)$这区间$(k, +\infty)$上的面积$< \epsilon$，但与$f(x)$的值是否
+小于$\epsilon$无关。
+
+\section*{5}
+
+若$\lim\limits_{x \to +\infty} f(x) dx = A$，且$A > 0$，则存在$M > 0$，
+有$x \geq M$，有$f(x) > \frac{A}{2}$。于是对任意$u > M$，有
+\begin{align*}
+  \int_{a}^{u} f(x) dx & = \int_{a}^{M} f(x) dx + \int_{M}^{u} f(x) dx                                        \\
+                       & \geq  \int_{a}^{M} f(x) dx + (u - M)\cdot \frac{A}{2} \to +\infty \, (u \to +\infty)
+\end{align*}
+这与$\int_{a}^{+\infty} f(x) dx$收敛相矛盾。
+
+同理可证$A < 0$。
+
+综上，$A = 0$。
+
+\section*{6}
+
+$\int_{a}^{+\infty} f'(x) dx$收敛，即
+\begin{align*}
+  \int_{a}^{+\infty} f'(x) dx 
+  & = \lim\limits_{u \to +\infty} \int_{a}^{u} f'(x) dx \\
+  & = \lim\limits_{u \to +\infty} f(u) - f(a) 
+\end{align*}
+收敛，于是可得$f(x)$收敛，由习题5可得$\lim\limits_{x \to +\infty} f(x) = 0$。
+
+
+\end{document}
