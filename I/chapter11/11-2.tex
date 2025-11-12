@@ -541,5 +541,113 @@
 
 \section*{8}
 
+由例5可知$\lim \limits_{x \to +\infty} f(x) = 0$，
+已知$f$是单调函数，则$f(x)$在$[a, +\infty)$上恒正或恒负或零。
+$f(x) \equiv 0$，命题显然成立。
+
+以$f(x)$在$[a, +\infty)$上恒正递减为例（其他情况可以类似证明。）
+
+$\int_{a}^{+\infty} f(x) dx$收敛，由无穷积分收敛的柯西准则，
+对任意$\epsilon > 0$，存在$G \geq a$（不妨设$G > 0$），只要$u, \frac{1}{u} > G$，便有
+\begin{align*}
+  \left|\int_{\frac{1}{2} u}^{u} f(x) dx \right| & < \epsilon \\
+  \int_{\frac{1}{2} u}^{u} f(x) dx               & < \epsilon
+\end{align*}
+已知$f(x)$在$[a, +\infty)$上恒正递减，所以$x \in [\frac{1}{2}u, u]$有
+\begin{align*}
+  f(x) \geq f(u)
+\end{align*}
+于是
+\begin{align*}
+  \int_{\frac{1}{2} u}^{u} f(u) dx \leq \int_{\frac{1}{2} u}^{u} f(x) dx
+\end{align*}
+所以
+\begin{align*}
+  \int_{\frac{1}{2} u}^{u} f(u) dx & < \epsilon   \\
+  f(u) \int_{\frac{1}{2} u}^{u} dx & < \epsilon   \\
+  \frac{1}{2} u f(u)               & < \epsilon   \\
+  u f(u)                           & < 2 \epsilon
+\end{align*}
+综上可得
+\begin{align*}
+  \lim \limits_{u \to +\infty} u f(u) = 0
+\end{align*}
+命题得证。
+
+\section*{9}
+
+$f$在$[a, +\infty)$上一致连续，由定义可知，对任意$\epsilon > 0$，
+存在$\delta > 0$（不妨设$\delta < \epsilon$），当$|u_2 - u_1| \leq \delta$时，有
+\begin{align*}
+  |f(u_2) - f(u_1)| < \epsilon
+\end{align*}
+$\int_{0}^{+\infty} f(x) dx$收敛，由无穷积分收敛的柯西准则，
+对上面的$\delta$，存在$M > 0$，$u_2, u_1 > M$，有
+\begin{align*}
+  \left|\int_{u_1}^{u_2} f(x) dx \right| & < \delta^2
+\end{align*}
+
+综上，对任意$u > M$，取$u_1 = u$，$u_2 = u_1 + \delta$，有
+\begin{align*}
+  |f(u)| & = \left|\frac{1}{u_2 - u_1} f(u) \int_{u_1}^{u_2} dx \right|                                                                       \\
+         & = \frac{1}{u_2 - u_1} \left| f(u) \int_{u_1}^{u_2} dx \right|                                                                      \\
+         & = \frac{1}{u_2 - u_1} \left|\int_{u_1}^{u_2} f(u) - f(x) + f(x) dx \right|                                                         \\
+         & = \frac{1}{u_2 - u_1} \left|\int_{u_1}^{u_2} f(u) - f(x) dx + \int_{u_1}^{u_2} f(x) dx \right|                                     \\
+         & \leq \frac{1}{u_2 - u_1} \left|\int_{u_1}^{u_2} f(u) - f(x) dx \right| + \frac{1}{u_2 - u_1} \left|\int_{u_1}^{u_2}f(x) dx \right| \\
+         & \leq \frac{1}{u_2 - u_1} \epsilon (u_2 - u_1) + \frac{1}{u_2 - u_1} \delta^2                                                       \\
+         & = \epsilon + \frac{1}{\delta} \delta^2                                                                                             \\
+         & = \epsilon + \delta                                                                                                                \\
+         & < 2\epsilon
+\end{align*}
+所以，
+\begin{align*}
+  \lim \limits_{u \to +\infty} f(u) = 0
+\end{align*}
+即
+\begin{align*}
+  \lim \limits_{x \to +\infty} f(x) = 0
+\end{align*}
+
+\section*{10}
+
+如果$g(x)$在$[a, +\infty)$上单调递增，已知$g(x)$在$[a, +\infty)$上有界，
+则由单调有界定理可知
+\begin{align*}
+  \lim \limits_{x \to +\infty} g(x) = \sup\limits_{x \in [a, +\infty)} g(x)
+\end{align*}
+记$\sup\limits_{x \in [a, +\infty)} g(x) = M$。
+
+令
+\begin{align*}
+  h(x) = g(x) - M
+\end{align*}
+于是可得
+\begin{align*}
+  \lim \limits_{x \to +\infty} h(x) = 0
+\end{align*}
+已知$\int_{a}^{+\infty} f(x) dx$收敛，所以$\int_{a}^{+\infty} f(x) dx$有界，
+由狄里克雷判别法可知
+\begin{align*}
+  \int_{a}^{+\infty} f(x) h(x) dx
+\end{align*}
+收敛。
+
+我们有
+\begin{align*}
+  \int_{a}^{+\infty} f(x) g(x) dx
+   & = \int_{a}^{+\infty} f(x) h(x) - f(x) M dx                                                      \\
+   & = \lim\limits_{u \to +\infty} \int_{a}^{u} f(x) h(x) - f(x) M dx                                \\
+   & = \lim\limits_{u \to +\infty} \int_{a}^{u} f(x) h(x) dx - \lim\limits_{u \to +\infty} f(x) M dx
+\end{align*}
+由$\lim\limits_{u \to +\infty} \int_{a}^{u} f(x) h(x) dx, \lim\limits_{u \to +\infty} f(x) M dx$
+收敛可知
+\begin{align*}
+  \int_{a}^{+\infty} f(x) g(x) dx
+   & = \lim\limits_{u \to +\infty} \int_{a}^{u} f(x) h(x) dx - \lim\limits_{u \to +\infty} f(x) M dx
+\end{align*}
+收敛。
+
+类似地，可证$g(x)$单调递减。
+
 
 \end{document}
