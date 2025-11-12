@@ -1,0 +1,545 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+\usetikzlibrary{3d} % 允许3D坐标
+% \pgfplotsset{compat=1.18}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 11.2}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+\begin{itemize}
+  \item 定理11.2（比较原则）
+
+        因为$g(x)$是$[a, + \infty)$上的非负函数，
+        于是对任意$u_1, u_2 \in [a, + \infty)$，且$u_1 < u_2$，有
+        \begin{align*}
+          \int_{a}^{u_1} g(x) dx - \int_{a}^{u_2} g(x) dx
+           & = \int_{u_1}^{u_2} g(x) dx
+        \end{align*}
+        因为$x \in [u_1, u_2]$上，$g(x) \geq 0$，于是由积分不等式可知
+        \begin{align*}
+          \int_{u_1}^{u_2} g(x) dx \geq 0
+        \end{align*}
+        所以，$G(u) = \int_{a}^{u} g(x) dx$是单调递增函数。
+        同理可证，$F(u) = \int_{a}^{u} f(x) dx$也是单调递增函数。
+
+        已知$\int_{a}^{+\infty} g(x) dx = \lim \limits_{u \to +\infty} \int_{a}^{u} g(x) dx$收敛，
+        即$\lim \limits_{u \to +\infty} G(u)$收敛，设收敛于$J$，$G(u)$单调递增，所以$J$是$G(u)$的上确界。
+
+        因为任意有限区间$[a, u]$上，都有$f(x) \leq g(x)$，由积分不等式可知
+        \begin{align*}
+          \int_{a}^{u} f(x) dx \leq \int_{a}^{u} g(x) dx
+        \end{align*}
+        即
+        \begin{align*}
+          F(u) \leq G(u) \leq J
+        \end{align*}
+        所以，$J$也是$F(u)$的上界。由单调有界定理可知，$\lim \limits_{u \to +\infty} F(u)$收敛，
+        即$\int_{a}^{+\infty} f(x) dx = \lim\limits_{u \to +\infty} \int_{a}^{u} f(x) dx = \lim \limits_{u \to +\infty} F(u)$收敛。
+
+  \item 推论1
+
+        \begin{itemize}
+          \item (i)
+
+                $\lim\limits_{x \to +\infty} \frac{f(x)}{g(x)} = c$，
+                由极限定义可知，对$\epsilon = \frac{1}{2} c$，存在$M > 0$，当$x > M$，有
+                \begin{align*}
+                  \left|\frac{f(x)}{g(x)} - c \right| < \epsilon = \frac{1}{2} c \\
+                  \frac{1}{2}c < \frac{f(x)}{g(x)} < \frac{3}{2} c               \\
+                  \frac{c}{2} g(x) < f(x) < \frac{3c}{2} g(x)
+                \end{align*}
+                (1) $\frac{c}{2} g(x) < f(x)$如果$\int_{a}^{+\infty} f(x) dx$收敛，
+                由比较原则，$\int_{a}^{+\infty} \frac{c}{2} g(x) dx$收敛，
+                又
+                \begin{align*}
+                  \int_{a}^{+\infty} \frac{c}{2} g(x) dx
+                   & = \lim\limits_{u \to +\infty} \int_{a}^{u} \frac{c}{2} g(x) dx \\
+                   & = \lim\limits_{u \to +\infty} \frac{c}{2} \int_{a}^{u} g(x) dx \\
+                   & = \frac{c}{2} \lim\limits_{u \to +\infty} \int_{a}^{u} g(x) dx
+                \end{align*}
+                所以$\lim\limits_{u \to +\infty} \int_{a}^{u} g(x) dx $收敛，即
+                $\int_{a}^{+\infty} g(x) dx$收敛。
+
+                (2)$f(x) < \frac{3c}{2} g(x)$如果$\int_{a}^{+\infty} f(x) dx$发散，
+                由比较原则，$\int_{a}^{+\infty} \frac{3c}{2} g(x) dx$发散，
+                从而$\int_{a}^{+\infty} g(x) dx$发散。
+
+
+                同理可证，由于$f(x) < \frac{3c}{2} g(x)$则$g(x)$收敛，$f(x)$收敛；
+                由于$\frac{c}{2} g(x) < f(x)$则$g(x)$发散，$f(x)$发散。
+
+          \item (ii)(iii) 略
+        \end{itemize}
+\end{itemize}
+
+\section*{2}
+
+ (i)
+
+由$\frac{a + b}{2} \geq \sqrt{ab} (a, b \geq 0)$，有
+\begin{align*}
+  \frac{1}{2}f^2(x) + g^2(x) \geq |f(x) g(x)|
+\end{align*}
+已知$\int_{a}^{+\infty} f(x) dx, \int_{a}^{+\infty} g(x) dx$收敛，
+由比较原则可得$\int_{a}^{+\infty} |f(x) g(x)| dx$收敛，
+绝对收敛可得
+\begin{align*}
+  \int_{a}^{+\infty} f(x) g(x) dx
+\end{align*}
+收敛.
+
+(ii)
+
+\begin{align*}
+  [f(x) + g(x)]^2 = f^2(x) + g^2(x) + 2 f(x) g(x)
+\end{align*}
+已知$\int_{a}^{+\infty} f^2(x) dx, \int_{a}^{+\infty} g^2(x) dx, \int_{a}^{+\infty} 2 f(x) g(x) dx$收敛，
+于是由极限的四则运算法则可知
+\begin{align*}
+  \int_{a}^{+\infty} [f(x) + g(x)]^2 dx
+   & = \int_{a}^{+\infty} f^2(x) + g^2(x) + 2 f(x) g(x) dx
+\end{align*}
+收敛.
+
+\section*{3}
+
+\begin{itemize}
+  \item (1)
+
+        已知$h(x) \leq f(x) \leq g(x)$，所以
+        \begin{align*}
+          0 \leq g(x) - f(x) \leq g(x) - h(x)
+        \end{align*}
+        $\because$ $\int_{a}^{+\infty} h(x) dx, \int_{a}^{+\infty} g(x) dx$收敛.\\
+        $\therefore$ $\int_{a}^{+\infty} g(x) - h(x) dx$收敛.
+
+        由比较原则可得
+        \begin{align*}
+          \int_{a}^{+\infty} g(x) - f(x) dx
+        \end{align*}
+        收敛。我们有
+        \begin{align*}
+          \int_{a}^{+\infty} f(x) dx & =  - \int_{a}^{+\infty} [g(x) - f(x)] - g(x) dx
+        \end{align*}
+        由$\int_{a}^{+\infty} g(x) - f(x) dx$和$\int_{a}^{+\infty} g(x) dx$收敛，可得
+        $\int_{a}^{+\infty} f(x) dx $收敛。
+
+  \item (2)
+
+        令
+        \begin{align*}
+          H(u) & = \int_{a}^{u} h(x) dx \\
+          F(u) & = \int_{a}^{u} f(x) dx \\
+          G(u) & = \int_{a}^{u} g(x) dx
+        \end{align*}
+        已知$h(x) \leq f(x) \leq g(x)$，所以由积分不等式
+        \begin{align*}
+          \int_{a}^{u} h(x) dx \leq \int_{a}^{u} f(x) dx \leq \int_{a}^{u} g(x) dx
+        \end{align*}
+        即
+        \begin{align*}
+          H(u) \leq F(u) \leq G(u)
+        \end{align*}
+        已知$\int_{a}^{+\infty} h(x) dx, \int_{a}^{+\infty} g(x) dx$收敛，
+        即$\lim \limits_{u \to +\infty} H(u) = \lim \limits_{u \to +\infty} G(u) = A$，
+        由迫敛性可知
+        \begin{align*}
+          \lim \limits_{u \to +\infty} F(u) = A
+        \end{align*}
+        即
+        \begin{align*}
+          \int_{a}^{+\infty} f(x) dx = A
+        \end{align*}
+\end{itemize}
+
+\section*{4}
+
+\begin{itemize}
+  \item (1)
+        \begin{align*}
+          \lim\limits_{x \to +\infty} x^{\frac{4}{3}} \frac{1}{\sqrt[3]{x^4 + 1}} = 1
+        \end{align*}
+        由柯西判别法（推论3）可知
+        \begin{align*}
+          \int_{a}^{+\infty} \frac{1}{\sqrt[3]{x^4 + 1}} dx
+        \end{align*}
+        收敛。
+
+  \item (2)
+
+        考虑
+        \begin{align*}
+          - \frac{x}{1 - e^x} = \frac{x}{e^{x} - 1}
+        \end{align*}
+        于是$\frac{x}{e^{x} - 1}$是$[1, +\infty)$上的非负函数。
+
+        我们有
+        \begin{align*}
+          \lim\limits_{x \to +\infty} x^2 \cdot \frac{x}{e^{x} - 1} = 0
+        \end{align*}
+        （洛必达法则，容易得到结果）
+
+        由柯西判别法（推论3）可知
+        \begin{align*}
+          \int_{1}^{+\infty} \frac{x}{e^{x} - 1} dx
+        \end{align*}
+        收敛，所以
+        \begin{align*}
+          - \int_{1}^{+\infty} \frac{x}{e^{x} - 1} dx
+           & = \int_{1}^{+\infty} \frac{x}{1 - e^x} dx
+        \end{align*}
+        收敛。
+
+  \item (3)
+
+        提示:
+        \begin{align*}
+          \lim \limits_{x \to +\infty} x^{\frac{1}{2}} \cdot \frac{1}{1 + \sqrt{x}} = 1
+        \end{align*}
+        发散。
+
+  \item (4)
+
+        提示
+        \begin{align*}
+          \lim \limits_{x \to +\infty} x^2 \cdot \frac{x arctan\, x}{1 + x^3} = \frac{\pi}{2}
+        \end{align*}
+        收敛。
+
+  \item (5)
+
+        $n > 1$，取$p = \frac{1 + p}{2} > 1$，于是$n - p > 1$
+        \begin{align*}
+          \lim\limits_{x \to +\infty} x^{p} \cdot \frac{\ln (1 + x)}{x^n}
+           & = \lim\limits_{x \to +\infty} \frac{\ln (1 + x)}{x^{n - p}} \\
+           & = 0
+        \end{align*}
+        所以无穷积分收敛。
+
+        $n = 1$，有
+        \begin{align*}
+          \lim\limits_{x \to +\infty} x \cdot \frac{\ln (1 + x)}{x}
+           & = \lim\limits_{x \to +\infty} \ln (1 + x) \\
+           & = +\infty
+        \end{align*}
+        所以无穷积分发散。
+
+        $n < 1$，有
+        \begin{align*}
+          \frac{\ln (1 + x)}{x^n} > \frac{\ln (1 + x)}{x}
+        \end{align*}
+        由比较原则，无穷积分发散。
+
+        综上，$n \leq 1$，无穷积分发散；
+        $n > 1$，无穷积分收敛。
+
+  \item (6)
+
+        $n - m > 1$，有
+        \begin{align*}
+          \lim \limits_{x \to +\infty} x^{n - m} \cdot \frac{x^m}{1 + x^n} = 1
+        \end{align*}
+        由柯西判别法（推论3）可知，无穷积分收敛。
+
+        $n - m = 1$，有
+        \begin{align*}
+          \lim \limits_{x \to +\infty} x^{n - m} \cdot \frac{x^m}{1 + x^n} = 1
+        \end{align*}
+        由柯西判别法（推论3）可知，无穷积分发散。
+
+        $n - m < 1$，有
+        \begin{align*}
+          \frac{x^m}{1 + x^n} > \frac{x^m}{1 + x^{m + 1}}
+        \end{align*}
+        由比较原则可知，无穷积分发散。
+
+        综上，$n - m > 1$，无穷积分收敛；
+        $n - m \leq 1$，无穷积分发散。
+\end{itemize}
+
+\section*{5}
+
+\begin{itemize}
+  \item (1)
+
+        令$t = \sqrt{x}, dx = 2tdt$，$x: 1 \to +\infty, t: 1 \to +\infty$，于是
+        \begin{align*}
+          \int_{1}^{+\infty} \frac{sin \sqrt{x}}{x} dx
+           & = \int_{1}^{+\infty} 2t \frac{sin t}{t^2} dt \\
+           & = 2 \int_{1}^{+\infty} \frac{sin t}{t} dt
+        \end{align*}
+        由例3可知，无穷积分条件收敛。
+
+  \item (2)
+        \begin{align*}
+          \left| \frac{sgn(sin\, x)}{1 + x^2} dx \right|
+           & \leq \frac{1}{1 + x^2}
+        \end{align*}
+        又因为
+        \begin{align*}
+          \lim\limits_{x \to +\infty} x^2 \cdot \frac{1}{1 + x^2} = 1
+        \end{align*}
+        由柯西判别法（推论3）可知，无穷积分$\int_{0}^{+\infty} \frac{1}{1 + x^2} dx$收敛。
+        由比较原则可知
+        \begin{align*}
+          \int_{0}^{+\infty} \left| \frac{sgn(sin\, x)}{1 + x^2} dx \right| dx
+        \end{align*}
+        收敛。
+
+        综上，原无穷积分绝对收敛。
+
+  \item (3)
+
+        (i) 条件收敛。
+        \begin{align*}
+          \frac{\sqrt{x} cos\, x}{100 + x}
+           & = cos\, x \cdot \frac{\sqrt{x}}{100 + x}
+        \end{align*}
+        因为
+        \begin{align*}
+          \int_{0}^{+\infty} cos\, x dx
+        \end{align*}
+        有界。
+        \begin{align*}
+          \lim\limits_{x \to +\infty} \frac{\sqrt{x}}{100 + x} = 0
+        \end{align*}
+        且
+        \begin{align*}
+          (\frac{\sqrt{x}}{100 + x})'
+           & = \frac{\frac{1}{2\sqrt{x}}(100 + x) - \sqrt{x}}{(100 + x)^2} \\
+           & = \frac{100 - x}{2\sqrt{x}(100 + x)^2}                        \\
+        \end{align*}
+        于是$x \geq 0$时，单调递增。
+
+        由定理11.3（狄利克雷判别法）可知，$\int_{100}^{+\infty} \frac{\sqrt{x} cos\, x}{100 + x} dx$
+        收敛。又
+        \begin{align*}
+          \int_{0}^{+\infty} \frac{\sqrt{x} cos\, x}{100 + x} dx
+           & = \int_{0}^{100} \frac{\sqrt{x} cos\, x}{100 + x} dx + \int_{100}^{+\infty} \frac{\sqrt{x} cos\, x}{100 + x} dx
+        \end{align*}
+        且$\int_{0}^{100} \frac{\sqrt{x} cos\, x}{100 + x} dx$为初等函数的定积分，所以
+        $\int_{0}^{+\infty} \frac{\sqrt{x} cos\, x}{100 + x} dx$收敛。
+
+        (ii) 非绝对收敛。
+
+        \begin{align*}
+          \left|\frac{\sqrt{x} cos\, x}{100 + x} \right|
+           & \geq \frac{\sqrt{x} cos^2\, x}{100 + x}                                              \\
+           & = \frac{\frac{1}{2} \sqrt{x} (1 + cos2\, x) }{100 + x}                               \\
+           & = \frac{\frac{1}{2} \sqrt{x} }{100 + x} + \frac{\frac{1}{2} \sqrt{x} cos2x}{100 + x}
+        \end{align*}
+        因为
+        \begin{align*}
+          \lim \limits_{x \to +\infty}\sqrt{x} \cdot \frac{\frac{1}{2} \sqrt{x} }{100 + x} = \frac{1}{2}
+        \end{align*}
+        于是$\int_{100}^{+\infty} \frac{\frac{1}{2} \sqrt{x} }{100 + x} dx$发散。
+        且利用狄利克雷判别法可知，$\int_{100}^{+\infty} \frac{\frac{1}{2} \sqrt{x} cos2x}{100 + x} dx$收敛。
+        于是
+        \begin{align*}
+          \int_{100}^{+\infty} \frac{\sqrt{x} cos\, x}{100 + x} dx
+           & = \int_{100}^{+\infty} \frac{\frac{1}{2} \sqrt{x} }{100 + x} dx
+          + \int_{100}^{+\infty} \frac{\frac{1}{2} \sqrt{x} cos2x}{100 + x} dx
+        \end{align*}
+        发散。
+
+        综上
+        \begin{align*}
+          \int_{0}^{+\infty} \frac{\sqrt{x} cos\, x}{100 + x} dx
+           & = \int_{0}^{100} \frac{\sqrt{x} cos\, x}{100 + x} dx + \int_{100}^{+\infty} \frac{\sqrt{x} cos\, x}{100 + x} dx
+        \end{align*}
+        由于右侧第一个积分是初等函数的定积分。故$\int_{0}^{+\infty} \frac{\sqrt{x} cos\, x}{100 + x} dx $发散。
+
+
+  \item (4)
+
+        (i) 条件收敛
+
+        \begin{align*}
+          \int_{e}^{+\infty} sin x dx
+        \end{align*}
+        有界。
+        \begin{align*}
+          \lim\limits_{x \to +\infty} \frac{\ln(\ln x)}{\ln x}
+           & = \lim\limits_{x \to +\infty} \frac{\frac{1}{\ln x}\frac{1}{x}}{\frac{1}{x}} \\
+           & = \lim\limits_{x \to +\infty} \frac{1}{\ln x}                                \\
+           & = 0
+        \end{align*}
+        又
+        \begin{align*}
+          \left[\frac{\ln(\ln x)}{\ln x}\right]'
+           & = \frac{\frac{1}{\ln x}\frac{1}{x} \ln x - \ln(\ln x) \frac{1}{x}}{\ln^2 x} \\
+           & = \frac{\frac{1}{x}(1 - \ln(\ln x))}{\ln^2 x}
+        \end{align*}
+        所以$x \geq e^e$时，单调递减，
+        于是由定理11.3（狄利克雷判别法）可得
+        \begin{align*}
+          \int_{e^e}^{+\infty} \frac{\ln(\ln x)}{\ln x} sin x dx
+        \end{align*}
+        收敛。我们有
+        \begin{align*}
+          \int_{e}^{+\infty} \frac{\ln(\ln x)}{\ln x} sin x dx
+           & = \int_{e}^{e^e} \frac{\ln(\ln x)}{\ln x} sin x dx + \int_{e^e}^{+\infty} \frac{\ln(\ln x)}{\ln x} sin x dx
+        \end{align*}
+        右侧第一个是定积分，所以$\int_{e}^{+\infty} \frac{\ln(\ln x)}{\ln x} sin x dx$收敛。
+
+        (ii) 非绝对收敛。
+
+        \begin{align*}
+          \left|\frac{\ln(\ln x)}{\ln x} sin x \right|
+           & \geq \frac{\ln(\ln x)}{\ln x} sin^2 x                                               \\
+           & = \frac{1}{2} \frac{\ln(\ln x)}{\ln x} (1 - cos2x)                                  \\
+           & = \frac{1}{2} \frac{\ln(\ln x)}{\ln x} - \frac{1}{2} \frac{\ln(\ln x)}{\ln x} cos2x
+        \end{align*}
+
+        因为
+        \begin{align*}
+          \lim \limits_{x \to +\infty} x \cdot \frac{\ln(\ln x)}{\ln x}
+           & = \lim \limits_{x \to +\infty} \frac{\ln(\ln x) + x \frac{1}{\ln x}\frac{1}{x}}{\frac{1}{x}} \\
+           & = \lim \limits_{x \to +\infty} x \ln(\ln x) + \frac{x}{\ln x}                                \\
+           & = +\infty
+        \end{align*}
+        由柯西判别法可知，$\int_{e^e}^{+\infty} \frac{\ln(\ln x)}{\ln x} dx$ 发散。
+
+        利用狄里克莱判别法，可知$\int_{e^e}^{+\infty} \frac{\ln(\ln x)}{\ln x} cos2x dx$收敛。
+        所以$\int_{e^e}^{+\infty} \frac{\ln(\ln x)}{\ln x} sin^2 x dx$发散。我们有
+        \begin{align*}
+          \int_{0}^{+\infty} \frac{\ln(\ln x)}{\ln x} sin^2 x dx
+           & = \int_{0}^{e^e} \frac{\ln(\ln x)}{\ln x} sin^2 x dx + \int_{e^e}^{+\infty} \frac{\ln(\ln x)}{\ln x} sin^2 x dx
+        \end{align*}
+        右侧第一个是定积分，所以$\int_{0}^{+\infty} \frac{\ln(\ln x)}{\ln x} sin^2 x dx$发散。
+
+        综上，该无穷积分非绝对收敛。
+
+\end{itemize}
+
+\section*{6}
+
+\begin{itemize}
+  \item (1)
+
+        定义
+        \begin{align*}
+          \int_{1}^{+\infty} \frac{sin\, x}{\sqrt{x}} dx \\
+          \int_{1}^{+\infty} \frac{sin^2\, x}{x} dx
+        \end{align*}
+        第一个无穷积分，借助例3的结论。
+
+  \item (2)
+
+        定义
+        \begin{equation*}
+          f(x) =
+          \begin{cases}
+            0,   & [n - 1, n -  \frac{1}{2^n \cdot 2^n}) \\
+            2^n, & [n - \frac{1}{2^n \cdot 2^n}, n)
+          \end{cases}
+          n = 1, 2, 3, ...
+        \end{equation*}
+        于是
+        \begin{align*}
+          \int_{1}^{+\infty} f(x) dx
+           & = \lim\limits_{x \to +\infty} \int_{1}^{u} f(x) dx                                     \\
+           & = \lim\limits_{n \to +\infty} \sum\limits_{i = 1}^n 2^i \frac{1}{2^i \cdot 2^i}        \\
+           & = \lim\limits_{n \to +\infty} \sum\limits_{i = 1}^n \frac{1}{2^i}                      \\
+           & = \lim\limits_{n \to +\infty} \frac{\frac{1}{2}(1 - (\frac{1}{2})^n)}{1 - \frac{1}{2}} \\
+           & = \lim\limits_{n \to +\infty} 1 - (\frac{1}{2})^n                                      \\
+           & = 1
+        \end{align*}
+        收敛。
+
+        又
+        \begin{align*}
+          \int_{1}^{+\infty} f^2(x) dx
+           & = \lim\limits_{x \to +\infty} \int_{1}^{u} f^2(x) dx                                      \\
+           & = \lim\limits_{n \to +\infty} \sum\limits_{i = 1}^n 2^i \cdot 2^i \frac{1}{2^i \cdot 2^i} \\
+           & = \lim\limits_{n \to +\infty} \sum\limits_{i = 1}^n 1                                     \\
+           & = \lim\limits_{n \to +\infty} n                                                           \\
+           & = + \infty
+        \end{align*}
+        发散。
+\end{itemize}
+
+\section*{7}
+\begin{itemize}
+  \item 方法一：
+
+        已知$\lim\limits_{x \to +\infty} f(x) = 0$，于是我们有
+        \begin{align*}
+          c & = \lim\limits_{x \to +\infty} \frac{f^2(x)}{|f(x)|} \\
+            & = \lim\limits_{x \to +\infty} |f(x)|                \\
+            & = 0
+        \end{align*}
+        注：以上由极限定义容易验证。
+
+        已知$\int_{a}^{+\infty} f(x) dx$绝对收敛，
+        则$\int_{a}^{+\infty} |f(x)| dx$收敛，
+        由比较原则的推理1-(ii)可知
+        \begin{align*}
+          \int_{a}^{+\infty} f^2(x) dx
+        \end{align*}
+        收敛。
+
+  \item 方法二：
+
+        已知$\lim\limits_{x \to +\infty} f(x) = 0$，则
+        \begin{align*}
+          \lim\limits_{x \to +\infty} |f(x)| = 0
+        \end{align*}
+        于是对$0 < \epsilon < 1$，存在$M > 0$，$x > M$，有
+        \begin{align*}
+          |f(x)| < \epsilon
+        \end{align*}
+        已知$0 < \epsilon < 1$，此时有
+        \begin{align*}
+          |f(x)| < f^2(x)
+        \end{align*}
+        因为$\int_{a}^{+\infty} f(x) dx$绝对收敛，
+        由比较原则可知
+        \begin{align*}
+          \int_{a}^{+\infty} f^2(x) dx
+        \end{align*}
+        注：$\int_{a}^{M} f^2(x) dx$是定积分，不影响敛散性。
+
+\end{itemize}
+
+\section*{8}
+
+
+\end{document}

@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+% \pgfplotsset{compat=1.18}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 11.2}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  $\int_{a}^{+\infty} f(x) dx = \int_{a}^{+\infty} g(x) dx + \int_{a}^{+\infty} f(x) dx$，
+  只有当证明第一个积分发散（收敛），第二个积分收敛（发散），才能说明
+  $\int_{a}^{+\infty} f(x) dx$发散。
+\end{zremark}
+
+\textbf{证明：}
+
+反例：一个收敛的无穷积分，可以拆为两个发散的无穷积分。比如
+\begin{align*}
+  \int_{a}^{+\infty} \frac{1}{x^2} dx
+   & = \int_{a}^{+\infty} \frac{x}{x^2} - \frac{x - 1}{x^2} dx \\
+   & = \int_{a}^{+\infty} \frac{1}{x} - \frac{x - 1}{x^2} dx
+\end{align*}
+
+注：本身这种无穷积分拆分成两个无穷积分的和，其实是利用了极限的四则运算法则。
+
+\end{document}
