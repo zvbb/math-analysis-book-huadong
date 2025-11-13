@@ -1,0 +1,481 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+\usetikzlibrary{3d} % 允许3D坐标
+% \pgfplotsset{compat=1.18}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 11.3}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+仿照$\S 2$性质3的证明。
+
+由$\int_{a}^{b} |f(x)| dx$收敛，根据柯西准则（必要性），任给$\epsilon > 0$，存在
+$\delta > 0$，只要$u_1, u_2 \in (a, a+\delta)$，总有
+\begin{align*}
+  \left| \int_{u_1}^{u_2} |f(x)| dx \right| = \int_{u_1}^{u_2} |f(x)| dx < \epsilon
+\end{align*}
+利用定积分的绝对值不等式，又有
+\begin{align*}
+  \left| \int_{u_1}^{u_2} f(x) dx \right| \leq \left| \int_{u_1}^{u_2} |f(x)| dx \right| < \epsilon
+\end{align*}
+再由柯西准则（充分性），证得$\int_{a}^{b} f(x) dx$收敛.
+
+又因$\left| \int_{u}^{b} f(x) dx \right| \leq \int_{u}^{b} |f(x)| dx \, (b \geq u > a)$，
+令$u \to a^+$取极限，立刻得到不等式
+\begin{align*}
+  \left| \int_{a}^{b} f(x) dx \right| \leq \int_{a}^{b} |f(x)| dx
+\end{align*}
+注：利用了极限的保不等式性。
+
+\section*{2}
+
+\begin{itemize}
+  \item 定理11.6（比较原则）
+
+        因为$g(x)$是$(a, b]$上的非负函数，
+        于是对任意$u_1, u_2 \in (a, b]$，且$u_1 < u_2$，有
+        \begin{align*}
+          \int_{u_1}^{b} g(x) dx - \int_{u_2}^{b} g(x) dx
+           & = \int_{u_1}^{b} g(x) dx + \int_{b}^{u_2} g(x) dx \\
+           & = \int_{u_1}^{u_2} g(x) dx
+        \end{align*}
+        因为$x \in [u_1, u_2]$上，$g(x) \geq 0$，于是由积分不等式可知
+        \begin{align*}
+          \int_{u_1}^{u_2} g(x) dx \geq 0
+        \end{align*}
+        所以，$G(u) = \int_{a}^{u} g(x) dx$是单调递减函数。
+        同理可证，$F(u) = \int_{a}^{u} f(x) dx$也是单调递减函数。
+
+        已知$\int_{a}^{b} g(x) dx = \lim \limits_{u \to a^+} \int_{a}^{u} g(x) dx$收敛，
+        即$\lim \limits_{u \to a^+} G(u)$收敛，设收敛于$J$。
+
+        因为任意有限区间$[u, b]$上，都有$f(x) \leq g(x)$，由积分不等式可知
+        \begin{align*}
+          \int_{u}^{b} f(x) dx \leq \int_{u}^{b} g(x) dx
+        \end{align*}
+        即
+        \begin{align*}
+          F(u) \leq G(u) \leq J
+        \end{align*}
+        所以，$J$也是$F(u)$的上界。由单调有界定理可知，$\lim \limits_{u \to a^+} F(u)$收敛，
+        即$\int_{a}^{b} f(x) dx = \lim\limits_{u \to a^+} \int_{u}^{b} f(x) dx = \lim \limits_{u \to a^+} F(u)$收敛。
+
+  \item 推论1
+
+        证明略。（注：与$\S 2$习题1中证明类似）
+\end{itemize}
+
+\section*{3}
+
+\begin{itemize}
+  \item (1)
+        \begin{align*}
+          \int_{0}^{2} \frac{dx}{(x - 1)^2}
+           & = \int_{0}^{1} \frac{dx}{(x - 1)^2} + \int_{1}^{2} \frac{dx}{(x - 1)^2}
+        \end{align*}
+        又因为
+        \begin{align*}
+          \lim\limits_{x \to 1^+} (x - 1)^2 \cdot \frac{1}{(x - 1)^2} = 1
+        \end{align*}
+        由柯西判别法可知
+        \begin{align*}
+          \int_{1}^{2} \frac{dx}{(x - 1)^2}
+        \end{align*}
+        发散。于是由定义可知
+        \begin{align*}
+          \int_{0}^{2} \frac{dx}{(x - 1)^2}
+        \end{align*}
+        发散。
+
+  \item (3)
+
+        $x = 0, 1$是瑕点。
+        \begin{align*}
+          \int_{0}^{1} \frac{dx}{\sqrt{x} \ln\, x}
+           & = \int_{0}^{\frac{1}{2}} \frac{dx}{\sqrt{x} \ln\, x} + \int_{\frac{1}{2}}^{1} \frac{dx}{\sqrt{x} \ln\, x}
+        \end{align*}
+        (i)因为
+        \begin{align*}
+          \lim\limits_{x \to 0^+} x \cdot \frac{1}{\sqrt{x} (-\ln\, x)} = 0
+        \end{align*}
+        注：使用洛必达法则求极限，另外加负号是因为比较原则的要求。
+
+        由柯西判别法可知
+        \begin{align*}
+          \int_{0}^{\frac{1}{2}} -\frac{dx}{\sqrt{x} \ln\, x}
+        \end{align*}
+        收敛，所以
+        \begin{align*}
+          \int_{0}^{\frac{1}{2}} \frac{dx}{\sqrt{x} \ln\, x}
+        \end{align*}
+        也收敛。
+
+        (ii)因为
+        \begin{align*}
+          \lim\limits_{x \to 1^-} (1 - x) \frac{dx}{\sqrt{x} (-\ln\, x)} = 1
+        \end{align*}
+        注：使用洛必达法则求极限，另外加负号是因为比较原则的要求；另外注意是$(1 - x)$。
+
+        由柯西判别法可知
+        \begin{align*}
+          \int_{\frac{1}{2}}^{1} \frac{dx}{\sqrt{x} (-\ln\, x)}
+        \end{align*}
+        发散，所以
+        \begin{align*}
+          \int_{\frac{1}{2}}^{1} \frac{dx}{\sqrt{x} \ln\, x}
+        \end{align*}
+        发散。
+
+        综上，$\int_{0}^{1} \frac{dx}{\sqrt{x} \ln\, x}$发散。
+
+  \item (4)
+
+        提示：$x = 0$是瑕点，$x = 1$不是瑕点，因为
+        \begin{align*}
+          \lim\limits_{x \to 1-} \frac{\ln x}{1 - x} = 1
+        \end{align*}
+        又因为
+        \begin{align*}
+          \lim\limits_{x \to 0^+} \frac{x^{\frac{1}{2}} \ln x}{1 - x}
+           & = \lim\limits_{x \to 0^+} \frac{1}{1 - x} \cdot \frac{\ln x}{\frac{1}{x^\frac{1}{2}}}                         \\
+           & = \lim\limits_{x \to 0^+} \frac{1}{1 - x} \cdot \lim\limits_{x \to 0^+} \frac{\ln x}{\frac{1}{x^\frac{1}{2}}} \\
+           & = 1 \cdot 0                                                                                                   \\
+           & = 0
+        \end{align*}
+        故由柯西判别法可知，收敛。
+
+  \item (5)
+
+        $x = 1$是瑕点。
+        \begin{align*}
+          \lim\limits_{x \to 1^-} (1 - x) \frac{arctan\, x}{1 - x^3}
+           & = \lim\limits_{x \to 1^-} \frac{arctan\, x}{1 + x + x^2} \\
+           & = \frac{\pi}{12}
+        \end{align*}
+        由柯西判别法可知
+        \begin{align*}
+          \int_{0}^{1} \frac{arctan\, x}{1 - x^3}
+        \end{align*}
+        发散。
+
+  \item (6)
+
+        $m > 2$时，$x = 0$是瑕点（通过极限判断）。
+
+        \begin{align*}
+          \lim\limits_{x \to 1^+} x^{m - 2} \frac{1 - cos\, x}{x^m}
+           & = \lim\limits_{x \to 1^+} \frac{1 - cos\, x}{x^2} \\
+           & = \frac{1}{2}
+        \end{align*}
+        于是可得$m - 2 \geq 1$，即$m \geq 3$时，该积分发散；
+        $0 < m - 2 < 1$即$2 < m < 3$并结合$m \leq 2$时，该积分是定积分可知，
+        $m < 3$时，该积分收敛。
+
+  \item (7)
+
+        令$t = \frac{1}{x}, dx = - \frac{1}{t^2} dt, x : 0 \to 1, t : +\infty \to 1$。
+        \begin{align*}
+          \int_{0}^{1} \frac{1}{x^{\alpha}} sin \frac{1}{x} dx
+           & = \int_{+\infty}^{1} - \frac{sin t}{t^{2 - \alpha}} dt \\
+           & = \int_{1}^{+\infty} \frac{sin t}{t^{2 - \alpha}} dt   \\
+        \end{align*}
+        由$\S 2$例3可知：
+
+        \begin{itemize}
+          \item (i) $2 - \alpha > 1$，即$\alpha < 1$时，绝对收敛。
+          \item (ii) $0 < 2 - \alpha \leq 1$，即$1 \leq 1 < 2$时，条件收敛。
+          \item (iii) $2 - \alpha \leq 0$，即$\alpha \geq 2$。
+
+                $2 - \alpha = 0$时，
+                \begin{align*}
+                  \int_{1}^{+\infty} \frac{sin t}{t^{2 - \alpha}} dt
+                   & = \int_{1}^{+\infty} sin t dt                             \\
+                   & = \lim\limits_{u \to +\infty} (- cos x)\bigg|_{x = 1}^{u} \\
+                   & = \lim\limits_{u \to +\infty} cos 1 - cos u
+                \end{align*}
+                发散；
+
+                $2 - \alpha < 0$时，用柯西准则来证明发散。
+
+                令$p = (2 - \alpha), p > 0$，
+                \begin{align*}
+                  \int_{1}^{+\infty} \frac{sin t}{t^{2 - \alpha}} dt
+                   & = \int_{1}^{+\infty} t^p \cdot sin\, t dt
+                \end{align*}
+                取$\epsilon_0 = 1$，对任意$G \geq 1$，取$n = \left[\frac{G}{2\pi}\right] + 1$，
+                $u_1 = 2n \pi, u_2 = (2n + 1)\pi$，$u_1, u_2 > G$，有
+                \begin{align*}
+                  \left| \int_{u_1}^{u_2} t^p \cdot sin\, t dt \right|
+                   & = \int_{u_1}^{u_2} t^p \cdot sin\, t dt \\
+                   & \geq \int_{u_1}^{u_2} \cdot sin\, t dt  \\
+                   & = (-cos t)\bigg|_{t = u_1}^{t = u_2}    \\
+                   & = -(-1) - (-1)                          \\
+                   & = 2
+                \end{align*}
+                由柯西准则知，该积分发散。
+
+                综上，$2 - \alpha \leq 0$，即$\alpha \geq 2$，发散。
+        \end{itemize}
+
+  \item (8)
+
+        $x = 0$是瑕点。
+        \begin{align*}
+          \int_{0}^{+\infty} e^{-x} \ln x dx
+           & = \int_{0}^{1} e^{-x} \ln x dx + \int_{1}^{+\infty} e^{-x} \ln x dx
+        \end{align*}
+        因为
+        \begin{align*}
+          \lim\limits_{x \to 0^+} x^{\frac{1}{2}} \cdot e^{-x} \ln x
+           & = \lim\limits_{x \to 0^+} \frac{x^{\frac{1}{2}} \ln x}{e^x}                         \\
+           & = \lim\limits_{x \to 0^+} \frac{x^{\frac{1}{2}} \ln x}{e^x}                         \\
+           & = \lim\limits_{x \to 0^+} \frac{1}{e^x} \cdot \frac{\ln x}{\frac{1}{x^\frac{1}{2}}} \\
+           & = 1 \cdot 0                                                                         \\
+           & = 0
+        \end{align*}
+        注：使用洛必达法则。
+
+        由柯西判别法可知
+        \begin{align*}
+          \int_{0}^{1} e^{-x} \ln x dx
+        \end{align*}
+        收敛。
+
+        又有
+        \begin{align*}
+          \lim \limits_{x \to +\infty} x^2 \cdot e^{-x} \ln x = 0
+        \end{align*}
+        注：使用洛必达法则。
+
+        由柯西判别法可知
+        \begin{align*}
+          \int_{1}^{+\infty} e^{-x} \ln x dx
+        \end{align*}
+        收敛。
+
+        综上，
+        \begin{align*}
+          \int_{0}^{+\infty} e^{-x} \ln x dx
+        \end{align*}
+        收敛。
+\end{itemize}
+
+\section*{4}
+
+\begin{itemize}
+  \item (1)
+        $x = 0$是瑕点。
+        \begin{align*}
+          I_n & = \int_{0}^{1} (\ln x)^n dx                                                                         \\
+              & = \lim\limits_{u \to 0^+} \int_{u}^{1} (\ln x)^n dx                                                 \\
+              & = \lim\limits_{u \to 0^+} \left[x (\ln x)^n - \int_{u}^{1} x  d((\ln x)^n) \right]                  \\
+              & = \lim\limits_{u \to 0^+} \left[x (\ln x)^n - \int_{u}^{1} x n (\ln x)^{n-1} \frac{1}{x} dx \right] \\
+              & = \lim\limits_{u \to 0^+} \left[x (\ln x)^n - n \int_{u}^{1}  (\ln x)^{n-1} dx \right]
+        \end{align*}
+        因为
+        \begin{align*}
+          \lim\limits_{u \to 0^+} x (\ln x)^n = 0
+        \end{align*}
+        （注：多次使用洛必达法则可得）
+
+        所以
+        \begin{align*}
+          I_n & =\int_{0}^{1} (\ln x)^n dx                                   \\
+              & = - n \lim\limits_{u \to 0^+} \int_{u}^{1}  (\ln x)^{n-1} dx \\
+              & = - n I_{n-1}
+        \end{align*}
+        于是由递推公式可得
+        \begin{align*}
+          I_n = (-n)(-(n - 1)) \cdots (-2) I_1
+        \end{align*}
+        又有
+        \begin{align*}
+          I_1 & = \int_{0}^{1} \ln x dx                                                                      \\
+              & = \lim\limits_{u \to 0^+} \int_{u}^{1} \ln x dx                                              \\
+              & = \lim\limits_{u \to 0^+} \left[ x \ln x\bigg|_{u}^1 - \int_{u}^{1} x \frac{1}{x} dx \right] \\
+              & = \lim\limits_{u \to 0^+} \left[ - u \ln u - \int_{u}^{1} 1 dx \right]                       \\
+              & = - \lim\limits_{u \to 0^+} u \ln u  - \lim\limits_{u \to 0^+} \int_{u}^{1} 1 dx             \\
+              & = - \lim\limits_{u \to 0^+} u \ln u  - \lim\limits_{u \to 0^+} 1 - u dx                      \\
+              & = 0 - 1                                                                                      \\
+              & = -1
+        \end{align*}
+        于是
+        \begin{align*}
+          I_n & = (-n)(-(n - 1)) \cdots (-2) (-1) \\
+              & = (-1)^n \cdot n!
+        \end{align*}
+  \item (2)
+
+        $x = 1$是瑕点。
+        \begin{align*}
+          \int_{0}^{1} \frac{x^n}{\sqrt{1 - x}} dx
+           & = \lim\limits_{u \to 1^-} \int_{0}^{u} \frac{x^n}{\sqrt{1 - x}} dx
+        \end{align*}
+        令$t = \sqrt{1 - x}, x = 1 - t^2, dx = -2t dt$且
+        $x: 0 \to u, t: 1 \to \sqrt{1 - u}$，于是由积分换元
+        \begin{align*}
+          \lim\limits_{u \to 1^-} \int_{0}^{u} \frac{x^n}{\sqrt{1 - x}} dx
+           & = \lim\limits_{u \to 1^-} \int_{1}^{\sqrt{1 - u}} -2 t \frac{(1 - t^2)^n}{t} dt \\
+           & = \lim\limits_{u \to 1^-} \int_{1}^{\sqrt{1 - u}} -2 (1 - t^2)^n dt
+        \end{align*}
+        令$v = \sqrt{1 - u}$，则$u \to 1^-$，$v \to 0^+$，
+        \begin{align*}
+          \lim\limits_{u \to 1^-} \int_{1}^{\sqrt{1 - u}} -2 (1 - t^2)^n dt
+           & = \lim\limits_{v \to 0^+} \int_{1}^{v} -2 (1 - t^2)^n dt \\
+           & = \lim\limits_{v \to 0^+} 2 \int_{v}^{1} (1 - t^2)^n dt  \\
+           & = 2 \int_{0}^{1} (1 - t^2)^n dt
+        \end{align*}
+        以上是定积分（这一步的原因是还原后的积分没有瑕点了）。
+
+        我们有
+        \begin{align*}
+          I_n & = 2 \int_{0}^{1} (1 - t^2)^n dt                                                                \\
+              & = 2 \left[ t(1 - t^2)^n - \int_{0}^{1} t d((1 - t^2)^n) \right]                                \\
+              & = 2 \left[ t(1 - t^2)^n \bigg|_{0}^{1} - \int_{0}^{1} t \cdot n (1 - t^2)^{n - 1}(-2t) \right] \\
+              & = 2 \left[ 0 + 2n \int_{0}^{1} t^2 (1 - t^2)^{n - 1} dt \right]                                \\
+              & = 4n \int_{0}^{1} -(1 - t^2 - 1) (1 - t^2)^{n - 1} dt                                          \\
+              & = - 4n \int_{0}^{1} (1 - t^2 - 1) (1 - t^2)^{n - 1} dt                                         \\
+              & = -4n \left[\int_{0}^{1} (1 - t^2)^{n} dt - \int_{0}^{1} (1 - t^2)^{n - 1} dt \right]          \\
+              & = -2n \cdot 2 \int_{0}^{1} (1 - t^2)^{n} dt + 2n \cdot 2 \int_{0}^{1} (1 - t^2)^{n - 1} dt     \\
+              & = -2n I_n + 2n I_{n-1}
+        \end{align*}
+        可得
+        \begin{align*}
+          (1 + 2n)I_n & = 2n I_{n-1}                \\
+          I_n         & = \frac{2n}{1 + 2n} I_{n-1}
+        \end{align*}
+        由递推公式可知
+        \begin{align*}
+          I_n = \frac{2n}{1 + 2n} \cdot \frac{2(n - 1)}{1 + 2(n - 1)} \cdots \frac{2 \cdot 2}{1 + 2 \cdot 2} I_1
+        \end{align*}
+        又有
+        \begin{align*}
+          I_1 & = 2 \int_{0}^{1} 1 - t^2 dt             \\
+              & = 2 (t - \frac{1}{3}t^3) \bigg|_{0}^{1} \\
+              & = \frac{4}{3}
+        \end{align*}
+        所以
+        \begin{align*}
+          I_n
+           & = \frac{2n}{1 + 2n} \cdot \frac{2(n - 1)}{1 + 2(n - 1)} \cdots \frac{2 \cdot 2}{1 + 2 \cdot 2} \frac{4}{3}                     \\
+           & = \frac{2n}{1 + 2n} \cdot \frac{2(n - 1)}{1 + 2(n - 1)} \cdots \frac{2 \cdot 2}{1 + 2 \cdot 2} \frac{2 \cdot 1 \cdot 2}{1 + 2} \\
+           & = \frac{(2n)!! \cdot 2}{(1 + 2n)!!}
+        \end{align*}
+\end{itemize}
+
+\section*{5}
+\begin{itemize}
+  \item (i)
+
+        $x = 0$是瑕点。
+        \begin{align*}
+          \lim\limits_{x \to 0^{+}} \sqrt{x} \cdot \ln (sin x) = 0
+        \end{align*}
+        $p = \frac{1}{2}$，由柯西判别法，
+        \begin{align*}
+          \int_{0}^{\pi/2} \ln (sin x) dx
+        \end{align*}
+        收敛。
+
+  \item (ii)
+
+        \begin{align*}
+          \int_{0}^{\pi/2} \ln (sin x) dx
+           & = \lim\limits_{u \to 0^+} \int_{u}^{\pi/2} \ln (sin x) dx
+        \end{align*}
+        令$x = \frac{\pi}{2} - t, dx = -dt, x: u \to \pi/2, t: \pi/2 - u \to 0$.
+        \begin{align*}
+          \lim\limits_{u \to 0^+} \int_{u}^{\pi/2} \ln (sin x) dx
+           & = \lim\limits_{u \to 0^+} \int_{\pi/2 - u}^{0} - \ln (sin(\frac{\pi}{2} - t)) dt \\
+           & = \lim\limits_{u \to 0^+} \int_{0}^{\pi/2 - u} \ln (cost) dt
+        \end{align*}
+        令$v = \pi/2 - u, u \to 0^+, v \to (\pi/2)^-$.
+        \begin{align*}
+          \lim\limits_{u \to 0^+} \int_{0}^{\pi/2 - u} \ln (cost) dt
+           & = \lim\limits_{v \to (\pi/2)^-} \int_{0}^{v} \ln (cost) dt \\
+           & = \int_{0}^{\pi/2} \ln (cost) dt
+        \end{align*}
+        所以
+        \begin{align*}
+          \int_{0}^{\pi/2} \ln (sin x) dx
+           & = \int_{0}^{\pi/2} \ln (cos x) dx
+        \end{align*}
+
+        我们有
+        \begin{align*}
+          2 J & = \int_{0}^{\pi/2} \ln (sin x) dx + \int_{0}^{\pi/2} \ln (cost) dt \\
+              & = \int_{0}^{\pi/2} \ln (sin x) + \ln (cos x) dx                    \\
+              & = \int_{0}^{\pi/2} \ln (sin x \cdot cos x) dx                      \\
+              & = \int_{0}^{\pi/2} \ln (\frac{1}{2}sin 2x) dx                      \\
+              & = \int_{0}^{\pi/2} \ln (sin 2x) + \ln \frac{1}{2} dx               \\
+              & = \int_{0}^{\pi/2} \ln (sin 2x) - \ln 2 dx                         \\
+              & = \int_{0}^{\pi/2} \ln (sin 2x) dx - \int_{0}^{\pi/2} \ln 2 dx     \\
+              & = \int_{0}^{\pi/2} \ln (sin 2x) dx - \frac{\pi}{2}\ln 2
+        \end{align*}
+        （注：两者的瑕点不同的可加性，在11-3-comment.tex中已证明）
+
+        考虑$\int_{0}^{\pi/2} \ln (sin 2x) dx$，
+        令$t = 2x, dx = \frac{1}{2}dt, x: 0 \to \pi/2, t: 0 \to \pi$，于是
+        \begin{align*}
+          \int_{0}^{\pi/2} \ln (sin 2x) dx
+           & = \frac{1}{2} \int_{0}^{\pi} \ln (sin t) dt
+        \end{align*}
+        令$v = t - \pi/2, dt = dv, t: 0 \to \pi, v: -\pi/2 \to \pi/2$，于是
+        \begin{align*}
+          \frac{1}{2} \int_{0}^{\pi} \ln (sin t) dt
+           & = \frac{1}{2} \int_{-\pi/2}^{\pi/2} \ln (sin v) dv \\
+           & = \frac{1}{2} 2 \int_{0}^{\pi/2} \ln (sin v) dv    \\
+           & = \int_{0}^{\pi/2} \ln (sin v) dv                  \\
+           & = J
+        \end{align*}
+        （注：偶函数的瑕积分性质，在11-3-comment.tex中已证明）
+
+        综上，
+        \begin{align*}
+          2J & = J - \frac{\pi}{2}\ln 2 \\
+          J  & =  - \frac{\pi}{2}\ln 2
+        \end{align*}
+\end{itemize}
+
+\section*{6}
+
+todo
+
+
+\end{document}

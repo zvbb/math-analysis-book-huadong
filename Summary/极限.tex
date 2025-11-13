@@ -23,4 +23,27 @@
   \end{align*}
 \end{zremark}
 
+
+\begin{zremark}
+  \begin{align*}
+    (\ln\, x)^n << \frac{1}{x^p} \, (x \to 0)
+  \end{align*}
+  其中$n$是正整数。
+\end{zremark}
+
+利用洛必达法则，
+\begin{align*}
+  \lim\limits_{x \to 0} \frac{(\ln\, x)^n}{\frac{1}{x^p}}
+   & = \lim\limits_{x \to 0} \frac{(\ln\, x)^n}{x^{-p}}                                                                       \\
+   & = \lim\limits_{x \to 0} \frac{n (\ln x)^{n - 1} \frac{1}{x}}{(-p) x^{-p - 1}}                                            \\
+   & = - \frac{n}{p} \cdot \lim\limits_{x \to 0} \frac{(\ln x)^{n - 1}}{x^{-p}}                                               \\
+   & = - \frac{n}{p} \cdot \lim\limits_{x \to 0} \frac{(n - 1)(\ln x)^{n - 2}\frac{1}{x}}{(-p) x^{-p - 1}}                    \\
+   & = (- \frac{n}{p})(- \frac{n - 1}{p}) \cdot \lim\limits_{x \to 0} \frac{(\ln x)^{n - 2}}{x^{-p}}                          \\
+   & \vdots                                                                                                                   \\
+   & = (- \frac{n}{p})(- \frac{n - 1}{p}) \cdots (- \frac{2}{p}) \cdot \lim\limits_{x \to 0} \frac{\ln x}{x^{-p}}             \\
+   & = (- \frac{n}{p})(- \frac{n - 1}{p}) \cdots (- \frac{2}{p}) (- \frac{1}{p}) \cdot \lim\limits_{x \to 0} \frac{1}{x^{-p}} \\
+   & = (- \frac{n}{p})(- \frac{n - 1}{p}) \cdots (- \frac{2}{p}) (- \frac{1}{p}) \cdot \lim\limits_{x \to 0} x^p              \\
+   & = 0
+\end{align*}
+
 \end{document}
