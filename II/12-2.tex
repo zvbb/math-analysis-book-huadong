@@ -1,0 +1,168 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 12.2}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+\begin{itemize}
+  \item (4)
+
+        当$N \geq e^2$，则$n > N$有
+        \begin{align*}
+          (\ln n)^n > 2^n
+        \end{align*}
+        于是
+        \begin{align*}
+          \frac{1}{(\ln n)^n} < \frac{1}{2^n}
+        \end{align*}
+        $\sum \frac{1}{2^n}$收敛，故$\sum\limits_{n = 2}^{\infty} \frac{1}{(\ln n)^n}$收敛。
+
+  \item (7)
+
+        我们有$e^x - 1 \sim x \, (x \to 0)$，
+        又有
+        \begin{align*}
+          \lim\limits_{x \to 0} \frac{a^x -1}{e^x - 1}
+           & = \lim\limits_{x \to 0} \frac{a^x \ln a}{e^x}                       \\
+           & = \lim\limits_{x \to 0} (\frac{a}{e})^x \ln a                       \\
+           & = \lim\limits_{x \to 0} (\frac{a}{e})^x \lim\limits_{x \to 0} \ln a \\
+           & = 1 \cdot \ln a                                                     \\
+           & = \ln a
+        \end{align*}
+        于是可得
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{a^{\frac{1}{n}} -1}{\frac{1}{n}}
+           & = \lim\limits_{x \to 0} \frac{a^{x} -1}{x}       \\
+           & = \lim\limits_{x \to 0} \frac{a^{x} -1}{e^x - 1} \\
+           & = \ln a
+        \end{align*}
+        因为$\sum \frac{1}{n}$发散，故$\sum a^{\frac{1}{n}} -1 $发散。
+
+  \item (8)
+        \begin{align*}
+          e^{\ln\, (\ln n)^{\ln n}}
+           & = e^{\ln n \cdot \ln (\ln n)}          \\
+           & = \left[e^{\ln n}\right]^{\ln (\ln n)} \\
+           & = n^{\ln (\ln n)}
+        \end{align*}
+        因为$\lim \limits_{n \to \infty} \ln (\ln n) = +\infty$，
+        于是存在$N > 0$，$n > N$有
+        \begin{align*}
+          \ln (\ln n) > 3
+        \end{align*}
+        所以，$n > N$，有
+        \begin{align*}
+          \frac{n}{e^{\ln\, (\ln n)^{\ln n}}} < \frac{n}{n^3} = \frac{1}{n^2}
+        \end{align*}
+        $\sum \frac{1}{n^2}$收敛，故$\sum \frac{n}{ (\ln n)^{\ln n}}$收敛。
+
+  \item (9)
+
+        泰勒展开
+        \begin{align*}
+          a^x    & = 1 + \ln a \cdot x + \frac{(\ln a)^2 x^2}{2!} + o(x^2) \, (x \to 0) \\
+          a^{-x} & = 1 - \ln a \cdot x + \frac{(\ln a)^2 x^2}{2!} + o(x^2) \, (x \to 0)
+        \end{align*}
+        所以
+        \begin{align*}
+          a^x + a^{-x} - 2 & = (\ln a)^2 x^2 + o(x^2) \, (x \to 0)
+        \end{align*}
+        综上
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{a^{\frac{1}{n}} + a^{-{\frac{1}{n}}} - 2}{\frac{1}{n^2}}
+           & = \lim\limits_{x \to 0} \frac{a^x + a^{-x} - 2}{x^2}       \\
+           & = \lim\limits_{x \to 0} \frac{(\ln a)^2 x^2 + o(x^2)}{x^2} \\
+           & = (\ln a)^2
+        \end{align*}
+        $\sum \frac{1}{n^2}$收敛，故$\sum a^{\frac{1}{n}} + a^{-{\frac{1}{n}}} - 2$收敛。
+
+  \item (10)
+        \begin{align*}
+          \lim \limits_{n \to \infty} 2 n sin \frac{1}{n}
+           & = \lim \limits_{n \to \infty} 2\frac{sin \frac{1}{n}}{\frac{1}{n}} \\
+           & = 2
+        \end{align*}
+        所以有保号性可知，存在$N > 0$， $n > N$有
+        \begin{align*}
+          2\frac{sin \frac{1}{n}}{\frac{1}{n}} > \frac{3}{2}
+        \end{align*}
+        于是，$n > N$，有
+        \begin{align*}
+          \frac{1}{n^{2 n sin \frac{1}{n}}} < \frac{1}{n^{3/2}}
+        \end{align*}
+        $\sum \frac{1}{n^{3/2}}$收敛，故$\sum \frac{1}{n^{2 n sin \frac{1}{n}}}$收敛。
+\end{itemize}
+
+\section*{2}
+
+\begin{itemize}
+  \item (4)
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{u_{n + 1}}{u_n}
+           & = \lim\limits_{n \to \infty} \frac{(n +1)!}{(n+1)^{n + 1}} \cdot \frac{n^n}{n!}                                    \\
+           & = \lim\limits_{n \to \infty} \frac{(n +1) n^n}{(n+1)^{n + 1}}                                                      \\
+           & = \lim\limits_{n \to \infty} \frac{(n +1) n^n}{(n +1)(n+1)^{n}}                                                    \\
+           & = \lim\limits_{n \to \infty} \frac{n^n}{(n+1)^{n}}                                                                 \\
+           & = \lim\limits_{n \to \infty} \left(\frac{n}{n+1}\right)^n                                                          \\
+           & = \lim\limits_{n \to \infty} \left(1 - \frac{1}{n + 1}\right)^n                                                    \\
+           & = \lim\limits_{n \to \infty} \left(1 + \frac{1}{-(n + 1)}\right)^n                                                 \\
+           & = \lim\limits_{n \to \infty} \frac{\left(1 + \frac{1}{-(n + 1)}\right)^{n+1}}{\left(1 + \frac{1}{-(n + 1)}\right)}
+        \end{align*}
+        考虑
+        \begin{align*}
+          \lim\limits_{n \to \infty} \left(1 + \frac{1}{-(n + 1)}\right)^{n+1}
+           & = \lim\limits_{n \to \infty} \frac{1}{\left(1 + \frac{1}{-(n + 1)}\right)^{-(n+1)}} \\
+           & = \frac{1}{e}
+        \end{align*}
+        （使用了归结原理：$\lim\limits_{x \to -\infty} (1 + \frac{1}{x})^x = e$）。
+
+        又因为
+        \begin{align*}
+          \lim\limits_{n \to \infty} 1 + \frac{1}{-(n + 1)} = 1
+        \end{align*}
+        所以
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{\left(1 + \frac{1}{-(n + 1)}\right)^{n+1}}{\left(1 + \frac{1}{-(n + 1)}\right)}
+           & = \frac{\frac{1}{e}}{1} \\
+           & = \frac{1}{e} \\
+           & < 1
+        \end{align*}
+        故收敛。
+\end{itemize}
+
+
+\end{document}

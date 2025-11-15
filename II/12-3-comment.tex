@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 12.3}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  证明：莱布尼茨判别法的余项估计式为：
+  \begin{align*}
+    |R_n| \leq u_{n + 1}
+  \end{align*}
+\end{zremark}
+证明：
+\begin{itemize}
+  \item $n + 1$是奇数；
+        \begin{align*}
+          R_n & = S - S_n                                          \\
+              & = u_{n + 1} - u_{n+2} + u_{n+3} - u_{n+4} + \cdots \\
+              & = \sum\limits_{k = n + 1} (-1)^{k - 1} u_k
+        \end{align*}
+        这里$\sum\limits_{k = n + 1} (-1)^{k - 1} u_k$也是一个
+        交错级数，按照定理12.11证明类似的处理，考察它的部分和数列
+        $\{T_n\}$，由区间套$\{[T_{2m}, T_{2m - 1}]\}$，且
+        $T_{2m - 1}$单减，$T_{2m}$单增。于是$u_{n + 1}$就是最大的
+        奇数项部分和，所以
+        \begin{align*}
+          u_{n + 1} \geq T_{2m - 1}
+        \end{align*}
+        又有
+        \begin{align*}
+          R_n = \lim\limits_{m \to \infty} T_{2m - 1}
+        \end{align*}
+        由保不等式可知
+        \begin{align*}
+          u_{n + 1} \geq R_n
+        \end{align*}
+
+  \item $n + 1$是偶数.
+        % \begin{align*}
+        %   R_n & = S - S_n                                          \\
+        %       & = -u_{n + 1} + u_{n+2} - u_{n+3} + u_{n+4} + \cdots \\
+        %       & = \sum\limits_{k = n + 1} (-1)^{k - 1} u_k
+        % \end{align*}
+
+        todo
+\end{itemize}
+
+\begin{zremark}
+  例3：
+  \begin{align*}
+    2sin\frac{x}{2}\left( \frac{1}{2} + \sum\limits_{k=1}^n cos\, kx \right)
+     & = sin \frac{x}{2} + \left( sin \frac{3}{2}x - sin \frac{x}{2} \right)
+    + \cdots + \left[ sin(n + \frac{1}{2})x - sin(n - \frac{1}{2})x \right]
+  \end{align*}
+  这一步的推导。
+\end{zremark}
+\begin{align*}
+   & 2sin\frac{x}{2}\left( \frac{1}{2} + \sum\limits_{k=1}^n cos\, kx \right)                           \\
+   & = sin \frac{x}{2} + 2sin\frac{x}{2} cos x + 2sin\frac{x}{2}cos 2x + \cdots + 2sin\frac{x}{2}cos nx \\
+\end{align*}
+使用积化和差公式
+\begin{align*}
+  2 sin A cos B = sin (A + B) + sin (A - B)
+\end{align*}
+于是
+\begin{align*}
+   & sin \frac{x}{2} + 2sin\frac{x}{2} cos x + 2sin\frac{x}{2}cos 2x + \cdots + 2sin\frac{x}{2}cos nx \\                                                                      \\
+   & = sin \frac{x}{2} + \left( sin \frac{3}{2}x - sin \frac{x}{2} \right)
+  + \cdots + \left[ sin(n + \frac{1}{2})x - sin(n - \frac{1}{2})x \right]
+\end{align*}
+
+
+
+\end{document}
