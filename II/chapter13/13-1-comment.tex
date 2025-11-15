@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 13.1}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  证明：定理13.2的推论。
+\end{zremark}
+\textbf{证明：}
+若不一致收敛于$f$，即
+\begin{align*}
+  \lim\limits_{n \to +\infty} \sup\limits_{x \in D} |f_n(x) - f(x)| \neq 0
+\end{align*}
+由极限的定义，存在$\epsilon_0 > 0$，对任意$N > 0$，都存在$n > N$，使得
+\begin{align*}
+  \left|\sup\limits_{x \in D} |f_n(x) - f(x)| - 0 \right| & \geq \epsilon_0 \\
+  \sup\limits_{x \in D} |f_n(x) - f(x)|                   & \geq \epsilon_0 
+\end{align*}
+由上确界的定义，存在$x_n \in D$，使得
+\begin{align*}
+  |f_n(x) - f(x)| > \frac{1}{2} \epsilon_0
+\end{align*}
+于是得到数列$\{x_n\}$，使得
+\begin{align*}
+ |f_n(x_n) - f(x_n)| \geq \frac{1}{2} \epsilon_0 
+\end{align*}
+如果极限存在，则
+\begin{align*}
+  \lim\limits_{n \to +\infty} |f_n(x_n) - f(x_n)| \geq \frac{1}{2} \epsilon_0
+\end{align*}
+另外，极限不存在，也满足推论中的描述。
+
+\end{document}
