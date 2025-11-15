@@ -38,5 +38,60 @@
 
 \section*{1}
 
+\begin{itemize}
+  \item (3)
+        \begin{align*}
+          \sum \frac{(-1)^n}{n^{p + \frac{1}{n}}}
+           & = \sum \frac{(-1)^n}{n^p \cdot n^{\frac{1}{n}}}             \\
+           & = \sum (-1)^n \frac{1}{n^p} \cdot \frac{1}{n^{\frac{1}{n}}} \\
+        \end{align*}
+
+        \begin{itemize}
+          \item (i) $p < 0$；
+                \begin{align*}
+                  \lim\limits_{n \to \infty} \frac{1}{n^p} \cdot \frac{1}{n^{\frac{1}{n}}}
+                   & = +\infty
+                \end{align*}
+                故级数发散。
+
+          \item (ii) $p = 0$；
+                \begin{align*}
+                  \lim\limits_{n \to \infty} \frac{1}{n^0} \cdot \frac{1}{n^{\frac{1}{n}}}
+                   & = \lim\limits_{n \to \infty} 1 \cdot \frac{1}{n^{\frac{1}{n}}} \\
+                   & = 1
+                \end{align*}
+                故级数发散。
+
+          \item (iii) $1 < p$；
+                \begin{align*}
+                  \lim\limits_{n \to \infty} \frac{\frac{1}{n^p} \cdot n^{\frac{1}{n}}}{\frac{1}{n^p}}
+                   & = \lim\limits_{n \to \infty} n^{\frac{1}{n}} \\
+                   & = 1
+                \end{align*}
+                因为$\sum \frac{1}{n^p}$收敛，由比较原则，级数绝对收敛。
+
+          \item (iv) $0 < p \leq 1$；
+                \begin{align*}
+                  \lim\limits_{n \to \infty} \frac{\frac{1}{n^p} \cdot n^{\frac{1}{n}}}{\frac{1}{n^p}}
+                   & = \lim\limits_{n \to \infty} n^{\frac{1}{n}} \\
+                   & = 1
+                \end{align*}
+                因为$\sum \frac{1}{n^p}$发散，由比较原则，级数不绝对收敛。
+
+                考虑条件收敛，对于交错级数$\sum (-1) \frac{1}{n^p}$，由莱布尼茨判别法可知其收敛。
+                又有
+                \begin{align*}
+                  (\sqrt[x]{x})'
+                   & = (e^{\ln\, \sqrt[x]{x}})'                                     \\
+                   & = (e^{\frac{1}{x} \ln\, x})'                                   \\
+                   & = e^{\frac{1}{x} \ln\, x} \left[\frac{1 - \ln\, x}{x^2}\right] \\
+                   & = \sqrt[x]{x} \left[\frac{1 - \ln\, x}{x^2}\right]
+                \end{align*}
+                所以，$x > e$时，函数$\sqrt[x]{x}$单减，由归结原理可知，$n > 3$时，$\sqrt[n]{n}$单调且有界，
+                因为改变级数的有限项并不影响原有级数的敛散性，因此利用阿贝尔判别法，
+                级数收敛。
+        \end{itemize}
+
+\end{itemize}
 
 \end{document}
