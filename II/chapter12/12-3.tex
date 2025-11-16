@@ -92,6 +92,79 @@
                 级数收敛。
         \end{itemize}
 
+  \item (5)
+
+        由$\sum \frac{1}{n}$（调和级数）发散可知，该级数不绝对收敛。
+
+        我们有
+        \begin{align*}
+          sum \frac{(-1)^n}{\sqrt{n}}
+        \end{align*}
+        收敛。
+        \begin{align*}
+          sum \frac{1}{n}
+        \end{align*}
+        发散。
+        由极限的四则运算法则可知
+        \begin{align*}
+          sum \frac{(-1)^n}{\sqrt{n}} + \frac{1}{n}
+        \end{align*}
+        发散。
+
+        注：这种拆分是有条件的，即知道拆开后的级数收敛或发散，本质上这是
+        极限四则运算法则的应用，即：
+        \begin{align*}
+          \lim\limits_{n \to \infty} S_n
+           & = \lim\limits_{n \to \infty} A_n + B_n                            \\
+           & = \lim\limits_{n \to \infty} A_n + \lim\limits_{n \to \infty} B_n
+        \end{align*}
+
+  \item (8)
+        \begin{align*}
+          \sum \left|n! \left(\frac{x}{n}\right)^n\right|
+          = \sum n! \left(\frac{|x|}{n}\right)^n
+        \end{align*}
+        于是
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{|u_{n + 1}|}{|u_n|}
+           & = \lim\limits_{n \to \infty} (n + 1)! \left(\frac{|x|}{n + 1}\right)^{n + 1} \cdot \frac{1}{n!} \left(\frac{n}{|x|}\right)^n \\
+           & = \lim\limits_{n \to \infty} \left(\frac{n}{n+1}\right)^n \cdot |x|                                                          \\
+           & = \lim\limits_{n \to \infty} \frac{|x|}{\left(\frac{n+1}{n}\right)^n}                                                        \\
+           & = \lim\limits_{n \to \infty} \frac{|x|}{\left(1 + \frac{1}{n}\right)^n}                                                      \\
+           & = \frac{1}{e} \cdot |x|
+        \end{align*}
+
+        (i) $|x|<e$，即$\frac{1}{e} \cdot |x| < 1$，由比式判别法，级数收敛，即绝对收敛。
+
+        (ii) $|x| > e$，即$\frac{1}{e} \cdot |x| > 1$，由比式判别法可知，不绝对收敛。
+        由于
+        \begin{align*}
+          c = \lim\limits_{n \to \infty} \frac{|u_{n+1}|}{|u_n|} > 1
+        \end{align*}
+        由保号性，存在$N_0$，$n > N_0$有
+        \begin{align*}
+          1 & < \frac{|u_{n+1}|}{|u_n|}
+        \end{align*}
+        于是可得
+        \begin{align*}
+          |u_{N_0}| < |u_n|  < |u_{n+1}|
+        \end{align*}
+        即当$n \to \infty$时，$u_n$的极限不可能为零，由柯西准则的推论可知，级数发散。
+
+        (iii) $|x| = e$，即$\frac{1}{e} \cdot |x| = 1$。因为
+        \begin{align*}
+          \frac{|u_{n + 1}|}{|u_n|} & = \frac{|x|}{\left(1 + \frac{1}{n}\right)^n}
+        \end{align*}
+        由$\left(1 + \frac{1}{n}\right)^n$单增，可得$\frac{|x|}{\left(1 + \frac{1}{n}\right)^n}$单减，
+        且收敛于1，
+        于是对$N_0 > 1$，对所有的$n > N_0$有
+        \begin{align*}
+          \frac{|u_{n + 1}|}{|u_n|} \geq 1 \\
+          |u_{n + 1}| \geq |u_n| \geq |u_{N_0}|
+        \end{align*}
+        即当$n \to \infty$时，$u_n$的极限不可能为零，由柯西准则的推论可知，级数发散。
+
 \end{itemize}
+
 
 \end{document}

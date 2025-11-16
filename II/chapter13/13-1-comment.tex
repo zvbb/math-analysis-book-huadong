@@ -47,7 +47,7 @@
 由极限的定义，存在$\epsilon_0 > 0$，对任意$N > 0$，都存在$n > N$，使得
 \begin{align*}
   \left|\sup\limits_{x \in D} |f_n(x) - f(x)| - 0 \right| & \geq \epsilon_0 \\
-  \sup\limits_{x \in D} |f_n(x) - f(x)|                   & \geq \epsilon_0 
+  \sup\limits_{x \in D} |f_n(x) - f(x)|                   & \geq \epsilon_0
 \end{align*}
 由上确界的定义，存在$x_n \in D$，使得
 \begin{align*}
@@ -55,12 +55,27 @@
 \end{align*}
 于是得到数列$\{x_n\}$，使得
 \begin{align*}
- |f_n(x_n) - f(x_n)| \geq \frac{1}{2} \epsilon_0 
+  |f_n(x_n) - f(x_n)| \geq \frac{1}{2} \epsilon_0
 \end{align*}
 如果极限存在，则
 \begin{align*}
   \lim\limits_{n \to +\infty} |f_n(x_n) - f(x_n)| \geq \frac{1}{2} \epsilon_0
 \end{align*}
 另外，极限不存在，也满足推论中的描述。
+
+\begin{zremark}
+  步骤说明：
+  \begin{align*}
+    \sup\limits_{x \in (-1, 1)} \left| \frac{x^n}{x - 1} \right|
+    \geq \left| \frac{\left( \frac{n}{n+1} \right)^n}{1 - \frac{n}{n + 1}} \right|
+  \end{align*}
+  其中$n$是正整数。
+\end{zremark}
+\textbf{证明：}
+因为
+\begin{align*}
+  -1 < x = \frac{n}{n+1} < 1
+\end{align*}
+即$x \in (-1, 1)$，由上确界的定义可得以上不等式成立。
 
 \end{document}
