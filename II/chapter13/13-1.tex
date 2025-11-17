@@ -37,5 +37,341 @@
 \maketitle
 
 \section*{1}
+\begin{itemize}
+  \item (1)
+
+        对任意$x \in (-1, 1)$，我们有
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sqrt{x^2 - \frac{1}{n^2}}
+           & = \sqrt{x^2}
+        \end{align*}
+        令$f(x) = \sqrt{x^2}$，于是$f(x)$是函数列的极限函数。
+
+        我们有
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sup\limits_{x \in (-1, 1)} |f_n(x) - f(x)|
+           & = \lim\limits_{n \to \infty} \sup\limits_{x \in (-1, 1)} \left|\sqrt{x^2 - \frac{1}{n^2}} - \sqrt{x^2}\right|                                   \\
+           & = \lim\limits_{n \to \infty} \sup\limits_{x \in (-1, 1)} \left|\frac{x^2 - \frac{1}{n^2} - x^2}{\sqrt{x^2 - \frac{1}{n^2}} + \sqrt{x^2}}\right| \\
+           & = \lim\limits_{n \to \infty} \sup\limits_{x \in (-1, 1)} \left|\frac{\frac{1}{n^2}}{\sqrt{x^2 - \frac{1}{n^2}} + \sqrt{x^2}}\right|
+        \end{align*}
+        可知$x = 0$时，取最大值，于是
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sup\limits_{x \in (-1, 1)} \left|\frac{\frac{1}{n^2}}{\sqrt{x^2 - \frac{1}{n^2}} + \sqrt{x^2}}\right|
+           & = \lim\limits_{n \to \infty} \sup\limits_{x \in (-1, 1)} \frac{1}{n} \\
+           & = 0
+        \end{align*}
+        故$f_n(x) \rightrightarrows f(x)$.
+
+  \item (2)
+
+        对任意$x \in (-\infty, +\infty)$，我们有
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{x}{1 + n^2x^2}
+           & = 0
+        \end{align*}
+        令$f(x) = 0$，于是$f(x)$是函数列的极限函数。
+
+        考虑
+        \begin{align*}
+          |f_n(x) - f(x)|
+           & = \left|\frac{x}{1 + n^2x^2}\right|                 \\
+           & = \frac{|x|}{1 + n^2x^2}                            \\
+           & = \frac{1}{\frac{1}{|x|} + n^2|x|}                  \\
+           & \leq \frac{1}{ 2 \sqrt{\frac{1}{|x|} \cdot n^2|x|}} \\
+           & = \frac{1}{ 2 n}
+        \end{align*}
+        于是，我们有
+        \begin{align*}
+          0 \leq \sup\limits_{x \in (-\infty, +\infty)} |f_n(x) - f(x)| \leq \frac{1}{2n}
+        \end{align*}
+        由迫敛性可知
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sup\limits_{x \in (-\infty, +\infty)} |f_n(x) - f(x)| = 0
+        \end{align*}
+
+  \item (3)
+
+        $x = 0$时，$f_n (x) = 1, n = 1, 2, 3, \cdots$；
+
+        我们有
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{1}{n + 1} = 0
+        \end{align*}
+        于是，对任意$x \in (0, 1)$，存在$N$，当$n > N$，有
+        \begin{align*}
+          \frac{1}{n + 1} & < x \\
+          f_n(x)          & = 0
+        \end{align*}
+        所以
+        \begin{align*}
+          \lim\limits_{n \to \infty} f_n(x)
+           & = 0
+        \end{align*}
+        令
+        \begin{equation*}
+          f(x) =
+          \begin{cases}
+            1, & x = 0        \\
+            0, & x \in (0, 1)
+          \end{cases}
+        \end{equation*}
+        $f(x)$是函数列的极限函数。
+
+        \begin{itemize}
+          \item 是否为一致收敛；
+
+                取$x = \frac{1}{2(n + 1)}$，有
+                \begin{align*}
+                  |f_n(x) - f(x)|
+                   & = \left|-(n+1) \frac{1}{2(n + 1)} + 1\right| \\
+                   & = \left|-\frac{1}{2} + 1\right|              \\
+                   & = \frac{1}{2}
+                \end{align*}
+                由上确界的定义可知，
+                \begin{align*}
+                  \sup\limits_{x \in [0, 1)} |f_n(x) - f(x)| \geq \frac{1}{2}
+                \end{align*}
+                所以由保不等式性
+                \begin{align*}
+                  \lim\limits_{n \to \infty} \sup\limits_{x \in [0, 1)} |f_n(x) - f(x)| \neq 0
+                \end{align*}
+                故不一致收敛。
+
+          \item 是否内闭一致收敛。
+
+                取闭区间为$[0, \frac{1}{2}]$，证明同上，即不内闭一致收敛。
+        \end{itemize}
+
+        \begin{zremark}
+          扩充：
+
+          区间$[0, 1)$改为$(0, 1)$后，会有什么变化。
+        \end{zremark}
+
+        \begin{itemize}
+          \item 一致收敛性；
+
+                同理，可取$x = \frac{1}{2(n + 1)}$，来证明一致收敛性。
+
+                原因在于：影响一致收敛的是点$0$的领域，而不是这一个点。
+
+          \item 内闭一致收敛性。
+
+                设$[a, b] \subset (0, 1)$，由$\lim\limits_{n \to \infty} \frac{1}{n + 1} = 0$，
+                当$n$足够大时，由$\frac{1}{n + 1} < a$，此时$f_n(x)$在$[a, b]$上不在是分段函数，
+                $f_n(x) \equiv 0$，显然，内闭一致收敛。
+
+                原因在于：闭区间和开区间有着巨大的差异，闭区间$[a, b]$不要按照去掉一个点$0$理解，
+                而是去掉了$U(0; a)$这个邻域。
+        \end{itemize}
+
+  \item (4)
+
+        对任意$x \in D$，我们有
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{x}{n} = 0
+        \end{align*}
+        令$f(x) = 0$，于是$f(x)$是函数列的极限函数。
+
+        \begin{itemize}
+          \item 是否为一致收敛；
+
+                考虑
+                \begin{align*}
+                  |f_n(x) - f(x)|
+                   & = f_n(x)      \\
+                   & = \frac{x}{n}
+                \end{align*}
+                因为
+                \begin{align*}
+                  \lim\limits_{x \to \infty} \frac{x}{n} = +\infty
+                \end{align*}
+                于是对$M > 1$，存在$x_0$，$x > x_0$，有
+                \begin{align*}
+                  \frac{x}{n} > M
+                \end{align*}
+                可得
+                \begin{align*}
+                  \sup \limits_{x \in D} |f_n(x) - f(x)| > M
+                \end{align*}
+                从而
+                \begin{align*}
+                  \lim\limits_{n \to \infty} \sup\limits_{x \in D} |f_n(x) - f(x)| \neq 0
+                \end{align*}
+                故不一致收敛。
+
+          \item 是否内闭一致收敛。
+
+                对任意$[a, b] \subset D$，$f_n(x)$在区间$[a, b]$上单增，可知
+                \begin{align*}
+                  \sup\limits_{x \in [a, b]} |f_n(x) - f(x)| = \frac{b}{n}
+                \end{align*}
+                于是
+                \begin{align*}
+                  \lim\limits_{n \to \infty} \sup\limits_{x \in [a, b]} |f_n(x) - f(x)|
+                   & = \lim\limits_{n \to \infty} \frac{b}{n} \\
+                   & = 0
+                \end{align*}
+                故内闭一致收敛。
+        \end{itemize}
+
+  \item (5)
+
+        对任意$x \in D$，我们有
+        \begin{align*}
+          \lim\limits_{n \to \infty} sin \frac{x}{n} = 0
+        \end{align*}
+        令$f(x) = 0$，于是$f(x)$是函数列的极限函数。
+
+        \begin{itemize}
+          \item 是否为一致收敛；
+
+                考虑
+                \begin{align*}
+                  |f_n(x) - f(x)|
+                   & = |f_n(x)|                     \\
+                   & = \left|sin \frac{x}{n}\right|
+                \end{align*}
+                取$x_0 = \frac{n\pi}{2}$，
+                \begin{align*}
+                  \left|sin \frac{x_0}{n}\right| = 1
+                \end{align*}
+                所以
+                \begin{align*}
+                  \sup\limits_{x \in D} |f_n(x) - f(x)| \geq 1
+                \end{align*}
+                于是，我们有
+                \begin{align*}
+                  \lim\limits_{n \to \infty} \sup\limits_{x \in D} |f_n(x) - f(x)| \neq 0
+                \end{align*}
+                故不一致收敛。
+
+          \item 是否为内闭一致收敛。
+
+                任意$[a, b] \in D$，
+                我们有
+                \begin{align*}
+                  |f_n(x) - f(x)|
+                   & = |f_n(x)|                     \\
+                   & = \left|sin \frac{x}{n}\right| \\
+                   & \leq \left| \frac{x}{n}\right|
+                \end{align*}
+                所以
+                \begin{align*}
+                  \sup\limits_{x \in [a, b]} |f_n(x) - f(x)| \leq max\{\frac{|a|}{n},\frac{|b|}{n}\}
+                \end{align*}
+                我们有
+                \begin{align*}
+                  \lim\limits_{n \to \infty} \sup\limits_{x \in [a, b]} |f_n(x) - f(x)|
+                   & = \lim\limits_{n \to \infty} max\{\frac{|a|}{n},\frac{|b|}{n}\} \\
+                   & = 0
+                \end{align*}
+                故内闭一致收敛。
+        \end{itemize}
+\end{itemize}
+
+\section*{2}
+
+对任意$n$有
+\begin{align*}
+  |f_n(x) - f(x)| \leq a_n
+\end{align*}
+即
+\begin{align*}
+  \sup\limits_{x \in D} |f_n(x) - f(x)| \leq a_n
+\end{align*}
+已知
+\begin{align*}
+  \lim\limits_{n \to \infty} a_n = 0
+\end{align*}
+由迫敛性可知
+\begin{align*}
+  \lim\limits_{n \to \infty} \sup\limits_{x \in D} |f_n(x) - f(x)| = 0
+\end{align*}
+故函数列一致收敛于$f$。
+
+\section*{3}
+
+\begin{itemize}
+  \item (1)
+        \begin{align*}
+          |u_n|
+           & = \left| \frac{x^n}{(n - 1)!} \right| \\
+           & = \frac{|x|^n}{(n - 1)!}              \\
+           & \leq \frac{r^n}{(n - 1)!}
+        \end{align*}
+        令$M_n = \frac{r^n}{(n - 1)!}$.
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{M_{n + 1}}{M_{n}}
+           & = \lim\limits_{n \to \infty} \frac{r^{n + 1}}{n!}  \frac{(n - 1)!}{r^n} \\
+           & = \lim\limits_{n \to \infty} \frac{r}{n}                                \\
+           & = 0
+        \end{align*}
+        由比式判别法可知
+        \begin{align*}
+          \sum M_n
+        \end{align*}
+        收敛。
+        于是，由优级数判别法可知
+        \begin{align*}
+          \sum \frac{x^n}{(n - 1)!}
+        \end{align*}
+        收敛。
+
+  \item (2)
+
+        使用$A-D$判别法。
+
+        取$\{v_n(x)\} = \{\frac{x^2}{(1 + x^2)^n} \}, \sum u_n(x) = \sum (-1)^{n - 1}$。
+
+        (i) $\sum u_n(x)$的部分和函数列
+        \begin{align*}
+          |S_n(x)| \leq 1
+        \end{align*}
+        即$\sum u_n(x)$在$(-\infty, +\infty)$上一致有界。
+
+        (ii) 对每一个$x \in (-\infty, +\infty)$，
+        \begin{align*}
+          (1 + x^2)^n \leq (1 + x^2)^{n + 1}
+        \end{align*}
+        所以
+        \begin{align*}
+          \frac{x^2}{(1 + x^2)^n} \geq \frac{1}{(1 + x^2)^{n + 1}}
+        \end{align*}
+        所以$\{v_n(x)\}$是单调的；
+
+        (iii)对任意$x \in (-\infty, +\infty)$，
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{x^2}{(1 + x^2)^n} = 0
+        \end{align*}
+        令$f(x) = 0$，于是$f(x)$是函数列的极限函数。
+
+        考虑$x \neq 0$时，
+        \begin{align*}
+          |v_n(x) - f(x)|
+           & = \left|\frac{x^2}{(1 + x^2)^n} - 0\right| \\
+           & = \left|\frac{x^2}{(1 + x^2)^n}\right|     \\
+           & \leq \frac{x^2}{1 + n x^2}                 \\
+           & = \frac{1}{\frac{1}{x^2} + n}              \\
+           & \leq \frac{1}{n}
+        \end{align*}
+        注：第一个不等式可以使用二次项展开得到。
+
+        $x = 0$时，$|v_n(x) - f(x)| = 0 < \frac{1}{n}$；所以
+        \begin{align*}
+          \sup\limits_{x \in (-\infty, \infty)} |v_n(x) - f(x)| \leq \frac{1}{n}
+        \end{align*}
+        又有
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sup\limits_{x \in (-\infty, \infty)} |v_n(x) - f(x)|
+           & = \lim\limits_{n \to \infty} \frac{1}{n} \\
+           & = 0
+        \end{align*}
+        所以，$v_n(x) \rightrightarrows 0$。
+
+        综上，使用$A-D$判别法，函数项级数$\sum \frac{(-1)^{n - 1}x^2}{(1 + x^2)^n}$一致收敛。
+
+\end{itemize}
+
 
 \end{document}
