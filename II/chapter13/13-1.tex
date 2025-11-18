@@ -371,7 +371,98 @@
 
         综上，使用$A-D$判别法，函数项级数$\sum \frac{(-1)^{n - 1}x^2}{(1 + x^2)^n}$一致收敛。
 
+  \item (4)
+
+        $x \in [0, 1]$，我们有
+        \begin{align*}
+          |u_n| = \frac{x^n}{n^2} \leq \frac{1}{n^2}
+        \end{align*}
+        $\sum \frac{1}{n^2}$收敛，由优级数判别法可知，
+        $\sum \frac{x^n}{n^2}$一致收敛。
+
+  \item (5)
+
+        令
+        \begin{align*}
+          v_n(x) = \frac{1}{x^2 + n} \\
+          \sum u_n(x) = \sum (-1)^{n - 1}
+        \end{align*}
+
+        (i)$\sum u_n(x)$的部分和函数列$S_n(x)$，有
+        \begin{align*}
+          |S_n(x)| \leq 1
+        \end{align*}
+        即$\sum u_n(x)$一致有界。
+
+        (ii)对每一个$x \in (-\infty, +\infty)$，
+        \begin{align*}
+          \frac{1}{x^2 + n} \geq \frac{1}{x^2 + n + 1}
+        \end{align*}
+        即$\{v_n(x)\}$是单减的。
+
+        (iii)
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{1}{x^2 + n} = 0
+        \end{align*}
+        令$f(x) = 0$，于是$f(x)$是函数列的极限函数。
+
+        考虑
+        \begin{align*}
+          \sup\limits_{x \in (-\infty, \infty)} |v_n(x) - f(x)|
+           & = \sup\limits_{x \in (-\infty, \infty)} \frac{1}{x^2 + n} \\
+           & = \frac{1}{n}
+        \end{align*}
+        于是
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sup\limits_{x \in (-\infty, \infty)} |v_n(x) - f(x)|
+           & = \lim\limits_{n \to \infty} \frac{1}{n} \\
+           & = 0
+        \end{align*}
+        故$v_n(x) \rightrightarrows 0$。
+
+        综上，由A-D判别法，函数项级数$\sum \frac{(-1)^{n - 1}}{x^2 + n}$一致收敛。
+
+  \item (6)
+
+        (i)$x \neq 0$时，部分和函数列（等比数列求和）
+        \begin{align*}
+          S_n(x) & = \sum_{k = 1}^n \frac{x^2}{(1 + x^2)^{k - 1}}                  \\
+                 & = \frac{x^2(1 - (\frac{1}{1 + x^2})^n) }{1 - \frac{1}{1 + x^2}} \\
+                 & = 1 + x^2 - \frac{1}{(1 + x^2)^{n - 1}}
+        \end{align*}
+        又
+        \begin{align*}
+          \lim\limits_{n \to \infty} S_n(x)
+           & = \lim\limits_{n \to \infty} S_n(x)                                \\
+           & = \lim\limits_{n \to \infty} 1 + x^2 - \frac{1}{(1 + x^2)^{n - 1}} \\
+           & = 1 + x^2
+        \end{align*}
+        令$s(x) = 1 + x^2$，于是$s(x)$是函数列$\{S_n(x)\}$的极限函数。
+
+
+        考虑
+        \begin{align*}
+          \sup\limits_{x \neq 0} |S_n(x) - s(x)|
+           & = \sup\limits_{x \neq 0} \left|1 + x^2 - \frac{1}{(1 + x^2)^{n - 1}} - (1 + x^2) \right| \\
+           & = \sup\limits_{x \neq 0} \frac{1}{(1 + x^2)^{n - 1}}                                     \\
+           & = 1
+        \end{align*}
+
+        (ii)另外考虑$x = 0$的情况，由上确界的定义可知
+        \begin{align*}
+          \sup\limits_{x \in (-\infty, +\infty)} |S_n(x) - s(x)| \geq 1
+        \end{align*}
+
+        所以
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sup\limits_{x \in (-\infty, +\infty)} |S_n(x) - s(x)|
+           & \neq 0
+        \end{align*}
+        故函数项级数不一致收敛。
+
 \end{itemize}
+
+
 
 
 \end{document}
