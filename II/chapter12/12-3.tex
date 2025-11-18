@@ -164,6 +164,71 @@
         \end{align*}
         即当$n \to \infty$时，$u_n$的极限不可能为零，由柯西准则的推论可知，级数发散。
 
+  \item (9)
+
+        \begin{align*}
+          \sum |u_n| = \sum \frac{1}{n}
+        \end{align*}
+        发散，即不绝对收敛。
+
+        令
+        \begin{equation*}
+          a_n =
+          \begin{cases}
+            1,  & n = 6k + 1, 6k + 2, 6k + 3 \\
+            -1, & n = 6k + 4, 6k + 5, 6k + 6
+          \end{cases}
+          ,k = 0, 1, 2, ...
+        \end{equation*}
+        和
+        \begin{align*}
+          b_n = \frac{1}{n}
+        \end{align*}
+        所以$\{a_n\}$的部分和$A_n$有
+        \begin{align*}
+          |A_n| \leq 3
+        \end{align*}
+        且
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{1}{n} = 0
+        \end{align*}
+        又$\{b_n\}$是单调减的，由A-D判别法，该级数条件收敛。
+
+  \item (10)
+        \begin{align*}
+          \sum |u_n| = \sum \frac{1}{n}
+        \end{align*}
+        发散，即不绝对收敛。
+
+        设级数的部分和为$S_n$，取它的子列$S_{3n}, \, n = 1, 2, 3, ...$，即
+        \begin{align*}
+          S_{3n}
+           & = (1 + \frac{1}{2} - \frac{1}{3}) + \cdots + (\frac{1}{3n - 2} + \frac{1}{3n - 1} - \frac{2}{3n})
+        \end{align*}
+        令
+        \begin{align*}
+          T_n = 1 + \frac{1}{4} + \frac{1}{7} + \cdots + \frac{1}{3n - 2}
+        \end{align*}
+        因为
+        \begin{align*}
+          \frac{1}{3n - 1} - \frac{2}{3n}
+        \end{align*}
+        所以
+        \begin{align*}
+          T_n < S_{3n}
+        \end{align*}
+        $T_n$是$\sum \frac{1}{3n - 2}$的部分和数列，且该级数发散（与$\sum \frac{1}{n}$比较）。
+        可知$T_n$发散且单增，所以
+        \begin{align*}
+          \lim\limits_{n \to \infty} T_n = +\infty
+        \end{align*}
+        于是
+        \begin{align}
+          \lim\limits_{n \to \infty} \{S_{3n}\} = +\infty
+        \end{align}
+        即$S_{3n}$发散。
+        以为$S_{3n}$是$\{S_n\}$子列，所以$\{S_n\}$发散，即级数发散。
+
 \end{itemize}
 
 
