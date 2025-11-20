@@ -85,26 +85,63 @@ $f(x)$在$[a, b]$上连续，所以$f(x)$在$x$点处也连续。
   证明：在定理13.11的条件下，还可推出在$[a, b]$上$f_n \rightrightarrows f \, (n \to \infty)$.
 \end{zremark}
 \textbf{证明：}
-由于$f_n(x_0) \to f(x_0) \, (n \to \infty), f'_n \rightrightarrows g \, (n \to \infty)$，
-因此对任意$\epsilon > 0$，存在正数$N$，当$n > N$时，任意$x \in [a, b]$
+习题2
+
+\begin{zremark}
+  定理13.8在函数项级数上的推广。
+
+  极限交换定理：$\sum u_n(x)$在$(a, x_0) \cup (x_0, b)$上一致收敛于$S(x)$，
+  且对每个$n$，$\lim\limits_{x \to x_0} u_n(x) = a_n$，则
+  $\lim\limits_{x \to x_0} \sum u_n(x)$和$\sum a_n$存在且相等，即
+  \begin{align*}
+    \lim\limits_{x \to x_0} \sum u_n(x) = \sum \lim\limits_{x \to x_0} u_n(x)
+  \end{align*}
+\end{zremark}
+\textbf{证明：}
+先证$\sum a_n$是收敛数项级数.
+设$\sum u_n(x)$的部分和函数列为$\{S_n(x)\}$，由于
+$\sum u_n(x)$一致收敛于$S_(x)$，
+即$\{S_n(x)\}$一致收敛于$S(x)$，
+由函数列一致收敛的柯西准则，故对任意$\epsilon > 0$，有$N$，
+当$n \geq N$时，对任意正整数$p$和对一切$x \in (a, x_0) \cup (x_0, b)$，有
 \begin{align*}
-  |f_n(x_0) - f(x_0)| < \epsilon
+  |S_n(x) - S_{n + p}(x)| < \epsilon \\
+  |u_{n + 1}(x) + \cdots + u_{n + p}(x)| < \epsilon
 \end{align*}
-和
+从而
 \begin{align*}
-  |f_n'(x) - g(x)| < \epsilon
+  |a_{n + 1} + \cdots + a_{n + p}| 
+  < \lim\limits_{x \to x_0} |u_{n + 1}(x) + \cdots + u_{n + p}(x)| 
+  \leq \epsilon
 \end{align*}
-由定理13.11的证明过程可知，
+由级数收敛的柯西准则可知$\sum a_n$是收敛级数。
+
+设$\sum a_n = A$。再证明$\lim\limits_{x \to x_0} \sum u_n(x) = A$。
+
+由于$\sum u_n(x)$一致收敛于$S(x)$以及$\sum a_n$收敛于A，因此对任意$\epsilon > 0$，
+存在正数$N$，当$n > N$时，对任意$x \in (a, x_0) \cup (x_0, b)$，有
 \begin{align*}
-  |f_n(x) - f(x)|
-   & = \left|f_n(x_0) + \int_{x_0}^{x} f_n'(t) dt - f(x_0) - \int_{x_0}^{x} g(t) dt \right|                   \\
-   & \leq \left|f_n(x_0) - f(x_0) \right| + \left| \int_{x_0}^{x} f_n'(t) dt - \int_{x_0}^{x} g(t) dt \right| \\
-   & = \left|f_n(x_0) - f(x_0) \right| + \left| \int_{x_0}^{x} f_n'(t) - g(t) dt \right|                      \\
-   & \leq \epsilon + \epsilon (b - a)                                                                         \\
-   & = (b - a + 1)\epsilon
+  |S_n(x) - S(x)| < \frac{\epsilon}{3}, \\
+  |A_n - A| < \frac{\epsilon}{3}
 \end{align*}
-由$b - a + 1$是定值和$\epsilon$的任意性可知，
-命题得证。
+同时成立，其中$A_n = \sum \limits_{k = 1}^n a_k$。
+特别地$n = N+1$，有
+\begin{align*}
+  |S_{N + 1}(x) - S(x)| < \frac{\epsilon}{3}, \\
+  |A_{N + 1} - A| < \frac{\epsilon}{3}
+\end{align*}
+又$\lim\limits_{x \to x_0} S_{N + 1}(x) = A_{N + 1}$，
+故存在$\delta > 0$，当$0 < |x - x_0| < \delta$时，
+\begin{align*}
+  |S_{N+1}(x) - A_{N + 1}| < \frac{\epsilon}{3}
+\end{align*}
+这样，当$x$满足$0 < |x - x_0| < \delta$时，
+\begin{align*}
+  |S(x) - A| & \leq |S(x) - S_{N + 1}(x)| + |S_{N + 1}(x) - A_{N + 1}| + |A_{N + 1} - A| \\
+             & = \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} \\
+             & = \epsilon
+\end{align*}
+即$\lim\limits_{x \to x_0} \sum u_n(x) = A$.
 
 \begin{zremark}
   疑问：定理13.11 推论

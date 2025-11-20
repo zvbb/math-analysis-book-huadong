@@ -39,8 +39,287 @@
 \section*{1}
 \begin{itemize}
   \item  (2)
+        (a-i)
+        任意$x \in [0, 1]$
+        \begin{align*}
+          \lim\limits_{n \to +\infty} x - \frac{x^n}{n}
+           & = x
+        \end{align*}
+        令$f(x) = x$，于是$f(x)$是函数列的极限函数。
+        \begin{align*}
+          \sup\limits_{x \in [0, 1]} |f_n(x) - f(x)|
+           & = \sup\limits_{x \in [0, 1]} \left|\frac{x^n}{n} \right| \\
+           & = \frac{1}{n}
+        \end{align*}
+        于是
+        \begin{align*}
+          \lim\limits_{n \to +\infty} \sup\limits_{x \in [0, 1]} |f_n(x) - f(x)|
+           & = \lim\limits_{n \to +\infty} \frac{1}{n} \\
+           & = 0
+        \end{align*}
+        故$\{f_n(x)\}$一致收敛于$f(x)$。
+
+        (a-ii)
+        \begin{align*}
+          f_n'(x) = 1 - x^{n - 1}
+        \end{align*}
+        任意$x \in [0, 1)$
+        \begin{align*}
+          \lim\limits_{n \to +\infty} f_n'(x)
+           & = \lim\limits_{n \to +\infty} 1 - x^{n - 1} \\
+           & = 1
+        \end{align*}
+        $x = 1$时
+        \begin{align*}
+          \lim\limits_{n \to +\infty} f_n'(x)
+           & = \lim\limits_{n \to +\infty} 1 - x^{n - 1} \\
+           & = 0
+        \end{align*}
+        令
+        \begin{equation*}
+          f'(x) = \begin{cases}
+            1, & x \in [0, 1) \\
+            0, & x = 1
+          \end{cases}
+        \end{equation*}
+        于是$f'(x)$是函数列$\{f_n'(x)\}$的极限函数。
+
+        $x \in [0, 1)$时
+        \begin{align*}
+          \lim\limits_{x \to 1^-} |f_n'(x) - f'(x)|
+           & = \lim\limits_{x \to 1} x^{n - 1} \\
+           & = 1
+        \end{align*}
+        由保号性可知
+        \begin{align*}
+          \sup\limits_{x \to [0, 1)} |f_n'(x) - f'(x)| > \frac{1}{2}
+        \end{align*}
+        另外，$x = 1$时，不影响该性质。
+
+        所以
+        \begin{align*}
+          \lim\limits_{n \to +\infty} \sup\limits_{x \in [0, 1]} |f_n'(x) - f'(x)|
+           & \neq 0
+        \end{align*}
+        故$\{f_n'(x)\}$不一致收敛于$f'(x)$。
+
+        \textcolor{red}{另证：}
+        因为$f_n'(x)$连续，而$f'(x)$不连续，由定理13.9的逆否命题可知，
+        $\{f_n'(x)\}$在$[0, 1]$上不一致。
+
+        (b) 满足13.9、13.10的条件和结论。不满足13.11的条件，接下来证明其结论。
+
+        \begin{align*}
+          \frac{d}{dx} \left(\lim\limits_{n \to +\infty} f_n(x) \right)
+           & = \frac{d}{dx} f(x) \\
+           & = \frac{d}{dx} x    \\
+           & = 1
+        \end{align*}
+        又有之前的讨论知
+        \begin{align*}
+          \lim\limits_{n \to +\infty} \frac{d}{dx} f_n(x)
+           & = f'(x)
+        \end{align*}
+        所以
+        \begin{align*}
+          f'(x) \neq 1
+        \end{align*}
+        故13.11的结论不成立。
+
+  \item (3)
+
+        (a-i)
+        \begin{align*}
+          \lim\limits_{n \to +\infty} f_n(x)
+           & = \lim\limits_{n \to +\infty} \frac{nx}{e^{nx^2}}
+        \end{align*}
+        $x \neq 0$，由洛必达法则可知（注：$n$看做变量，$x$看做变量）
+        \begin{align*}
+          \lim\limits_{n \to +\infty} \frac{nx}{e^{nx^2}} = 0
+        \end{align*}
+        $x = 0$时
+        \begin{align*}
+          \lim\limits_{n \to +\infty} \frac{nx}{e^{nx^2}}
+           & = \lim\limits_{n \to +\infty} 0 \\
+           & = 0
+        \end{align*}
+        令$f(x) = 0$为函数列的极限函数。
+        \begin{align*}
+          \sup\limits_{x \in [0, 1]} |f_n(x) - f(x)|
+           & = \sup\limits_{x \in [0, 1]} \frac{nx}{e^{nx^2}}
+        \end{align*}
+        \begin{align*}
+          f_n'(x) & = \left(\frac{nx}{e^{nx^2}} \right)                  \\
+                  & = \frac{n e^{nx^2} - nx e^{nx^2}(2nx)}{(e^{nx^2})^2} \\
+                  & = \frac{(n - 2nx^2) e^{nx^2}}{(e^{nx^2})^2}          \\
+                  & = \frac{n - 2nx^2}{e^{nx^2}}
+        \end{align*}
+        令
+        \begin{align*}
+          f_n'(x)                    & = 0                   \\
+          \frac{n - 2nx^2}{e^{nx^2}} & = 0                   \\
+          n - 2nx^2                  & = 0                   \\
+          x                          & = \sqrt{\frac{1}{2n}}
+        \end{align*}
+        按照$[0, \sqrt{\frac{1}{2n}}], f_n'(x) \geq 0; [\sqrt{\frac{1}{2n}}, 1] \leq 0$，
+        所以$x = \sqrt{\frac{1}{2n}}$是极大值点，所以
+        \begin{align*}
+          \sup\limits_{x \in [0, 1]} \frac{nx}{e^{nx^2}}
+           & = \frac{\sqrt{n}}{\sqrt{2 e}}
+        \end{align*}
+        于是
+        \begin{align*}
+          \lim\limits_{n \to +\infty} \sup\limits_{x \in [0, 1]} \frac{nx}{e^{nx^2}}
+           & = \lim\limits_{n \to +\infty} \frac{\sqrt{n}}{\sqrt{2 e}} \\
+           & = + \infty
+        \end{align*}
+        故$\{f_n(x)\}$不一致收敛。
+
+        (a-ii)
+        $x \in (0, 1]$时
+        \begin{align*}
+          \lim\limits_{n \to +\infty} f_n'(x)
+           & = \lim\limits_{n \to +\infty} \frac{n - 2nx^2}{e^{nx^2}}   \\
+           & = \lim\limits_{n \to +\infty} \frac{n(1 - 2x^2)}{e^{nx^2}} \\
+           & = 0
+        \end{align*}
+        $x = 0$时
+        \begin{align*}
+          \lim\limits_{n \to +\infty} f_n'(x)
+           & = \lim\limits_{n \to +\infty} n \\
+           & = +\infty
+        \end{align*}
+        令
+        \begin{equation*}
+          f'(x) = \begin{cases}
+            0,       & x \in (0, 1] \\
+            +\infty, & x = 0
+          \end{cases}
+        \end{equation*}
+        所以$\{f_n'(x)\}$在$[0, 1]$上不收敛，
+        从而也不一致收敛。
+
+        (b-i) 不满足13.9的条件，$f(x) = 0$，故结论成立。
+
+        (b-ii) 不满足13.10的条件。
+        \begin{align*}
+          \int_{0}^{1} f(x) dx
+           & = \int_{0}^{1} 0 dx \\
+           & = 0
+        \end{align*}
+        又有
+        \begin{align*}
+          \lim\limits_{n \to +\infty} \int_{0}^{1} f_n(x) dx
+           & = \lim\limits_{n \to +\infty} \int_{0}^{1} \frac{nx}{e^{nx^2}} dx  \\
+           & = \lim\limits_{n \to +\infty} - \frac{1}{2}e^{-nx^2}\bigg|_{0}^{1} \\
+           & = \lim\limits_{n \to +\infty} \frac{1}{2} - \frac{1}{2}e^{-n}      \\
+           & = \frac{1}{2}
+        \end{align*}
+        所以
+        \begin{align*}
+          \int_{0}^{1} f(x) dx \neq \lim\limits_{n \to +\infty} \int_{0}^{1} f_n(x) dx
+        \end{align*}
+        故结论不成立。
+
+        (b-iii)不满足13.11的条件，接下来证明其结论。
+
+        \begin{align*}
+          \frac{d}{dx} \lim\limits_{n \to \infty}\left(f_n(x)\right)
+           & = \frac{d}{dx} 0 \\
+           & = 0
+        \end{align*}
+        由之前的证明可得
+        \begin{align*}
+          0 \neq \lim\limits_{n \to +\infty} \frac{d}{dx} f_n(x) = f'(x)
+        \end{align*}
+        故13.11的结论不成立。
 \end{itemize}
 
+\section*{2}
+
+由于$f_n(x_0) \to f(x_0) \, (n \to \infty), f'_n \rightrightarrows g \, (n \to \infty)$，
+因此对任意$\epsilon > 0$，存在正数$N$，当$n > N$时，任意$x \in [a, b]$
+\begin{align*}
+  |f_n(x_0) - f(x_0)| < \epsilon
+\end{align*}
+和
+\begin{align*}
+  |f_n'(x) - g(x)| < \epsilon
+\end{align*}
+由定理13.11的证明过程可知，
+\begin{align*}
+  |f_n(x) - f(x)|
+   & = \left|f_n(x_0) + \int_{x_0}^{x} f_n'(t) dt - f(x_0) - \int_{x_0}^{x} g(t) dt \right|                   \\
+   & \leq \left|f_n(x_0) - f(x_0) \right| + \left| \int_{x_0}^{x} f_n'(t) dt - \int_{x_0}^{x} g(t) dt \right| \\
+   & = \left|f_n(x_0) - f(x_0) \right| + \left| \int_{x_0}^{x} f_n'(t) - g(t) dt \right|                      \\
+   & \leq \epsilon + \epsilon (b - a)                                                                         \\
+   & = (b - a + 1)\epsilon
+\end{align*}
+由$b - a + 1$是定值和$\epsilon$的任意性可知，
+命题得证。
+
+\section*{3}
+设$\sum u_n(x)$的部分和函数列为$\{S_n(x)\}$， $\sum u_n(x)$的和函数为$S(x)$；
+\begin{itemize}
+  \item (1) 定理13.2（连续性）
+
+        \begin{itemize}
+          \item 方法一
+
+                因为$\sum u_n(x)$的每一项都连续，所以
+                $\{S_n(x)\}$的每一项也都是连续的。
+                即
+                \begin{align*}
+                  \lim\limits_{n \to +\infty} S_n(x) = S(x)
+                \end{align*}
+                由定理13.9可知，$S(x)$是连续的。
+
+          \item 方法二
+
+                利用极限交换定理（13-2-comment.tex中有证明），仿照定理13.9的证明。
+
+                设$x_0$为$[a, b]$上任一点。由于$\lim\limits_{x \to x_0} u_n(x) = u_n(x_0)$，
+                于是由极限交换定理知$\lim\limits_{n \to +\infty} \sum u_n(x)$，且
+                \begin{align*}
+                  \lim\limits_{x \to x_0} S(x)
+                   & = \lim\limits_{x \to x_0} \sum u_n(x) \\
+                   & = \sum \lim\limits_{x \to x_0} u_n(x) \\
+                   & = \sum u_n(x_0)                       \\
+                   & = S(x_0)
+                \end{align*}
+                因此$S(x)$在$x_0$处连续。
+
+        \end{itemize}
+
+  \item (2) 定理13.4（逐项求导）
+
+        仿照定理13.11的证明。
+
+        设$S_n(x_0) \to A \, (n \to \infty)$，$\sum u_n'(x) \rightrightarrows g(x) \, (n \to \infty), x \in [a, b]$。
+        我们要证明函数项级数$\sum u_n(x)$在$[a,b]$上收敛，且其极限函数的导数存在且等于g.
+
+        由定理条件可知，$u_n(x)$是连续函数，对任意$x \in [a, b]$，总有
+        \begin{align*}
+          u_n(x)
+           & = u_n(x_0) + \int_{x_0}^{x} u_n'(t) dt
+        \end{align*}
+        等式两边求和
+        \begin{align*}
+          \sum u_n(x)
+           & = \sum \left( u_n(x_0) + \int_{x_0}^{x} u_n'(t) dt \right) \\
+           & = \sum u_n(x_0) + \sum \int_{x_0}^{x} u_n'(t) dt           \\
+           & = A + \int_{x_0}^{x} \sum u_n'(t) dt                       \\
+           & = A + \int_{x_0}^{x} g(t) dt                               
+        \end{align*}
+        由$g$的连续性以及微积分学基本定理推得
+        \begin{align*}
+          \frac{d}{dx} \left(\sum u_n(x)\right) = g(x) = \sum (\frac{d}{dx} u_n(x))
+        \end{align*}
+
+
+
+
+\end{itemize}
 
 
 
