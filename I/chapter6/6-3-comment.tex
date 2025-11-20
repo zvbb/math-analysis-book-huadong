@@ -60,17 +60,17 @@
 \end{align*}
 我们有
 \begin{align*}
-  \frac{d(f(x))}{dt}                         & = 0                                                                     \\
-  \frac{d(f(t))}{dt}                         & = f'(t)                                                                 \\
-  \frac{d(f'(t)(x - t))}{dt}                 & = f''(t)(x - t) - f'(t)                                                 \\
-  \frac{d(\frac{f''(t)}{2!}(x - t)^2)}{dt}   & = \frac{f^{(3)}(t)}{2!}(x - t)^2 - f''(t)(x - t)                       \\
-  \frac{d(\frac{f^{(3)}(t)}{3!}(x - t)^3)}{dt} & = \frac{f^{(4)}(t)}{3!}(x - t)^3 - \frac{1}{2!}f^{(3)}(t)(x - t)^2                 \\
-                                             & \vdots                                                                  \\
-  \frac{d(\frac{f^{n}(t)}{n!}(x - t)^n)}{dt} & = \frac{f^{n+1}(t)}{n!}(x - t)^n - \frac{f^{n}(t)}{(n-1)!}(x - t)^{n-1} 
+  \frac{d(f(x))}{dt}                           & = 0                                                                         \\
+  \frac{d(f(t))}{dt}                           & = f'(t)                                                                     \\
+  \frac{d(f'(t)(x - t))}{dt}                   & = f''(t)(x - t) - f'(t)                                                     \\
+  \frac{d(\frac{f''(t)}{2!}(x - t)^2)}{dt}     & = \frac{f^{(3)}(t)}{2!}(x - t)^2 - f''(t)(x - t)                            \\
+  \frac{d(\frac{f^{(3)}(t)}{3!}(x - t)^3)}{dt} & = \frac{f^{(4)}(t)}{3!}(x - t)^3 - \frac{1}{2!}f^{(3)}(t)(x - t)^2          \\
+                                               & \vdots                                                                      \\
+  \frac{d(\frac{f^{(n)}(t)}{n!}(x - t)^n)}{dt} & = \frac{f^{(n+1)}(t)}{n!}(x - t)^n - \frac{f^{(n)}(t)}{(n-1)!}(x - t)^{n-1}
 \end{align*}
 由相互抵消可得
 \begin{align*}
-  F'(t) = - \frac{f^{n+1}(t)}{n!}(x - t)^n
+  F'(t) = - \frac{f^{(n+1)}(t)}{n!}(x - t)^n
 \end{align*}
 
 \end{document}

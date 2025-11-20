@@ -1,0 +1,192 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 14.1}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+\begin{itemize}
+  \item (1)
+        \begin{align*}
+          \rho
+           & = \lim\limits_{n\to\infty} \sqrt[n]{|a_n|} \\
+           & = \lim\limits_{n\to\infty} \sqrt[n]{|n|}   \\
+           & = 1
+        \end{align*}
+        于是收敛半径为$R = \frac{1}{\rho} = 1$。
+
+        $x = 1$时，幂级数发散；$x = 1$时，幂级数收敛。
+        故收敛区域为$(-1, 1)$。
+  \item (2)
+        \begin{align*}
+          \rho
+           & = \lim\limits_{n\to\infty} \sqrt[n]{|a_n|}                     \\
+           & = \lim\limits_{n\to\infty} \sqrt[n]{|\frac{1}{n^2\cdot 2^n}|}  \\
+           & = \lim\limits_{n\to\infty} \sqrt[n]{\frac{1}{n^2\cdot 2^n}}    \\
+           & = \frac{1}{2} \lim\limits_{n\to\infty} \sqrt[n]{\frac{1}{n^2}} \\
+           & = \frac{1}{2}
+        \end{align*}
+        于是收敛半径为$R = \frac{1}{\rho} = 2$。
+
+        $x = 2$时，$\sum \frac{1}{n^2}$收敛；
+        $x = -2$时，$\sum (-1)^n \frac{1}{n^2}$收敛。
+        故收敛区域为$[-2, 2]$.
+
+  \item (3)
+        \begin{align*}
+          \rho
+           & = \lim\limits_{n\to\infty} \frac{|a_{n + 1}|}{|a_n|}                             \\
+           & = \lim\limits_{n\to\infty} \frac{[(n + 1)!]^2}{[2(n + 1)]!} \frac{(2n)!}{(n!)^2} \\
+           & = \lim\limits_{n\to\infty} \frac{(n + 1)^2}{(2n + 1)(2n + 2)}                    \\
+           & = \frac{1}{4}
+        \end{align*}
+        于是收敛半径为$R = \frac{1}{\rho} = 4$。
+
+        $x = 4$时，$\sum \frac{(n!)^2}{(2n)!}4^n$。
+        \begin{align*}
+          \lim\limits_{n\to\infty} \frac{(n!)^2}{(2n)!}4^n
+           & = \lim\limits_{n\to\infty} \frac{(n!)^2 \cdot 2^n \cdot 2^n}{(2n)!}                                     \\
+           & = \lim\limits_{n\to\infty} \frac{n! \cdot 2^n \cdot n! \cdot 2^n}{(2n)!}                                \\
+           & = \lim\limits_{n\to\infty} \frac{(2n(2n - 2)\cdot 2) \cdot (2n(2n - 2)\cdot 2)}{2n(2n-1)(2n-2) \cdot 1} \\
+           & = \lim\limits_{n\to\infty} \frac{2n(2n - 2)\cdot 2}{(2n-1)(2n-3) \cdot 1}                               \\
+           & = \lim\limits_{n\to\infty} \frac{2n}{2n - 1} \frac{2n - 2}{2n - 3} \cdot \frac{2}{1}                    \\
+           & \geq 1
+        \end{align*}
+        由级数收敛的柯西准则的推论可知，该级数发散；
+
+        同理$x = -4$时，级数也发散。
+
+        故收敛区域为$(-4, 4)$.
+
+  \item (5)
+
+        \begin{itemize}
+          \item 方法一
+
+                令
+                \begin{equation*}
+                  a_n =
+                  \begin{cases}
+                    \frac{1}{(2m - 1)!}, & n = 2m - 1 \\
+                    0,                   & n = 2m
+                  \end{cases}
+                \end{equation*}
+                于是原幂级数等价于
+                \begin{align*}
+                  \sum a_n (x - 2)^n
+                \end{align*}
+                我们有
+                \begin{align*}
+                  \rho
+                   & = \overline{\lim\limits_{n \to \infty}} \sqrt[n]{|a_n|}         \\
+                   & = \lim\limits_{m \to \infty} \sqrt[2m - 1]{\frac{1}{(2m - 1)!}} \\
+                   & = \lim\limits_{t \to \infty} \sqrt[t]{\frac{1}{t!}}             \\
+                   & = \lim\limits_{t \to \infty} \frac{1} {\sqrt[t]{t!}}            \\
+                   & = 0
+                \end{align*}
+                故$R = +\infty$，收敛区域为$(-\infty, +\infty)$.
+
+                \begin{zremark}
+                  注
+                  \begin{align*}
+                    \lim\limits_{t \to \infty} \sqrt[t]{t!}
+                     & = \lim\limits_{t \to \infty} e^{\ln \sqrt[t]{t!}}     \\
+                     & = \lim\limits_{t \to \infty} e^{\ln (t!)^\frac{1}{t}} \\
+                     & = \lim\limits_{t \to \infty} e^{\frac{1}{t} \ln t!}
+                  \end{align*}
+                  又
+                  \begin{align*}
+                    \lim\limits_{t \to \infty} \frac{\ln t!}{t}
+                     & = \lim\limits_{t \to \infty} \frac{\ln 1 + \ln 2 + \cdots + \ln t}{t}
+                  \end{align*}
+                  由于$\{a_n\}, a_n = \ln n$
+                  \begin{align*}
+                    \lim \limits_{n \to \infty} a_n = +\infty
+                  \end{align*}
+                  由第二章总习题3可知
+                  \begin{align*}
+                    \lim\limits_{t \to \infty} \frac{\ln 1 + \ln 2 + \cdots + \ln t}{t} = +\infty
+                  \end{align*}
+                  综上
+                  \begin{align*}
+                    \lim\limits_{t \to \infty} \sqrt[t]{t!} = e^{+\infty} = +\infty
+                  \end{align*}
+                \end{zremark}
+
+          \item 方法二：按照函数项级数。
+
+                对任意$x$，有
+                \begin{align*}
+                  \lim\limits_{n\to\infty} \frac{|a_{n + 1}|}{|a_n|}
+                   & = \lim\limits_{n\to\infty} \left|\frac{(x-2)^{2(n+1) - 1}}{(2(n+1)-1)!}\right| \left|\frac{(2n-1)!}{(x-2)^{2n - 1}}\right| \\
+                   & = \lim\limits_{n\to\infty} \frac{(x - 2)^2}{2n(2n+1)}                                                                      \\
+                   & = 0
+                \end{align*}
+                即对任意$x$级数都收敛，故$R = + \infty$，收敛区域为$(- \infty, \infty)$。
+
+          \item 方法三：转换成不缺项幂级数级数。
+                \begin{align*}
+                  f_{2n - 1}'(x)
+                   & = \frac{(x - 2)^{2n -2}}{(2n - 2)!}
+                \end{align*}
+                由定理14.7可知
+                \begin{align*}
+                  \sum \frac{(x - 2)^{2n - 1}}{(2n - 1)!} \, \text{和} \, \sum \frac{(x - 2)^{2n -2}}{(2n - 2)!}
+                \end{align*}
+                有相同的收敛半径。
+
+                令$y = (x - 2)^2$，于是
+                \begin{align*}
+                  \sum \frac{(x - 2)^{2n -2}}{(2n - 2)!}
+                   & = \sum \frac{y^{n - 1}}{(2n - 2)!}
+                \end{align*}
+                \begin{align*}
+                  \rho
+                   & = \lim\limits_{n \to \infty} \frac{|a_{n + 1}|}{|a_n|}                \\
+                   & = \lim\limits_{n \to \infty} \frac{1}{(2(n+1) - 2)!} \cdot  (2n - 2)! \\
+                   & = \lim\limits_{n \to \infty} \frac{1}{(2n - 1)2n}                     \\
+                   & = 0
+                \end{align*}
+                故收敛半径为$R_y = +\infty$，即$y = (x - 2)^2 < +\infty$时，$\sum \frac{(x - 2)^{2n - 1}}{(2n - 1)!}$收敛，
+                所以$\sum \frac{(x - 2)^{2n - 1}}{(2n - 1)!}$收敛半径为$R = +\infty$，
+                收敛区域为$(- \infty, \infty)$.
+        \end{itemize}
+
+
+\end{itemize}
+
+
+
+\end{document}
