@@ -78,6 +78,39 @@
 \end{itemize}
 
 \begin{zremark}
+  证明：定理12.16
+\end{zremark}
+\textbf{证明：}
+$\lim\limits_{n \to \infty} a_n = 0$，
+由数列的柯西准则可知，对任意$\epsilon > 0$，存在
+$N > 0$，当$n > N$时，
+\begin{align*}
+  |a_n - 0| & < \epsilon \\
+  |a_n|     & < \epsilon
+\end{align*}
+
+$sum b_n$的部分和有界，
+设部分和为$B_n$，于是存在$M > 0$，对任意$n$有
+\begin{align*}
+  |B_n| \leq M
+\end{align*}
+对任意$n, n + p$，我们有
+\begin{align*}
+  |B_{n + p} - B_n|
+   & = \left| \sum\limits_{k = n + 1}^{n + p} b_k \right| \\
+   & \leq |B_{n + p}| + |B_n|                             \\
+   & \leq 2M
+\end{align*}
+
+综上，对$n > N$，我们有
+\begin{align*}
+  \left| \sum\limits_{k = n + 1}^{n + p} a_k b_k \right|
+   & \leq 3\epsilon (2M) \\
+   & = 6 \epsilon M
+\end{align*}
+故级数收敛。
+
+\begin{zremark}
   例3：
   \begin{align*}
     2sin\frac{x}{2}\left( \frac{1}{2} + \sum\limits_{k=1}^n cos\, kx \right)
@@ -101,6 +134,14 @@
   + \cdots + \left[ sin(n + \frac{1}{2})x - sin(n - \frac{1}{2})x \right]
 \end{align*}
 
+\begin{zremark}
+  \begin{align*}
+    \sum sin nx
+  \end{align*}
+  部分和是有界的。
+\end{zremark}
+
+习题2-(2)
 
 
 \end{document}

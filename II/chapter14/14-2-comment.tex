@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 14.2}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  证明：定理14.11
+\end{zremark}
+\textbf{证明：}
+
+设泰勒级数的和函数为$S(x)$，部分和函数为
+\begin{align*}
+  S_n(x) = \sum \limits_{k = 0}^n \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k
+\end{align*}
+于是泰勒公式余项可表示为：
+\begin{align*}
+  R_n(x) = f(x) - S_n(x)
+\end{align*}
+注：这里的泰勒公式的余项是第六章定理6.9下定义的，
+不是函数项级数的余项。
+
+\begin{itemize}
+  \item 必要性
+
+        已知$f(x)$在区间$(x_0 - r, x_0 + r)$上等于它的泰勒级数的和函数，
+        即$S(x) = f(x)$，
+        由和函数的定义可知，对任意$x \in (x_0 - r, x_0 + r)$，有
+        \begin{align*}
+          \lim\limits_{n\to\infty} S_n(x) = f(x)
+        \end{align*}
+        从而
+        \begin{align*}
+          \lim\limits_{n\to\infty} R_n(x)
+           & = \lim\limits_{n\to\infty} f(x) - S_n(x) \\
+           & = f(x) - f(x)                            \\
+           & = 0
+        \end{align*}
+
+  \item 充分性
+
+        对任意$x \in (x_0 - r, x_0 + r)$，有
+        \begin{align*}
+          \lim\limits_{n\to\infty} R_n(x) = 0
+        \end{align*}
+        于是
+        \begin{align*}
+          S(x)
+           & = \lim\limits_{n\to\infty} S_n(x)                 \\
+           & = \lim\limits_{n\to\infty} f(x) - (f(x) - S_n(x)) \\
+           & = \lim\limits_{n\to\infty} f(x) - R_n(x)          \\
+           & = f(x) - 0                                        \\
+           & = f(x)
+        \end{align*}
+\end{itemize}
+
+\begin{zremark}
+  函数$f$的泰勒展开式的唯一性。
+\end{zremark}
+\textbf{证明：}
+考虑$x_0 = 0$时，设$f$的泰勒展开式为
+\begin{align*}
+  f(x) = \sum \limits_{n = 0}^{\infty} a_n x^n
+\end{align*}
+由于$\sum \limits_{n = 0}^{\infty} a_n x^n$也是幂级数，
+由定理14.8推论2可知，
+\begin{align*}
+  a_0 = f(0)              \\
+  a_1 = f'(0)             \\
+  a_2 = \frac{f''(0)}{2!} \\
+  \vdots                  \\
+  a_n = \frac{f^{(n)}(0)}{n!}
+\end{align*}
+因此，系数$a_n$被唯一确定，即泰勒展开式是唯一的。
+
+$x_0 \neq 0$时，令$y = x - x_0$，
+于是，$f$的泰勒展开式为
+\begin{align*}
+  f(x) = \sum \limits_{n = 0}^{\infty} a_n y^n
+\end{align*}
+由之前的讨论可知，其是唯一的。
+
+\end{document}

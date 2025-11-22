@@ -231,5 +231,121 @@
 
 \end{itemize}
 
+\section*{2}
+
+\begin{itemize}
+  \item (1)
+
+        $\{a_n\}, a_n = \frac{x^n}{1 + x^n}$，$\sum b_n = \sum (-1)^n \frac{1}{n}$。
+
+        $0 < x < 1$时，
+        \begin{align*}
+          \lim\limits_{n \to \infty} a_n
+           & = \lim\limits_{n \to \infty} \frac{x^n}{1 + x^n}         \\
+           & = \lim\limits_{n \to \infty} \frac{1}{\frac{1}{x^n} + 1} \\
+           & = 0
+        \end{align*}
+        且$\{a_n\}$单减，即单调有界。
+
+        $x = 1$时，
+        \begin{align*}
+          \lim\limits_{n \to \infty} a_n
+           & = \lim\limits_{n \to \infty} \frac{1}{1 + 1} \\
+           & = \frac{1}{2}
+        \end{align*}
+        单调有界。
+
+        $x > 1$时，且
+        \begin{align*}
+          \lim\limits_{n \to \infty} a_n
+           & = \lim\limits_{n \to \infty} \frac{x^n}{1 + x^n}         \\
+           & = \lim\limits_{n \to \infty} \frac{1}{\frac{1}{x^n} + 1} \\
+           & = 1
+        \end{align*}
+        $\{a_n\}$单增，即单调有界。
+
+        又因为$\sum b_n$是收敛的，由A-D判别法，该级数收敛。
+
+  \item (2)
+
+        利用积化和差公式
+        \begin{align*}
+          2sin\, x \, sin \, y = cos(x - y) - cos(x + y)
+        \end{align*}
+        考虑
+        \begin{align*}
+          2 sin \frac{x}{2} \sum\limits_{k = 1}^n sin kx
+           & = 2 sin \frac{x}{2} \left( sin x + sin 2x + \cdots sin nx \right)                        \\
+           & = 2 sin \frac{x}{2} sin x + 2 sin \frac{x}{2} sin 2x + \cdots + 2 sin \frac{x}{2} sin nx \\
+           & = cos \frac{x}{2} - cos \frac{3x}{2} + cos \frac{3x}{2} - cos \frac{5x}{2}
+          + \cdots + \cos\frac{(n - \frac{1}{2})x}{2} - cos \frac{(n + \frac{1}{2})x}{2}              \\
+           & = cos \frac{x}{2} - cos \frac{(n + \frac{1}{2})x}{2}
+        \end{align*}
+        于是
+        \begin{align*}
+          \sum\limits_{k = 1}^n sin kx = \frac{cos \frac{x}{2} - cos \frac{(n + \frac{1}{2})x}{2}}{2 sin \frac{x}{2}}
+        \end{align*}
+        故
+        \begin{align*}
+          \frac{cos \frac{x}{2} - 1}{2 sin \frac{x}{2}} \leq \sum\limits_{k = 1}^n sin kx \leq \frac{cos \frac{x}{2} + 1}{2 sin \frac{x}{2}}
+        \end{align*}
+        注：$\frac{x}{2} \in (0, \pi)$，$sin \frac{x}{2} \neq 0$。
+
+        综上，$\sum sin nk$的部分和数列有界。
+
+        另外
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{1}{n^\alpha} = 0
+        \end{align*}
+        且单减。
+
+        故，利用A-D判别法，级数收敛。
+
+  \item (3)
+        \begin{align*}
+          \sum (-1)^n \frac{cos^2\, n}{n}
+           & = \sum (-1)^n \frac{1 + cos 2n}{2n}                        \\
+           & = \sum (-1)^n \frac{1}{2n} + \sum (-1)^n \frac{cos 2n}{2n}
+        \end{align*}
+        由莱布尼茨判别法可知$\sum (-1)^n \frac{1}{2n}$收敛。
+
+        利用积化和差公式
+        \begin{align*}
+          2cos\, x \, cos\, y = cos (x - y) + cos (x + y)
+        \end{align*}
+        考虑
+        \begin{align*}
+          2 cos 1 \sum\limits_{k=1}^n (-1)^k cos 2k
+           & = 2 cos 1 [-cos 2 + cos 4 - cos 6 + \cdots + (-1)^n cos (2n) ]                      \\
+           & = - 2 cos 1 cos 2 + 2 cos 1 cos 4 - 2 cos 1 cos 6 + \cdots + 2cos 1 (-1)^n cos (2n) \\
+           & = -(cos 1 + cos 3) + (cos 3 + cos 5) - (cos 5 + cos 7)                              \\
+           & + \cdots + (-1)^n [cos (2n - 1) + cos (2n + 1)]                                     \\
+           & = - cos 1 + (-1)^n cos (2n + 1)                                                     
+        \end{align*}
+        所以
+        \begin{align*}
+          \sum\limits_{k=1}^n (-1)^k cos 2k = \frac{- cos 1 + (-1)^n cos (2n + 1)}{2 cos 1}
+        \end{align*}
+        故
+        \begin{align*}
+          \frac{-1 - cos 1}{2 cos 1} \leq \sum\limits_{k=1}^n (-1)^k cos 2k \leq \frac{1 - cos 1}{2 cos 1}
+        \end{align*}
+        所以，$\sum\limits_{k=1}^n (-1)^k cos 2k$的部分和有界。
+
+        又因为
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{1}{2n} = 0
+        \end{align*}
+        且$\{\frac{1}{2n}\}$单减。
+        利用A-D判别法，级数$\sum (-1)^n \frac{cos 2n}{2n}$收敛。
+
+        综上
+        \begin{align*}
+          \sum (-1)^n \frac{cos^2\, n}{n} & = \sum (-1)^n \frac{1}{2n} + \sum (-1)^n \frac{cos 2n}{2n}
+        \end{align*}
+        收敛。
+
+\end{itemize}
+
 
 \end{document}
