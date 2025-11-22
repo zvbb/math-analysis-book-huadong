@@ -462,7 +462,31 @@
 
 \end{itemize}
 
+\section*{4}
 
+记
+\begin{align*}
+  v_n(x) = g(x) \\
+  u_n(x) = u_n(x)
+\end{align*}
+由A-D判别法就能得到结果。
+
+\section*{5}
+
+$\sum v_n(x)$一致收敛，于是由一致收敛的柯西准则，对任意$\epsilon > 0$，
+存在$N$，当$n > N$，以及任意正整数$p$，有
+\begin{align*}
+  |v_{n+1}(x) + v_{n+2}(x) + \cdots + v_{n+p}(x)| < \epsilon
+\end{align*}
+由题设可知
+\begin{align*}
+  |u_{n+1}(x) + v_{n+2}(x) + \cdots + v_{n+p}(x)|
+   & \leq |u_{n+1}(x)| + |v_{n+2}(x)| + \cdots + |v_{n+p}(x)| \\
+   & \leq v_{n+1}(x) + v_{n+2}(x) + \cdots + v_{n+p}(x)      \\
+   & = |v_{n+1}(x) + v_{n+2}(x) + \cdots + v_{n+p}(x)|    \\
+   & < \epsilon
+\end{align*}
+由一致收敛性的柯西准则，级数$\sum u_n(x)$一致收敛。
 
 
 \end{document}
