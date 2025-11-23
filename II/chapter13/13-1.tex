@@ -464,12 +464,27 @@
 
 \section*{4}
 
-记
+已知$g(x)$在$D$上有界，即存在$M > 0$，使得
 \begin{align*}
-  v_n(x) = g(x) \\
-  u_n(x) = u_n(x)
+  |g(x)| < M, x \in D
 \end{align*}
-由A-D判别法就能得到结果。
+设$\sum u_n(x)$的部分和函数列为$\{S_n(x)\}$，
+已知$\sum u_n(x)$在$D$上一致收敛于$S(x)$，
+由一致收敛定义，对任意$\epsilon > 0$，存在$N > 0$，
+当$n > N$，对任意$x \in D$，有
+\begin{align*}
+  |S_n(x) - S(x)| < \epsilon
+\end{align*}
+于是
+\begin{align*}
+  |g(x) S_n(x) - g(x) S(x)|
+   & = |g(x)| |S_n(x) - S(x)| \\
+   & < M \epsilon
+\end{align*}
+由一致收敛的定义可知
+\begin{align*}
+  \sum g(x) u_n(x) = g(x) S(x)
+\end{align*}
 
 \section*{5}
 
@@ -482,8 +497,8 @@ $\sum v_n(x)$一致收敛，于是由一致收敛的柯西准则，对任意$\ep
 \begin{align*}
   |u_{n+1}(x) + v_{n+2}(x) + \cdots + v_{n+p}(x)|
    & \leq |u_{n+1}(x)| + |v_{n+2}(x)| + \cdots + |v_{n+p}(x)| \\
-   & \leq v_{n+1}(x) + v_{n+2}(x) + \cdots + v_{n+p}(x)      \\
-   & = |v_{n+1}(x) + v_{n+2}(x) + \cdots + v_{n+p}(x)|    \\
+   & \leq v_{n+1}(x) + v_{n+2}(x) + \cdots + v_{n+p}(x)       \\
+   & = |v_{n+1}(x) + v_{n+2}(x) + \cdots + v_{n+p}(x)|        \\
    & < \epsilon
 \end{align*}
 由一致收敛性的柯西准则，级数$\sum u_n(x)$一致收敛。

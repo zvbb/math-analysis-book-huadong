@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 14.2}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+提示
+\begin{align*}
+  \lim\limits_{n \to \infty} \frac{a^n}{n!} = 0
+\end{align*}
+第二章，$\S 1$例6.
+
+\section*{2}
+
+\begin{itemize}
+  \item (1)
+
+        由例3可知
+        \begin{align*}
+          e^x = 1 + \frac{1}{1!}x + \frac{1}{2!}x^2 + \cdots + \frac{1}{n!}x^n + \cdots,
+          x \in (-\infty, \infty)
+        \end{align*}
+        故
+        \begin{align*}
+          e^{x^2} = 1 + \frac{1}{1!}x^2 + \frac{1}{2!}(x^2)^2 + \cdots + \frac{1}{n!}(x^2)^n + \cdots,
+          x \in (-\infty, \infty)
+        \end{align*}
+
+  \item (2)
+
+        由例6可知（$\alpha \leq -1$）
+        \begin{align*}
+          (1 + x)^{\alpha}
+           & = 1 + \alpha x + \frac{\alpha(\alpha - 1)}{2!} x^2 + \cdots + \frac{\alpha(\alpha - 1)\cdots(\alpha - n + 1)}{n!} x^n + \cdots,
+          x \in (-1, 1)
+        \end{align*}
+        故
+        \begin{align*}
+          \frac{x^{10}}{1 - x}
+           & = x^{10} \left(1 + (-1)(-x) + \frac{(-1)(-2)}{2}(-x)^2 + \cdots + \frac{(-1)(-2)\cdots(-1 - n + 1)}{n!}(-x)^n + \cdots \right) \\
+           & = x^{10} \left(1 + x + x^2 + \cdots + x^n + \cdots \right), x \in (-1, 1)                                                   \\
+        \end{align*}
+\end{itemize}
+
+
+\end{document}

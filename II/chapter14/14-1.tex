@@ -184,6 +184,63 @@
                 收敛区域为$(- \infty, \infty)$.
         \end{itemize}
 
+  \item (6)
+        \begin{align*}
+          \rho
+           & = \lim\limits_{n \to \infty} \frac{|a_{n + 1}|}{|a_n|}                                               \\
+           & = \lim\limits_{n \to \infty} \frac{3^{n+1} + (-2)^{n+1}}{n+1} \frac{n}{3^{n} + (-2)^{n}}             \\
+           & = \lim\limits_{n \to \infty} \frac{3^{n+1} + (-2)^{n+1}}{3^{n} + (-2)^{n}} \frac{n}{n+1}             \\
+           & = \lim\limits_{n \to \infty} \frac{3 + (-2)(-\frac{2}{3})^{n}}{1 + (-\frac{2}{3})^{n}} \frac{n}{n+1} \\
+           & = 3
+        \end{align*}
+        所以$R = \frac{1}{\rho} = \frac{1}{3}$.
+        \begin{align*}
+          |x + 1| < \frac{1}{3} \\
+          - \frac{4}{3} < x < - \frac{2}{3}
+        \end{align*}
+        $x = - \frac{2}{3}$时，
+        \begin{align*}
+          \sum \frac{3^n + (-2)^n}{n} (\frac{1}{3})^n
+           & = \sum \frac{1 + (-\frac{2}{3})^n}{n}                \\
+           & = \sum \frac{1}{n} + \sum \frac{(-\frac{2}{3})^n}{n}
+        \end{align*}
+        因为$\sum \frac{1}{n}$发散，$\sum \frac{(-\frac{2}{3})^n}{n}$收敛，
+        故
+        \begin{align*}
+          \sum \frac{1}{n} + \sum \frac{(-\frac{2}{3})^n}{n}
+        \end{align*}
+        发散，即$x = - \frac{2}{3}$时，级数发散。
+
+        $x = - \frac{4}{3}$时，
+        \begin{align*}
+          \sum \frac{3^n + (-2)^n}{n} (-\frac{1}{3})^n
+           & = \sum \frac{(-1)^n + (\frac{2}{3})^n}{n}                \\
+           & = \sum \frac{(-1)^n}{n} + \sum \frac{(\frac{2}{3})^n}{n}
+        \end{align*}
+        因为$\sum \frac{(-1)^n}{n}, \sum \frac{(\frac{2}{3})^n}{n}$都收敛，
+        故$\sum \frac{(-1)^n}{n} + \sum \frac{(\frac{2}{3})^n}{n}$收敛，
+        即$x = - \frac{4}{3}$时，级数收敛。
+
+        综上，收敛区间为$[- \frac{4}{3}, - \frac{2}{3})$.
+
+  \item (7)
+
+        提示：用比式判别法。
+
+  \item (8)
+        \begin{align*}
+          \lim\limits_{n \to \infty} \sqrt[n]{\left|\frac{x^{n^2}}{2^n}\right|}
+           & = \lim\limits_{n \to \infty} \frac{|x|^n}{2}
+        \end{align*}
+        根据级数的根式判别法，当$\lim\limits_{n \to \infty} \frac{|x|^n}{2} < 1$时，级数收敛。
+
+        $|x| = 1$时，$\lim\limits_{n \to \infty} \frac{|x|^n}{2} = \frac{1}{2}$；
+
+        $|x| < 1$时，$\lim\limits_{n \to \infty} \frac{|x|^n}{2} = \frac{1}{2}$；
+
+        $|x| > 1$时，$\lim\limits_{n \to \infty} \frac{|x|^n}{2} = +\infty$；
+
+        故$R = 1$，收敛区间$[-1, 1]$。
 
 \end{itemize}
 
