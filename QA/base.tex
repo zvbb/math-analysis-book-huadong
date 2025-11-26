@@ -169,6 +169,38 @@ $n = 1$时，命题成立。\\
 6.6节，习题9
 
 \begin{zremark}
+    柯西不等式（柯西-施瓦茨不等式）
+
+    设
+    $a_1, a_2, \cdots, a_n$与$b_1, b_2, \cdots, b_n$为任意实数，
+    则它们满足柯西不等式：
+    \begin{align*}
+        (a_1b_1 + a_2b_2 + \cdots + a_nb_n)^2
+        \leq (a_1^2 + a_2^2 + \cdots + a_n^2)(b_1^2 + b_2^2 + \cdots + b_n^2)
+    \end{align*}
+    即
+    \begin{align*}
+        \left(\sum\limits_{k = 1}^n a_k b_k\right)^2
+        \leq \left(\sum\limits_{k = 1}^n a_k^2 \right) \left(\sum\limits_{k = 1}^n b_k^2 \right)
+    \end{align*}
+\end{zremark}
+\textbf{证明：}
+令
+\begin{align*}
+    f(t) & = \left(\sum\limits_{k = 1}^n a_k^2 \right) t^2 + 2\left(\sum\limits_{k = 1}^n a_k b_k\right) t + \left(\sum\limits_{k = 1}^n b_k^2 \right)
+\end{align*}
+因为$f(t) \geq 0$，所以$\Delta \leq 0$，即
+\begin{align*}
+    4 \left(\sum\limits_{k = 1}^n a_k b_k\right)^2 - 4 \left(\sum\limits_{k = 1}^n a_k^2 \right) \left(\sum\limits_{k = 1}^n b_k^2 \right) \leq 0
+\end{align*}
+移项可得
+\begin{align*}
+    \left(\sum\limits_{k = 1}^n a_k b_k\right)^2
+    \leq \left(\sum\limits_{k = 1}^n a_k^2 \right) \left(\sum\limits_{k = 1}^n b_k^2 \right)
+\end{align*}
+
+
+\begin{zremark}
     常见不等式
 \end{zremark}
 
@@ -176,6 +208,8 @@ $n = 1$时，命题成立。\\
     \item $1 + \ln x \leq x$；
 
           可以使用$\ln x$是凹函数证明；
+
+    \item
 
 \end{itemize}
 

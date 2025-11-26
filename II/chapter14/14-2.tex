@@ -62,17 +62,47 @@
 
   \item (2)
 
-        由例6可知（$\alpha \leq -1$）
+        由例6可知（$\alpha \leq -1$）时，
         \begin{align*}
           (1 + x)^{\alpha}
            & = 1 + \alpha x + \frac{\alpha(\alpha - 1)}{2!} x^2 + \cdots + \frac{\alpha(\alpha - 1)\cdots(\alpha - n + 1)}{n!} x^n + \cdots,
           x \in (-1, 1)
         \end{align*}
-        故
+        $\alpha = -1, x = -x$得到
         \begin{align*}
           \frac{x^{10}}{1 - x}
            & = x^{10} \left(1 + (-1)(-x) + \frac{(-1)(-2)}{2}(-x)^2 + \cdots + \frac{(-1)(-2)\cdots(-1 - n + 1)}{n!}(-x)^n + \cdots \right) \\
-           & = x^{10} \left(1 + x + x^2 + \cdots + x^n + \cdots \right), x \in (-1, 1)                                                   \\
+           & = x^{10} \left(1 + x + x^2 + \cdots + x^n + \cdots \right), x \in (-1, 1)                                                      \\
+        \end{align*}
+
+  \item (3)
+
+        由例6可知（$-1 < \alpha < 0$）时，
+        \begin{align*}
+          (1 + x)^{\alpha}
+           & = 1 + \alpha x + \frac{\alpha(\alpha - 1)}{2!} x^2 + \cdots + \frac{\alpha(\alpha - 1)\cdots(\alpha - n + 1)}{n!} x^n + \cdots,
+          x \in (-1, 1]
+        \end{align*}
+        令$x = -2x, \alpha = -\frac{1}{2}$时得到
+        \begin{align*}
+          \frac{1}{\sqrt{1 - 2x}}
+           & = 1 + (-\frac{1}{2}) (-2x) + \frac{(-\frac{1}{2})(-\frac{1}{2} - 1)}{2!} (-2x)^2                                                                                        \\
+           & + \cdots + \frac{-\frac{1}{2}(-\frac{1}{2} - 1)\cdots(-\frac{1}{2} - n + 1)}{n!} (-2x)^n + \cdots                                                                       \\
+           & = 1 + (\frac{1}{2}) (2x) + \frac{(\frac{1}{2})(\frac{1}{2} + 1)}{2!} (2x)^2 \cdots + \frac{\frac{1}{2}(\frac{1}{2} + 1)\cdots(\frac{1}{2} + n - 1)}{n!} (2x)^n + \cdots \\
+           & = 1 + x + \frac{(\frac{1 \cdot 3}{2^2})}{2!} (2x)^2 \cdots + \frac{\frac{1 \cdot 3 \cdot 5 \cdots (1 + 2n - 2)}{2^n}}{n!} (2x)^n + \cdots                               \\
+           & = 1 + x + \frac{1 \cdot 3}{2!} x^2 \cdots + \frac{1 \cdot 3 \cdot 5 \cdots (2n - 1)}{n!} x^n + \cdots                                                                   \\
+           & = 1 + x + \frac{1 \cdot 3}{2!} x^2 \cdots + \frac{(2n - 1)!!}{n!} x^n + \cdots                                                                                          
+        \end{align*}
+        故
+        \begin{align*}
+          \frac{x}{\sqrt{1 - 2x}}
+           & = x\left(1 + x + \frac{1 \cdot 3}{2!} x^2 \cdots + \frac{(2n - 1)!!}{n!} x^n + \cdots \right) \\
+           & = x + \sum\limits_{n = 1}^{\infty} \frac{(2n - 1)!!}{n!} x^{n + 1}
+        \end{align*}
+        且收敛区域为
+        \begin{align*}
+          -1 < - 2x \leq 1 \\
+          - \frac{1}{2} \leq x < \frac{1}{2}
         \end{align*}
 \end{itemize}
 

@@ -1,0 +1,195 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 15.1}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+\begin{itemize}
+  \item (1)
+
+        \begin{itemize}
+          \item (i)
+
+                $f(x)$在$[-\pi, \pi]$上是按段光滑的，可以展开为傅里叶级数
+                \begin{align*}
+                  a_0
+                   & = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) dx \\
+                   & = \frac{1}{\pi} \int_{-\pi}^{\pi} x dx    \\
+                   & = \frac{1}{\pi} \int_{-\pi}^{\pi} x dx    \\
+                   & = 0
+                \end{align*}
+                \begin{align*}
+                  a_n
+                   & = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) cos\, nx dx \\
+                   & = \frac{1}{\pi} \int_{-\pi}^{\pi} x cos\, nx dx    \\
+                   & = 0
+                \end{align*}
+                注：$x cos\, nx$是奇函数。
+                \begin{align*}
+                  b_n
+                   & = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) sin\, nx dx                                   \\
+                   & = \frac{1}{\pi} \int_{-\pi}^{\pi} x sin\, nx dx                                      \\
+                   & = \frac{1}{\pi} (-\frac{1}{n})\int_{-\pi}^{\pi} x d(cos\, nx)                        \\
+                   & = -\frac{1}{n\pi}(x cos\, nx \bigg|_{-\pi}^{\pi} - \int_{-\pi}^{\pi} cos\, nx \, dx) \\
+                   & = -\frac{1}{n\pi}[\pi(-1)^n - (-\pi)(-1)^n - 0]                                      \\
+                   & = (-1)^{n+1} \frac{2}{n}
+                \end{align*}
+                于是
+                \begin{align*}
+                  \frac{a_0}{2} + \sum\limits_{n = 1}^{\infty} a_n cos nx + b_n sin nx
+                   & = \sum\limits_{n = 1}^{\infty} (-1)^{n+1} \frac{2}{n} sin nx
+                \end{align*}
+                由于$f(x)$在$(-\pi, \pi)$上连续，可知
+                \begin{align*}
+                  f(x) = \sum\limits_{n = 1}^{\infty} (-1)^{n+1} \frac{2}{n} sin nx , \, \, x \in (-\pi + 2k\pi, \pi + 2k\pi)
+                \end{align*}
+                由收敛定理可知，$x = \pm \pi$时
+                \begin{align*}
+                  \sum\limits_{n = 1}^{\infty} (-1)^{n+1} \frac{2}{n} sin nx
+                   & = \frac{f(\pi + 0) + f(\pi - 0)}{2} \\
+                   & = \frac{\pi + (-\pi)}{2}            \\
+                   & = 0
+                \end{align*}
+
+          \item  (ii) 略
+        \end{itemize}
+
+  \item (2)
+
+        \begin{itemize}
+          \item (1)
+
+                $f(x)$在$[-\pi, \pi]$上是按段光滑的，可以展开为傅里叶级数，有
+                \begin{align*}
+                  a_n
+                   & = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) cos\, nx dx                                                     \\
+                   & = \frac{1}{\pi} \int_{-\pi}^{\pi} x^2 cos\, nx dx                                                      \\
+                   & = \frac{1}{n\pi} \int_{-\pi}^{\pi} x^2 d(sin\, nx)                                                     \\
+                   & = \frac{1}{n\pi}\left( x^2 sin\, nx \bigg|_{-\pi}^{\pi} - \int_{-\pi}^{\pi} 2 x \, sin\, nx dx \right) \\
+                   & = \frac{1}{n\pi}\left( 0 - \int_{-\pi}^{\pi} 2 x \, sin\, nx dx \right)                                \\
+                   & = -\frac{2}{n\pi} \int_{-\pi}^{\pi} x \, sin\, nx dx                                                   \\
+                   & = -\frac{2}{n\pi} (- \frac{1}{n}) \int_{-\pi}^{\pi} x \, d(cos\, nx)                                   \\
+                   & = \frac{2}{n^2\pi}  \left( x \, cos\, nx \bigg|_{-\pi}^{\pi} - \int_{-\pi}^{\pi} cos\, nx dx \right)   \\
+                   & = \frac{2}{n^2\pi}  \left[ (-1)^n 2\pi - 0 \right]                                                     \\
+                   & = (-1)^n \frac{4}{n^2}
+                \end{align*}
+                \begin{align*}
+                  a_0
+                   & = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) dx                        \\
+                   & = \frac{1}{\pi} \int_{-\pi}^{\pi} x^2 dx                         \\
+                   & = \frac{1}{\pi} \left(\frac{1}{3}x^3 \bigg|_{-\pi}^{\pi} \right) \\
+                   & = \frac{1}{\pi} \frac{2}{3} (\pi)^3                              \\
+                   & = \frac{2}{3} (\pi)^2
+                \end{align*}
+                \begin{align*}
+                  b_n
+                   & = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) sin\, nx dx \\
+                   & = \frac{1}{\pi} \int_{-\pi}^{\pi} x^2 sin\, nx dx  \\
+                   & = 0
+                \end{align*}
+                故
+                \begin{align*}
+                  f(x) & =  \frac{a_0}{2} + \sum\limits_{n = 1}^{\infty} a_n cos nx + b_n sin nx                                \\
+                       & = \frac{(\pi)^2}{3} \sum\limits_{n = 1}^{\infty} (-1)^n \frac{4}{n^2} cos \, nx , \, x \in (-\pi, \pi)
+                \end{align*}
+                \textcolor{red}{注：}
+                $x = \pm \pi$时，
+                \begin{align*}
+                  \frac{f(\pi + 0) + f(\pi - 0)}{2}
+                  = \pi^2
+                   & = \frac{\pi^2}{3} + \sum\limits_{n = 1}^{\infty} (-1)^n \frac{4}{n^2} cos \, n\pi \\
+                   & = \frac{\pi^2}{3} + \sum\limits_{n = 1}^{\infty} \frac{4}{n^2}
+                \end{align*}
+                经过变形，我们有
+                \begin{align*}
+                  \frac{\pi^2}{6} & = \sum\limits_{n = 1}^{\infty} \frac{1}{n^2}
+                \end{align*}
+
+          \item (2)
+
+                $f(x)$在$[0, 2\pi]$上是按段光滑的，可以展开为傅里叶级数，有
+                \begin{align*}
+                  a_0 & = \frac{1}{\pi} \int_{0}^{2\pi} f(x) dx          \\
+                  a_n & = \frac{1}{\pi} \int_{0}^{2\pi} f(x) cos\, nx dx \\
+                  b_n & = \frac{1}{\pi} \int_{0}^{2\pi} f(x) sin\, nx dx
+                \end{align*}
+                计算略
+
+        \end{itemize}
+
+  \item (3)
+        \begin{equation*}
+          f'(x) = \begin{cases}
+            a, & -\pi < x < 0 \\
+            b, & 0 < x < \pi
+          \end{cases}
+        \end{equation*}
+        又因为
+        \begin{align*}
+          \lim\limits_{x \to 0^-} f'(x) = a \\
+          \lim\limits_{x \to 0^+} f'(x) = b
+        \end{align*}
+        所以$f(x)$在$[-\pi, \pi]$上是分段光滑的，可以展开为傅里叶级数
+        \begin{align*}
+          a_0
+           & = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) dx                                        \\
+           & = \frac{1}{\pi} \left(\int_{-\pi}^{0} ax \, dx + \int_{0}^{\pi} bx \, dx \right) \\
+           & = \frac{b - a}{2} \pi
+        \end{align*}
+        \begin{align*}
+          a_n
+           & = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) cos\, nx dx                                                 \\
+           & = \frac{1}{\pi} \left(\int_{-\pi}^{0} ax cos\, nx \, dx + \int_{0}^{\pi} bx cos\, nx \, dx \right) \\
+           & = \frac{a - b}{n^2 \pi} [1 - (-1)^n]
+        \end{align*}
+        \begin{align*}
+          b_n
+           & = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) sin\, nx dx                                                 \\
+           & = \frac{1}{\pi} \left(\int_{-\pi}^{0} ax sin\, nx \, dx + \int_{0}^{\pi} bx sin\, nx \, dx \right) \\
+           & = (-1)^n \frac{a + b}{n}
+        \end{align*}
+        故
+        \begin{align*}
+          & \frac{a_0}{2} + \sum\limits_{n = 1}^{\infty} a_n cos nx + b_n sin nx \\
+          & = \frac{b - a}{4} \pi + 
+          \sum\limits_{n = 1}^{\infty} \frac{a - b}{n^2 \pi} [1 - (-1)^n] cos nx +  (-1)^n \frac{a + b}{n} sin nx 
+        \end{align*}
+
+
+\end{itemize}
+
+
+\end{document}
