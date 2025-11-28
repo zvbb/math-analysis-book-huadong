@@ -1,0 +1,114 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 16.1}
+\author{张志聪}
+\maketitle
+
+\section*{4}
+
+$D$是闭域，由闭域的定义，则有开域$S$使
+\begin{align*}
+  D = S \cup \partial S
+\end{align*}
+
+设$P_0$为$D$的任一聚点，要证$P_0 \in D$。
+
+反证法，假设$P_0 \notin D$，即
+$P_0 \notin (S \cup \partial S)$，等价于$P_0 \notin S, P_0 \notin \partial S$.
+
+由$P_0 \notin \partial S$，由界点定义可知，存在
+$\delta_0 > 0$，使得$U(P_0; \delta_0) \cap S = \varnothing$
+或$U(P_0; \delta_0) \cap S^{c} = \varnothing$.
+
+(i)如果$U(P_0; \delta_0) \cap S = \varnothing$，
+由$P_0$是聚点，有$U(P_0; \delta_0) \cap \partial S \neq \varnothing$否则会出现矛盾，
+即存在$P_1 \in U(P_0; \delta_0) \cap \partial S$，
+由界点定义，$U(P_1; \delta_0) \cap S \neq \varnothing$；
+由于$P_0$是聚点，类似地，对任意$\epsilon < \delta_0$，
+都有$P_{\epsilon} \in U(P_0; \epsilon) \cap \partial S$且
+$U(P_{\epsilon}; \epsilon) \cap S \neq \varnothing$.
+此时，我们有
+\begin{align*}
+  \rho(P_0, P_{\epsilon}) \leq \epsilon \\
+  \rho(P_{\epsilon}, Q) \leq \epsilon
+\end{align*}
+当$\epsilon$足够小，有$Q \in U(P_{\epsilon}; \epsilon) \cap S$且
+\begin{align*}
+  \rho(P_0, Q) \leq \rho(P_0, P_{\epsilon}) + \rho(P_{\epsilon}, Q) \leq 2\epsilon < \delta_0
+\end{align*}
+于是可得
+\begin{align*}
+  Q \in U(P_0; \delta_0)
+\end{align*}
+因$Q \in S$，故$U(P_0; \delta_0) \cap S \neq \varnothing$，出现矛盾。
+
+(ii) $U(P_0; \delta_0) \cap S^{c} = \varnothing$，于是
+$U(P_0; \delta_0) \subseteq S \subseteq D$，故$P_0 \in D$，出现矛盾。
+
+综上，任意聚点$P_0$都有$P_0 \in D$，故$D$是闭域。
+
+\section*{13}
+令$H = \{\Delta_{\alpha}\}$.
+
+用反证法 假设定理的结论不成立，即不能用$H$中有限个开域来覆盖$D$.
+
+$D$是一个有界闭域，因此存在一个闭正方形$S$包含它。可以把$S$等分成
+四个小的闭正方形，则在这四个小闭正方形与$D$的交集中，
+至少有一个小闭正方形与$D$的交集不能被$H$中有限个开域来覆盖，
+记这个小闭正方形与$D$的交集为$D_1$，则$D_1 \subset D$，
+且$d(D_1) < \frac{d(S)}{2}$.
+
+再将$D_1$按上述方法等分为四个小闭正方形，同样，至少有一个
+小闭正方形与$D_1$的交集不能被$H$中有限个开域来覆盖，记这个小闭正方形与$D_1$的交集为$D_2$，
+则$D_2 \subset D_1 \subset D$，且$d(D_2) < \frac{d(S)}{2^2}$.
+
+重复上述步骤并不断进行下去，则得到一个闭区域列$\{D_n\}$，它满足
+\begin{align*}
+  D_{n+1} \subset D_n, \, n = 1, 2, \cdots ; \\
+  d_n = d(D_n), \lim\limits_{n \to \infty} \frac{d(S)}{2^n} = 0
+\end{align*}
+即$\{D_n\}$是闭区域套，且其中每一个闭区域都都不能被$H$中有限个开域来覆盖。
+
+由闭区域套定理，存在唯一的点$P_0 \in D_n, n = 1, 2, \cdots$，
+由于$H$是$D$的一个开覆盖，故存在开域$\Delta$，使得$P_0 \in \Delta$。
+由于$\Delta$是开域，故$P_0$是内点，即存在$U(P_0; \epsilon) \subset \Delta$，
+于是由16.2的推论，当$n$足够大时，有
+\begin{align*}
+  D_n \subset U(P_0; \epsilon) \subset \Delta
+\end{align*}
+这表明$D_n$只需要$H$中的一个开域来覆盖，这与构造$D_n$时的假设
+“不能被$H$中有限个开域来覆盖”相矛盾。
+
+\end{document}

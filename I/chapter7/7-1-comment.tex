@@ -45,12 +45,32 @@
 通过
 \begin{align*}
   \lim\limits_{n \to \infty} a_n = \xi \\
-  \lim\limits_{n \to \infty} b_n = \xi 
+  \lim\limits_{n \to \infty} b_n = \xi
 \end{align*}
 以证得该推论。
 
+\begin{zremark}
+  例3，证明的第一段中$k_\alpha$的存在性。
+\end{zremark}
+\textbf{证明：}
+设$S$的上界为$M$，
+阿基米德性保证存在正整数$k$，对任意$s \in S$，有
+\begin{align*}
+ -M \leq -k \alpha \leq s \leq k \alpha \leq M
+\end{align*}
 
+我们考虑$(k - 1) \alpha$，如果存在$\alpha'$使得
+\begin{align*}
+  \alpha' > (k - 1) \alpha
+\end{align*}
+则找到$k_\alpha = k$，如果不存在，则$(k - 1)\alpha$是$S$的上界.
 
+继续考虑$(k - 2) \alpha$，如果存在$\alpha'$使得
+\begin{align*}
+  \alpha' > (k - 2) \alpha
+\end{align*}
+则找到$k_\alpha = k - 1$，如果不存在，则$(k - 2)\alpha$是$S$的上界.
 
+因为$k$是定值且$S$不是空集，进过有限次上述操作，即可找到$k_\alpha$。
 
 \end{document}
