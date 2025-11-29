@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 16.2}
+\author{张志聪}
+\maketitle
+
+\section*{1}
+
+\begin{itemize}
+  \item (4)
+
+        当$(x, y) \in U(0; 1)$即$r = \sqrt{x^2 + y^2} \leq 1$。
+
+        \begin{align*}
+          |xy| \leq \frac{1}{2} (x^2 + y^2) = \frac{1}{2} r^2 \leq \frac{1}{2}
+        \end{align*}
+        和
+        \begin{align*}
+          x^4 + y^4 \leq (x^2 + y^2)^2 \leq x^2 + y^2 = r^2
+        \end{align*}
+        所以
+        \begin{align*}
+          \lim\limits_{(x, y) \to (0, 0)} \frac{xy + 1}{x^4 + y^4}
+           & \geq \frac{1 - |xy|}{x^2 + y^2} \\
+           & \geq \frac{\frac{1}{2}}{r^2}
+        \end{align*}
+        可得$r \to 0$是，我们还有$\frac{\frac{1}{2}}{r^2} \to +\infty$.
+
+\end{itemize}
+
+\section*{9}
+
+\begin{itemize}
+  \item (1) 定理16.5
+
+        \begin{itemize}
+          \item (i) 必要性；
+
+                已知
+                \begin{align*}
+                  \lim\limits_{\substack{P \to P_0 \\ P \in D}} f(P) = A
+                \end{align*}
+                由定义可知，对任意$\epsilon > 0$，总存在正数$\delta$，使得当$P \in U^{\circ}(P_0; \delta) \cap D$时，
+                都有
+                \begin{align*}
+                  |f(P) - A| < \epsilon
+                \end{align*}
+                因为$P_0$是$E$的聚点，即$U^{\circ}(P_0; \delta) \cap E \neq \varnothing$，又因为
+                \begin{align*}
+                  E \subseteq D
+                \end{align*}
+                所以当$P \in (U^{\circ}(P_0; \delta) \cap E) \subseteq (U^{\circ}(P_0; \delta) \cap D)$时，
+                都有
+                \begin{align*}
+                  |f(P) - A| < \epsilon
+                \end{align*}
+                由定义可知
+                \begin{align*}
+                  \lim\limits_{\substack{P \to P_0 \\ P \in E}} f(P) = A
+                \end{align*}
+
+          \item (ii) 充分性.
+
+                设对于$D$中任一子集$E$，且$P_0$是$E$的聚点，就有
+                \begin{align*}
+                  \lim\limits_{\substack{P \to P_0 \\ P \in E}} f(P) = A
+                \end{align*}
+                反证法$\, $假设$\lim\limits_{\substack{P \to P_0 \\ P \in D}} f(P) \neq A$，
+                即存在$\epsilon_0 > 0$，对任意正数$\delta$，存在$P \in U^{\circ}(P_0; \delta) \cap D$，使得
+                \begin{align*}
+                  |f(P) - A| \geq \epsilon_0
+                \end{align*}
+                （注：$P_0$是$D$子集的聚点，所以也是$D$的聚点）
+                利用以上性质，我们可以构造一个$D$的子集$E'$，构造方式如下：
+
+                取$\delta_1 = 1$，存在$P_1 \in U^{\circ}(P_0; 1) \cap D$，使得
+                $|f(P_1) - A| \geq \epsilon_0$，把$P_1$加入$E'$中；
+
+                取$\delta_2 = min\{\frac{1}{2}, \rho(P_0, P_1)\}$，
+                存在$P_2 \in U^{\circ}(P_0; \delta_2) \cap D$，使得
+                $|f(P_2) - A| \geq \epsilon_0 $，把$P_2$加入$E'$中；
+
+                $\vdots$
+
+                取$\delta_n = min\{\frac{1}{n}, \rho(P_0, P_{n-1})\} $，
+                存在$P_n \in U^{\circ}(P_0; \delta_n) \cap D$，使得
+                $|f(P_n) - A| \geq \epsilon_0$，把$P_n$加入$E'$中；
+
+                将这个过程无限重复下去，就得到一个$D$的子集$E'$，且$P_0$是$E'$的聚点，
+                由构造方式可知，
+                \begin{align*}
+                  \lim\limits_{\substack{P \to P_0 \\ P \in E'}} f(P) \neq A
+                \end{align*}
+                出现矛盾。
+
+        \end{itemize}
+
+  \item (2) 推论3
+
+        \begin{itemize}
+          \item 必要性；
+
+                略
+
+          \item 充分性；
+
+                提示：反证法$\, $ 按照(1)-充分性的证明方式，构造一个收敛于$P_0$的点列。
+        \end{itemize}
+
+\end{itemize}
+
+\end{document}
