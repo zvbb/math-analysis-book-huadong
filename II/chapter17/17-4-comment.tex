@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 17.4}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  $f_{xy}(x, y)$在点$(x_0, y_0)$连续，则存在$(x_0, y_0)$的领域$U$，
+  对任意$(x, y) \in U$，$f_x$存在。
+\end{zremark}
+\textbf{证明：}
+由连续的定义
+\begin{align*}
+  \lim\limits_{(x, y) \to (x_0, y_0)} f_{xy}(x, y) = f_{xy}(x_0, y_0)
+\end{align*}
+可知，存在$(x_0, y_0)$的领域$U$，使得$f_{xy}$在$U$内每一个点都有定义；
+
+对任意$(x_1, y_1) \in U$，由偏导数的定义，我们有
+\begin{align*}
+  \lim\limits_{\Delta y \to 0} \frac{f_x(x_1, y_1 + \Delta y) - f_x(x_1, y_1)}{\Delta y}
+\end{align*}
+以上隐含了$f_x(x_1, y_1)$存在，否则上式没有意义。
+
+综上，命题成立。
+
+\begin{zremark}
+  命题
+
+  设$z = f(x, y), x = \varphi (s, t), y = \psi (s, t)$，
+  若函数$f, \varphi, \psi$都具有连续的二阶偏导数，则$z$对
+  $s, t$同样存在二阶连续偏导数。
+\end{zremark}
+
+\begin{zremark}
+  为什么
+
+  $D$是矩形区域$[a, b] \times [c, d]$，那就不能保证对$D$上的任意两点$P,Q$都有$(8)$是成立。
+\end{zremark}
+\textbf{证明：}
+因为如果$P,Q$都在同一条边上，则$PQ$线段上的点都是边界点，
+由书中的“注”可知$(8)$式不成立。
+
+\begin{zremark}
+  证明：定理17.8（中值定理）推论。
+\end{zremark}
+
+\begin{zremark}
+  证明：定理17.10（极值必要条件）
+\end{zremark}
+\textbf{证明：}
+以$f_x(x_0, y_0) = 0$为例。
+
+反证法，假设$f_x(x_0, y_0) \neq 0$，不妨设$f_x > 0$，
+由偏导数的定义可知
+\begin{align*}
+  \lim\limits_{\Delta x \to 0} \frac{f(x_0 + \Delta x, y_0) - f(x_0, y_0)}{\Delta x} 
+  = f_x(x_0, y_0) > 0
+\end{align*}
+由保号性可知，存在$\delta > 0$，$0 < \Delta x < \delta$时，有
+\begin{align*}
+  \frac{f(x_0 + \Delta x, y_0) - f(x_0, y_0)}{\Delta x} & > 0 \\
+  f(x_0 + \Delta x, y_0) - f(x_0, y_0) & > 0 \\
+  f(x_0 + \Delta x, y_0) & > f(x_0, y_0)
+\end{align*}
+这与$f(x_0, y_0)$是极值点矛盾。
+
+\end{document}

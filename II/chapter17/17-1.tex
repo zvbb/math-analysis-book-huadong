@@ -1,0 +1,114 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{习题 17.1}
+\author{张志聪}
+\maketitle
+
+\section*{7}
+
+考虑
+\begin{align*}
+  \lim\limits_{(x, y) \to (0, 0)} f(x, y)
+   & = \lim\limits_{(x, y) \to (0, 0)} (x^2 + y^2) sin \frac{1}{\sqrt{x^2 + y^2}} \\
+   & \leq \lim\limits_{(x, y) \to (0, 0)} (x^2 + y^2) \frac{1}{\sqrt{x^2 + y^2}}  \\
+   & = \lim\limits_{(x, y) \to (0, 0)} \sqrt{x^2 + y^2}                           \\
+   & = 0 = f(0, 0)
+\end{align*}
+故$f(x)$在$(0, 0)$处连续。
+
+\section*{15}
+
+$f$在$U(P)$上的偏导数有界，故存在$M > 0$，对任意$(x, y) \in U(P)$，有
+\begin{align*}
+  |f_x(x, y)| < M \\
+  |f_y(x, y)| < M
+\end{align*}
+
+对任意$(x_1, y_1) \in U(P)$，
+由定理17.3（中值公式），我们有
+\begin{align*}
+   & \lim\limits_{(x, y) \to (x_1, y_1)} f(x, y) - f(x_1, y_1)                                                                   \\
+   & = \lim\limits_{(x, y) \to (x_1, y_1)} f_x(x_1 + \theta_1(x - x_1), y)(x - x_1) + f_y(x_0, y_1 + \theta_2(y - y_1))(y - y_1) \\
+   & < \lim\limits_{(x, y) \to (x_1, y_1)} M (x - x_1) + M(y - y_1)                                                              \\
+   & = 0
+\end{align*}
+故
+\begin{align*}
+  \lim\limits_{(x, y) \to (x_1, y_1)} f(x, y) = f(x_1, y_1)
+\end{align*}
+命题得证。
+
+\section*{16}
+
+\begin{itemize}
+  \item (1)
+
+        $f(x, y)$的函数值，只与$y$有关，与$x$无关。
+
+        对任意$(x_1, y), (x_2, y) \in int\, D$，由中值公式，我们有
+        \begin{align*}
+          f(x_1, y) - f(x_2, y)
+           & = f_x(x_2 + \theta_1(x_1 - x_2), y) (x_1 - x_2) + f_y(x_2, y + \theta_2(y - y))(y - y) \\
+           & = 0 + 0                                                                                \\
+           & = 0
+        \end{align*}
+        由$(x_1, y), (x_2, y)$的任意性可知，在$int\, D$上，
+        $f(x, y)$的函数值，只与$y$有关，与$x$无关。
+
+        对任意$(x_0, y_0) \in \partial D$，构造一个元素都是$\int\, D$且$y = y_0$的点列${P_n}$收敛于$(x, y)$.
+        由于$f$在$D$上连续，于是由定理16.5的推论可知$\{f(P_n)\}$收敛，设收敛于$A$，又因为$A$等于$\int\, D$中
+        任意一个$y = y_0$的点，即与$x_0$无关。
+
+        综上，命题得证。
+
+  \item (2)
+
+        $f(x, y)$在$int\, D$上常数函数，使用中值公式即可证明。
+
+  \item (3)
+
+        由证明过程可知，$f$在$D$上的连续性假设不能省略。比如
+        \begin{equation*}
+          f(x, y) =
+          \begin{cases}
+            0, & (a, b) \times (c, d)               \\
+            1, & x = a, x = b \text{或} y = c, y = d
+          \end{cases}
+        \end{equation*}
+\end{itemize}
+
+
+
+\end{document}

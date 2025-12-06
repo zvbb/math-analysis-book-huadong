@@ -60,6 +60,92 @@
 
 \end{itemize}
 
+\section*{2}
+
+\begin{itemize}
+  \item (4)
+
+        取路径$y = 0$时，
+        \begin{align*}
+          \lim\limits_{\substack{x \to 0      \\ y = 0}} \frac{x^3 + y^3}{x^2 + y}
+           & = \lim\limits_{\substack{x \to 0 \\ y = 0}} \frac{x^3}{x^2} \\
+           & = \lim\limits_{\substack{x \to 0 \\ y = 0}} x               \\
+           & = 0
+        \end{align*}
+        另一种取路径的方式，来判断极限是不是非零的，
+        把分母化为与分子的主项次数，这里分子为$x^3 + y^3$，两者的次数相同，
+        按理说$x^3, y^3$都可以作为主项，
+        考虑到分母中的$y$比较简单，容易赋值，故把$x^3$看做分子的主项。
+        令
+        \begin{align*}
+          y = -x^2 + x^3
+        \end{align*}
+        于是
+        \begin{align*}
+          \lim\limits_{\substack{x \to 0      \\ y = -x^2 + x^3}} \frac{x^3 + y^3}{x^2 + y}
+           & = \lim\limits_{\substack{x \to 0 \\ y = -x^2 + x^3}} \frac{x^3 + (-x^2 + x^3)^3}{x^3} \\
+           & = 1
+        \end{align*}
+        故$\lim\limits_{(x, y) \to (0, 0)} \frac{x^3 + y^3}{x^2 + y}$不存在。
+
+  \item (5)
+        \begin{align*}
+          |ysin\frac{1}{x}| \leq |y| \to 0 \,\, (x, y) \to (0, 0)
+        \end{align*}
+        即
+        \begin{align*}
+          \lim\limits_{(x, y) \to (0, 0)} ysin\frac{1}{x} = 0
+        \end{align*}
+        我们有
+        \begin{align*}
+          \lim\limits_{x \to 0} \lim\limits_{y \to 0} ysin\frac{1}{x}
+           & = \lim\limits_{x \to 0} 0 \\
+           & = 0
+        \end{align*}
+        又有
+        \begin{align*}
+          \lim\limits_{x \to 0} sin\frac{1}{x}
+        \end{align*}
+        极限不存在，故
+        \begin{align*}
+          \lim\limits_{y \to 0} \lim\limits_{x \to 0} sin\frac{1}{x}
+        \end{align*}
+        极限不存在。
+
+  \item (6)
+
+        取路径$y = 0$，于是
+        \begin{align*}
+          \lim\limits_{\substack{x \to 0 \\ y = 0}} \frac{x^2 y^2}{x^3+y^3}
+           & = 0
+        \end{align*}
+        令分子分母的主项次数一致，来判断是否有非零的极限。
+        令$y = -x + x^p, p \geq 1$，于是分母
+        \begin{align*}
+          x^3 + y^3
+           & = x^3 + (-x + x^p)^3          \\
+           & = C_{3}^2 (-x)^2 x^p + o(x^4) \\
+           & = 3 x^{p + 2} + o(x^2)
+        \end{align*}
+        分子：
+        \begin{align*}
+          x^2 y^2
+           & = x^2 (-x + x^p)^2 \\
+           & = x^4 + o(x^4)
+        \end{align*}
+        令$p = 2$，此时分子分母最低次项次数都为4，
+        于是，取路径$y = -x + x^2$我们有
+        \begin{align*}
+          \lim\limits_{\substack{x \to 0 \\ y = -x + x^2}} \frac{x^2 y^2}{x^3+y^3}
+           & = \frac{1}{3}
+        \end{align*}
+        所以$\lim\limits_{(x, y) \to (0, 0)} \frac{x^2 y^2}{x^3+y^3}$不存在。
+
+  \item (7)
+
+        提示：$y = mx$.
+\end{itemize}
+
 \section*{9}
 
 \begin{itemize}
