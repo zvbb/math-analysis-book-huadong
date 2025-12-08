@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 18.3}
+\author{张志聪}
+\maketitle
+\begin{zremark}
+  空间直线的表示方式
+\end{zremark}
+
+\begin{itemize}
+  \item 一般式，即两平面相交的直线；
+
+        \begin{equation*}
+          \begin{cases}
+            a x + b y + c z = 0 \\
+            d x + e y + f z = 0
+          \end{cases}
+        \end{equation*}
+  \item 点向式；
+
+        已知直线上一点$P_0(x_0, y_0, z_0)$，直线方向
+        $\vec{v} = (a, b, c)$，则
+        \begin{align*}
+          \frac{x - x_0}{a} & = \frac{y - y_0}{b} = \frac{z - z_0}{c}
+        \end{align*}
+
+  \item 参数方程.
+
+        \begin{equation*}
+          \begin{cases}
+            x = a + mt \\
+            y = b + nt \\
+            y = c + kt
+          \end{cases}
+        \end{equation*}
+\end{itemize}
+
+\begin{zremark}
+  空间直线与空间曲线两者的参数方程区别
+\end{zremark}
+空间直线的参数方程是一次函数，
+空间曲线的参数方程不是一次函数。
+
+\begin{zremark}
+  求空间曲线的切线的思想
+\end{zremark}
+
+切线是动点$Q$与$P_0$的割线极限（$Q \to P_0$），即如下极限为切线方向：
+\begin{align*}
+   & \lim\limits_{\Delta t \to 0} \frac{\vec{r}(t_0 + \Delta t) - \vec{r}(t_0)}{\Delta t} \\
+   & = \left(
+  \lim\limits_{\Delta t \to 0} \frac{x(t_0 + \Delta t) - x(t_0)}{\Delta t} ,
+  \lim\limits_{\Delta t \to 0} \frac{y(t_0 + \Delta t) - y(t_0)}{\Delta t},
+  \lim\limits_{\Delta t \to 0} \frac{z(t_0 + \Delta t) - z(t_0)}{\Delta t}
+  \right)
+\end{align*}
+
+\end{document}

@@ -48,6 +48,57 @@
 \end{align*}
 故$f(x)$在$(0, 0)$处连续。
 
+\section*{10}
+
+$arctan\, \frac{y}{x}$在$(1, 1)$处是可微的。
+又有
+\begin{align*}
+  z_x(1, 1) & = \left(\frac{1}{1 + (\frac{y}{x})^2}\right)\left(-\frac{y}{x^2}\right) \bigg|_{(1, 1)} = -\frac{1}{2} \\
+  z_y(1, 1) & = \left(\frac{1}{1 + (\frac{y}{x})^2}\right)\left(\frac{1}{x}\right)\bigg|_{(1, 1)} = \frac{1}{2}
+\end{align*}
+故切面方程为
+\begin{align*}
+  z - z_0           & = f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0) \\
+  z - \frac{\pi}{4} & = -\frac{1}{2}(x - 1) + \frac{1}{2}(y - 1)        
+\end{align*}
+法线为
+\begin{align*}
+  \pm(f_x(x_0, y_0), f_y(x_0, y_0), - 1)
+   & = \pm(-\frac{1}{2}, \frac{1}{2}, -1)
+\end{align*}
+法线方程为
+\begin{align*}
+  \frac{x - x_0}{f_x(x_0, y_0)} = \frac{y - y_0}{f_x(x_0, y_0)} = \frac{z - z_0}{-1} \\
+  \frac{x - 1}{-\frac{1}{2}} = \frac{y - 1}{\frac{1}{2}} = \frac{z - \frac{\pi}{4}}{-1} \\
+\end{align*}
+
+\section*{11}
+
+这道题放在这里不太合适，而应该是在学习隐函数的理论后。
+
+令$F(x, y, z) = 3x^2 + y^2 - z^2 - 27$，
+\begin{align}
+  F_x = 6x \\
+  F_y = 2y \\
+  F_z = -2 z 
+\end{align}
+所以
+\begin{align}
+  F_x(3, 1, 1) = 18 \\
+  F_y(3, 1, 1) = 2 \\
+  F_z(3, 1, 1) = -2
+\end{align}
+由18章$\S 3$式(12)(13)切平面和法线分别为
+\begin{align}
+  18 (x - 3) + 2(y - 1) - 2(z - 1) = 0 
+\end{align}
+与
+\begin{align}
+  \frac{x - 3}{18} = \frac{y - 1}{2} = \frac{z - 1}{-2}
+\end{align}
+
+
+
 \section*{15}
 
 $f$在$U(P)$上的偏导数有界，故存在$M > 0$，对任意$(x, y) \in U(P)$，有

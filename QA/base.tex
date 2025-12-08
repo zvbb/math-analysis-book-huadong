@@ -205,12 +205,46 @@ $n = 1$时，命题成立。\\
 \end{zremark}
 
 \begin{itemize}
-    \item $1 + \ln x \leq x$；
+    \item (1) $1 + \ln x \leq x$；
+
+    \item (2) 函数$f$在$[a,b]$上单调，则有$|f(x)| \leq |f(a)| + |f(b)|$.
+
+\end{itemize}
+
+\textbf{证明：}
+\begin{itemize}
+    \item (1)
 
           可以使用$\ln x$是凹函数证明；
 
-    \item
+    \item (2)
 
+          不妨设$f(x)$是单增的，于是对任意$x \in [a, b]$，
+          我们有
+          \begin{align*}
+            f(a) \leq f(x) \leq f(b)
+          \end{align*}
+          如果$f(x) \geq 0$，则有
+          \begin{align*}
+            |f(x)| \leq |f(b)|
+          \end{align*}
+          所以
+          \begin{align*}
+            |f(x)| \leq |f(b)| + |f(a)|
+          \end{align*}
+          如果$f(x) < 0$，则有
+          \begin{align*}
+            |f(x)| \leq |f(a)|
+          \end{align*}
+          所以
+          \begin{align*}
+            |f(x)| \leq |f(a)| + |f(b)|
+          \end{align*}
+          
+          综上，
+          \begin{align*}
+            |f(x)| \leq |f(a)| + |f(b)|
+          \end{align*}
 \end{itemize}
 
 

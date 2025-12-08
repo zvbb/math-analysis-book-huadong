@@ -158,11 +158,39 @@
         \begin{align*}
           \lim\limits_{n \to \infty} \frac{\left(1 + \frac{1}{-(n + 1)}\right)^{n+1}}{\left(1 + \frac{1}{-(n + 1)}\right)}
            & = \frac{\frac{1}{e}}{1} \\
-           & = \frac{1}{e} \\
+           & = \frac{1}{e}           \\
            & < 1
         \end{align*}
         故收敛。
 \end{itemize}
 
+\section*{3}
+
+% 考虑数列$\{ \frac{v_{n + 1}}{v_n} \}$，
+% 因为级数$\sum v_n$收敛，
+% 故$\{ \frac{v_{n + 1}}{v_n} \}$是有界数列，否则我们有$\lim\limits_{n \to \infty} \{ \frac{v_{n + 1}}{v_n} \} = + \infty$，
+% 由比式判别法可知$\sum v_n$发散，出现矛盾。
+
+% 因为有界数列有最大聚点（定理7.4），可设$\{ \frac{v_{n + 1}}{v_n} \}$
+% 的最大聚点为$q$，故由定理12.7的推论2可知，$q \leq 1$。
+
+我们有
+\begin{align*}
+  \frac{u_{n + 1}}{u_n}       & \leq \frac{v_{n + 1}}{v_n} \\
+  \frac{u_{n + 1}}{v_{n + 1}} & \leq \frac{u_n}{v_n}
+\end{align*}
+于是可得
+\begin{align*}
+  \frac{u_n}{v_n} \leq \frac{u_{n - 1}}{v_{n - 1}} \leq \cdots \leq \frac{u_{[N_0] + 1}}{v_{[N_0] + 1}}
+\end{align*}
+设
+\begin{align*}
+  M = \frac{u_{[N_0] + 1}}{v_{[N_0] + 1}}
+\end{align*}
+故有
+\begin{align*}
+  u_n \leq M \cdot v_n
+\end{align*}
+由比较原则可知，命题成立。
 
 \end{document}
