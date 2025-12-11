@@ -291,7 +291,18 @@
 
         \end{itemize}
 
-  \item (2) 定理13.4（逐项求导）
+  \item (2) 定理13.13（逐项求积）
+
+        由于$S_n(x)$连续，且$\{S_n(x)\}$一致收敛于$S(x)$，
+        利用定理13.10，可知
+        \begin{align*}
+          \lim\limits_{n \to \infty} \int_{a}^{b} S_n(x) dx                                    & = \int_{a}^{b} S(x) dx \\
+          \lim\limits_{n \to \infty} \int_{a}^{b} \left(\sum\limits_{i = 1}^n u_i(x)\right) dx & = \int_{a}^{b} S(x) dx \\
+          \lim\limits_{n \to \infty} \sum\limits_{i = 1}^n \left(\int_{a}^{b} u_i(x) dx\right) & = \int_{a}^{b} S(x) dx \\
+          \sum \int_{a}^{b} u_n(x) dx                                                          & = \int_{a}^{b} S(x) dx
+        \end{align*}
+
+  \item (3) 定理13.14（逐项求导）
 
         仿照定理13.11的证明。
 
@@ -309,7 +320,7 @@
            & = \sum \left( u_n(x_0) + \int_{x_0}^{x} u_n'(t) dt \right) \\
            & = \sum u_n(x_0) + \sum \int_{x_0}^{x} u_n'(t) dt           \\
            & = A + \int_{x_0}^{x} \sum u_n'(t) dt                       \\
-           & = A + \int_{x_0}^{x} g(t) dt                               
+           & = A + \int_{x_0}^{x} g(t) dt
         \end{align*}
         由$g$的连续性以及微积分学基本定理推得
         \begin{align*}
@@ -317,6 +328,41 @@
         \end{align*}
 \end{itemize}
 
+\section*{4}
 
+因为
+\begin{align*}
+  |u_n(x)| = |\frac{x^{n-1}}{n^2}| \leq \frac{1}{n^2}
+\end{align*}
+因为$\sum \frac{1}{n^2}$收敛，所以由优级数判别法，
+$\sum \frac{x^{n-1}}{n^2}$一致收敛于$S(x)$.
+
+因为$\sum \frac{x^{n-1}}{n^2}$每项都是连续函数，
+由定理13.13可知
+\begin{align*}
+  \int_{a}^{x} S(t) dt
+   & = \sum \int_{0}^{x} \frac{t^{n-1}}{n^2} dt \\
+   & = \sum \frac{t^n}{n^3} \bigg|_{0}^{x}      \\
+   & = \sum \frac{x^n}{n^3}
+\end{align*}
+
+\section*{5}
+
+因为
+\begin{align*}
+  |u_n(x)| = |\frac{cos\, nx}{n\sqrt{n}}| \leq \frac{1}{n\sqrt{n}}
+\end{align*}
+由于$\sum \frac{1}{n\sqrt{n}}$是$p$级数，且$p = \frac{3}{2} > 1$，故
+收敛。
+由优级数判别法可知$\sum \frac{cos\, nx}{n\sqrt{n}}$一致收敛于$S(x)$.
+
+因为$\sum \frac{cos\, nx}{n\sqrt{n}}$每项都是连续函数，
+由定理13.13可知
+\begin{align*}
+  \int_{a}^{x} S(t) dt
+   & = \sum \int_{0}^{x} \frac{cos\, nt}{n\sqrt{n}} dt  \\
+   & = \sum \frac{sin\, nt}{n^2\sqrt{n}} \bigg|_{0}^{x} \\
+   & = \sum \frac{sin\, nt}{n^2\sqrt{n}}
+\end{align*}
 
 \end{document}

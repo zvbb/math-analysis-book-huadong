@@ -202,14 +202,17 @@ $n = 1$时，命题成立。\\
 
 \begin{zremark}
     常见不等式
+    \begin{itemize}
+        \item (1) $1 + \ln x \leq x$；
+
+        \item (2) $ln(1 + x^2) < x, \, x \geq 1$；
+
+        \item (3) 函数$f$在$[a,b]$上单调，则有$|f(x)| \leq |f(a)| + |f(b)|$.
+
+
+    \end{itemize}
+
 \end{zremark}
-
-\begin{itemize}
-    \item (1) $1 + \ln x \leq x$；
-
-    \item (2) 函数$f$在$[a,b]$上单调，则有$|f(x)| \leq |f(a)| + |f(b)|$.
-
-\end{itemize}
 
 \textbf{证明：}
 \begin{itemize}
@@ -219,31 +222,35 @@ $n = 1$时，命题成立。\\
 
     \item (2)
 
+          拉格朗日中值定理可得；
+
+    \item (3)
+
           不妨设$f(x)$是单增的，于是对任意$x \in [a, b]$，
           我们有
           \begin{align*}
-            f(a) \leq f(x) \leq f(b)
+              f(a) \leq f(x) \leq f(b)
           \end{align*}
           如果$f(x) \geq 0$，则有
           \begin{align*}
-            |f(x)| \leq |f(b)|
+              |f(x)| \leq |f(b)|
           \end{align*}
           所以
           \begin{align*}
-            |f(x)| \leq |f(b)| + |f(a)|
+              |f(x)| \leq |f(b)| + |f(a)|
           \end{align*}
           如果$f(x) < 0$，则有
           \begin{align*}
-            |f(x)| \leq |f(a)|
+              |f(x)| \leq |f(a)|
           \end{align*}
           所以
           \begin{align*}
-            |f(x)| \leq |f(a)| + |f(b)|
+              |f(x)| \leq |f(a)| + |f(b)|
           \end{align*}
-          
+
           综上，
           \begin{align*}
-            |f(x)| \leq |f(a)| + |f(b)|
+              |f(x)| \leq |f(a)| + |f(b)|
           \end{align*}
 \end{itemize}
 

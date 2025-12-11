@@ -42,4 +42,78 @@
 % \textbf{证明：}
 % 提示，把缺项补上，即系数$a_i = 0, i = 1, 3, 5, \cdots$。
 
+\begin{zremark}
+  定理14.4 的证明过程中，指出$\overline{x}$处幂级数绝对收敛的原因。
+\end{zremark}
+\textbf{证明：}
+
+由实数稠密性可知，存在$x' \in (-R, R)$且$x' > \overline{x}$，
+即$|\overline{x}| < |x'|$，
+于是利用定理14.1（阿贝尔定理）可得结论。
+
+\begin{zremark}
+  疑问：
+  定理14.5 的证明过程中，指出$\sum a_n R^n$收敛，
+  但阿贝尔定理明明要求函数项级数一致收敛。
+\end{zremark}
+\textbf{证明：}
+这里的$R$是常量，故$\sum a_n R^n$是数项级数（也可以看做特殊的函数项级数，每项都是常数函数），
+收敛的数项级数，满足函数项级数对一致收敛的定义。
+
+\begin{zremark}
+  定理14.7 只证明了单向；
+\end{zremark}
+\textbf{证明：}
+todo
+
+\begin{zremark}
+  证明
+
+  幂函数(2)的和函数为奇（偶）函数，则(2)式不出现偶（奇）次幂的项。
+\end{zremark}
+\textbf{证明：}
+
+设幂函数(2)的和函数$f(x)$为奇函数。于是，我们有
+\begin{align*}
+  f(-x) = f(x)
+\end{align*}
+即
+\begin{align*}
+  \sum a_n (-x)^n = - \sum a_n x^n \\
+  \sum (-1)^n a_n x^n = \sum - a_n x^n
+\end{align*}
+由定理14.9可知
+\begin{align*}
+  (-1)^n a_n = - a_n
+\end{align*}
+当$n$是偶数是，我们有
+\begin{align*}
+  a_n   & = - a_n \\
+  2 a_n & = 0     \\
+  a_n   & = 0
+\end{align*}
+命题得证。
+
+\begin{zremark}
+  证明：例7中
+  \begin{align*}
+    \sum\limits_{n = 1}^{\infty} (-1)^{n - 1} x^n = \frac{x}{1 + x} \, \, , x \in (-1, 1)
+  \end{align*}
+\end{zremark}
+\textbf{证明：}
+\begin{align*}
+  \sum\limits_{n = 1}^{\infty} (-1)^{n - 1} x^n
+   & = x \sum\limits_{n = 1}^{\infty} (-1)^{n - 1} x^{n - 1} \\
+   & = x \sum\limits_{n = 1}^{\infty} (-x)^{n - 1}
+\end{align*}
+右侧求和是等比数列求和，故
+\begin{align*}
+  x \sum\limits_{n = 1}^{\infty} (-x)^{n - 1}
+   & = x \lim\limits_{n \to \infty} \frac{1(1 - (-x)^{n - 1})}{1 - (-x)} \\
+   & = x \cdot \frac{1}{1 + x} \\
+   & = \frac{x}{1 + x} 
+\end{align*}
+
+
+
 \end{document}

@@ -244,6 +244,112 @@
 
 \end{itemize}
 
+\section*{2}
+
+常见思路：
+$n$在分母上，往往是对幂级数求导。
+
+$n$不在分母上，从幂级数$1 + x + x^2 + \cdots + x^n + \cdots = \frac{1}{1 - x}$出发，
+逐项求导，观察结果与目标幂级数的差异，完成证明。本题(3)是这个思路做的。
+\begin{itemize}
+  \item (1)
+
+        对任意$x$，使用比式判别法：
+        \begin{align*}
+          \lim\limits_{n \to \infty} \frac{|u_{n + 1}(x)|}{|u_n(x)|}
+           & = \lim\limits_{n \to \infty} \frac{x^{2(n+1) + 1}}{2(n+1) + 1} \cdot \frac{2n + 1}{x^{2n + 1}} \\
+           & = \lim\limits_{n \to \infty} \frac{2n + 1}{2(n+1) + 1} \cdot \frac{x^{2(n+1) + 1}}{x^{2n + 1}} \\
+           & = x^2
+        \end{align*}
+        故$x^2 < 1$，即$x \in (-1, 1)$上，级数绝对收敛。
+
+        $x = 1$时，
+        \begin{align*}
+          1 + \frac{1}{3} + \frac{1}{5} + \cdots
+          \leq \frac{1}{2} \sum \frac{1}{n}
+        \end{align*}
+        由比较原理可知
+        $1 + \frac{1}{3} + \frac{1}{5} + \cdots$发散；
+        $x = -1$时，也发散。
+
+        故幂级数的收敛域为$(-1, 1)$.
+
+        设幂级数的和函数为$f(x)$，即
+        \begin{align*}
+          f(x) = x + \frac{x^3}{3} + \frac{x^5}{5} + \cdots
+        \end{align*}
+        于是
+        \begin{align*}
+          f'(x) = 1 + x^2 + x^4 + \cdots + x^{2n} + \cdots
+        \end{align*}
+        以上是等比数列求和，故
+        \begin{align*}
+          f'(x) & = \lim\limits_{n \to \infty} \frac{1 - x^{2n + 1}}{1 - x^2} \\
+                & = \frac{1}{1 - x^2}
+        \end{align*}
+        于是由逐项求积得到
+        \begin{align*}
+          f(x) & = \int_{0}^{x} \frac{1}{1 - t^2} dt                            \\
+               & = \frac{1}{2}\int_{0}^{x} \frac{1}{1 + t} + \frac{1}{1 - t} dt \\
+               & = \frac{1}{2} (\ln (1 + x) - \ln (1 - x))                      \\
+               & = \frac{1}{2} \ln \frac{1 + x}{1 - x}
+        \end{align*}
+
+  \item (2)
+
+        易得幂级数在$(-1, 1)$上一致收敛。
+
+        设幂级数在$(-1, 1)$上一致收敛与$f(x)$，我们有
+        \begin{align*}
+          f(x) & = 1 \cdot 2 x + 2 \cdot 3 x^2 + \cdots + n(n + 1)x^n + \cdots       \\
+          f(x) & = x(1 \cdot 2  + 2 \cdot 3 x + \cdots + n(n + 1)x^{n - 1} + \cdots)
+        \end{align*}
+        令
+        \begin{align*}
+          g(x) & = 1 \cdot 2  + 2 \cdot 3 x + \cdots + n(n + 1)x^{n - 1} + \cdots \\
+          h(x) & = x^2 + x^3 + \cdots + x^n + \cdots
+        \end{align*}
+        于是
+        \begin{align*}
+          g(x) = h''(x)
+        \end{align*}
+        且
+        \begin{align*}
+          h(x)   & = \frac{x^2}{1 - x}   \\
+          h''(x) & = \frac{2}{(1 - x)^3}
+        \end{align*}
+        所以
+        \begin{align*}
+          f(x) & = x g(x)                                     \\
+               & = x h''(x)                                   \\
+               & = \frac{2x}{(1 - x)^3} \, \, , x \in (-1, 1)
+        \end{align*}
+
+  \item (3)
+
+        易得幂级数在$(-1, 1)$上一致收敛。
+
+        设幂级数在$(-1, 1)$上一致收敛与$f(x)$。
+
+        已知$1 + x + x^2 + \cdots + x^n + \cdots = \frac{1}{1 - x}$，
+        逐项求导，我们有
+        \begin{align*}
+          g(x) = 1 + 2 x + 3 x^2 + \cdots + n x^{n - 1} + \cdots = (\frac{1}{1 - x})'
+        \end{align*}
+        又有
+        \begin{align*}
+          x g(x) = x + 2 x^2 + 3 x^3 + \cdots + n x^{n} + \cdots = x (\frac{1}{1 - x})'
+        \end{align*}
+        于是
+        \begin{align*}
+          (xg(x))' = 1 + 2^2 x + 3^2 x^2 + \cdots + n^2 x^{n - 1} + \cdots
+        \end{align*}
+        进而
+        \begin{align*}
+          x (xg(x))' = x + 2 x^2 + 3^2 x^3 + \cdots + n^2 x^{n} + \cdots
+        \end{align*}
+        得到目标函数，具体计算略。
+\end{itemize}
 
 
 \end{document}
