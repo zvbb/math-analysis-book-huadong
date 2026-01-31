@@ -35,23 +35,96 @@
 \title{注释 16.2}
 \author{张志聪}
 \maketitle
+\begin{zremark}
+  做极坐标变换的理论依据;
+\end{zremark}
 
-% \begin{zremark}
-%   证明：
-%   设 $f:\mathbb R^2\setminus\{(0,0)\}\to\mathbb R$。
-%   \begin{align*}
-%     \lim_{(x,y)\to(0,0)} f(x,y) = L
-%   \end{align*}
-%   当且仅当
-%   \begin{align*}
-%     L = \lim_{r\to0^+} f(r\cos\theta,r\sin\theta)
-%   \end{align*}
-%   其中
-%   \[
-%     x=r\cos\theta,\qquad y=r\sin\theta,\qquad r>0,\ \theta\in[0,2\pi).
-%   \]
-% \end{zremark}
+这不是简单的替换变量，而是复合函数:
+已知
+\begin{align*}
+  f(x, y) \\
+  \varphi(r, \theta) = (rcos\, \theta, rsin\, \theta)
+\end{align*}
+复合
+\begin{align*}
+  g(r, \theta)
+   & = (f \circ \varphi)(r, \theta)    \\
+   & = f(\varphi(r, \theta))           \\
+   & = f(rcos\, \theta, rsin\, \theta)
+\end{align*}
 
+当我们得到
+\begin{align*}
+  \lim\limits_{r \to 0^+} g(r, \theta) = L
+\end{align*}
+由定义可知，对任意$\epsilon > 0$，存在$\delta > 0$，当$0 < r < \delta$和任意$\theta$，都有
+\begin{align*}
+  |g(r, \theta) - L| < \epsilon
+\end{align*}
+即
+\begin{align}
+  |f(rcos\, \theta, rsin\, \theta) - L| < \epsilon
+\end{align}
+因为$r = \sqrt{x^2 + y^2}$，以上可翻译为，
+当$0 < \sqrt{x^2 + y^2} < \delta$（等价于$U(0; \delta)$），
+对任意$(x, y) \in U(0; \delta)$（因为$\theta$是任意的），都有
+\begin{align*}
+  |f(rcos\, \theta, rsin\, \theta) - L|
+   & = |f(x, y) - L| < \epsilon
+\end{align*}
+
+\begin{zremark}
+  推论3 $\, $为什么没有要求$\{f(P_n)\}$都收敛于同一个数。
+\end{zremark}
+\textbf{证明：}
+
+和一元函数类似，第三章$\S 3$习题4有类似命题；
+
+\begin{zremark}
+  四则运算的具体内容
+\end{zremark}
+设函数
+\[
+  f(x,y),\ g(x,y)
+\]
+在点 $(x_0,y_0)$ 的某去心邻域内有定义，且
+\[
+  \lim_{(x,y)\to(x_0,y_0)} f(x,y)=A,\qquad
+  \lim_{(x,y)\to(x_0,y_0)} g(x,y)=B.
+\]
+
+\begin{itemize}
+  \item 加法法则
+        \[
+          \lim_{(x,y)\to(x_0,y_0)}\bigl[f(x,y)+g(x,y)\bigr]
+          =
+          A+B.
+        \]
+  \item 减法法则
+        \[
+          \lim_{(x,y)\to(x_0,y_0)}\bigl[f(x,y)-g(x,y)\bigr]
+          =
+          A-B.
+        \]
+  \item 乘法法则
+        \[
+          \lim_{(x,y)\to(x_0,y_0)}\bigl[f(x,y)\,g(x,y)\bigr]
+          =
+          AB.
+        \]
+  \item 除法法则
+  
+        若进一步满足 $B\neq 0$，则存在 $\delta_0>0$，使得当
+        \[
+          0<\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta_0
+        \]
+        时，$g(x,y)\neq 0$，并有
+        \[
+          \lim_{(x,y)\to(x_0,y_0)}\frac{f(x,y)}{g(x,y)}
+          =
+          \frac{A}{B}.
+        \]
+\end{itemize}
 
 
 \end{document}

@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage{mathtools} 
+\usepackage{fontspec}
+\usepackage[UTF8]{ctex}
+\usepackage{amsthm}
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+% 定义新的带灰色背景的说明环境 zremark
+\newmdtheoremenv[
+  backgroundcolor=gray!10,
+  % 边框与背景一致，边框线会消失
+  linecolor=gray!10
+]{zremark}{说明}
+
+% 通用矩阵命令: \flexmatrix{矩阵名}{元素符号}{行数}{列数}
+\newcommand{\flexmatrix}[4]{
+  \[
+  #1 = \begin{pmatrix}
+    #2_{11}     & #2_{12}     & \cdots & #2_{1#4}   \\
+    #2_{21}     & #2_{22}     & \cdots & #2_{2#4}   \\
+    \vdots      & \vdots      & \ddots & \vdots     \\
+    #2_{#31}    & #2_{#32}    & \cdots & #2_{#3#4}
+  \end{pmatrix}
+  \]
+}
+
+% 简化版命令（默认矩阵名为A，元素符号为a）: \quickmatrix{行数}{列数}
+\newcommand{\quickmatrix}[2]{\flexmatrix{A}{a}{#1}{#2}}
+
+\begin{document}
+\title{注释 17.2}
+\author{张志聪}
+\maketitle
+
+\begin{zremark}
+  定理17.2（可微的充分条件）的证明中为什么在$f(x_0 + \Delta x, y_0 + \Delta y) - f(x_0, y_0 + \Delta y)$
+  上可以使用拉格朗日定理，定理的条件是如何成立的，尤其是$y = y_0 + \Delta y, x \in (x_0, x_0 + \Delta x)$
+  偏导数$f_x(x, y)$为什么存在。
+\end{zremark}
+
+\textbf{证明：}
+这里，只需要对$f_x$在$(x_0, y_0)$处连续有正确的理解，即可。
+
+要把$f_x(x, y)$看做二元函数，$f_x$在$(x_0, y_0)$处连续，也就是说：
+$(x, y)$以任意路径趋近$(x_0, y_0)$，$f_x(x, y)$的值都趋近于同一个数。
+等价于
+\begin{align*}
+  \lim\limits_{(x, y) \to (x_0, y_0)} f_x(x, y) = f_x(x_0, y_0)
+\end{align*}
+所以存在某个邻域$U(P_0)$，$f_x(x, y)$在$U(P_0)$有定义。
+因为$(\Delta x, \Delta y) \to (0, 0)$，故讨论的点都在邻域$U(P_0)$内，
+所以$y = y_0 + \Delta y, x \in (x_0, x_0 + \Delta x)$
+偏导数$f_x(x, y)$都存在。
+
+一种错误的理解：
+\begin{align*}
+  \lim\limits_{x \to x_0} f_x(x, y_0) = f_x(x_0, y_0)
+\end{align*}
+即把$y$看做固定值$y_0$，这是把连续性和偏导数在一点处的计算方式混淆在一起了。
+
+
+
+
+\end{document}

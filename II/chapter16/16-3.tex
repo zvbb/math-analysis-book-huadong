@@ -49,4 +49,40 @@
         $tan(\varphi(x, y))$连续当且仅当$\varphi(x, y) \in D$。
 \end{itemize}
 
+\section*{3}
+
+说明：相比于定理16.6来说，无需知道$\lim\limits_{y \to b} \lim\limits_{x \to a} f(x)$存在；
+
+证明：
+
+与命题16.6的证明类似。
+
+设$P_0 = (a, b)$，
+$\lim\limits_{(x, y) \to (a, b)} = A$，由定义可知，对任意$\epsilon> 0$，存在$\delta > 0$，
+使得当$P(x, y) \in U^{\circ}(P_0; \delta)$时，有
+\begin{align*}
+  |f(x, y) - A| < \epsilon
+\end{align*}
+
+不妨设$U^{\circ}(P_0; \delta)$在$y$轴上的投影$Y$属于$2^\circ$中邻域$B$，
+即$Y \subset B$，
+故对任意$y \in Y$，都有
+\begin{align*}
+  0 < |y - b| < \delta
+\end{align*}
+已知$x \to a$，有
+\begin{align*}
+  \lim\limits_{x \to a} f(x, y) = \varphi(y)
+\end{align*}
+故
+\begin{align*}
+  |\varphi(y) - A| < \epsilon
+\end{align*}
+注：可以理解为$x$足够靠近$a$.
+
+由$\epsilon$的任意性和$\delta$的存在性可知
+\begin{align*}
+  \lim\limits_{y \to b} \lim\limits_{x \to a} f(x)
+\end{align*}
+
 \end{document}
