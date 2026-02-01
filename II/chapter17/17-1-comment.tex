@@ -37,6 +37,40 @@
 \maketitle
 
 \begin{zremark}
+  为什么（4）式可以代替（1）式，即（4）是如何满足定义1的。
+\end{zremark}
+
+\textbf{证明}
+
+按照定义，我们只需证明
+\begin{align*}
+  \lim\limits_{(\Delta x, \Delta y) \to (0, 0)} \frac{\alpha \Delta x + \beta \Delta y}{\rho} = 0 
+\end{align*}
+因为$(\Delta x, \Delta y) \to (0, 0)$，所以当$\Delta x, \Delta y$足够小时，
+\begin{align*}
+  | \frac{\alpha \Delta x + \beta \Delta y}{\rho} |
+  & = \frac{|\alpha \Delta x + \beta \Delta y|}{\rho} \\
+  & \leq \frac{|\alpha \Delta x|  + |\beta \Delta y|}{\rho} \\
+\end{align*}
+因为
+\begin{align*}
+  |\Delta x| \leq \rho, |\Delta y| \leq \rho
+\end{align*}
+所以
+\begin{align*}
+  \frac{|\alpha \Delta x|  + |\beta \Delta y|}{\rho}
+  & \leq \frac{|\alpha| \rho  + |\beta| \rho}{\rho} \\
+  & = |\alpha| + |\beta|
+\end{align*}
+综上
+\begin{align*}
+  \lim\limits_{(\Delta x, \Delta y) \to (0, 0)} \frac{\alpha \Delta x + \beta \Delta y}{\rho}
+  & \leq \lim\limits_{(\Delta x, \Delta y) \to (0, 0)} |\alpha| + |\beta| \\
+  & = 0
+\end{align*}
+故$\alpha \Delta x + \beta \Delta y = o(\rho)$，满足定义。
+
+\begin{zremark}
   定理17.2（可微的充分条件）的证明中为什么在$f(x_0 + \Delta x, y_0 + \Delta y) - f(x_0, y_0 + \Delta y)$
   上可以使用拉格朗日定理，定理的条件是如何成立的，尤其是$y = y_0 + \Delta y, x \in (x_0, x_0 + \Delta x)$
   偏导数$f_x(x, y)$为什么存在。

@@ -38,7 +38,7 @@
 
 \section*{7}
 
-考虑
+(1) 原点连续；考虑
 \begin{align*}
   \lim\limits_{(x, y) \to (0, 0)} f(x, y)
    & = \lim\limits_{(x, y) \to (0, 0)} (x^2 + y^2) sin \frac{1}{\sqrt{x^2 + y^2}} \\
@@ -47,6 +47,53 @@
    & = 0 = f(0, 0)
 \end{align*}
 故$f(x)$在$(0, 0)$处连续。
+
+(2) 偏导数存在；按照偏导数定义
+\begin{align*}
+  f_x(0, 0) & = \lim\limits_{\Delta x \to 0} \frac{f(\Delta x, 0) - f(0, 0)}{\Delta x}                      \\
+            & = \lim\limits_{\Delta x \to 0} \frac{\Delta x^2 sin \, \frac{1}{\sqrt{\Delta x^2}}}{\Delta x} \\
+            & = \lim\limits_{\Delta x \to 0} |\Delta x| sin \, \frac{1}{|\Delta x|}                         \\
+            & \leq \lim\limits_{\Delta x \to 0} |\Delta x|                                                  \\
+            & = 0
+\end{align*}
+同理
+\begin{align*}
+  f_y(0, 0) = 0
+\end{align*}
+
+(3) 偏导数不连续；
+若$(x, y) \neq (0, 0)$，则我们有
+\begin{align*}
+  f_x(x, y)
+   & = 2x \, sin \frac{1}{\sqrt{x^2 + y^2}}
+  + (x^2 + y^2) cos \, \frac{1}{\sqrt{x^2 + y^2}} \cdot [-x (x^2 + y^2)^{- \frac{3}{2}}] \\
+  & = 2x \, sin \frac{1}{\sqrt{x^2 + y^2}} - x \frac{1}{\sqrt{x^2 + y^2}} cos \, \frac{1}{\sqrt{x^2 + y^2}}
+\end{align*}
+尝试沿$x \neq 0, y = 0, (x, y) \to (0, 0)$路径：
+\begin{align*}
+ \lim\limits_{(x, 0) \to (0, 0)} f_x(x, 0) 
+ & = \lim\limits_{(x, 0) \to (0, 0)} 2x sin \frac{1}{|x|} - \frac{x}{|x|} cos \, \frac{1}{|x|}
+\end{align*}
+第一项$\lim\limits_{(x, 0) \to (0, 0)} 2x sin \frac{1}{|x|} = 0$，
+第二项不收敛。
+
+所以，$f_x$不连续；同理可证$f_y$不连续。
+
+(4) 原点可微；若函数f在原点可微，则
+\begin{align*}
+  \Delta z - dz
+   & = f(0 + \Delta x, 0 + \Delta y) - f(0, 0) - f_x(0, 0) \Delta x - f_y(0, 0) \Delta y \\
+   & = (\Delta x^2 + \Delta y^2) sin \frac{1}{\sqrt{\Delta x^2 + \Delta y^2}}
+\end{align*}
+因该是$\rho = \sqrt{\Delta x^2 + \Delta y^2}$高阶的无穷小量。为此，考察极限
+\begin{align*}
+  \lim\limits_{\rho \to 0} \frac{\Delta z - dz}{\rho}
+   & = \lim\limits_{\rho \to 0} \frac{(\Delta x^2 + \Delta y^2) sin \frac{1}{\sqrt{\Delta x^2 + \Delta y^2}}}{\sqrt{\Delta x^2 + \Delta y^2}} \\
+   & = \lim\limits_{\rho \to 0} \sqrt{\Delta x^2 + \Delta y^2} sin \frac{1}{\sqrt{\Delta x^2 + \Delta y^2}}                                   \\
+   & = 0
+\end{align*}
+故，函数f在原点可微。
+
 
 \section*{10}
 
@@ -59,7 +106,7 @@ $arctan\, \frac{y}{x}$在$(1, 1)$处是可微的。
 故切面方程为
 \begin{align*}
   z - z_0           & = f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0) \\
-  z - \frac{\pi}{4} & = -\frac{1}{2}(x - 1) + \frac{1}{2}(y - 1)        
+  z - \frac{\pi}{4} & = -\frac{1}{2}(x - 1) + \frac{1}{2}(y - 1)
 \end{align*}
 法线为
 \begin{align*}
@@ -68,7 +115,7 @@ $arctan\, \frac{y}{x}$在$(1, 1)$处是可微的。
 \end{align*}
 法线方程为
 \begin{align*}
-  \frac{x - x_0}{f_x(x_0, y_0)} = \frac{y - y_0}{f_x(x_0, y_0)} = \frac{z - z_0}{-1} \\
+  \frac{x - x_0}{f_x(x_0, y_0)} = \frac{y - y_0}{f_x(x_0, y_0)} = \frac{z - z_0}{-1}    \\
   \frac{x - 1}{-\frac{1}{2}} = \frac{y - 1}{\frac{1}{2}} = \frac{z - \frac{\pi}{4}}{-1} \\
 \end{align*}
 
@@ -80,17 +127,17 @@ $arctan\, \frac{y}{x}$在$(1, 1)$处是可微的。
 \begin{align}
   F_x = 6x \\
   F_y = 2y \\
-  F_z = -2 z 
+  F_z = -2 z
 \end{align}
 所以
 \begin{align}
   F_x(3, 1, 1) = 18 \\
-  F_y(3, 1, 1) = 2 \\
+  F_y(3, 1, 1) = 2  \\
   F_z(3, 1, 1) = -2
 \end{align}
 由18章$\S 3$式(12)(13)切平面和法线分别为
 \begin{align}
-  18 (x - 3) + 2(y - 1) - 2(z - 1) = 0 
+  18 (x - 3) + 2(y - 1) - 2(z - 1) = 0
 \end{align}
 与
 \begin{align}
