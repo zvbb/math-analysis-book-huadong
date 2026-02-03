@@ -37,23 +37,69 @@
 \maketitle
 
 \begin{zremark}
-  $f_{xy}(x, y)$在点$(x_0, y_0)$连续，则存在$(x_0, y_0)$的领域$U$，
-  对任意$(x, y) \in U$，$f_x$存在。
+  多元函数的偏导数的四则运算：
+
+  设$f, g : U \subset R^n \to \mathbb{R}$，且在点$x(x_1, x_2, \cdots, x_n) \in U$可微。
+  则我们有
+  \begin{align*}
+    \frac{\partial}{\partial x_i} (f \pm g) (x)                & = \frac{\partial f}{\partial x_i}(x) \pm \frac{\partial g}{\partial x_i}(x)                        \\
+    \frac{\partial}{\partial x_i} (f g) (x)                    & = f(x)\frac{\partial g}{\partial x_i}(x) + g(x)\frac{\partial f}{\partial x_i}(x)                  \\
+    \frac{\partial}{\partial x_i} \left(\frac{f}{g}\right) (x) & = \frac{g(x)\frac{\partial f}{\partial x_i}(x) - f(x)\frac{\partial g}{\partial x_i}(x)}{[g(x)]^2}
+  \end{align*}
 \end{zremark}
 \textbf{证明：}
-由连续的定义
+
+以乘法为例
 \begin{align*}
-  \lim\limits_{(x, y) \to (x_0, y_0)} f_{xy}(x, y) = f_{xy}(x_0, y_0)
+  \frac{\partial}{\partial x_1} (f g) (x)
+   & = \lim\limits_{h \to 0} \frac{(f g) (x_1 + h, \cdots, x_n) - (f g) (x_1, \cdots, x_n)}{h}                                     \\
+   & = \lim\limits_{h \to 0} \frac{f(x_1 + h, \cdots, x_n)g(x_1 + h, \cdots, x_n) - f (x_1, \cdots, x_n) g (x_1, \cdots, x_n)}{h}  \\
+   & = \lim\limits_{h \to 0} \frac{f(x_1 + h, \cdots, x_n)g(x_1 + h, \cdots, x_n) - f(x_1, \cdots, x_n)g(x_1 + h, \cdots, x_n)}{h} \\
+   & \quad + \frac{f(x_1, \cdots, x_n)g(x_1 + h, \cdots, x_n) - f (x_1, \cdots, x_n) g (x_1, \cdots, x_n)}{h}                      \\
+   & = \lim\limits_{h \to 0} \frac{f(x_1 + h, \cdots, x_n) - f(x_1, \cdots, x_n)}{h} g(x_1 + h, \cdots, x_n)                       \\
+   & \quad + \frac{g(x_1 + h, \cdots, x_n) - g (x_1, \cdots, x_n)}{h} f (x_1, \cdots, x_n)                                         \\
+   & = \lim\limits_{h \to 0} \frac{f(x_1 + h, \cdots, x_n) - f(x_1, \cdots, x_n)}{h} g(x_1 + h, \cdots, x_n)                       \\
+   & \quad + \lim\limits_{h \to 0} \frac{g(x_1 + h, \cdots, x_n) - g (x_1, \cdots, x_n)}{h} f (x_1, \cdots, x_n)
 \end{align*}
-可知，存在$(x_0, y_0)$的领域$U$，使得$f_{xy}$在$U$内每一个点都有定义；
+因为$f,g$在$x$处可微，所以在$x$处连续，于是可得
+\begin{align*}
+   & \lim\limits_{h \to 0} \frac{f(x_1 + h, \cdots, x_n) - f(x_1, \cdots, x_n)}{h} g(x_1 + h, \cdots, x_n)       \\
+   & \quad + \lim\limits_{h \to 0} \frac{g(x_1 + h, \cdots, x_n) - g (x_1, \cdots, x_n)}{h} f (x_1, \cdots, x_n) \\
+   & = g(x)\frac{\partial f}{\partial x_i}(x) + f(x)\frac{\partial g}{\partial x_i}(x)
+\end{align*}
+
+\begin{zremark}
+  $f_{xy}(x, y)$在点$(x_0, y_0)$连续，则存在$(x_0, y_0)$的领域$U$，
+  对任意$(x, y) \in U$，$f$有定义。
+\end{zremark}
+\textbf{证明：}
+
+按照偏导数$f_{xy}$的定义:
+\begin{align*}
+  f_{xy}(x_0, y_0) = \lim\limits_{\Delta y \to 0} \frac{f_x(x_0, y_0 + \Delta y) - f_x(x_0, y_0)}{\Delta y}
+\end{align*}
+可知偏导数$f_x$在$y_0$的某个领域内有定义。
+同理，按照$f_x$的定义：
+\begin{align*}
+  f_x(x_0, y_0 + \Delta y) = \lim\limits_{\Delta x \to 0} \frac{f(x_0 + \Delta x, y_0 + \Delta y) - f(x_0, y_0 + \Delta y)}{\Delta x}
+\end{align*}
+可知对每个充分小的$\Delta y$，$f$在$(*, y_0 + \Delta y)$在$x_0$的某个领域内有定义；
+
+综上，$f$在$(x_0, y_0)$的某个领域内有定义；
+
+\begin{zremark}
+  $f_{xy}(x, y)$在点$(x_0, y_0)$的邻域上有定义，且在$(x_0, y_0)$处连续，则存在$(x_0, y_0)$的领域$U$，
+  对任意$(x, y) \in U$，$f_x(x, y)$存在。
+\end{zremark}
+\textbf{证明：}
+
+由题设可知，存在$(x_0, y_0)$的领域$U$，使得$f_{xy}$在$U$内每一个点都有定义；
 
 对任意$(x_1, y_1) \in U$，由偏导数的定义，我们有
 \begin{align*}
-  \lim\limits_{\Delta y \to 0} \frac{f_x(x_1, y_1 + \Delta y) - f_x(x_1, y_1)}{\Delta y}
+  f_{xy} (x_1, y_1) = \lim\limits_{\Delta y \to 0} \frac{f_x(x_1, y_1 + \Delta y) - f_x(x_1, y_1)}{\Delta y}
 \end{align*}
-以上隐含了$f_x(x_1, y_1)$存在，否则上式没有意义。
-
-综上，命题成立。
+所以$f_x(x_1, y_1)$存在，命题成立。
 
 \begin{zremark}
   命题
@@ -75,6 +121,30 @@
 \begin{zremark}
   证明：定理17.8（中值定理）推论。
 \end{zremark}
+\textbf{证明：}
+
+% 由定理17.2（可微的充分条件）可得，$f$在$D$上可微；
+% 由可微的定义可知，$f(x, y)$是常数函数（要用到有限覆盖定理，且如果是开域，还要改造成闭域，
+% 常见做法是加上边界）
+todo
+
+% 整体思路1：
+
+% 按照区域的定义，对任意$P_0(x_0, y_0), P_1(x_1, y_1) \in D$，由于区域具有连通性，
+% 故两点之间存在一条“阶梯形路径”（16-1-comment.tex中有说明）从$P \to Q$，利用一元函数的中值定理命题可证。
+
+\begin{zremark}
+  定理17.9 （泰勒定理）证明中使用了如下命题：
+
+  $f(x, y)$在某领域内有n + 1阶连续偏导数，$x = \phi (s, t), y = \psi (s, t)$也有n + 1阶连续偏导数，
+  于是$F(s, t) = f(\phi (s, t), \psi (s, t))$也在该域内有$n + 1$阶连续偏导数。
+\end{zremark}
+
+\textbf{证明：}
+
+用归纳法进行证明，由命题17.5可知，$F(s, t)$是可微的，且$F(s, t)$的一阶偏导数是连续函数；
+
+归纳假设$F(s,t)$的$n$阶偏导数是连续的，
 
 \begin{zremark}
   证明：定理17.10（极值必要条件）
@@ -85,14 +155,14 @@
 反证法，假设$f_x(x_0, y_0) \neq 0$，不妨设$f_x > 0$，
 由偏导数的定义可知
 \begin{align*}
-  \lim\limits_{\Delta x \to 0} \frac{f(x_0 + \Delta x, y_0) - f(x_0, y_0)}{\Delta x} 
+  \lim\limits_{\Delta x \to 0} \frac{f(x_0 + \Delta x, y_0) - f(x_0, y_0)}{\Delta x}
   = f_x(x_0, y_0) > 0
 \end{align*}
 由保号性可知，存在$\delta > 0$，$0 < \Delta x < \delta$时，有
 \begin{align*}
-  \frac{f(x_0 + \Delta x, y_0) - f(x_0, y_0)}{\Delta x} & > 0 \\
-  f(x_0 + \Delta x, y_0) - f(x_0, y_0) & > 0 \\
-  f(x_0 + \Delta x, y_0) & > f(x_0, y_0)
+  \frac{f(x_0 + \Delta x, y_0) - f(x_0, y_0)}{\Delta x} & > 0           \\
+  f(x_0 + \Delta x, y_0) - f(x_0, y_0)                  & > 0           \\
+  f(x_0 + \Delta x, y_0)                                & > f(x_0, y_0)
 \end{align*}
 这与$f(x_0, y_0)$是极值点矛盾。
 
