@@ -69,6 +69,40 @@
 \end{align*}
 
 \begin{zremark}
+  命题
+
+  设$z = f(x, y), x = \varphi (s, t), y = \psi (s, t)$，
+  若函数$f, \varphi, \psi$都具有连续的二阶偏导数，则$z$对
+  $s, t$同样存在二阶连续偏导数。
+\end{zremark}
+
+\textbf{证明：}
+
+有定理17.5可知，复合函数
+\begin{align*}
+  z = F(s, t) = f(\varphi (s, t), \psi (s, t))
+\end{align*}
+是可微的，且我们有
+\begin{align*}
+  F_s = \frac{\partial z}{\partial x} \frac{\partial x}{\partial s} + \frac{\partial z}{\partial y} \frac{\partial y}{\partial s} \\
+  F_t = \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} + \frac{\partial z}{\partial y} \frac{\partial y}{\partial t}
+\end{align*}
+接下来证明$F_s$（$F_t$类似）是可微，从而偏导数。考虑
+\begin{align*}
+  F_s
+   & = \frac{\partial z}{\partial x} \frac{\partial x}{\partial s} + \frac{\partial z}{\partial y} \frac{\partial y}{\partial s}       \\
+   & = f_x \frac{\partial x}{\partial s} + f_y \frac{\partial y}{\partial s}                                                           \\
+   & = f_x(x, y) \frac{\partial x}{\partial s} + f_y(x, y) \frac{\partial y}{\partial s}                                               \\
+   & = f_x(\varphi (s, t), \psi (s, t)) \frac{\partial x}{\partial s} + f_y(\varphi (s, t), \psi (s, t)) \frac{\partial y}{\partial s} \\
+\end{align*}
+以上可以得到$f_x(\varphi (s, t), \psi (s, t))$是$f_x(x, y), x = \varphi (s, t), y = \psi (s, t)$的复合，
+再次利用17.5可知，$f_x(\varphi (s, t), \psi (s, t))$可微，且偏导数满足链式法则；
+
+同理可得$f_y(\varphi (s, t), \psi (s, t))$可微，且偏导数满足链式法则；
+然后利用多元函数的偏导数的四则运算，可得$F_{ss}$（具体结果P.124），
+由于$F_{ss}$中的每一项都是连续的，故$F_{ss}$连续。
+
+\begin{zremark}
   $f_{xy}(x, y)$在点$(x_0, y_0)$连续，则存在$(x_0, y_0)$的领域$U$，
   对任意$(x, y) \in U$，$f$有定义。
 \end{zremark}
@@ -102,14 +136,6 @@
 所以$f_x(x_1, y_1)$存在，命题成立。
 
 \begin{zremark}
-  命题
-
-  设$z = f(x, y), x = \varphi (s, t), y = \psi (s, t)$，
-  若函数$f, \varphi, \psi$都具有连续的二阶偏导数，则$z$对
-  $s, t$同样存在二阶连续偏导数。
-\end{zremark}
-
-\begin{zremark}
   为什么
 
   $D$是矩形区域$[a, b] \times [c, d]$，那就不能保证对$D$上的任意两点$P,Q$都有$(8)$是成立。
@@ -134,17 +160,39 @@ todo
 % 故两点之间存在一条“阶梯形路径”（16-1-comment.tex中有说明）从$P \to Q$，利用一元函数的中值定理命题可证。
 
 \begin{zremark}
-  定理17.9 （泰勒定理）证明中使用了如下命题：
+  定理17.9（泰勒定理）证明过程中：
 
-  $f(x, y)$在某领域内有n + 1阶连续偏导数，$x = \phi (s, t), y = \psi (s, t)$也有n + 1阶连续偏导数，
-  于是$F(s, t) = f(\phi (s, t), \psi (s, t))$也在该域内有$n + 1$阶连续偏导数。
+  \begin{align*}
+    \varPhi^{(m)}(t) = \left( h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y} \right)^m
+    f(x_0 + th, y_0 + tk) \quad (m = 1, 2, \cdots, n + 1)
+  \end{align*}
 \end{zremark}
 
 \textbf{证明：}
 
-用归纳法进行证明，由命题17.5可知，$F(s, t)$是可微的，且$F(s, t)$的一阶偏导数是连续函数；
+归纳法证明，$m = 1$，使用链式法则可知等式成立。
 
-归纳假设$F(s,t)$的$n$阶偏导数是连续的，
+归纳假设$m = n$时，等式成立，接下来证明$m = n + 1$的情况。
+
+我们有
+\begin{align*}
+  \varPhi^{(n + 1)}
+   & = \frac{d}{dt} \varPhi^{(n)}                                                                      \\
+   & = \frac{d}{dt} \left[\left( h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y} \right)^n
+    f(x_0 + th, y_0 + tk)\right]
+\end{align*}
+令
+\begin{align*}
+  g(x, y) = \left( h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y} \right)^n f(x, y)
+\end{align*}
+题设保证$g(x, y)$存在连续的偏导数，则由链式法则，有
+\begin{align*}
+  \varPhi^{(n + 1)}
+   & = \frac{d}{dt} g(x_0 + th, y_0 + tk)                                                                                                                                             \\
+   & = \left( h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y} \right) g(x_0 + th, y_0 + tk)                                                                               \\
+   & = \left( h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y} \right) \left( h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y} \right)^n f(x_0 + th, y_0 + tk) \\
+   & = \left( h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y} \right)^{n + 1} f(x_0 + th, y_0 + tk)
+\end{align*}
 
 \begin{zremark}
   证明：定理17.10（极值必要条件）
