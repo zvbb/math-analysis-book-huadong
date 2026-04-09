@@ -37,6 +37,52 @@
 \maketitle
 
 \begin{zremark}
+  二阶连续偏导数连续，则一阶偏导数连续。
+\end{zremark}
+
+设$f(x, y)$的二阶偏导数连续，证明$f_x$的连续（$f_y$的证明类似）。
+
+对任意点$(x_0, y_0)$，我们有
+\begin{align*}
+  f_x(x, y) - f_x(x_0, y_0)
+   & = f_x(x, y) - f_x(x_0, y) + f_x(x_0, y) - f_x(x_0, y_0)
+\end{align*}
+考虑$f_x(x, y) - f_x(x_0, y)$，即固定$y$，对$x$用一元微分中值定理：
+\begin{align*}
+  f_x(x, y) - f_x(x_0, y)
+   & = f_{xx}(x_0 + \theta_1 (x - x_0), y) (x - x_0), \quad 0 < \theta_1 < 1
+\end{align*}
+同理可得
+\begin{align*}
+  f_x(x_0, y) - f_x(x_0, y_0)
+   & = f_{xy} (x_0, y_0 + \theta_2 (y - y_0))(y - y_0), \quad 0 < \theta_2 < 1
+\end{align*}
+由于$f_{xx}$连续，所以
+\begin{align*}
+  \lim\limits_{(x, y) \to (x_0, y_0)}
+  f_{xx}(x_0 + \theta_1 (x - x_0), y) (x - x_0)
+   & = \lim\limits_{(x, y) \to (x_0, y_0)} f_{xx}(x_0 + \theta_1 (x - x_0), y) \cdot \lim\limits_{(x, y) \to (x_0, y_0)} (x - x_0) \\
+   & = f_{xx}(x_0, y_0) \cdot 0                                                                                                    \\
+   & = 0
+\end{align*}
+$f_{xy}$连续，同理可得
+\begin{align*}
+  \lim\limits_{(x, y) \to (x_0, y_0)} f_x(x_0, y) - f_x(x_0, y_0)
+   & = 0
+\end{align*}
+综上，
+\begin{align*}
+  \lim\limits_{(x, y) \to (x_0, y_0)} f_x(x, y) - f_x(x_0, y_0) & = \lim\limits_{(x, y) \to (x_0, y_0)}
+  f_{xx}(x_0 + \theta_1 (x - x_0), y) (x - x_0)                                                                                     \\
+                                                                & + \lim\limits_{(x, y) \to (x_0, y_0)} f_x(x_0, y) - f_x(x_0, y_0) \\
+                                                                & = 0
+\end{align*}
+故
+\begin{align*}
+  \lim\limits_{(x, y) \to (x_0, y_0)} f_x(x, y) & = f_x(x_0, y_0)
+\end{align*}
+
+\begin{zremark}
   多元函数的偏导数的四则运算：
 
   设$f, g : U \subset R^n \to \mathbb{R}$，且在点$x(x_1, x_2, \cdots, x_n) \in U$可微。
@@ -147,17 +193,19 @@
 \begin{zremark}
   证明：定理17.8（中值定理）推论。
 \end{zremark}
-\textbf{证明：}
 
-% 由定理17.2（可微的充分条件）可得，$f$在$D$上可微；
-% 由可微的定义可知，$f(x, y)$是常数函数（要用到有限覆盖定理，且如果是开域，还要改造成闭域，
-% 常见做法是加上边界）
+\textbf{提示：}
+
+按照区域的定义，对任意$P_0(x_0, y_0), P_1(x_1, y_1) \in D$，由于区域具有连通性，
+故两点之间可以通过折线连接，对于折线上的每一段都可采用中值定理得到
+\begin{align*}
+  f(\textbf{起点}) = f(\textbf{终点})
+\end{align*}
+所以，$f$是常值函数。
+
+\textbf{证明：}
 todo
 
-% 整体思路1：
-
-% 按照区域的定义，对任意$P_0(x_0, y_0), P_1(x_1, y_1) \in D$，由于区域具有连通性，
-% 故两点之间存在一条“阶梯形路径”（16-1-comment.tex中有说明）从$P \to Q$，利用一元函数的中值定理命题可证。
 
 \begin{zremark}
   定理17.9（泰勒定理）证明过程中：
@@ -188,11 +236,48 @@ todo
 题设保证$g(x, y)$存在连续的偏导数，则由链式法则，有
 \begin{align*}
   \varPhi^{(n + 1)}
-   & = \frac{d}{dt} g(x_0 + th, y_0 + tk)                                                                                                                                             \\
-   & = \left( h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y} \right) g(x_0 + th, y_0 + tk)                                                                               \\
+   & = \frac{d}{dt} g(x_0 + th, y_0 + tk)                                                                                                                                            \\
+   & = \left( h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y} \right) g(x_0 + th, y_0 + tk)                                                                              \\
    & = \left( h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y} \right) \left( h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y} \right)^n f(x_0 + th, y_0 + tk) \\
    & = \left( h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y} \right)^{n + 1} f(x_0 + th, y_0 + tk)
 \end{align*}
+
+\begin{zremark}
+  定义17.9 (泰勒定理) 证明过程中：
+
+  一元函数$\varPhi(t)$在$[0, 1]$上满足一元函数泰勒定理条件的？
+\end{zremark}
+
+由一元函数泰勒定理条件，我们需要证明$\varPhi$存在$n + 1$阶连续导数。
+
+利用上一个“说明”，我们有
+\begin{align*}
+  \varPhi^{(m)}(t)
+   & = (h \frac{\partial}{\partial x} + k \frac{\partial}{\partial y})^{m} f(x_0 + th, y_0 + tk)                                                       \\
+   & = \sum\limits_{i = 0}^m C_{m}^i \frac{\partial^m}{\partial x^i \partial y^{m - i}} f(x_0 + th, y_0 + tk) h^i k^{m - i}  (m = 1, 2, \cdots, n + 1)
+\end{align*}
+连续函数与连续映射复合仍连续，故
+$\varPhi^{(m)}(t)$连续。
+
+\begin{zremark}
+  为什么$f$在$U(P_0)$内存在直到n阶连续偏导数，便有
+  \begin{align*}
+    f(x_0 + h, y_0 + k)
+     & = f(x_0, y_0) + \sum\limits_{P = 1}^n \frac{1}{P!}(h \frac{\partial}{\partial x} + k \frac{\partial}{\partial y})^P f(x_0, y_0) + o(\rho^n)
+  \end{align*}
+  其中$\rho = \sqrt{h^2 + k^2}$.
+\end{zremark}
+\textbf{证明：}
+
+% 令
+% \begin{align*}
+%   \varPhi(t) = f(x_0 + th, y_0 + tk)
+% \end{align*}
+% 于是一元函数$\varPhi(t)$满足定理6.9的条件，于是有
+% \begin{align*}
+%   \varPhi(1) & = \varPhi(0) + \frac{\varPhi'(0)}{1!} + \frac{\varPhi''(0)}{2!} + \cdots + \frac{\varPhi^{n}(0)}{n!} + o(1)
+% \end{align*}
+todo
 
 \begin{zremark}
   证明：定理17.10（极值必要条件）

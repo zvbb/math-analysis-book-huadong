@@ -37,6 +37,28 @@
 \maketitle
 
 \begin{zremark}
+  证明：例1 $\,$中在$x = 0$处的任意阶导数都等于0.
+\end{zremark}
+
+\textbf{证明：}
+
+\begin{align*}
+  f'(0) & = \lim\limits_{\Delta x \to 0} \frac{f(\Delta x) - f(0)}{\Delta x - 0}    \\
+        & = \lim\limits_{\Delta x \to 0} \frac{e^{-\frac{1}{\Delta x^2}}}{\Delta x} 
+\end{align*}
+令$t = \frac{1}{\Delta x^2}$，当$\Delta x \to 0$，则$t \to \pm \infty$，所以
+\begin{align*}
+  \lim\limits_{\Delta x \to 0} \frac{e^{-\frac{1}{\Delta x^2}}}{\Delta x} 
+  & = \lim\limits_{t \to \pm \infty} \frac{e^{-t^2}}{\frac{1}{t}} \\
+  & = \lim\limits_{t \to \pm \infty} \frac{t}{e^{t^2}}
+\end{align*}
+由洛必达法则可知$\lim\limits_{t \to \pm \infty} \frac{t}{e^{t^2}} = 0$，故
+$f'(0) = 0$.
+
+todo
+
+
+\begin{zremark}
   证明：定理14.11
 \end{zremark}
 \textbf{证明：}
@@ -59,7 +81,7 @@
         即$S(x) = f(x)$，
         由和函数的定义可知，对任意$x \in (x_0 - r, x_0 + r)$，有
         \begin{align*}
-          \lim\limits_{n\to\infty} S_n(x) = f(x)
+          \lim\limits_{n\to\infty} S_n(x) = S(x) = f(x)
         \end{align*}
         从而
         \begin{align*}
@@ -111,6 +133,8 @@ $x_0 \neq 0$时，令$y = x - x_0$，
   f(x) = \sum \limits_{n = 0}^{\infty} a_n y^n
 \end{align*}
 由之前的讨论可知，其是唯一的。
+
+
 
 % \begin{zremark}
 %   例8的疑问
